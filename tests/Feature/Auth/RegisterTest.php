@@ -11,14 +11,6 @@ use Tests\Feature\TestCase;
 
 class RegisterTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Queue::fake();
-
-        // $this->artisan('db:seed', ['--class' => 'ShieldSeeder']);
-    }
 
     /**
      * Sign up happy path
@@ -58,7 +50,6 @@ class RegisterTest extends TestCase
         $user = User::factory()->make();
 
         $request = RegisterRequest::make($user);
-        //->setRole(UserRole::USER);
 
         $response = $this->sendRequest($request);
 

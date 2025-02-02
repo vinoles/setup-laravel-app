@@ -9,8 +9,6 @@ use Illuminate\Contracts\Auth\StatefulGuard;
 use Laravel\Fortify\Fortify;
 use LaravelJsonApi\Core\Responses\MetaResponse;
 
-// use LaravelJsonApi\Core\Responses\MetaResponse;
-
 class ConfirmPasswordController extends Controller
 {
     /**

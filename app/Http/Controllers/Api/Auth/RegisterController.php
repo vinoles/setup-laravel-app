@@ -21,7 +21,6 @@ class RegisterController extends Controller
     {
         $attributes = $request->validated();
 
-        // $role = Arr::pull($attributes, 'role');
         $birthdate = Arr::pull($attributes, 'birthdate');
 
         $user = User::create(
@@ -32,8 +31,7 @@ class RegisterController extends Controller
                 ],
                 $attributes
             )
-            );
-        // ->assignRole($role);
+        );
 
         $token = $user->createToken('Device')->plainTextToken;
 

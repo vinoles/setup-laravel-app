@@ -47,8 +47,6 @@ class ConfirmPasswordTest extends TestCase
 
         $response = $this->signIn($user)->sendRequestApiPostWithPayload($request);
 
-        // dump($response->json());
-
         $response->assertSuccessful();
 
         $data = $response->json('meta');

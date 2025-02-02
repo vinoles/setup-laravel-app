@@ -9,12 +9,6 @@ use Tests\Feature\TestCase;
 
 class RegisterAttributesRequiredTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-        // $this->artisan('db:seed', ['--class' => 'ShieldSeeder']);
-    }
-
     /**
      * Cannot register if the required email is missing
      *

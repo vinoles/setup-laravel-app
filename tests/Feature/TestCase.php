@@ -38,8 +38,6 @@ class TestCase extends BaseTestCase
         $this->user = $user;
 
         if($user !== null) {
-            // dump($user);
-            // Sanctum::actingAs(
             Sanctum::actingAs($this->user, $scopes);
         }
 
