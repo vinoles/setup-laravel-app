@@ -99,5 +99,10 @@ sail artisan migrate:fresh
 
 #install package
 sail composer require api-platform/laravel
+
+#generate token
+sail artisan app:token-api-generator admin@app.com password
+
 ```
+
 # Read the make file for more commands
