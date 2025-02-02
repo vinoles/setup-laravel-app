@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'minimum_age' => env('MINIMUM_AGE', 14),
+    'prefix_api' => env('APP_LARAVEL_SETUP_PREFIX', '/api/v1'),
+
 ];

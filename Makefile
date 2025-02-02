@@ -77,6 +77,10 @@ front-build:
 shell:
 	$(sail) shell
 
+# Package discovery
+pdiscover:
+	$(sail) artisan package:discover
+
 # Sail command
 sail:
 	$(sail) $(command)
