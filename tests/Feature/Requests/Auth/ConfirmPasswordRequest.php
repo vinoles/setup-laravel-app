@@ -24,6 +24,6 @@ class ConfirmPasswordRequest extends PostRequest
      */
     public function endpoint(): string
     {
-        return route('v1.api.auth.password.confirm', ['user' => $this->user]);
+        return route('v1.api.user.password.confirm', ['user' => $this->user]);
     }
 }
