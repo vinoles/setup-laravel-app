@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Fortify\User\ConfirmPasswordController;
 use App\Http\Controllers\Api\Fortify\Auth\LoginController;
+use App\Http\Controllers\Api\Fortify\Auth\LogoutController;
 use App\Http\Controllers\Api\Fortify\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,11 @@ Route::middleware('auth:sanctum')->group(static function () {
                 Route::post('confirm-password/{user}', ConfirmPasswordController::class)
                     ->name('user.password.confirm');
             });
+
+            Route::prefix('auth')->group(static function () {
+                Route::post('logout', LogoutController::class)->name('api.auth.logout');
+            });
+
         });
 });
 
