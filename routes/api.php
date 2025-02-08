@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->group(static function () {
             });
 
             Route::prefix('auth')->group(static function () {
-                Route::post('logout', LogoutController::class)->name('api.auth.logout');
+                Route::post('logout', LogoutController::class)->name('auth.logout');
             });
 
         });

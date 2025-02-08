@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Requests\Auth;
+namespace Tests\Feature\Requests\User;
 
 use App\Models\User;
 use Tests\Feature\Requests\PostRequest;

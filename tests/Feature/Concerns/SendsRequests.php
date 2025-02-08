@@ -113,6 +113,25 @@ trait SendsRequests
      * @param  mixed  $args
      * @return TestResponse
      */
+    protected function sendRequestApiPostWithPayloadAndToken(...$args): TestResponse
+    {
+        $request = Arr::get($args, 0);
+        $token = Arr::get($args, 1);
+
+        return $this
+            ->jsonApi()
+            ->asFormUrlEncoded()
+            ->withPayload($request->payload())
+            ->withHeader('Authorization', "Bearer {$token}")
+            ->post($request->endpoint());
+    }
+
+    /**
+     * Send a post request to the server json api.
+     *
+     * @param  mixed  $args
+     * @return TestResponse
+     */
     protected function sendRequestApiPostWithData(...$args): TestResponse
     {
         $request = Arr::get($args, 0);
