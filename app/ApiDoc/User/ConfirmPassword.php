@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ApiDoc\Auth;
+namespace App\ApiDoc\User;
 
 use App\ApiDoc\ApiDoc;
 use OpenApi\Annotations as OA;
@@ -8,7 +8,7 @@ use OpenApi\Annotations as OA;
 /**
  *
  * @OA\Post(
- *     path="/api/v1/auth/confirm-password/{user}",
+ *     path="/api/v1/users/confirm-password/{user}",
  *     operationId="confirm password",
  *     @OA\Parameter(
  *         name="user",
@@ -20,7 +20,7 @@ use OpenApi\Annotations as OA;
  *             default="6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
  *         )
  *     ),
- *     tags={"Auth"},
+ *     tags={"Users"},
  *     summary="Confirm password",
  *     description="Confirm password for critical operations",
  *     security={ {"sanctum": {} }},

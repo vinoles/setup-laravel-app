@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ApiDoc\Users\Schemas;
+namespace App\ApiDoc\User\Schemas;
 
 use OpenApi\Annotations as OA;
 
