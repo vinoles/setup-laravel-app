@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "APP API Documentation",
+        "title": "G-Player API Documentation",
         "version": "1.0.0"
     },
     "paths": {

@@ -20,6 +20,10 @@ test:
 cache:
 	$(sail) artisan cache:clear && $(sail) artisan config:clear && $(sail) artisan route:clear
 
+# Optimize clear
+optimize:
+	$(sail) artisan optimize:clear
+
 # Run filtered test
 test_filter:
 	$(sail) artisan test --filter $(file)
@@ -80,6 +84,10 @@ shell:
 # Package discovery
 pdiscover:
 	$(sail) artisan package:discover
+
+# Swagger generate
+l5g:
+	$(sail) artisan l5-swagger:generate
 
 # Sail command
 sail:
