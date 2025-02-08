@@ -9,22 +9,11 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\FailedPasswordResetLinkRequestResponse;
-use Laravel\Fortify\Contracts\RequestPasswordResetLinkViewResponse;
 use Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse;
 use Laravel\Fortify\Fortify;
 
 class PasswordResetLinkController extends Controller
 {
-    /**
-     * Show the reset password link request view.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Laravel\Fortify\Contracts\RequestPasswordResetLinkViewResponse
-     */
-    public function create(Request $request): RequestPasswordResetLinkViewResponse
-    {
-        return app(RequestPasswordResetLinkViewResponse::class);
-    }
 
     /**
      * Send a reset link to the given user.
@@ -32,7 +21,7 @@ class PasswordResetLinkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function store(Request $request): Responsable
+    public function __invoke(Request $request): Responsable
     {
         $request->validate([Fortify::email() => 'required|email']);
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Fortify\User\ConfirmPasswordController;
 use App\Http\Controllers\Api\Fortify\Auth\LoginController;
 use App\Http\Controllers\Api\Fortify\Auth\LogoutController;
+use App\Http\Controllers\Api\Fortify\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Api\Fortify\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
@@ -36,4 +37,5 @@ JsonApiRoute::server('v1')
     ->resources(static function () {
         Route::post('login', LoginController::class)->name('api.auth.login');
         Route::post('register', RegisterController::class)->name('api.auth.register');
+        Route::post('reset-password-link', PasswordResetLinkController::class)->name('api.auth.reset_password_link');
     });
