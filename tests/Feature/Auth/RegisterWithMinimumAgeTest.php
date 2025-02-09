@@ -56,15 +56,16 @@ class RegisterWithMinimumAgeTest extends TestCase
         $allowedBirthdate = Carbon::now()
             ->subYears(config('app.minimum_age'))->format('Y-m-d');
 
-        $response->assertJsonPath(
-            'message',
-            trans(
+        $response->assertUnprocessable();
+
+        $response->assertInvalid([
+            'birthdate' => trans(
                 'validation.before_or_equal',
                 [
                     'attribute' => 'birthdate',
                     'date' => $allowedBirthdate,
                 ]
-            )
-        );
+            ),
+        ]);
     }
 }

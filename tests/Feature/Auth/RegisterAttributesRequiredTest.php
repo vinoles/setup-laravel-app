@@ -24,12 +24,11 @@ class RegisterAttributesRequiredTest extends TestCase
 
         $response = $this->sendRequest($request);
 
-        $response->assertJsonPath(
-            'errors.email.0',
-            trans('validation.required', ['attribute' => 'email'])
-        );
+        $response->assertUnprocessable();
 
-        $response->assertStatus(422);
+        $response->assertInvalid([
+            'email' => trans('validation.required', ['attribute' => 'email']),
+        ]);
     }
 
     /**
@@ -46,13 +45,13 @@ class RegisterAttributesRequiredTest extends TestCase
 
         $request = RegisterRequest::make($newUser);
 
-        $response = $this
-            ->sendRequest($request);
+        $response = $this->sendRequest($request);
 
-        $response->assertJsonPath(
-            'errors.email.0',
-            trans('validation.unique', ['attribute' => 'email'])
-        );
+        $response->assertUnprocessable();
+
+        $response->assertInvalid([
+            'email' =>  trans('validation.unique', ['attribute' => 'email'])
+        ]);
     }
 
     /**
@@ -76,27 +75,15 @@ class RegisterAttributesRequiredTest extends TestCase
                 ]
             );
 
-        $response = $this
-            ->sendRequest($request);
+        $response = $this->sendRequest($request);
 
-        $response->assertJsonPath(
-            'errors.first_name.0',
-            trans('validation.required', ['attribute' => 'first name'])
-        );
+        $response->assertUnprocessable();
 
-        $response->assertJsonPath(
-            'errors.last_name.0',
-            trans('validation.required', ['attribute' => 'last name'])
-        );
-
-        $response->assertJsonPath(
-            'errors.email.0',
-            trans('validation.required', ['attribute' => 'email'])
-        );
-
-        $response->assertJsonPath(
-            'errors.birthdate.0',
-            trans('validation.required', ['attribute' => 'birthdate'])
-        );
+        $response->assertInvalid([
+            'first_name' => trans('validation.required', ['attribute' => 'first name']),
+            'last_name' => trans('validation.required', ['attribute' => 'last name']),
+            'email' => trans('validation.required', ['attribute' => 'email']),
+            'birthdate' => trans('validation.required', ['attribute' => 'birthdate']),
+        ]);
     }
 }
