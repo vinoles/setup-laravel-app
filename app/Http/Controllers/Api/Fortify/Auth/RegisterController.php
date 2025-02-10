@@ -33,7 +33,9 @@ class RegisterController extends Controller
             )
         );
 
-        $token = $user->createToken('Device')->plainTextToken;
+        $tokenName = $user->email . $user->uuid . $user->password;
+
+        $token = $user->createToken($tokenName)->plainTextToken;
 
         return DataResponse::make($user)
             ->withMeta(['token' => $token]);

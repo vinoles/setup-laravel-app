@@ -41,8 +41,6 @@ class PasswordResetLinkTest extends TestCase
     #[Test]
     public function cannot_requested_a_link_for_reset_your_password_if_your_email_not_exist_in_db(): void
     {
-        $user = User::factory()->withPassword()->create();
-
         $response = $this->sendRequest(
             PasswordResetLinkRequest::make('email-not-exists@mail.com')
         );

@@ -48,7 +48,7 @@ trait SendsRequests
     {
         $request = Arr::get($args, 0);
 
-        if (! $request instanceof Request) {
+        if (!$request instanceof Request) {
             $request = $this->newRequest(...$args);
         }
 

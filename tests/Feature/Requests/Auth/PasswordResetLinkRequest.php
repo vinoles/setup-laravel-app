@@ -23,6 +23,6 @@ class PasswordResetLinkRequest extends PostRequest
      */
     public function endpoint(): string
     {
-        return route('v1.api.auth.reset_password_link');
+        return route('v1.api.auth.forgot_password');
     }
 }

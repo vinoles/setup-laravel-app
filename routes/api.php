@@ -28,14 +28,18 @@ Route::middleware('auth:sanctum')->group(static function () {
             Route::prefix('auth')->group(static function () {
                 Route::post('logout', LogoutController::class)->name('auth.logout');
             });
-
         });
 });
 
 JsonApiRoute::server('v1')
     ->prefix('v1/auth')
     ->resources(static function () {
-        Route::post('login', LoginController::class)->name('api.auth.login');
-        Route::post('register', RegisterController::class)->name('api.auth.register');
-        Route::post('reset-password-link', PasswordResetLinkController::class)->name('api.auth.reset_password_link');
+        Route::post('login', LoginController::class)
+            ->name('api.auth.login');
+
+        Route::post('register', RegisterController::class)
+            ->name('api.auth.register');
+
+        Route::post('forgot-password', PasswordResetLinkController::class)
+            ->name('api.auth.forgot_password');
     });
