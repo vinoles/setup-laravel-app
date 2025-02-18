@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->group(static function () {
         });
 });
 
+// auth routes
 JsonApiRoute::server('v1')
     ->prefix('v1/auth')
     ->resources(static function () {
