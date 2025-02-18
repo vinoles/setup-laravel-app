@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Fortify\User\ConfirmPasswordController;
 use App\Http\Controllers\Api\Fortify\Auth\LoginController;
 use App\Http\Controllers\Api\Fortify\Auth\LogoutController;
+use App\Http\Controllers\Api\Fortify\Auth\NewPasswordResetController;
 use App\Http\Controllers\Api\Fortify\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Api\Fortify\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\UserController;
@@ -42,4 +43,7 @@ JsonApiRoute::server('v1')
 
         Route::post('forgot-password', PasswordResetLinkController::class)
             ->name('api.auth.forgot_password');
+
+        Route::post('reset-password', NewPasswordResetController::class)
+            ->name('api.auth.reset_password');
     });
