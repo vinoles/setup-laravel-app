@@ -8,30 +8,18 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="UnprocessableEntityError",
  *     type="object",
- *     @OA\Property(
- *         property="detail",
- *         type="string",
- *         example="message error example"
- *     ),
- *     @OA\Property(
- *         property="source",
- *         type="object",
- *         @OA\Property(
- *             property="pointer",
- *             type="string",
- *             example="/property"
- *         )
- *     ),
- *     @OA\Property(
- *         property="status",
- *         type="string",
- *         example="422"
- *     ),
- *     @OA\Property(
- *         property="title",
- *         type="string",
- *         example="Unprocessable Entity"
- *     ),
+ *     allOf={
+ *         @OA\Schema(ref="#/components/schemas/VersionMeta"),
+ *         @OA\Schema(
+ *             @OA\Property(
+ *                 property="errors",
+ *                 type="array",
+ *                 @OA\Items(
+ *                     ref="#/components/schemas/UnprocessableEntityErrorDetails",
+ *                 ),
+ *             ),
+ *         ),
+ *     }
  * )
  */
 

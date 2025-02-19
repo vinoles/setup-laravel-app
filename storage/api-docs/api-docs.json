@@ -58,16 +58,18 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UnprocessableEntity"
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
                                 }
                             }
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "500": {
+                        "description": "Internal Server Error",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
                             }
                         }
                     }
@@ -92,10 +94,12 @@
                         }
                     },
                     "500": {
-                        "description": "Internal Error Server",
+                        "description": "Internal Server Error",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
                             }
                         }
                     }
@@ -153,16 +157,18 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UnprocessableEntity"
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
                                 }
                             }
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "500": {
+                        "description": "Internal Server Error",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
                             }
                         }
                     }
@@ -205,16 +211,18 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UnprocessableEntity"
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
                                 }
                             }
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "500": {
+                        "description": "Internal Server Error",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
                             }
                         }
                     }
@@ -286,16 +294,18 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UnprocessableEntity"
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
                                 }
                             }
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "500": {
+                        "description": "Internal Server Error",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
                             }
                         }
                     }
@@ -767,6 +777,51 @@
                 },
                 "type": "object"
             },
+            "InternalServerError": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/VersionMeta"
+                    },
+                    {
+                        "properties": {
+                            "errors": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/InternalServerErrorDetails"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "InternalServerErrorDetails": {
+                "properties": {
+                    "detail": {
+                        "type": "string",
+                        "example": "message error example"
+                    },
+                    "meta": {
+                        "properties": {
+                            "exception": {
+                                "type": "string",
+                                "example": "ParseError"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "500"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Internal Server Error"
+                    }
+                },
+                "type": "object"
+            },
             "PaginationMeta": {
                 "properties": {
                     "page": {
@@ -801,7 +856,7 @@
                 },
                 "type": "object"
             },
-            "UnprocessableEntity": {
+            "UnprocessableEntityError": {
                 "type": "object",
                 "allOf": [
                     {
@@ -812,7 +867,7 @@
                             "errors": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                    "$ref": "#/components/schemas/UnprocessableEntityErrorDetails"
                                 }
                             }
                         },
@@ -820,7 +875,7 @@
                     }
                 ]
             },
-            "UnprocessableEntityError": {
+            "UnprocessableEntityErrorDetails": {
                 "properties": {
                     "detail": {
                         "type": "string",

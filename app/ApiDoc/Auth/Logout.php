@@ -21,8 +21,8 @@ use OpenApi\Annotations as OA;
  *     ),
  *     @OA\Response(
  *         response="500",
- *         description="Internal Error Server",
- *         @OA\JsonContent()
+ *         description="Internal Server Error",
+ *         @OA\JsonContent(ref="#/components/schemas/InternalServerError"),
  *     ),
  * )
  *

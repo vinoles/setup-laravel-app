@@ -6,7 +6,7 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
- *     schema="UnprocessableEntity",
+ *     schema="InternalServerError",
  *     type="object",
  *     allOf={
  *         @OA\Schema(ref="#/components/schemas/VersionMeta"),
@@ -15,7 +15,7 @@ use OpenApi\Annotations as OA;
  *                 property="errors",
  *                 type="array",
  *                 @OA\Items(
- *                     ref="#/components/schemas/UnprocessableEntityError",
+ *                     ref="#/components/schemas/InternalServerErrorDetails",
  *                 ),
  *             ),
  *         ),
@@ -23,6 +23,6 @@ use OpenApi\Annotations as OA;
  * )
  */
 
-class UnprocessableEntity
+class InternalServerError
 {
 }
