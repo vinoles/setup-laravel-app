@@ -35,17 +35,6 @@ class NewPasswordResetController extends Controller
         $this->guard = $guard;
     }
 
-    // /**
-    //  * Show the new password view.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Laravel\Fortify\Contracts\ResetPasswordViewResponse
-    //  */
-    // public function create(Request $request): ResetPasswordViewResponse
-    // {
-    //     return app(ResetPasswordViewResponse::class);
-    // }
-
     /**
      * Reset the user's password.
      *

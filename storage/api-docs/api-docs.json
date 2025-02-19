@@ -144,11 +144,13 @@
                     }
                 },
                 "responses": {
-                    "204": {
-                        "description": "Logout Successful",
+                    "200": {
+                        "description": "Request reset link Successful",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/RequestResetPasswordLinkResponse"
+                                }
                             }
                         }
                     },
@@ -198,6 +200,85 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/LoginAndRegisterResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/reset-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "reset password user",
+                "description": "reset password endpoint for user",
+                "operationId": "reset-password",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "default": "user-test@app.com"
+                                    },
+                                    "password": {
+                                        "description": "The user password example",
+                                        "type": "string",
+                                        "format": "password",
+                                        "default": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Confirm password for the user account",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    },
+                                    "token": {
+                                        "description": "Confirm password for the user account",
+                                        "type": "string",
+                                        "format": "token",
+                                        "example": "5|X46fIoLGotBF4AiSTnjykT5fECyymL6RuxhY1PU722b37b1b"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Request reset link Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResetPasswordResponse"
                                 }
                             }
                         }
@@ -664,6 +745,24 @@
                         "type": "string",
                         "format": "password",
                         "example": "strongPassword123"
+                    }
+                },
+                "type": "object"
+            },
+            "RequestResetPasswordLinkResponse": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "We have emailed your password reset link."
+                    }
+                },
+                "type": "object"
+            },
+            "ResetPasswordResponse": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "Your password has been reset."
                     }
                 },
                 "type": "object"

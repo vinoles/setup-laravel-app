@@ -42,7 +42,7 @@ JsonApiRoute::server('v1')
         Route::post('register', RegisterController::class)
             ->name('api.auth.register');
 
-        Route::post('forgot-password', PasswordResetLinkController::class)
+        Route::post('reset-password-link', PasswordResetLinkController::class)
             ->name('api.auth.forgot_password');
 
         Route::post('reset-password', NewPasswordResetController::class)

@@ -30,9 +30,9 @@ use OpenApi\Annotations as OA;
  *         ),
  *     ),
  *     @OA\Response(
- *       response="204",
- *       description="Logout Successful",
- *       @OA\JsonContent()
+ *       response="200",
+ *       description="Request reset link Successful",
+ *         @OA\JsonContent(ref="#/components/schemas/RequestResetPasswordLinkResponse"),
  *     ),
  *     @OA\Response(
  *         response="422",
