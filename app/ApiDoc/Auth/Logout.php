@@ -20,13 +20,8 @@ use OpenApi\Annotations as OA;
  *       @OA\JsonContent()
  *     ),
  *     @OA\Response(
- *         response="422",
- *         description="Unprocessable Entity",
- *         @OA\JsonContent()
- *     ),
- *     @OA\Response(
- *         response="400",
- *         description="Bad Request",
+ *         response="500",
+ *         description="Internal Error Server",
  *         @OA\JsonContent()
  *     ),
  * )

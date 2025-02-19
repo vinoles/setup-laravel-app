@@ -37,7 +37,7 @@ use OpenApi\Annotations as OA;
  *     @OA\Response(
  *         response="422",
  *         description="Unprocessable Entity",
- *         @OA\JsonContent()
+ *         @OA\JsonContent(ref="#/components/schemas/UnprocessableEntity"),
  *     ),
  *     @OA\Response(
  *         response="400",
