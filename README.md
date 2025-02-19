@@ -1,4 +1,4 @@
-# YPLAYER APP
+# G-PLAYER APP
 
 A demo application to illustrate how [Laravel API PLATFORM](https://api-platform.com/docs/laravel/) works with [Laravel](https://laravel.com/) and [FIlamentPhp](https://filamentphp.com/docs).
 
