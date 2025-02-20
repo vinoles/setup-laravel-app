@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Http\Controllers\Api\Fortify\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\SignInRequest;
@@ -25,13 +25,15 @@ class LoginController extends Controller
 
         $user = User::where('email', $email)->first();
 
-        if (! $user || ! Hash::check($password, $user->password)) {
+        if (!$user || !Hash::check($password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => [trans('auth.failed')],
             ]);
         }
 
-        $token = $user->createToken('Device')->plainTextToken;
+        $tokenName = $user->email . $user->uuid . $user->password;
+
+        $token = $user->createToken($tokenName)->plainTextToken;
 
         return DataResponse::make($user)
             ->withMeta(['token' => $token]);

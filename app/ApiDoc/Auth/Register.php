@@ -25,15 +25,15 @@ use OpenApi\Annotations as OA;
  *       description="Register Successful",
  *         @OA\JsonContent(ref="#/components/schemas/LoginAndRegisterResponse"),
  *     ),
- *     @OA\Response(
+*     @OA\Response(
  *         response="422",
  *         description="Unprocessable Entity",
- *         @OA\JsonContent()
+ *         @OA\JsonContent(ref="#/components/schemas/UnprocessableEntityError"),
  *     ),
  *     @OA\Response(
- *         response="400",
- *         description="Bad Request",
- *         @OA\JsonContent()
+ *         response="500",
+ *         description="Internal Server Error",
+ *         @OA\JsonContent(ref="#/components/schemas/InternalServerError"),
  *     ),
  * )
  *

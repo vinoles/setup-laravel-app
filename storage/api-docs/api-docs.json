@@ -1,14 +1,321 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "APP API Documentation",
+        "title": "G-Player API Documentation",
         "version": "1.0.0"
     },
     "paths": {
-        "/api/v1/auth/confirm-password/{user}": {
+        "/api/v1/auth/login": {
             "post": {
                 "tags": [
                     "Auth"
+                ],
+                "summary": "login user",
+                "description": "Login endpoint for user",
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "default": "user-test@app.com"
+                                    },
+                                    "password": {
+                                        "description": "The user password example",
+                                        "type": "string",
+                                        "format": "password",
+                                        "default": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginAndRegisterResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "logout user",
+                "description": "Logout endpoint for user",
+                "operationId": "logout",
+                "responses": {
+                    "204": {
+                        "description": "Logout Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/auth/reset-password-link": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Password reset link user",
+                "description": "Password reset link endpoint for user",
+                "operationId": "reset-password-link",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "default": "user-test@app.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Request reset link Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RequestResetPasswordLinkResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "register user",
+                "description": "Register endpoint for user",
+                "operationId": "register",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Register Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginAndRegisterResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/reset-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "reset password user",
+                "description": "reset password endpoint for user",
+                "operationId": "reset-password",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "default": "user-test@app.com"
+                                    },
+                                    "password": {
+                                        "description": "The user password example",
+                                        "type": "string",
+                                        "format": "password",
+                                        "default": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Confirm password for the user account",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    },
+                                    "token": {
+                                        "description": "Confirm password for the user account",
+                                        "type": "string",
+                                        "format": "token",
+                                        "example": "5|X46fIoLGotBF4AiSTnjykT5fECyymL6RuxhY1PU722b37b1b"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Request reset link Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResetPasswordResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/confirm-password/{user}": {
+            "post": {
+                "tags": [
+                    "Users"
                 ],
                 "summary": "Confirm password",
                 "description": "Confirm password for critical operations",
@@ -81,123 +388,6 @@
                         "sanctum": []
                     }
                 ]
-            }
-        },
-        "/api/v1/auth/login": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "login user",
-                "description": "Login endpoint for user",
-                "operationId": "login",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [
-                                    "email",
-                                    "password"
-                                ],
-                                "properties": {
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email",
-                                        "default": "user-test@app.com"
-                                    },
-                                    "password": {
-                                        "description": "The user password example",
-                                        "type": "string",
-                                        "format": "password",
-                                        "default": "password"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Login Successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/LoginAndRegisterResponse"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/auth/register": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "register user",
-                "description": "Register endpoint for user",
-                "operationId": "register",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "$ref": "#/components/schemas/RegisterRequest"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Register Successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/LoginAndRegisterResponse"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                }
             }
         },
         "/api/v1/users": {
@@ -422,29 +612,6 @@
     },
     "components": {
         "schemas": {
-            "ConfirmPasswordResponse": {
-                "properties": {
-                    "jsonapi": {
-                        "properties": {
-                            "version": {
-                                "type": "string",
-                                "example": "1.0"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "meta": {
-                        "properties": {
-                            "status": {
-                                "type": "boolean",
-                                "example": true
-                            }
-                        },
-                        "type": "object"
-                    }
-                },
-                "type": "object"
-            },
             "LoginAndRegisterResponse": {
                 "properties": {
                     "meta": {
@@ -592,6 +759,69 @@
                 },
                 "type": "object"
             },
+            "RequestResetPasswordLinkResponse": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "We have emailed your password reset link."
+                    }
+                },
+                "type": "object"
+            },
+            "ResetPasswordResponse": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "Your password has been reset."
+                    }
+                },
+                "type": "object"
+            },
+            "InternalServerError": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/VersionMeta"
+                    },
+                    {
+                        "properties": {
+                            "errors": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/InternalServerErrorDetails"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "InternalServerErrorDetails": {
+                "properties": {
+                    "detail": {
+                        "type": "string",
+                        "example": "message error example"
+                    },
+                    "meta": {
+                        "properties": {
+                            "exception": {
+                                "type": "string",
+                                "example": "ParseError"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "500"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Internal Server Error"
+                    }
+                },
+                "type": "object"
+            },
             "PaginationMeta": {
                 "properties": {
                     "page": {
@@ -626,6 +856,51 @@
                 },
                 "type": "object"
             },
+            "UnprocessableEntityError": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/VersionMeta"
+                    },
+                    {
+                        "properties": {
+                            "errors": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityErrorDetails"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "UnprocessableEntityErrorDetails": {
+                "properties": {
+                    "detail": {
+                        "type": "string",
+                        "example": "message error example"
+                    },
+                    "source": {
+                        "properties": {
+                            "pointer": {
+                                "type": "string",
+                                "example": "/property"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "422"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Unprocessable Entity"
+                    }
+                },
+                "type": "object"
+            },
             "VersionMeta": {
                 "properties": {
                     "jsonapi": {
@@ -633,6 +908,29 @@
                             "version": {
                                 "type": "string",
                                 "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "ConfirmPasswordResponse": {
+                "properties": {
+                    "jsonapi": {
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "meta": {
+                        "properties": {
+                            "status": {
+                                "type": "boolean",
+                                "example": true
                             }
                         },
                         "type": "object"

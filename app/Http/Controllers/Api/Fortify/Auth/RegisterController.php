@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Http\Controllers\Api\Fortify\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\RegisterRequest;
@@ -33,7 +33,9 @@ class RegisterController extends Controller
             )
         );
 
-        $token = $user->createToken('Device')->plainTextToken;
+        $tokenName = $user->email . $user->uuid . $user->password;
+
+        $token = $user->createToken($tokenName)->plainTextToken;
 
         return DataResponse::make($user)
             ->withMeta(['token' => $token]);

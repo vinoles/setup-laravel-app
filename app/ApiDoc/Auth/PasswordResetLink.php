@@ -8,38 +8,31 @@ use OpenApi\Annotations as OA;
 /**
  *
  * @OA\Post(
- *     path="/api/v1/auth/login",
- *     operationId="login",
+ *     path="/api/v1/auth/reset-password-link",
+ *     operationId="reset-password-link",
  *     tags={"Auth"},
- *     summary="login user",
- *     description="Login endpoint for user",
+ *     summary="Password reset link user",
+ *     description="Password reset link endpoint for user",
  *     @OA\RequestBody(
  *         @OA\JsonContent(),
  *         @OA\MediaType(
  *             mediaType="multipart/form-data",
  *             @OA\Schema(
  *                 type="object",
- *                 required={"email", "password"},
+ *                 required={"email"},
  *                 @OA\Property(
  *                     property="email",
  *                     type="string",
  *                     format="email",
  *                     default="user-test@app.com"
  *                 ),
- *                 @OA\Property(
- *                     property="password",
- *                     type="string",
- *                     format="password",
- *                     description="The user password example",
- *                     default="password"
- *                 ),
  *             ),
  *         ),
  *     ),
  *     @OA\Response(
  *       response="200",
- *       description="Login Successful",
- *         @OA\JsonContent(ref="#/components/schemas/LoginAndRegisterResponse"),
+ *       description="Request reset link Successful",
+ *         @OA\JsonContent(ref="#/components/schemas/RequestResetPasswordLinkResponse"),
  *     ),
  *     @OA\Response(
  *         response="422",
@@ -54,6 +47,6 @@ use OpenApi\Annotations as OA;
  * )
  *
  */
-class Login extends ApiDoc
+class PasswordResetLink extends ApiDoc
 {
 }

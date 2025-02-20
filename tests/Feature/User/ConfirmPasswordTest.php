@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Feature\Auth;
+namespace Tests\Feature\User;
 
 use App\Models\User;
 use Illuminate\Http\Response;
-use Tests\Feature\Requests\Auth\ConfirmPasswordRequest;
+use Tests\Feature\Requests\User\ConfirmPasswordRequest;
 use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 

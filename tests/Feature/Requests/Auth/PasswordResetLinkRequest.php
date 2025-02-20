@@ -2,18 +2,17 @@
 
 namespace Tests\Feature\Requests\Auth;
 
-use App\Models\User;
 use Tests\Feature\Requests\PostRequest;
 
-class ConfirmPasswordRequest extends PostRequest
+class PasswordResetLinkRequest extends PostRequest
 {
     /**
      * Create a new request instance.
      */
-    public function __construct(protected User $user, protected string $password)
+    public function __construct(string $email)
     {
         $this->with([
-            'password' => $password,
+            'email' => $email
         ]);
     }
 
@@ -24,6 +23,6 @@ class ConfirmPasswordRequest extends PostRequest
      */
     public function endpoint(): string
     {
-        return route('v1.api.auth.password.confirm', ['user' => $this->user]);
+        return route('v1.api.auth.forgot_password');
     }
 }

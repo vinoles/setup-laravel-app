@@ -8,11 +8,11 @@ use OpenApi\Annotations as OA;
 /**
  *
  * @OA\Post(
- *     path="/api/v1/auth/login",
- *     operationId="login",
+ *     path="/api/v1/auth/reset-password",
+ *     operationId="reset-password",
  *     tags={"Auth"},
- *     summary="login user",
- *     description="Login endpoint for user",
+ *     summary="reset password user",
+ *     description="reset password endpoint for user",
  *     @OA\RequestBody(
  *         @OA\JsonContent(),
  *         @OA\MediaType(
@@ -33,13 +33,27 @@ use OpenApi\Annotations as OA;
  *                     description="The user password example",
  *                     default="password"
  *                 ),
+ *                  @OA\Property(
+ *                      property="password_confirmation",
+ *                      type="string",
+ *                      format="password",
+ *                      description="Confirm password for the user account",
+ *                      example="password"
+ *                 ),
+ *                  @OA\Property(
+ *                      property="token",
+ *                      type="string",
+ *                      format="token",
+ *                      description="Confirm password for the user account",
+ *                      example="5|X46fIoLGotBF4AiSTnjykT5fECyymL6RuxhY1PU722b37b1b"
+ *                 ),
  *             ),
  *         ),
  *     ),
  *     @OA\Response(
  *       response="200",
- *       description="Login Successful",
- *         @OA\JsonContent(ref="#/components/schemas/LoginAndRegisterResponse"),
+ *       description="Request reset link Successful",
+ *         @OA\JsonContent(ref="#/components/schemas/ResetPasswordResponse"),
  *     ),
  *     @OA\Response(
  *         response="422",
@@ -54,6 +68,6 @@ use OpenApi\Annotations as OA;
  * )
  *
  */
-class Login extends ApiDoc
+class ResetPassword extends ApiDoc
 {
 }
