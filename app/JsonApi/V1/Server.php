@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\V1;
 
+use App\JsonApi\V1\Posts\PostSchema;
 use App\JsonApi\V1\Users\UserSchema;
 use LaravelJsonApi\Core\Server\Server as BaseServer;
 
@@ -35,6 +36,7 @@ class Server extends BaseServer
         return [
             // @TODO
             UserSchema::class,
+            PostSchema::class,
         ];
     }
 }
