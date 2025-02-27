@@ -8,11 +8,11 @@ use Illuminate\Support\Str;
 class UserObserver
 {
     /**
-    * Triggered before creating an talent.
-    *
-    * @param  User  $user
-    * @return void
-    */
+     * Triggered before creating an user.
+     *
+     * @param  User  $user
+     * @return void
+     */
     public function creating(User $user): void
     {
         if ($user->missingUuid()) {
