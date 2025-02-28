@@ -13,18 +13,11 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use LaravelJsonApi\Laravel\Routing\Relationships;
 use LaravelJsonApi\Laravel\Routing\ResourceRegistrar;
 
-
+//TODO Example testing without being logged in
 // JsonApiRoute::server('v1')
 //     ->prefix('v1')
 //     ->name('v1.api.')
-//     ->resources(function (ResourceRegistrar $server) {
-//         $server->resource('posts', JsonApiController::class)
-//         ->readOnly()
-//         ->relationships(function (Relationships $relations) {
-//             $relations->hasOne('author')->readOnly();
-//             $relations->hasMany('comments')->readOnly();
-//             $relations->hasMany('tags')->readOnly();
-//         });
+//     ->resources(function (ResourceRegistrar $server)
 
 //         $server->resource('users', UserController::class)
 //             ->relationships(function (Relationships $relations) {
