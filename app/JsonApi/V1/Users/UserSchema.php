@@ -6,6 +6,7 @@ use App\Models\User;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
+use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\Where;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
@@ -20,6 +21,13 @@ class UserSchema extends Schema
      * @var string
      */
     public static string $model = User::class;
+
+    /**
+     * The maximum include path depth.
+     *
+     * @var int
+     */
+    protected int $maxDepth = 3;
 
     /**
      * The resource type as it appears in URIs.
@@ -53,6 +61,7 @@ class UserSchema extends Schema
             Str::make('remember_token')->sortable(),
             Str::make('email_verified_at'),
             Str::make('birthdate')->sortable(),
+            HasMany::make('posts')->readOnly(),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
         ];

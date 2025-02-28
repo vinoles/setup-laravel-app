@@ -1,20 +1,18 @@
 <?php
 
-namespace App\JsonApi\V1\Posts;
+namespace App\JsonApi\V1\Comments;
 
-use App\Models\Post;
+use App\Models\Comment;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
 use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
-use LaravelJsonApi\Eloquent\Fields\Relations\BelongsToMany;
-use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
 
-class PostSchema extends Schema
+class CommentSchema extends Schema
 {
 
     /**
@@ -22,14 +20,7 @@ class PostSchema extends Schema
      *
      * @var string
      */
-    public static string $model = Post::class;
-
-    /**
-     * The maximum include path depth.
-     *
-     * @var int
-     */
-    protected int $maxDepth = 3;
+    public static string $model = Comment::class;
 
     /**
      * Get the resource fields.
@@ -40,30 +31,10 @@ class PostSchema extends Schema
     {
         return [
             ID::make()->uuid(),
-
-            BelongsTo::make('author')->type('users')->readOnly(),
-
-            HasMany::make('comments')->readOnly(),
-
             Str::make('content'),
-
-            Str::make('slug'),
-
-            BelongsToMany::make('tags'),
-
-            Str::make('title')
-                ->sortable(),
-
-            DateTime::make('publishedAt')
-                ->sortable(),
-
-            DateTime::make('createdAt')
-                ->sortable()
-                ->readOnly(),
-
-            DateTime::make('updatedAt')
-                ->sortable()
-                ->readOnly(),
+            BelongsTo::make('user')->readOnly(),
+            DateTime::make('createdAt')->sortable()->readOnly(),
+            DateTime::make('updatedAt')->sortable()->readOnly(),
         ];
     }
 
@@ -89,13 +60,4 @@ class PostSchema extends Schema
         return PagePagination::make();
     }
 
-    /**
-     * Determine if the resource is authorizable.
-    *
-    * @return bool
-    */
-    public function authorizable(): bool
-    {
-        return true;
-    }
 }
