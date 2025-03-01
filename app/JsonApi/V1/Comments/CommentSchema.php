@@ -6,6 +6,7 @@ use App\Models\Comment;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
+use LaravelJsonApi\Eloquent\Fields\Number;
 use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
@@ -32,7 +33,10 @@ class CommentSchema extends Schema
         return [
             ID::make()->uuid(),
             Str::make('content'),
-            BelongsTo::make('user')->readOnly(),
+            Number::make('post_id'),
+            Number::make('user_id'),
+            BelongsTo::make('user')->type('users'),
+            BelongsTo::make('post')->type('posts'),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
         ];
@@ -60,4 +64,13 @@ class CommentSchema extends Schema
         return PagePagination::make();
     }
 
+    /**
+     * Determine if the resource is authorizable.
+     *
+     * @return bool
+     */
+    public function authorizable(): bool
+    {
+        return false;
+    }
 }

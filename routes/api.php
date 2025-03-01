@@ -13,6 +13,20 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use LaravelJsonApi\Laravel\Routing\Relationships;
 use LaravelJsonApi\Laravel\Routing\ResourceRegistrar;
 
+
+// Example testing without login
+// JsonApiRoute::server('v1')
+//     ->prefix('v1')
+//     ->name('v1.api.')
+//     ->resources(function (ResourceRegistrar $server) {
+
+//         $server->resource('comments', JsonApiController::class)
+//             ->relationships(function (Relationships $relations) {
+//                 $relations->hasOne('post');
+//                 $relations->hasOne('user');
+//             });
+//     });
+
 Route::middleware('auth:sanctum')->group(static function () {
     JsonApiRoute::server('v1')
         ->prefix('v1')
@@ -25,6 +39,13 @@ Route::middleware('auth:sanctum')->group(static function () {
                     $relations->hasMany('comments');
                     $relations->hasMany('tags');
                 });
+
+            $server->resource('comments', JsonApiController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasOne('post');
+                    $relations->hasOne('user');
+                });
+
 
             $server->resource('users', UserController::class)
                 ->relationships(function (Relationships $relations) {
