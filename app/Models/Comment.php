@@ -18,7 +18,11 @@ class Comment extends Model
     /**
      * @var string[]
      */
-    protected $fillable = ['content'];
+    protected $fillable = [
+        'content',
+        'post_id',
+        'user_id',
+    ];
 
     /**
      * @return BelongsTo

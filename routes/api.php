@@ -10,15 +10,22 @@ use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
+use LaravelJsonApi\Laravel\Routing\Relationships;
 use LaravelJsonApi\Laravel\Routing\ResourceRegistrar;
 
 
-JsonApiRoute::server('v1')
-    ->prefix('v1')
-    ->name('v1.api.')
-    ->resources(function (ResourceRegistrar $server) {
-        $server->resource('posts', JsonApiController::class);
-    });
+// Example testing without login
+// JsonApiRoute::server('v1')
+//     ->prefix('v1')
+//     ->name('v1.api.')
+//     ->resources(function (ResourceRegistrar $server) {
+
+//         $server->resource('comments', JsonApiController::class)
+//             ->relationships(function (Relationships $relations) {
+//                 $relations->hasOne('post');
+//                 $relations->hasOne('user');
+//             });
+//     });
 
 Route::middleware('auth:sanctum')->group(static function () {
     JsonApiRoute::server('v1')
@@ -26,7 +33,24 @@ Route::middleware('auth:sanctum')->group(static function () {
         ->name('v1.api.')
         ->resources(static function (ResourceRegistrar $server) {
 
-            $server->resource('users', UserController::class);
+            $server->resource('posts', JsonApiController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasOne('author');
+                    $relations->hasMany('comments');
+                    $relations->hasMany('tags');
+                });
+
+            $server->resource('comments', JsonApiController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasOne('post');
+                    $relations->hasOne('user');
+                });
+
+
+            $server->resource('users', UserController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasMany('posts');
+                });
 
             Route::prefix('users')->group(static function () {
                 Route::post('confirm-password/{user}', ConfirmPasswordController::class)

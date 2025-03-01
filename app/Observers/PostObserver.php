@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostObserver
@@ -20,6 +21,8 @@ class PostObserver
                 'uuid' => Str::uuid(),
             ]);
         }
+
+        $post->author()->associate(Auth::user());
     }
 
     /**
