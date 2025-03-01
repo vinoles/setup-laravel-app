@@ -13,18 +13,6 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use LaravelJsonApi\Laravel\Routing\Relationships;
 use LaravelJsonApi\Laravel\Routing\ResourceRegistrar;
 
-//TODO Example testing without being logged in
-// JsonApiRoute::server('v1')
-//     ->prefix('v1')
-//     ->name('v1.api.')
-//     ->resources(function (ResourceRegistrar $server)
-
-//         $server->resource('users', UserController::class)
-//             ->relationships(function (Relationships $relations) {
-//                 $relations->hasMany('posts')->readOnly();
-//             });
-//     });
-
 Route::middleware('auth:sanctum')->group(static function () {
     JsonApiRoute::server('v1')
         ->prefix('v1')
@@ -32,16 +20,15 @@ Route::middleware('auth:sanctum')->group(static function () {
         ->resources(static function (ResourceRegistrar $server) {
 
             $server->resource('posts', JsonApiController::class)
-                ->readOnly()
                 ->relationships(function (Relationships $relations) {
-                    $relations->hasOne('author')->readOnly();
-                    $relations->hasMany('comments')->readOnly();
-                    $relations->hasMany('tags')->readOnly();
+                    $relations->hasOne('author');
+                    $relations->hasMany('comments');
+                    $relations->hasMany('tags');
                 });
 
             $server->resource('users', UserController::class)
                 ->relationships(function (Relationships $relations) {
-                    $relations->hasMany('posts')->readOnly();
+                    $relations->hasMany('posts');
                 });
 
             Route::prefix('users')->group(static function () {

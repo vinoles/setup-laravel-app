@@ -41,9 +41,9 @@ class PostSchema extends Schema
         return [
             ID::make()->uuid(),
 
-            BelongsTo::make('author')->type('users')->readOnly(),
+            BelongsTo::make('author')->type('users'),
 
-            HasMany::make('comments')->readOnly(),
+            HasMany::make('comments'),
 
             Str::make('content'),
 
@@ -91,9 +91,9 @@ class PostSchema extends Schema
 
     /**
      * Determine if the resource is authorizable.
-    *
-    * @return bool
-    */
+     *
+     * @return bool
+     */
     public function authorizable(): bool
     {
         return true;
