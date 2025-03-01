@@ -14,7 +14,7 @@ install:
 
 # Run tests
 test:
-	$(sail) artisan test
+	$(sail) artisan test --parallel
 
 # Clear cache
 cache:
