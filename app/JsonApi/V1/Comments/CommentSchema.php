@@ -6,12 +6,12 @@ use App\Models\Comment;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
-use LaravelJsonApi\Eloquent\Fields\Number;
 use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
+
 
 class CommentSchema extends Schema
 {
@@ -33,8 +33,6 @@ class CommentSchema extends Schema
         return [
             ID::make()->uuid(),
             Str::make('content'),
-            Number::make('post_id'),
-            Number::make('user_id'),
             BelongsTo::make('user')->type('users'),
             BelongsTo::make('post')->type('posts'),
             DateTime::make('createdAt')->sortable()->readOnly(),

@@ -16,8 +16,8 @@ class CommentRequest extends ResourceRequest
     {
         return [
             'content' => ['required', 'string'],
-            'post_id' => ['required', 'integer'],
-            'user_id' => ['required', 'integer'],
+            'user' => ['required'],
+            'post' => ['required'],
         ];
     }
 }
