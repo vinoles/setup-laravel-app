@@ -312,6 +312,103 @@
                 }
             }
         },
+        "/api/v1/posts": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "List posts",
+                "description": "List posts endpoint",
+                "operationId": "retrievePosts",
+                "parameters": [
+                    {
+                        "name": "accept",
+                        "in": "header",
+                        "description": "Media type to accept",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "application/vnd.api+json"
+                        }
+                    },
+                    {
+                        "name": "page[number]",
+                        "in": "query",
+                        "description": "Number page for pagination",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "page[size]",
+                        "in": "query",
+                        "description": "Number of elements for page",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    },
+                    {
+                        "name": "filter[first_name]",
+                        "in": "query",
+                        "description": "Filter for firstName attribute",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieve Posts Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostsApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Not Acceptable",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/v1/users/confirm-password/{user}": {
             "post": {
                 "tags": [
@@ -636,7 +733,7 @@
                         "properties": {
                             "self": {
                                 "type": "string",
-                                "example": "http://app-laravel-setup.local:8099/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                "example": "http://sever.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                             }
                         },
                         "type": "object"
@@ -658,7 +755,7 @@
                                 "properties": {
                                     "self": {
                                         "type": "string",
-                                        "example": "http://app-laravel-setup.local:8099/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                        "example": "http://sever.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                                     }
                                 },
                                 "type": "object"
@@ -773,6 +870,233 @@
                     "message": {
                         "type": "string",
                         "example": "Your password has been reset."
+                    }
+                },
+                "type": "object"
+            },
+            "PostApiResponse": {
+                "properties": {
+                    "jsonapi": {
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://sever.example/api/v1/posts/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "posts"
+                            },
+                            "id": {
+                                "type": "string",
+                                "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                            },
+                            "attributes": {
+                                "$ref": "#/components/schemas/PostAttributes"
+                            },
+                            "links": {
+                                "properties": {
+                                    "self": {
+                                        "type": "string",
+                                        "example": "http://sever.example/api/v1/posts/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "PostAttributes": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Dogme post example"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "the content dogme post example"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "dogme-post-example"
+                    }
+                },
+                "type": "object"
+            },
+            "PostRequest": {
+                "required": [
+                    "email",
+                    "first_name",
+                    "last_name",
+                    "phone",
+                    "address",
+                    "city",
+                    "country",
+                    "birthdate",
+                    "role",
+                    "password"
+                ],
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "posts"
+                            },
+                            "attributes": {
+                                "properties": {
+                                    "email": {
+                                        "description": "Post email address",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "Post@example.com"
+                                    },
+                                    "first_name": {
+                                        "description": "First name of the Post",
+                                        "type": "string",
+                                        "maxLength": 50,
+                                        "example": "John"
+                                    },
+                                    "last_name": {
+                                        "description": "Last name of the Post",
+                                        "type": "string",
+                                        "maxLength": 50,
+                                        "example": "Doe"
+                                    },
+                                    "phone": {
+                                        "description": "Phone number of the Post",
+                                        "type": "string",
+                                        "maxLength": 20,
+                                        "minLength": 10,
+                                        "example": "123-456-7890"
+                                    },
+                                    "address": {
+                                        "description": "Address of the Post",
+                                        "type": "string",
+                                        "maxLength": 150,
+                                        "example": "123 Main St, Anytown"
+                                    },
+                                    "city": {
+                                        "description": "City of the Post",
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "example": "Anytown"
+                                    },
+                                    "country": {
+                                        "description": "Country of the Post",
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "example": "USA"
+                                    },
+                                    "postal_code": {
+                                        "description": "Postal code of the Post",
+                                        "type": "string",
+                                        "maxLength": 25,
+                                        "example": "12345",
+                                        "nullable": true
+                                    },
+                                    "birthdate": {
+                                        "description": "Birthdate of the Post",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2000-01-01"
+                                    },
+                                    "password": {
+                                        "description": "Password for the Post account",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "strongPassword123"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Confirm password for the Post account",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "strongPassword123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "PostsApiResponse": {
+                "properties": {
+                    "jsonapi": {
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "first": {
+                                "type": "string",
+                                "example": "http://sever.example/api/v1/posts?page%5Bnumber%5D=1&page%5Bsize%5D=10&sort=-createdAt"
+                            },
+                            "last": {
+                                "type": "string",
+                                "example": "http://sever.example/api/v1/posts?page%5Bnumber%5D=4&page%5Bsize%5D=10&sort=-createdAt"
+                            },
+                            "next": {
+                                "type": "string",
+                                "example": "http://sever.example/api/v1/posts?page%5Bnumber%5D=2&page%5Bsize%5D=10&sort=-createdAt"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "posts"
+                            },
+                            "id": {
+                                "type": "string",
+                                "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                            },
+                            "attributes": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/PostAttributes"
+                                }
+                            },
+                            "links": {
+                                "properties": {
+                                    "self": {
+                                        "type": "string",
+                                        "example": "http://sever.example/api/v1/posts/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
                     }
                 },
                 "type": "object"
@@ -953,7 +1277,7 @@
                         "properties": {
                             "self": {
                                 "type": "string",
-                                "example": "http://app-laravel-setup.local:8099/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                "example": "http://sever.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                             }
                         },
                         "type": "object"
@@ -975,7 +1299,7 @@
                                 "properties": {
                                     "self": {
                                         "type": "string",
-                                        "example": "http://app-laravel-setup.local:8099/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                        "example": "http://sever.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                                     }
                                 },
                                 "type": "object"
@@ -1139,15 +1463,15 @@
                         "properties": {
                             "first": {
                                 "type": "string",
-                                "example": "http://app-laravel-setup.local:8099/api/v1/users?page%5Bnumber%5D=1&page%5Bsize%5D=10&sort=-createdAt"
+                                "example": "http://sever.example/api/v1/users?page%5Bnumber%5D=1&page%5Bsize%5D=10&sort=-createdAt"
                             },
                             "last": {
                                 "type": "string",
-                                "example": "http://app-laravel-setup.local:8099/api/v1/users?page%5Bnumber%5D=4&page%5Bsize%5D=10&sort=-createdAt"
+                                "example": "http://sever.example/api/v1/users?page%5Bnumber%5D=4&page%5Bsize%5D=10&sort=-createdAt"
                             },
                             "next": {
                                 "type": "string",
-                                "example": "http://app-laravel-setup.local:8099/api/v1/users?page%5Bnumber%5D=2&page%5Bsize%5D=10&sort=-createdAt"
+                                "example": "http://sever.example/api/v1/users?page%5Bnumber%5D=2&page%5Bsize%5D=10&sort=-createdAt"
                             }
                         },
                         "type": "object"
@@ -1172,7 +1496,7 @@
                                 "properties": {
                                     "self": {
                                         "type": "string",
-                                        "example": "http://app-laravel-setup.local:8099/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                        "example": "http://sever.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                                     }
                                 },
                                 "type": "object"
@@ -1197,6 +1521,10 @@
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "Posts",
+            "description": "Posts"
         },
         {
             "name": "Users",
