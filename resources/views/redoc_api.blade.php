@@ -18,7 +18,7 @@
     </style>
   </head>
   <body>
-    <redoc spec-url="{{asset('storage/api-docs/api-docs.json')}}"></redoc>
+    <redoc spec-url="{{route('storage_rerdoc')}}"></redoc>
     <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
   </body>
 </html>

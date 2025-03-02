@@ -733,7 +733,7 @@
                         "properties": {
                             "self": {
                                 "type": "string",
-                                "example": "http://sever.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                "example": "http://server.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                             }
                         },
                         "type": "object"
@@ -755,7 +755,7 @@
                                 "properties": {
                                     "self": {
                                         "type": "string",
-                                        "example": "http://sever.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                        "example": "http://server.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                                     }
                                 },
                                 "type": "object"
@@ -1277,7 +1277,7 @@
                         "properties": {
                             "self": {
                                 "type": "string",
-                                "example": "http://sever.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                "example": "http://server.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                             }
                         },
                         "type": "object"
@@ -1299,7 +1299,7 @@
                                 "properties": {
                                     "self": {
                                         "type": "string",
-                                        "example": "http://sever.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                        "example": "http://server.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                                     }
                                 },
                                 "type": "object"
@@ -1463,15 +1463,15 @@
                         "properties": {
                             "first": {
                                 "type": "string",
-                                "example": "http://sever.example/api/v1/users?page%5Bnumber%5D=1&page%5Bsize%5D=10&sort=-createdAt"
+                                "example": "http://server.example/api/v1/users?page%5Bnumber%5D=1&page%5Bsize%5D=10&sort=-createdAt"
                             },
                             "last": {
                                 "type": "string",
-                                "example": "http://sever.example/api/v1/users?page%5Bnumber%5D=4&page%5Bsize%5D=10&sort=-createdAt"
+                                "example": "http://server.example/api/v1/users?page%5Bnumber%5D=4&page%5Bsize%5D=10&sort=-createdAt"
                             },
                             "next": {
                                 "type": "string",
-                                "example": "http://sever.example/api/v1/users?page%5Bnumber%5D=2&page%5Bsize%5D=10&sort=-createdAt"
+                                "example": "http://server.example/api/v1/users?page%5Bnumber%5D=2&page%5Bsize%5D=10&sort=-createdAt"
                             }
                         },
                         "type": "object"
@@ -1496,7 +1496,7 @@
                                 "properties": {
                                     "self": {
                                         "type": "string",
-                                        "example": "http://sever.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                        "example": "http://server.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                                     }
                                 },
                                 "type": "object"

@@ -31,7 +31,7 @@ use OpenApi\Annotations as OA;
  *         @OA\Property(
  *             property="self",
  *             type="string",
- *             example="http://app-laravel-setup.local:8099/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+ *             example="http://server.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
  *         )
  *     ),
  *     @OA\Property(
@@ -57,7 +57,7 @@ use OpenApi\Annotations as OA;
  *             @OA\Property(
  *                 property="self",
  *                 type="string",
- *                 example="http://app-laravel-setup.local:8099/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+ *                 example="http://server.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
  *             )
  *         )
  *     )

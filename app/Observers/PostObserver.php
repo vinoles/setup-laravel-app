@@ -22,7 +22,9 @@ class PostObserver
             ]);
         }
 
-        $post->author()->associate(Auth::user());
+        if (Auth::user()) {
+            $post->author()->associate(Auth::user());
+        }
     }
 
     /**

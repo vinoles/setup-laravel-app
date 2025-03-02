@@ -10,12 +10,8 @@ Route::get('/redoc-api', function () {
     return view('redoc_api');
 });
 
-Route::get('/storage/{filename}', function ($filename) {
-    $path = storage_path("app/public/$filename");
-
-    if (!file_exists($path)) {
-        abort(404);
-    }
+Route::get('/storage/redocapi', function () {
+    $path = storage_path("api-docs/api-docs.json");
 
     return response()->file($path);
-});
+})->name('storage_rerdoc');

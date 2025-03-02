@@ -22,17 +22,17 @@ use OpenApi\Annotations as OA;
  *         @OA\Property(
  *             property="first",
  *             type="string",
- *             example="http://app-laravel-setup.local:8099/api/v1/users?page%5Bnumber%5D=1&page%5Bsize%5D=10&sort=-createdAt"
+ *             example="http://server.example/api/v1/users?page%5Bnumber%5D=1&page%5Bsize%5D=10&sort=-createdAt"
  *         ),
  *         @OA\Property(
  *             property="last",
  *             type="string",
- *             example="http://app-laravel-setup.local:8099/api/v1/users?page%5Bnumber%5D=4&page%5Bsize%5D=10&sort=-createdAt"
+ *             example="http://server.example/api/v1/users?page%5Bnumber%5D=4&page%5Bsize%5D=10&sort=-createdAt"
  *         ),
  *         @OA\Property(
  *             property="next",
  *             type="string",
- *             example="http://app-laravel-setup.local:8099/api/v1/users?page%5Bnumber%5D=2&page%5Bsize%5D=10&sort=-createdAt"
+ *             example="http://server.example/api/v1/users?page%5Bnumber%5D=2&page%5Bsize%5D=10&sort=-createdAt"
  *         )
  *     ),
  *     @OA\Property(
@@ -61,7 +61,7 @@ use OpenApi\Annotations as OA;
  *             @OA\Property(
  *                 property="self",
  *                 type="string",
- *                 example="http://app-laravel-setup.local:8099/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+ *                 example="http://server.example/api/v1/users/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
  *             )
  *         )
  *     )
