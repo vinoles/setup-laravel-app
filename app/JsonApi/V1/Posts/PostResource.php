@@ -24,7 +24,7 @@ class PostResource extends JsonApiResource
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
-            'published_at' => $this->publishedAt,
+            'published_at' => $this->published_at,
         ];
     }
 

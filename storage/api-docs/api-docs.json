@@ -312,6 +312,65 @@
                 }
             }
         },
+        "/api/v1/posts/{post}": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Show post",
+                "description": "Show post endpoint",
+                "operationId": "retrievePost",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "description": "ID of post (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieve Post Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/v1/posts": {
             "get": {
                 "tags": [
@@ -321,16 +380,6 @@
                 "description": "List posts endpoint",
                 "operationId": "retrievePosts",
                 "parameters": [
-                    {
-                        "name": "accept",
-                        "in": "header",
-                        "description": "Media type to accept",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "default": "application/vnd.api+json"
-                        }
-                    },
                     {
                         "name": "page[number]",
                         "in": "query",
@@ -352,11 +401,12 @@
                         }
                     },
                     {
-                        "name": "filter[first_name]",
+                        "name": "include",
                         "in": "query",
-                        "description": "Filter for firstName attribute",
+                        "description": "Include relations ships information, ?include=comments",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "default": "author,comments"
                         }
                     }
                 ],
@@ -371,32 +421,22 @@
                             }
                         }
                     },
-                    "422": {
-                        "description": "Unprocessable Entity",
+                    "404": {
+                        "description": "Not found error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object"
+                                    "$ref": "#/components/schemas/NotFoundError"
                                 }
                             }
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "500": {
+                        "description": "Internal Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "406": {
-                        "description": "Not Acceptable",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
+                                    "$ref": "#/components/schemas/InternalServerError"
                                 }
                             }
                         }
@@ -874,6 +914,37 @@
                 },
                 "type": "object"
             },
+            "PostApiResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "posts"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                    },
+                    "attributes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PostAttributes"
+                        }
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/PostRelationships"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://sever.example/api/v1/posts/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
             "PostApiResponse": {
                 "properties": {
                     "jsonapi": {
@@ -889,35 +960,13 @@
                         "properties": {
                             "self": {
                                 "type": "string",
-                                "example": "http://sever.example/api/v1/posts/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                                "example": "http://server.example/api/v1/posts/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                             }
                         },
                         "type": "object"
                     },
                     "data": {
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "example": "posts"
-                            },
-                            "id": {
-                                "type": "string",
-                                "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                            },
-                            "attributes": {
-                                "$ref": "#/components/schemas/PostAttributes"
-                            },
-                            "links": {
-                                "properties": {
-                                    "self": {
-                                        "type": "string",
-                                        "example": "http://sever.example/api/v1/posts/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "type": "object"
+                        "$ref": "#/components/schemas/PostApiResource"
                     }
                 },
                 "type": "object"
@@ -932,13 +981,106 @@
                         "type": "string",
                         "example": "Dogme post example"
                     },
+                    "slug": {
+                        "type": "string",
+                        "example": "dogme-post-example"
+                    },
                     "content": {
                         "type": "string",
                         "example": "the content dogme post example"
                     },
-                    "slug": {
+                    "published_at": {
                         "type": "string",
-                        "example": "dogme-post-example"
+                        "format": "date",
+                        "example": "2025-03-02T13:25:39.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "PostRelationships": {
+                "properties": {
+                    "author": {
+                        "properties": {
+                            "links": {
+                                "properties": {
+                                    "related": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/author"
+                                    },
+                                    "self": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/relationships/author"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "data": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "users"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "comments": {
+                        "properties": {
+                            "links": {
+                                "properties": {
+                                    "related": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/comments"
+                                    },
+                                    "self": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/relationships/comments"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "comments"
+                                        },
+                                        "id": {
+                                            "type": "string",
+                                            "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "tags": {
+                        "properties": {
+                            "links": {
+                                "properties": {
+                                    "related": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/tags"
+                                    },
+                                    "self": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/relationships/tags"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
                     }
                 },
                 "type": "object"
@@ -969,7 +1111,7 @@
                                         "description": "Post email address",
                                         "type": "string",
                                         "format": "email",
-                                        "example": "Post@example.com"
+                                        "example": "post@example.com"
                                     },
                                     "first_name": {
                                         "description": "First name of the Post",
@@ -1044,6 +1186,9 @@
             },
             "PostsApiResponse": {
                 "properties": {
+                    "meta": {
+                        "$ref": "#/components/schemas/PaginationMeta"
+                    },
                     "jsonapi": {
                         "properties": {
                             "version": {
@@ -1071,32 +1216,10 @@
                         "type": "object"
                     },
                     "data": {
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "example": "posts"
-                            },
-                            "id": {
-                                "type": "string",
-                                "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                            },
-                            "attributes": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/PostAttributes"
-                                }
-                            },
-                            "links": {
-                                "properties": {
-                                    "self": {
-                                        "type": "string",
-                                        "example": "http://sever.example/api/v1/posts/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "type": "object"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PostApiResource"
+                        }
                     }
                 },
                 "type": "object"
@@ -1146,6 +1269,51 @@
                 },
                 "type": "object"
             },
+            "NotFoundError": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/VersionMeta"
+                    },
+                    {
+                        "properties": {
+                            "errors": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/NotFoundErrorDetails"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "NotFoundErrorDetails": {
+                "properties": {
+                    "detail": {
+                        "type": "string",
+                        "example": "The route api/v1/posts/cfc5c0c4-74d8-4c13-9f51-290d87a22d42s could not be found."
+                    },
+                    "source": {
+                        "properties": {
+                            "pointer": {
+                                "type": "string",
+                                "example": "/property"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "404"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Not Found"
+                    }
+                },
+                "type": "object"
+            },
             "PaginationMeta": {
                 "properties": {
                     "page": {
@@ -1176,6 +1344,19 @@
                             }
                         },
                         "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Relationship": {
+                "properties": {
+                    "related": {
+                        "type": "string",
+                        "example": "http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/author"
+                    },
+                    "self": {
+                        "type": "string",
+                        "example": "http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/relationships/author"
                     }
                 },
                 "type": "object"
@@ -1450,6 +1631,9 @@
             },
             "UsersApiResponse": {
                 "properties": {
+                    "meta": {
+                        "$ref": "#/components/schemas/PaginationMeta"
+                    },
                     "jsonapi": {
                         "properties": {
                             "version": {

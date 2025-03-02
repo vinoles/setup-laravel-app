@@ -15,16 +15,6 @@ use OpenApi\Annotations as OA;
  *     description="List posts endpoint",
  *     security={ {"sanctum": {} }},
  *     @OA\Parameter(
- *         name="accept",
- *         in="header",
- *         required=true,
- *         @OA\Schema(
- *             type="string",
- *             default="application/vnd.api+json"
- *         ),
- *         description="Media type to accept"
- *     ),
- *     @OA\Parameter(
  *         name="page[number]",
  *         required=true,
  *         in="query",
@@ -45,12 +35,13 @@ use OpenApi\Annotations as OA;
  *         description="Number of elements for page"
  *     ),
  *     @OA\Parameter(
- *         name="filter[first_name]",
+ *         name="include",
  *         in="query",
  *         @OA\Schema(
- *         type="string",
+ *              type="string",
+ *              default="author,comments"
  *         ),
- *         description="Filter for firstName attribute"
+ *         description="Include relations ships information, ?include=comments"
  *     ),
  *     @OA\Response(
  *       response="200",
@@ -58,35 +49,15 @@ use OpenApi\Annotations as OA;
  *       @OA\JsonContent(ref="#/components/schemas/PostsApiResponse"),
  *     ),
  *     @OA\Response(
- *         response="422",
- *         description="Unprocessable Entity",
- *         @OA\JsonContent(
- *             type="object",
- *             @OA\MediaType(
- *                 mediaType="application/vnd.api+json"
- *             )
- *         )
+ *         response="404",
+ *         description="Not found error",
+ *         @OA\JsonContent(ref="#/components/schemas/NotFoundError"),
  *     ),
  *     @OA\Response(
- *         response="400",
- *         description="Bad Request",
- *         @OA\JsonContent(
- *             type="object",
- *             @OA\MediaType(
- *                 mediaType="application/vnd.api+json"
- *             )
- *         )
+ *         response="500",
+ *         description="Internal Server Error",
+ *         @OA\JsonContent(ref="#/components/schemas/InternalServerError"),
  *     ),
- *     @OA\Response(
- *         response=406,
- *         description="Not Acceptable",
- *         @OA\JsonContent(
- *             type="object",
- *             @OA\MediaType(
- *                 mediaType="application/vnd.api+json"
- *             )
- *         )
- *     )
  * )
  *
  */

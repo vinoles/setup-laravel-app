@@ -18,15 +18,20 @@ use OpenApi\Annotations as OA;
  *         example="Dogme post example"
  *     ),
  *     @OA\Property(
+ *         property="slug",
+ *         type="string",
+ *         example="dogme-post-example"
+ *     ),
+ *     @OA\Property(
  *         property="content",
  *         type="string",
  *         example="the content dogme post example"
  *     ),
  *     @OA\Property(
- *         property="slug",
- *         type="string",
- *         example="dogme-post-example"
- *     )
+ *         property="published_at",
+ *         type="date",
+ *         example="2025-03-02T13:25:39.000000Z"
+ *     ),
  * )
  */
 class PostAttributes

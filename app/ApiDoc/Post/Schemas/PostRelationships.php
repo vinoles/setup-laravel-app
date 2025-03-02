@@ -1,0 +1,100 @@
+<?php
+
+namespace App\ApiDoc\Post\Schemas;
+
+use OpenApi\Annotations as OA;
+
+/**
+ * @OA\Schema(
+ *     schema="PostRelationships",
+ *     type="object",
+ *     @OA\Property(
+ *         property="author",
+ *         type="object",
+ *         @OA\Property(
+ *              property="links",
+ *              type="object",
+ *              @OA\Property(
+ *                  property="related",
+ *                  type="string",
+ *                  example="http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/author"
+ *              ),
+ *              @OA\Property(
+ *                  property="self",
+ *                  type="string",
+ *                  example="http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/relationships/author"
+ *              ),
+ *          ),
+ *         @OA\Property(
+ *              property="data",
+ *              type="object",
+ *              @OA\Property(
+ *                  property="type",
+ *                  type="string",
+ *                  example="users"
+ *              ),
+ *              @OA\Property(
+ *                  property="id",
+ *                  type="string",
+ *                  example="08d58e2f-87fa-498d-a2dc-0fca333df772"
+ *              ),
+ *          ),
+ *     ),
+ *     @OA\Property(
+ *         property="comments",
+ *         type="object",
+ *         @OA\Property(
+ *              property="links",
+ *              type="object",
+ *              @OA\Property(
+ *                  property="related",
+ *                  type="string",
+ *                  example="http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/comments"
+ *              ),
+ *              @OA\Property(
+ *                  property="self",
+ *                  type="string",
+ *                  example="http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/relationships/comments"
+ *              ),
+ *          ),
+ *         @OA\Property(
+ *              property="data",
+ *              type="array",
+ *             @OA\Items(
+ *                  type="object",
+ *                  @OA\Property(
+ *                      property="type",
+ *                      type="string",
+ *                      example="comments"
+ *                  ),
+ *                  @OA\Property(
+ *                      property="id",
+ *                      type="string",
+ *                      example="08d58e2f-87fa-498d-a2dc-0fca333df772"
+ *                  ),
+ *             ),
+ *          ),
+ *     ),
+ *     @OA\Property(
+ *         property="tags",
+ *         type="object",
+ *         @OA\Property(
+ *              property="links",
+ *              type="object",
+ *              @OA\Property(
+ *                  property="related",
+ *                  type="string",
+ *                  example="http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/tags"
+ *              ),
+ *              @OA\Property(
+ *                  property="self",
+ *                  type="string",
+ *                  example="http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/relationships/tags"
+ *              ),
+ *          ),
+ *     ),
+ * )
+ */
+class PostRelationships
+{
+}

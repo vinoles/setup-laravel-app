@@ -131,7 +131,7 @@
 
             requestInterceptor: function(request) {
                 request.headers['X-CSRF-TOKEN'] = '{{ csrf_token() }}';
-                request.headers['accept'] = "{{env('L5_SWAGGER_CONST_ACCEPT_HEADER')}}";
+                request.headers['accept'] = "{{ config('l5-swagger.accept_header') }}";
                 return request;
             },
 
