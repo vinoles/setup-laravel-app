@@ -430,6 +430,65 @@
                 ]
             }
         },
+        "/api/v1/posts/{post}/comments": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Show post comments information",
+                "description": "Show post comments endpoint",
+                "operationId": "retrievePostComments",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "description": "ID of post (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieve Post Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostCommentsApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/v1/posts": {
             "get": {
                 "tags": [
@@ -1042,16 +1101,140 @@
                     },
                     "slug": {
                         "type": "string",
-                        "example": "dogme-post-example"
+                        "example": "application test-post-example"
                     },
                     "content": {
                         "type": "string",
-                        "example": "the content dogme post example"
+                        "example": "the content application test post example"
                     },
                     "published_at": {
                         "type": "string",
                         "format": "date",
                         "example": "2025-03-02T13:25:39.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "PostCommentApiResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "comments"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                    },
+                    "attributes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PostCommentAttributes"
+                        }
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/PostCommentRelationships"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://sever.example/api/v1/comments/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "PostCommentAttributes": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "the content application test post example"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2025-03-02T13:25:39.000000Z"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2025-03-02T13:25:39.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "PostCommentRelationships": {
+                "properties": {
+                    "user": {
+                        "properties": {
+                            "links": {
+                                "properties": {
+                                    "related": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/user"
+                                    },
+                                    "self": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/relationships/user"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "post": {
+                        "properties": {
+                            "links": {
+                                "properties": {
+                                    "related": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/post"
+                                    },
+                                    "self": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/relationships/post"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "PostCommentsApiResponse": {
+                "properties": {
+                    "jsonapi": {
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/posts/6bb7c993-88ad-402c-9352-c7eb65d9b8e9/comments"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PostCommentApiResource"
+                        }
                     }
                 },
                 "type": "object"
