@@ -91,6 +91,7 @@ class PostPolicy
         return $user && $user->is($post->author);
     }
 
+
     /**
      * Determine whether the user can update the model's tags relationship.
      */
