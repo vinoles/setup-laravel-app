@@ -1481,10 +1481,6 @@
                         "type": "string",
                         "example": "Application post example"
                     },
-                    "slug": {
-                        "type": "string",
-                        "example": "application-test-post-example"
-                    },
                     "content": {
                         "type": "string",
                         "example": "the content application test post example"

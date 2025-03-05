@@ -14,11 +14,6 @@ use OpenApi\Annotations as OA;
  *         example="Application post example"
  *     ),
  *     @OA\Property(
- *         property="slug",
- *         type="string",
- *         example="application-test-post-example"
- *     ),
- *     @OA\Property(
  *         property="content",
  *         type="string",
  *         example="the content application test post example"
