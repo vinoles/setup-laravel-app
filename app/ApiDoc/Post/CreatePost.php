@@ -22,19 +22,19 @@ use OpenApi\Annotations as OA;
  *         ),
  *     ),
  *     @OA\Response(
- *       response="200",
+ *       response="201",
  *       description="CreatePost Successful",
  *         @OA\JsonContent(ref="#/components/schemas/PostApiResponse"),
  *     ),
  *     @OA\Response(
  *         response="422",
  *         description="Unprocessable Entity",
- *         @OA\JsonContent()
+ *         @OA\JsonContent(ref="#/components/schemas/UnprocessableEntityError"),
  *     ),
  *     @OA\Response(
- *         response="400",
- *         description="Bad Request",
- *         @OA\JsonContent()
+ *         response="500",
+ *         description="Internal Server Error",
+ *         @OA\JsonContent(ref="#/components/schemas/InternalServerError"),
  *     ),
  * )
  *

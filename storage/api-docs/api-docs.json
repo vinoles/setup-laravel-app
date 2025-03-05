@@ -409,7 +409,7 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "CreatePost Successful",
                         "content": {
                             "application/json": {
@@ -423,15 +423,19 @@
                         "description": "Unprocessable Entity",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
                             }
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "500": {
+                        "description": "Internal Server Error",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
                             }
                         }
                     }
@@ -534,7 +538,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "UpdatePost Successful",
+                        "description": "CreatePost Successful",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -547,15 +551,19 @@
                         "description": "Unprocessable Entity",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
                             }
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "500": {
+                        "description": "Internal Server Error",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
                             }
                         }
                     }
@@ -1371,26 +1379,7 @@
                                 "example": "posts"
                             },
                             "attributes": {
-                                "properties": {
-                                    "title": {
-                                        "type": "string",
-                                        "example": "Application post example"
-                                    },
-                                    "slug": {
-                                        "type": "string",
-                                        "example": "application-test-post-example"
-                                    },
-                                    "content": {
-                                        "type": "string",
-                                        "example": "the content application test post example"
-                                    },
-                                    "publishedAt": {
-                                        "type": "string",
-                                        "format": "date",
-                                        "example": "2025-03-02T13:25:39.000000Z"
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/PostRequestAttributes"
                             }
                         },
                         "type": "object"
@@ -1486,6 +1475,28 @@
                 },
                 "type": "object"
             },
+            "PostRequestAttributes": {
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Application post example"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "application-test-post-example"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "the content application test post example"
+                    },
+                    "publishedAt": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2025-03-02T13:25:39.000000Z"
+                    }
+                },
+                "type": "object"
+            },
             "PostUpdateRequest": {
                 "required": [
                     "content",
@@ -1504,26 +1515,7 @@
                                 "example": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
                             },
                             "attributes": {
-                                "properties": {
-                                    "title": {
-                                        "type": "string",
-                                        "example": "Application post example"
-                                    },
-                                    "slug": {
-                                        "type": "string",
-                                        "example": "application-test-post-example"
-                                    },
-                                    "content": {
-                                        "type": "string",
-                                        "example": "the content application test post example"
-                                    },
-                                    "publishedAt": {
-                                        "type": "string",
-                                        "format": "date",
-                                        "example": "2025-03-02T13:25:39.000000Z"
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/PostRequestAttributes"
                             }
                         },
                         "type": "object"
