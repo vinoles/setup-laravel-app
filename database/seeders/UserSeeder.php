@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
 
         User::factory()->create([
             'first_name' => 'Admin',
-            'last_name' => 'Dogme',
+            'last_name' => 'Application',
             'email' => 'admin@app.com',
             'password' => Hash::make($password),
         ]);
