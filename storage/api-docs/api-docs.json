@@ -312,6 +312,137 @@
                 }
             }
         },
+        "/api/v1/posts": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "List posts",
+                "description": "List posts endpoint",
+                "operationId": "retrievePosts",
+                "parameters": [
+                    {
+                        "name": "page[number]",
+                        "in": "query",
+                        "description": "Number page for pagination",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "page[size]",
+                        "in": "query",
+                        "description": "Number of elements for page",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    },
+                    {
+                        "name": "include",
+                        "in": "query",
+                        "description": "Include relations ships information, ?include=comments",
+                        "schema": {
+                            "type": "string",
+                            "default": "author,comments"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieve Posts Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostsApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Create post",
+                "description": "Create endpoint for post",
+                "operationId": "createPost",
+                "requestBody": {
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PostCreateRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CreatePost Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/v1/posts/{post}": {
             "get": {
                 "tags": [
@@ -360,6 +491,71 @@
                                 "schema": {
                                     "$ref": "#/components/schemas/InternalServerError"
                                 }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Update post",
+                "description": "Update endpoint for post",
+                "operationId": "updatePost",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "description": "ID of post (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PostUpdateRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "UpdatePost Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
                             }
                         }
                     }
@@ -457,84 +653,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/PostCommentsApiResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/NotFoundError"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/InternalServerError"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/posts": {
-            "get": {
-                "tags": [
-                    "Posts"
-                ],
-                "summary": "List posts",
-                "description": "List posts endpoint",
-                "operationId": "retrievePosts",
-                "parameters": [
-                    {
-                        "name": "page[number]",
-                        "in": "query",
-                        "description": "Number page for pagination",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "page[size]",
-                        "in": "query",
-                        "description": "Number of elements for page",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "default": 10
-                        }
-                    },
-                    {
-                        "name": "include",
-                        "in": "query",
-                        "description": "Include relations ships information, ?include=comments",
-                        "schema": {
-                            "type": "string",
-                            "default": "author,comments"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Retrieve Posts Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/PostsApiResponse"
                                 }
                             }
                         }
@@ -1097,11 +1215,11 @@
                     },
                     "title": {
                         "type": "string",
-                        "example": "Dogme post example"
+                        "example": "Application post example"
                     },
                     "slug": {
                         "type": "string",
-                        "example": "application test-post-example"
+                        "example": "application-test-post-example"
                     },
                     "content": {
                         "type": "string",
@@ -1239,6 +1357,47 @@
                 },
                 "type": "object"
             },
+            "PostCreateRequest": {
+                "required": [
+                    "content",
+                    "slug",
+                    "title"
+                ],
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "posts"
+                            },
+                            "attributes": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Application post example"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "application-test-post-example"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "the content application test post example"
+                                    },
+                                    "publishedAt": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2025-03-02T13:25:39.000000Z"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
             "PostRelationships": {
                 "properties": {
                     "author": {
@@ -1317,6 +1476,51 @@
                                     "self": {
                                         "type": "string",
                                         "example": "http://server.example/api/v1/posts/8eff569d-bd24-46b4-b080-027c182c605e/relationships/tags"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "PostUpdateRequest": {
+                "required": [
+                    "content",
+                    "slug",
+                    "title"
+                ],
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "posts"
+                            },
+                            "id": {
+                                "type": "string",
+                                "example": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                            },
+                            "attributes": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Application post example"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "application-test-post-example"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "the content application test post example"
+                                    },
+                                    "publishedAt": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2025-03-02T13:25:39.000000Z"
                                     }
                                 },
                                 "type": "object"
@@ -1629,7 +1833,7 @@
                     },
                     "first_name": {
                         "type": "string",
-                        "example": "Dogme"
+                        "example": "Application"
                     },
                     "last_name": {
                         "type": "string",
