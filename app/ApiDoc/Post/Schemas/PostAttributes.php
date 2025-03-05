@@ -15,12 +15,12 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *         property="title",
  *         type="string",
- *         example="Dogme post example"
+ *         example="Application post example"
  *     ),
  *     @OA\Property(
  *         property="slug",
  *         type="string",
- *         example="application test-post-example"
+ *         example="application-test-post-example"
  *     ),
  *     @OA\Property(
  *         property="content",

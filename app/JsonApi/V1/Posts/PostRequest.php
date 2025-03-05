@@ -27,8 +27,7 @@ class PostRequest extends ResourceRequest
         return [
             'content' => ['required', 'string'],
             'publishedAt' => ['nullable', JsonApiRule::dateTime()],
-            'slug' => ['required', 'string', $uniqueSlug],
-            'tags' => JsonApiRule::toMany(),
+            'slug' => ['required', 'string', $uniqueSlug], //TODO REMOVE AND IMPLEMENT A SLUG GENERATOR
             'title' => ['required', 'string'],
         ];
     }
