@@ -48,7 +48,7 @@ db_fresh:
 
 # Refresh test database and migrations
 db_fresh_test:
-	$(sail) artisan migrate:fresh --force --database=mysql_test
+	$(sail) artisan migrate:fresh --force --database=testing
 
 # Rollback migrations
 rollback:
