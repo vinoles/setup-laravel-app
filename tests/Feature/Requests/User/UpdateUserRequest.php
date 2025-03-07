@@ -5,9 +5,9 @@ namespace Tests\Feature\Requests\Api\User;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Tests\Feature\Requests\PostRequest;
+use Tests\Feature\Requests\PatchRequest;
 
-class UpdateUserRequest extends PostRequest
+class UpdateUserRequest extends PatchRequest
 {
     /**
      * Create a new instance of the request.
