@@ -1,5 +1,5 @@
 # Sail command
-sail := "./vendor/bin/sail"
+sail := ./vendor/bin/sail
 
 # Initial Config
 setup: up install migrate seed front-install
@@ -18,7 +18,9 @@ test:
 
 # Clear cache
 cache:
-	$(sail) artisan cache:clear && $(sail) artisan config:clear && $(sail) artisan route:clear
+	$(sail) artisan cache:clear
+	$(sail) artisan config:clear
+	$(sail) artisan route:clear
 
 # Optimize clear
 optimize:
@@ -71,7 +73,7 @@ front-install:
 
 # Front-end development
 front-dev:
-	$(sail) composer run dev
+	$(sail) bun run dev
 
 # Front-end build
 front-build:
@@ -89,6 +91,11 @@ pdiscover:
 l5g:
 	$(sail) artisan l5-swagger:generate
 
-# Sail command
+# Sail command passthrough
 sail:
 	$(sail) $(command)
+
+# Symbolic Link Reset
+slink:
+	$(sail) artisan storage:unlink
+	$(sail) artisan storage:link

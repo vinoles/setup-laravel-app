@@ -296,4 +296,5 @@ return [
             'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://my-default-host.com'),
         ],
     ],
+    'accept_header' => env('L5_SWAGGER_CONST_ACCEPT_HEADER', 'application/vnd.api+json')
 ];
