@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Requests\Auth;
+namespace Tests\Feature\Requests\Api\Auth;
 
 use App\Constants\UserRole;
 use App\Models\User;

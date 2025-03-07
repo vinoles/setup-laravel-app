@@ -4,7 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\Feature\Requests\Auth\RegisterRequest;
+use Tests\Feature\Requests\Api\Auth\RegisterRequest;
 use Tests\Feature\TestCase;
 
 class RegisterAttributesRequiredTest extends TestCase

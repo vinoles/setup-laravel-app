@@ -4,7 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\Feature\Requests\Auth\SignInRequest;
+use Tests\Feature\Requests\Api\Auth\SignInRequest;
 use Tests\Feature\TestCase;
 
 class SignInTest extends TestCase
@@ -19,7 +19,9 @@ class SignInTest extends TestCase
     {
         $user = User::factory()->withPassword()->create();
 
-        $response = $this->sendRequest($user->email, 'password');
+        $request = SignInRequest::make($user->email, 'password');
+
+        $response = $this->sendRequest($request);
 
         $response->assertSuccessful();
 

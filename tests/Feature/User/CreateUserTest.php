@@ -3,7 +3,7 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
-use Tests\Feature\Requests\Api\CreateUserRequest;
+use Tests\Feature\Requests\Api\User\CreateUserRequest;
 use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 

@@ -164,4 +164,19 @@ trait SendsRequests
             ->withData($data)
             ->patch($request->endpoint());
     }
+
+    /**
+     * Send a patch request to the server json api.
+     *
+     * @param  mixed  $args
+     * @return TestResponse
+     */
+    protected function sendRequestApiDelete(...$args): TestResponse
+    {
+        $request = Arr::get($args, 0);
+
+        return $this
+            ->jsonApi()
+            ->delete($request->endpoint());
+    }
 }

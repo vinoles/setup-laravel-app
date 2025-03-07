@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Auth;
 
-use Tests\Feature\Requests\User\ConfirmPasswordRequest;
+use Tests\Feature\Requests\Api\User\ConfirmPasswordRequest;
 use App\Models\User;
 use Illuminate\Http\Response;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\Feature\Requests\Auth\LogoutRequest;
-use Tests\Feature\Requests\Auth\SignInRequest;
+use Tests\Feature\Requests\Api\Auth\LogoutRequest;
+use Tests\Feature\Requests\Api\Auth\SignInRequest;
 use Tests\Feature\TestCase;
 
 class LogoutTest extends TestCase

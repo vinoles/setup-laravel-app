@@ -3,7 +3,7 @@
 namespace Tests\Feature\Api\User;
 use App\Models\User;
 use Illuminate\Http\Response;
-use Tests\Feature\Requests\Api\RetrieveUserRequest;
+use Tests\Feature\Requests\Api\User\RetrieveUserRequest;
 use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
