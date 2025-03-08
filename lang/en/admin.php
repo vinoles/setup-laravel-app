@@ -7,6 +7,7 @@ return [
         'fr' => 'French',
     ],
     'globals' => [
+        'email' => 'Email',
         'first_name' => 'First name',
         'second_name' => 'Second name',
         'full_name' => 'Full name',
@@ -21,6 +22,7 @@ return [
         'birthdate' => 'Birthdate',
         'postal_code' => 'Postal code',
         'province' => 'Province',
+        'password' => 'Password',
         'created_at' => 'Created At',
         'updated_at' => 'Updated At',
         'deleted_at' => 'Deleted At'
