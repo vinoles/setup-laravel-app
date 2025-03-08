@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Requests\Auth;
+namespace Tests\Feature\Requests\Api\User;
 
 use App\Constants\UserRole;
 use App\Models\User;
@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Tests\Feature\Requests\PostRequest;
 
-class RegisterRequest extends PostRequest
+class CreateUserRequest extends PostRequest
 {
     /**
      * Create a new instance of the request.
@@ -29,7 +29,7 @@ class RegisterRequest extends PostRequest
      */
     public function endpoint(): string
     {
-        return route('v1.api.auth.register');
+        return route('v1.api.users.store');
     }
 
     /**
@@ -58,7 +58,9 @@ class RegisterRequest extends PostRequest
         $this->set('password', $password)
             ->set('password_confirmation', $password);
 
-        $this->set('role', UserRole::random());
+
+        $this->set('birthdate', $this->payload['birthdate']->format('Y-m-d'));
+
 
         return $this;
     }
@@ -107,5 +109,15 @@ class RegisterRequest extends PostRequest
         $this->set('role', $role);
 
         return $this;
+    }
+
+    /**
+    * Retrieve type resource.
+    *
+    * @return string
+    */
+    public function type(): string
+    {
+        return 'users';
     }
 }

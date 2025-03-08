@@ -1,26 +1,26 @@
 <?php
 
-namespace Tests\Feature\Requests\Api;
+namespace Tests\Feature\Requests\Api\Auth;
 
+use App\Constants\UserRole;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Tests\Feature\Requests\PostRequest;
 
-class UpdateUserRequest extends PostRequest
+class RegisterRequest extends PostRequest
 {
     /**
      * Create a new instance of the request.
      *
-     * @param  User|null  $user
+     * @param  User  $user
      */
-    public function __construct(protected User|null $user = null)
+    public function __construct(User $user = null)
     {
-        if ($user === null) {
-            $this->user = $user = User::factory()->create();
+        if ($user !== null) {
+            $this->fillPayload($user);
         }
     }
-
 
     /**
      * Retrieve the endpoint of the request.
@@ -29,7 +29,7 @@ class UpdateUserRequest extends PostRequest
      */
     public function endpoint(): string
     {
-        return route('v1.api.users.update', ['user' => $this->user]);
+        return route('v1.api.auth.register');
     }
 
     /**
@@ -38,7 +38,7 @@ class UpdateUserRequest extends PostRequest
      * @param  User  $user
      * @return static
      */
-    public function fillPayload(User $user): static
+    protected function fillPayload(User $user): static
     {
         $this->payload = array_filter(
             Arr::except(
@@ -58,9 +58,7 @@ class UpdateUserRequest extends PostRequest
         $this->set('password', $password)
             ->set('password_confirmation', $password);
 
-
-        $this->set('birthdate', $this->payload['birthdate']->format('Y-m-d'));
-
+        $this->set('role', UserRole::random());
 
         return $this;
     }
@@ -99,22 +97,15 @@ class UpdateUserRequest extends PostRequest
     }
 
     /**
-    * Retrieve type resource.
-    *
-    * @return string
-    */
-    public function type(): string
+     * Fill the payload of the request based on the given user.
+     *
+     * @param  UserRole  $role
+     * @return static
+     */
+    public function setRole(UserRole $role): static
     {
-        return 'users';
-    }
+        $this->set('role', $role);
 
-    /**
-    * Retrieve uuid model
-    *
-    * @return string
-    */
-    public function modelUuid(): string
-    {
-        return $this->user->uuid;
+        return $this;
     }
 }

@@ -5,7 +5,7 @@ namespace Tests\Feature\Auth;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\Feature\Requests\Auth\RegisterRequest;
+use Tests\Feature\Requests\Api\Auth\RegisterRequest;
 use Tests\Feature\TestCase;
 
 class RegisterWithMinimumAgeTest extends TestCase

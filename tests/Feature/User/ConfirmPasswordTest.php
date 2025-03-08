@@ -4,7 +4,7 @@ namespace Tests\Feature\User;
 
 use App\Models\User;
 use Illuminate\Http\Response;
-use Tests\Feature\Requests\User\ConfirmPasswordRequest;
+use Tests\Feature\Requests\Api\User\ConfirmPasswordRequest;
 use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 

@@ -1,26 +1,26 @@
 <?php
 
-namespace Tests\Feature\Requests\Api;
+namespace Tests\Feature\Requests\Api\User;
 
-use App\Constants\UserRole;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Tests\Feature\Requests\PostRequest;
+use Tests\Feature\Requests\PatchRequest;
 
-class CreateUserRequest extends PostRequest
+class UpdateUserRequest extends PatchRequest
 {
     /**
      * Create a new instance of the request.
      *
-     * @param  User  $user
+     * @param  User|null  $user
      */
-    public function __construct(User $user = null)
+    public function __construct(protected User|null $user = null)
     {
-        if ($user !== null) {
-            $this->fillPayload($user);
+        if ($user === null) {
+            $this->user = $user = User::factory()->create();
         }
     }
+
 
     /**
      * Retrieve the endpoint of the request.
@@ -29,7 +29,7 @@ class CreateUserRequest extends PostRequest
      */
     public function endpoint(): string
     {
-        return route('v1.api.users.store');
+        return route('v1.api.users.update', ['user' => $this->user]);
     }
 
     /**
@@ -38,7 +38,7 @@ class CreateUserRequest extends PostRequest
      * @param  User  $user
      * @return static
      */
-    protected function fillPayload(User $user): static
+    public function fillPayload(User $user): static
     {
         $this->payload = array_filter(
             Arr::except(
@@ -99,19 +99,6 @@ class CreateUserRequest extends PostRequest
     }
 
     /**
-     * Fill the payload of the request based on the given user.
-     *
-     * @param  UserRole  $role
-     * @return static
-     */
-    public function setRole(UserRole $role): static
-    {
-        $this->set('role', $role);
-
-        return $this;
-    }
-
-    /**
     * Retrieve type resource.
     *
     * @return string
@@ -119,5 +106,15 @@ class CreateUserRequest extends PostRequest
     public function type(): string
     {
         return 'users';
+    }
+
+    /**
+    * Retrieve uuid model
+    *
+    * @return string
+    */
+    public function modelUuid(): string
+    {
+        return $this->user->uuid;
     }
 }

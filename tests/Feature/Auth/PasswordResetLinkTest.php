@@ -4,7 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\Feature\Requests\Auth\PasswordResetLinkRequest;
+use Tests\Feature\Requests\Api\Auth\PasswordResetLinkRequest;
 use Tests\Feature\TestCase;
 
 class PasswordResetLinkTest extends TestCase

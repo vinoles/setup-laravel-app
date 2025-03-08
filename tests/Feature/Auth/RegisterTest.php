@@ -2,11 +2,10 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Constants\UserRole;
+
 use App\Models\User;
-use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\Feature\Requests\Auth\RegisterRequest;
+use Tests\Feature\Requests\Api\Auth\RegisterRequest;
 use Tests\Feature\TestCase;
 
 class RegisterTest extends TestCase

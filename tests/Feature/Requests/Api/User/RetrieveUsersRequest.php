@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Requests\Api;
+namespace Tests\Feature\Requests\Api\User;
 
 use Tests\Feature\Requests\GetRequest;
 

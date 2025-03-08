@@ -1,18 +1,19 @@
 <?php
 
-namespace Tests\Feature\Requests\Auth;
+namespace Tests\Feature\Requests\Api\Auth;
 
 use Tests\Feature\Requests\PostRequest;
 
-class PasswordResetLinkRequest extends PostRequest
+class SignInRequest extends PostRequest
 {
     /**
      * Create a new request instance.
      */
-    public function __construct(string $email)
+    public function __construct(string $email, string $password)
     {
         $this->with([
-            'email' => $email
+            'email' => $email,
+            'password' => $password,
         ]);
     }
 
@@ -23,6 +24,6 @@ class PasswordResetLinkRequest extends PostRequest
      */
     public function endpoint(): string
     {
-        return route('v1.api.auth.forgot_password');
+        return route('v1.api.auth.login');
     }
 }

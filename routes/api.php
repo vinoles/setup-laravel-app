@@ -47,8 +47,12 @@ Route::middleware('auth:sanctum')->group(static function () {
 
             $server->resource('comments', JsonApiController::class)
                 ->relationships(function (Relationships $relations) {
-                    $relations->hasOne('post');
-                    $relations->hasOne('user');
+                    $relations->hasOne('post')
+                        ->readOnly()
+                        ->except('show');
+                    $relations->hasOne('user')
+                        ->readOnly()
+                        ->except('show');
                 });
 
 
