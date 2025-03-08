@@ -7,7 +7,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bezhansalleh/filament-language-switch": "^3.1",
         "darkaonline/l5-swagger": "^8.6",
+        "filament/filament": "^3.2",
         "laravel-json-api/laravel": "*",
         "laravel/fortify": "^1.25",
         "laravel/framework": "^11.31",
@@ -16,6 +18,7 @@
         "spatie/laravel-permission": "^6.12"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.15",
         "brianium/paratest": "^7.7",
         "fakerphp/faker": "^1.23",
         "laravel-json-api/testing": "*",
@@ -41,7 +44,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

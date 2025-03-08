@@ -26,10 +26,6 @@ class PostObserver
                 'slug' =>  Str::slug("{$shortUuid} {$post->title}", '-')
             ]);
         }
-
-        if (Auth::user()) {
-            $post->author()->associate(Auth::user());
-        }
     }
 
     /**
