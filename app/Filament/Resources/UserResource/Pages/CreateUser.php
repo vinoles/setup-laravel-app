@@ -13,7 +13,6 @@ class CreateUser extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['uuid'] = Str::uuid();
-        $data['birthdate'] = now();
         return $data;
     }
 }

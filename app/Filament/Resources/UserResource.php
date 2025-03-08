@@ -8,6 +8,7 @@ use App\Filament\Resources\UserResource\Pages\ListUsers;
 use App\Filament\Resources\UserResource\Pages\ViewUser;
 use App\Filament\Resources\UserResource\RelationManagers\PostsRelationManager;
 use App\Models\User;
+use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -90,6 +91,9 @@ class UserResource extends Resource
                 TextInput::make('postal_code')
                     ->label(__('admin.globals.postal_code')),
 
+                DatePicker::make('birthdate')
+                    ->label(__('admin.globals.birthdate')),
+
                 TextInput::make('password')
                     ->label(__('admin.globals.password'))
                     ->password()
@@ -126,6 +130,11 @@ class UserResource extends Resource
             TextColumn::make('city')
                 ->label(__('admin.globals.city'))
                 ->searchable(),
+
+            TextColumn::make('birthdate')
+                ->label(__('admin.globals.birthdate'))
+                ->date()
+                ->sortable(),
 
             TextColumn::make('email_verified_at')
                 ->label(__('admin.users.email_verified_at'))
