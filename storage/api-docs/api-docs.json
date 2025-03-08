@@ -1291,6 +1291,29 @@
                 },
                 "type": "object"
             },
+            "PostAuthorRequestRelationship": {
+                "properties": {
+                    "author": {
+                        "properties": {
+                            "data": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "users"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
             "PostCommentApiResource": {
                 "properties": {
                     "type": {
@@ -1430,6 +1453,9 @@
                             },
                             "attributes": {
                                 "$ref": "#/components/schemas/PostRequestAttributes"
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/PostAuthorRequestRelationship"
                             }
                         },
                         "type": "object"

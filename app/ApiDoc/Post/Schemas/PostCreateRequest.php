@@ -21,8 +21,12 @@ use OpenApi\Annotations as OA;
  *              property="attributes",
  *              type="object",
  *              ref="#/components/schemas/PostRequestAttributes",
- *      ),
- *   ),
+ *          ),
+ *          @OA\Property(
+ *              property="relationships",
+ *              ref="#/components/schemas/PostAuthorRequestRelationship"
+ *          ),
+ *    ),
  * )
  */
 class PostCreateRequest
