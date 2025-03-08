@@ -99,3 +99,6 @@ sail:
 slink:
 	$(sail) artisan storage:unlink
 	$(sail) artisan storage:link
+
+aload:
+	$(sail) composer dump-autoload

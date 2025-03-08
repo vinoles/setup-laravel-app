@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Auth;
+namespace Tests\Feature\Api\Auth;
 
 use Tests\Feature\Requests\Api\User\ConfirmPasswordRequest;
 use App\Models\User;

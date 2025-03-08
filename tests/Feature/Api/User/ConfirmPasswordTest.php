@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\Api\User;
 
 use App\Models\User;
 use Illuminate\Http\Response;
