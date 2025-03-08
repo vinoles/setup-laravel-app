@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages\CreateUser;
 use App\Filament\Resources\UserResource\Pages\EditUser;
 use App\Filament\Resources\UserResource\Pages\ListUsers;
+use App\Filament\Resources\UserResource\Pages\ViewUser;
+use App\Filament\Resources\UserResource\RelationManagers\PostsRelationManager;
 use App\Models\User;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Forms\Components\TextInput;
@@ -165,16 +167,17 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PostsRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index'     => ListUsers::route('/'),
-            'create'    => CreateUser::route('/create'),
-            'edit'      => EditUser::route('/{record}/edit'),
+            'index'     =>  ListUsers::route('/'),
+            'view'      =>  ViewUser::route('/{record}'),
+            'create'    =>  CreateUser::route('/create'),
+            'edit'      =>  EditUser::route('/{record}/edit'),
         ];
     }
 }
