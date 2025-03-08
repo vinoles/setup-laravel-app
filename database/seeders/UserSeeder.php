@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
         User::factory(10)->create();
 
-        $password = env('TEST_PASSWORD');
+        $password = env('TEST_PASSWORD', 'password');
 
         User::factory()->create([
             'first_name' => 'Admin',
