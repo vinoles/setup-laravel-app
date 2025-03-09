@@ -6,15 +6,19 @@ namespace App\Models;
 
 use App\Models\Concerns\HasUuid;
 use App\Observers\UserObserver;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 #[ObservedBy([UserObserver::class])]
-class User extends Authenticatable
+class User extends Authenticatable  implements FilamentUser , HasName
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory,
@@ -64,5 +68,34 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'author_id', 'id');
+    }
+
+    /**
+     * Return filament name for admin panel
+     *
+     * @return string
+     */
+    public function getFilamentName(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * Verify if user can access to panel admin
+     *
+     * @return bool
+     */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        //TODO IMPLEMENT ROLES
+        return $this->email == 'admin@app.com' && $this->hasVerifiedEmail();
     }
 }

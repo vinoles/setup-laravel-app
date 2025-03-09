@@ -3,9 +3,14 @@
 namespace App\JsonApi\V1\Posts;
 
 use App\Models\Post;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
+use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
+use LaravelJsonApi\Eloquent\Fields\Relations\BelongsToMany;
+use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
@@ -22,6 +27,13 @@ class PostSchema extends Schema
     public static string $model = Post::class;
 
     /**
+     * The maximum include path depth.
+     *
+     * @var int
+     */
+    protected int $maxDepth = 3;
+
+    /**
      * Get the resource fields.
      *
      * @return array
@@ -31,9 +43,15 @@ class PostSchema extends Schema
         return [
             ID::make()->uuid(),
 
+            BelongsTo::make('author')->type('users'),
+
+            HasMany::make('comments'),
+
             Str::make('content'),
 
             Str::make('slug'),
+
+            BelongsToMany::make('tags'),
 
             Str::make('title')
                 ->sortable(),
@@ -64,6 +82,27 @@ class PostSchema extends Schema
     }
 
     /**
+     * Build an index query for this resource.
+     *
+     * @param Request|null $request
+     * @param Builder $query
+     * @return Builder
+     */
+    public function indexQuery(?Request $request, Builder $query): Builder
+    {
+
+        if ($user = optional($request)->user()) {
+            return $query->where(function (Builder $q) use ($user) {
+                return $q->whereNotNull('published_at')
+                    ->where('author_id', $user->getKey());
+            });
+        }
+
+        return $query->whereNotNull('published_at');
+    }
+
+
+    /**
      * Get the resource paginator.
      *
      * @return Paginator|null
@@ -80,6 +119,6 @@ class PostSchema extends Schema
      */
     public function authorizable(): bool
     {
-        return false;
+        return true;
     }
 }

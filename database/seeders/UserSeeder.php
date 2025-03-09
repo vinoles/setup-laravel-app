@@ -15,11 +15,11 @@ class UserSeeder extends Seeder
     {
         User::factory(10)->create();
 
-        $password = env('TEST_PASSWORD');
+        $password = env('TEST_PASSWORD', 'password');
 
         User::factory()->create([
             'first_name' => 'Admin',
-            'last_name' => 'Dogme',
+            'last_name' => 'Application',
             'email' => 'admin@app.com',
             'password' => Hash::make($password),
         ]);

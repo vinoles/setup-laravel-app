@@ -15,7 +15,7 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *         property="first_name",
  *         type="string",
- *         example="Dogme"
+ *         example="Application"
  *     ),
  *     @OA\Property(
  *         property="last_name",
