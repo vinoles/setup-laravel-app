@@ -312,6 +312,65 @@
                 }
             }
         },
+        "/api/v1/comments": {
+            "post": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Create comment",
+                "description": "Create endpoint for comment",
+                "operationId": "createComment",
+                "requestBody": {
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommentCreateRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "CreateComment Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/v1/comments/{comment}": {
             "get": {
                 "tags": [
@@ -468,84 +527,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/UnprocessableEntityError"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/InternalServerError"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/comments": {
-            "get": {
-                "tags": [
-                    "Comments"
-                ],
-                "summary": "List comments",
-                "description": "List comments endpoint",
-                "operationId": "retrieveComments",
-                "parameters": [
-                    {
-                        "name": "page[number]",
-                        "in": "query",
-                        "description": "Number page for pagination",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "page[size]",
-                        "in": "query",
-                        "description": "Number of elements for page",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "default": 10
-                        }
-                    },
-                    {
-                        "name": "include",
-                        "in": "query",
-                        "description": "Include relations ships information, ?include=post",
-                        "schema": {
-                            "type": "string",
-                            "default": "post,user"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Retrieve Comments Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CommentsApiResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/NotFoundError"
                                 }
                             }
                         }
@@ -1548,7 +1529,7 @@
                                 "$ref": "#/components/schemas/CommentRequestAttributes"
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/CommentUserRequestRelationship"
+                                "$ref": "#/components/schemas/CommentRequestRelationship"
                             }
                         },
                         "type": "object"
@@ -1770,18 +1751,50 @@
             },
             "CommentRequestAttributes": {
                 "properties": {
-                    "title": {
-                        "type": "string",
-                        "example": "Application comment example"
-                    },
                     "content": {
                         "type": "string",
                         "example": "the content application test comment example"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentRequestRelationship": {
+                "properties": {
+                    "user": {
+                        "properties": {
+                            "data": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "users"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
                     },
-                    "publishedAt": {
-                        "type": "string",
-                        "format": "date",
-                        "example": "2025-03-02T13:25:39.000000Z"
+                    "post": {
+                        "properties": {
+                            "data": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "posts"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
                     }
                 },
                 "type": "object"
@@ -1805,29 +1818,6 @@
                             },
                             "attributes": {
                                 "$ref": "#/components/schemas/CommentRequestAttributes"
-                            }
-                        },
-                        "type": "object"
-                    }
-                },
-                "type": "object"
-            },
-            "CommentUserRequestRelationship": {
-                "properties": {
-                    "user": {
-                        "properties": {
-                            "data": {
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "example": "users"
-                                    },
-                                    "id": {
-                                        "type": "string",
-                                        "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
-                                    }
-                                },
-                                "type": "object"
                             }
                         },
                         "type": "object"
@@ -2752,52 +2742,6 @@
                     }
                 },
                 "type": "object"
-            }
-        },
-        "responses": {
-            "201": {
-                "description": "CreateComment Successful",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/CommentApiResponse"
-                        }
-                    }
-                }
-            },
-            "422": {
-                "description": "Unprocessable Entity",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/UnprocessableEntityError"
-                        }
-                    }
-                }
-            },
-            "500": {
-                "description": "Internal Server Error",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
-        "requestBodies": {
-            "CreateComment": {
-                "content": {
-                    "application/vnd.api+json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/CommentCreateRequest"
-                        }
-                    },
-                    "application/json": {
-                        "schema": {}
-                    }
-                }
             }
         },
         "securitySchemes": {
