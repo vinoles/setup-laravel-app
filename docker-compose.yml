@@ -1,5 +1,5 @@
 services:
-    gplayer-app:
+    laravel-app:
         build:
             context: ./docker/8.3
             dockerfile: Dockerfile
@@ -51,19 +51,6 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
-    # postgres:
-    #     image: "postgres:latest"
-    #     ports:
-    #         - "${FORWARD_DB_PORT:-5432}:5432"
-    #     environment:
-    #         POSTGRES_DB: "${DB_DATABASE}"
-    #         POSTGRES_USER: "${DB_USERNAME}"
-    #         POSTGRES_PASSWORD: "${DB_PASSWORD}"
-    #     volumes:
-    #         - "sail-postgres:/var/lib/postgresql/data"
-    #         - './docker/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/app_laravel_setup_test.sql'
-    #     networks:
-    #         - sail
     redis:
         image: "redis:alpine"
         ports:

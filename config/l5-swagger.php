@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'G-Player API',
+                'title' => 'Laravel-App API',
             ],
 
             'routes' => [

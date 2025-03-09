@@ -1,23 +1,23 @@
-# G-PLAYER APP
+# Laravel-App APP
 
-A demo application to illustrate how [Laravel API PLATFORM](https://api-platform.com/docs/laravel/) works with [Laravel](https://laravel.com/) and [FIlamentPhp](https://filamentphp.com/docs).
+A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.io/) works with [Laravel](https://laravel.com/) and [FIlamentPhp](https://filamentphp.com/docs).
 
 ## Requirements
 
 -   docker
 -   docker-compose
 -   https://filamentphp.com/docs
--   https://api-platform.com/docs/laravel/
+-   https://laraveljsonapi.io/5.x/
 -   https://laravel.com/
 
 ## How to run
 
 ```bash
 # After cloning the project
-cd ./gplayer-app
+cd ./setup-laravel-app
 
 # Add the project to hosts file
-sudo sh -c "echo '127.0.0.1 gplayer-app.local' >> /etc/hosts"
+sudo sh -c "echo '127.0.0.1 laravel-app.local' >> /etc/hosts"
 
 # Install sail
 docker run --rm \
@@ -57,13 +57,13 @@ make front-dev
 ```bash
 
 #WEB
-http://gplayer-app.local:8098
+http://laravel-app.local:8096
 
 #Admin
-http://gplayer-app.local:8098/admin/login
+http://laravel-app.local:8096/admin/login
 
 #Api
-http://gplayer-app.local:8098/api/v1/documentation
+http://laravel-app.local:8096/api/v1/documentation
 ```
 
 ## Command install o artisan command

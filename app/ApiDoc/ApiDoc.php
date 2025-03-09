@@ -6,7 +6,7 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Info(
- *    title="G-Player API Documentation",
+ *    title="Laravel-App API Documentation",
  *    version="1.0.0",
  * )
  *

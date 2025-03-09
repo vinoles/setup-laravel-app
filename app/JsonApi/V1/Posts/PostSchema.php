@@ -90,14 +90,6 @@ class PostSchema extends Schema
      */
     public function indexQuery(?Request $request, Builder $query): Builder
     {
-
-        if ($user = optional($request)->user()) {
-            return $query->where(function (Builder $q) use ($user) {
-                return $q->whereNotNull('published_at')
-                    ->where('author_id', $user->getKey());
-            });
-        }
-
         return $query->whereNotNull('published_at');
     }
 
