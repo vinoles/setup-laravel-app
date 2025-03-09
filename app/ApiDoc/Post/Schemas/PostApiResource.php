@@ -20,10 +20,8 @@ use OpenApi\Annotations as OA;
  *     ),
  *     @OA\Property(
  *          property="attributes",
- *          type="array",
- *          @OA\Items(
- *              ref="#/components/schemas/PostAttributes",
- *          ),
+ *          type="objet",
+ *          ref="#/components/schemas/PostAttributes",
  *      ),
  *      @OA\Property(
  *          property="relationships",
