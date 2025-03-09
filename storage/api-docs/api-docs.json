@@ -1537,130 +1537,6 @@
                 },
                 "type": "object"
             },
-            "CommentPostApiResource": {
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "example": "comments"
-                    },
-                    "id": {
-                        "type": "string",
-                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                    },
-                    "attributes": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/CommentPostAttributes"
-                        }
-                    },
-                    "relationships": {
-                        "$ref": "#/components/schemas/CommentPostRelationships"
-                    },
-                    "links": {
-                        "properties": {
-                            "self": {
-                                "type": "string",
-                                "example": "http://sever.example/api/v1/comments/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                            }
-                        },
-                        "type": "object"
-                    }
-                },
-                "type": "object"
-            },
-            "CommentPostApiResponse": {
-                "properties": {
-                    "jsonapi": {
-                        "properties": {
-                            "version": {
-                                "type": "string",
-                                "example": "1.0"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "links": {
-                        "properties": {
-                            "self": {
-                                "type": "string",
-                                "example": "http://server.example/api/v1/comments/6bb7c993-88ad-402c-9352-c7eb65d9b8e9/comments"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "data": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/CommentPostApiResource"
-                        }
-                    }
-                },
-                "type": "object"
-            },
-            "CommentPostAttributes": {
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                    },
-                    "content": {
-                        "type": "string",
-                        "example": "the content application test comment example"
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "format": "date",
-                        "example": "2025-03-02T13:25:39.000000Z"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "format": "date",
-                        "example": "2025-03-02T13:25:39.000000Z"
-                    }
-                },
-                "type": "object"
-            },
-            "CommentPostRelationships": {
-                "properties": {
-                    "user": {
-                        "properties": {
-                            "links": {
-                                "properties": {
-                                    "related": {
-                                        "type": "string",
-                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/user"
-                                    },
-                                    "self": {
-                                        "type": "string",
-                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/relationships/user"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "comment": {
-                        "properties": {
-                            "links": {
-                                "properties": {
-                                    "related": {
-                                        "type": "string",
-                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/comment"
-                                    },
-                                    "self": {
-                                        "type": "string",
-                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/relationships/comment"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "type": "object"
-                    }
-                },
-                "type": "object"
-            },
             "CommentRelationships": {
                 "properties": {
                     "user": {
@@ -1694,51 +1570,30 @@
                         },
                         "type": "object"
                     },
-                    "comments": {
+                    "post": {
                         "properties": {
                             "links": {
                                 "properties": {
                                     "related": {
                                         "type": "string",
-                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/comments"
+                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/post"
                                     },
                                     "self": {
                                         "type": "string",
-                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/relationships/comments"
+                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/relationships/post"
                                     }
                                 },
                                 "type": "object"
                             },
                             "data": {
-                                "type": "array",
-                                "items": {
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "example": "comments"
-                                        },
-                                        "id": {
-                                            "type": "string",
-                                            "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "tags": {
-                        "properties": {
-                            "links": {
                                 "properties": {
-                                    "related": {
+                                    "type": {
                                         "type": "string",
-                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/tags"
+                                        "example": "posts"
                                     },
-                                    "self": {
+                                    "id": {
                                         "type": "string",
-                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/relationships/tags"
+                                        "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
                                     }
                                 },
                                 "type": "object"
@@ -2357,7 +2212,7 @@
                 "properties": {
                     "detail": {
                         "type": "string",
-                        "example": "The route api/v1/posts/cfc5c0c4-74d8-4c13-9f51-290d87a22d42s could not be found."
+                        "example": "The route api/v1/resource/cfc5c0c4-74d8-4c13-9f51-290d87a22d42s could not be found."
                     },
                     "source": {
                         "properties": {
