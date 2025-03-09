@@ -11,7 +11,7 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *         property="detail",
  *         type="string",
- *         example="The route api/v1/posts/cfc5c0c4-74d8-4c13-9f51-290d87a22d42s could not be found."
+ *         example="The route api/v1/resource/cfc5c0c4-74d8-4c13-9f51-290d87a22d42s could not be found."
  *     ),
  *     @OA\Property(
  *         property="source",

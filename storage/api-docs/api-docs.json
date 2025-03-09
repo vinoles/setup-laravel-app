@@ -312,6 +312,361 @@
                 }
             }
         },
+        "/api/v1/comments": {
+            "post": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Create comment",
+                "description": "Create endpoint for comment",
+                "operationId": "createComment",
+                "requestBody": {
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommentCreateRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "CreateComment Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/comments/{comment}": {
+            "get": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Show comment",
+                "description": "Show comment endpoint",
+                "operationId": "retrieveComment",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "description": "ID of comment (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieve Comment Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Delete comment",
+                "description": "Delete comment endpoint",
+                "operationId": "deleteComment",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "description": "ID of comment (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Delete Comment Successfully"
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Update comment",
+                "description": "Update endpoint for comment",
+                "operationId": "updateComment",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "description": "ID of comment (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommentUpdateRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "CreateComment Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/comments/{comment}/post": {
+            "get": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Show comment post information",
+                "description": "Show comment post endpoint",
+                "operationId": "retrieveCommentPost",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "description": "ID of comment (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieve Comment Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/comments/{comment}/user": {
+            "get": {
+                "tags": [
+                    "Comments"
+                ],
+                "summary": "Show comment user information",
+                "description": "Show comment user endpoint",
+                "operationId": "retrieveCommentUser",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "description": "ID of comment (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieve Comment Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/v1/posts": {
             "get": {
                 "tags": [
@@ -1208,6 +1563,281 @@
                 },
                 "type": "object"
             },
+            "CommentApiResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "comments"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/CommentAttributes"
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CommentRelationships"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://sever.example/api/v1/comments/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentApiResponse": {
+                "properties": {
+                    "jsonapi": {
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/comments/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/CommentApiResource"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentAttributes": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "the content application test comment example"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentCreateRequest": {
+                "required": [
+                    "content",
+                    "slug",
+                    "title"
+                ],
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "comments"
+                            },
+                            "attributes": {
+                                "$ref": "#/components/schemas/CommentRequestAttributes"
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/CommentRequestRelationship"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentRelationships": {
+                "properties": {
+                    "user": {
+                        "properties": {
+                            "links": {
+                                "properties": {
+                                    "related": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/user"
+                                    },
+                                    "self": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/relationships/user"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "data": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "users"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "post": {
+                        "properties": {
+                            "links": {
+                                "properties": {
+                                    "related": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/post"
+                                    },
+                                    "self": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/comments/8eff569d-bd24-46b4-b080-027c182c605e/relationships/post"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "data": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "posts"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentRequestAttributes": {
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "example": "the content application test comment example"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentRequestRelationship": {
+                "properties": {
+                    "user": {
+                        "properties": {
+                            "data": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "users"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "post": {
+                        "properties": {
+                            "data": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "posts"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "example": "08d58e2f-87fa-498d-a2dc-0fca333df772"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentUpdateRequest": {
+                "required": [
+                    "content",
+                    "slug",
+                    "title"
+                ],
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "comments"
+                            },
+                            "id": {
+                                "type": "string",
+                                "example": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                            },
+                            "attributes": {
+                                "$ref": "#/components/schemas/CommentRequestAttributes"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentsApiResponse": {
+                "properties": {
+                    "meta": {
+                        "$ref": "#/components/schemas/PaginationMeta"
+                    },
+                    "jsonapi": {
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "first": {
+                                "type": "string",
+                                "example": "http://sever.example/api/v1/comments?page%5Bnumber%5D=1&page%5Bsize%5D=10&sort=-createdAt"
+                            },
+                            "last": {
+                                "type": "string",
+                                "example": "http://sever.example/api/v1/comments?page%5Bnumber%5D=4&page%5Bsize%5D=10&sort=-createdAt"
+                            },
+                            "next": {
+                                "type": "string",
+                                "example": "http://sever.example/api/v1/comments?page%5Bnumber%5D=2&page%5Bsize%5D=10&sort=-createdAt"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CommentApiResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "PostApiResource": {
                 "properties": {
                     "type": {
@@ -1219,10 +1849,7 @@
                         "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
                     },
                     "attributes": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/PostAttributes"
-                        }
+                        "$ref": "#/components/schemas/PostAttributes"
                     },
                     "relationships": {
                         "$ref": "#/components/schemas/PostRelationships"
@@ -1703,7 +2330,7 @@
                 "properties": {
                     "detail": {
                         "type": "string",
-                        "example": "The route api/v1/posts/cfc5c0c4-74d8-4c13-9f51-290d87a22d42s could not be found."
+                        "example": "The route api/v1/resource/cfc5c0c4-74d8-4c13-9f51-290d87a22d42s could not be found."
                     },
                     "source": {
                         "properties": {
@@ -2103,6 +2730,10 @@
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "Comments",
+            "description": "Comments"
         },
         {
             "name": "Posts",

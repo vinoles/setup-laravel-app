@@ -1,17 +1,17 @@
 <?php
 
-namespace App\ApiDoc\Post\Schemas;
+namespace App\ApiDoc\Comment\Schemas;
 
 use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
- *     schema="PostApiResource",
+ *     schema="CommentApiResource",
  *     type="object",
  *     @OA\Property(
  *          property="type",
  *          type="string",
- *          example="posts"
+ *          example="comments"
  *      ),
  *     @OA\Property(
  *         property="id",
@@ -21,11 +21,11 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *          property="attributes",
  *          type="objet",
- *          ref="#/components/schemas/PostAttributes",
+ *          ref="#/components/schemas/CommentAttributes",
  *      ),
  *      @OA\Property(
  *          property="relationships",
- *          ref="#/components/schemas/PostRelationships"
+ *          ref="#/components/schemas/CommentRelationships"
  *      ),
  *      @OA\Property(
  *          property="links",
@@ -33,11 +33,11 @@ use OpenApi\Annotations as OA;
  *          @OA\Property(
  *              property="self",
  *              type="string",
- *              example="http://sever.example/api/v1/posts/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+ *              example="http://sever.example/api/v1/comments/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
  *          )
  *      )
  * )
  */
-class PostApiResource
+class CommentApiResource
 {
 }
