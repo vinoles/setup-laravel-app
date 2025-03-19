@@ -62,6 +62,9 @@ http://laravel-app.local:8096
 #Admin
 http://laravel-app.local:8096/admin/login
 
+User: admin@app.com
+Password: password
+
 #Api
 http://laravel-app.local:8096/api/v1/documentation
 ```
