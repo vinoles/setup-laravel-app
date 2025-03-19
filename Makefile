@@ -2,7 +2,7 @@
 sail := ./vendor/bin/sail
 
 # Initial Config
-setup: up install migrate seed front-install
+setup: up install migrate seed front-install db_fresh_test test
 
 # Build containers
 up:
@@ -48,7 +48,7 @@ db_fresh:
 
 # Refresh test database and migrations
 db_fresh_test:
-	$(sail) artisan migrate:fresh --force --database=testing
+	$(sail) artisan migrate:fresh --force --database=pgsql_testing
 
 # Rollback migrations
 rollback:
