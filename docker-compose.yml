@@ -22,13 +22,12 @@ services:
         networks:
             - sail
         depends_on:
-            # - postgres
             - mysql
             - redis
             - mailpit
             - selenium
     mysql:
-        image: 'mysql/mysql-server:8.0'
+        image: 'mysql:latest'
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
