@@ -65,7 +65,8 @@ http://laravel-app.local:8096/admin/login
 User: admin@app.com
 Password: password
 
-![api](./api_doc_example.png)
+<img width="800" alt="APi example documentation" src="https://github.com/vinoles/setup-laravel-app/issues/4#issue-2936597034">
+
 
 #Api
 http://laravel-app.local:8096/api/v1/documentation
