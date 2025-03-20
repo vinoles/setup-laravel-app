@@ -54,30 +54,33 @@ make front-dev
 
 ```
 ## WEB
+
 ```bash
+#Api
+http://laravel-app.local:{PORT}/api/v1/documentation
+```
+<img width="800" alt="APi example documentation" src="./api_doc_example.png">
 
-#WEB
-http://laravel-app.local:8096
+#
 
+```bash
 #Admin
-http://laravel-app.local:8096/admin/login
+http://laravel-app.local:{PORT}/admin/login
 
 User: admin@app.com
 Password: password
 
-<img width="800" alt="APi example documentation" src="https://github.com/vinoles/setup-laravel-app/issues/4#issue-2936597034">
-
-
-#Api
-http://laravel-app.local:8096/api/v1/documentation
 ```
+<img width="800" alt="APi example documentation" src="./admin_dashboard-example.png">
 
-## Command install o artisan command
+#
+
+## Command install o artisan command make file
 
 ```bash
 
 #Example install package
-make sail command="composer require api-platform/laravel"
+make sail command="composer require require api-platform/laravel"
 
 #Example command artisan
 make sail command="artisan tinker"
@@ -111,4 +114,4 @@ sail artisan app:token-api-generator admin@app.com password
 
 ```
 
-# Read the make file for more commands
+## Read the make file for more commands
