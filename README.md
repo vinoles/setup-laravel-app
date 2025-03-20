@@ -1,25 +1,28 @@
-# Laravel-App APP
+# Laravel-App
 
-A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.io/) works with [Laravel](https://laravel.com/) and [FIlamentPhp](https://filamentphp.com/docs).
+Laravel-App APP
 
+A quick-start project to set up a Laravel application using Laravel JSON:API, Laravel, and Filament PHP.
 ## Requirements
 
--   docker
--   docker-compose
--   https://filamentphp.com/docs
--   https://laraveljsonapi.io/5.x/
--   https://laravel.com/
+- Docker
+- Docker Compose
+- [Filament PHP](https://filamentphp.com/docs)
+- [Laravel JSON:API](https://laraveljsonapi.io/5.x/)
+- [Laravel](https://laravel.com/)
+- [Demo api](https://setup-laravel-app-production.up.railway.app/api/v1/documentation)
+- [Demo admin panel](https://setup-laravel-app-production.up.railway.app/admin)
 
-## How to run
+## How to Run
 
 ```bash
 # After cloning the project
 cd ./setup-laravel-app
 
-# Add the project to hosts file
+# Add the project to the hosts file
 sudo sh -c "echo '127.0.0.1 laravel-app.local' >> /etc/hosts"
 
-# Install sail
+# Install Sail
 docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
@@ -27,91 +30,84 @@ docker run --rm \
     laravelsail/php83-composer:latest \
     composer install --ignore-platform-reqs
 
-## Setup envs
+# Setup environment variables
 cp .env.example .env
-#Build containers
+
+# Build containers
 make setup
 
-## Start all containers
+# Start all containers
 make up
 
-## Migrations and seed
+# Run migrations and seed database
 make migrate
 make seed
 
-## 0r run migrations seed
+# Alternatively, run migrations and seed in one command
 make db_fresh
 
-## Migrate db test
+# Migrate test database
 make db_fresh_test
 
-
-## Stop all containers
+# Stop all containers
 make stop
 
-# Run dev
+# Run frontend in development mode
 make front-dev
-
 ```
-## WEB
 
+## Web Access
+
+### API
 ```bash
-#Api
-http://laravel-app.local:{PORT}/api/v1/documentation
+http://laravel-app.local:8080/api/v1/documentation
 ```
-<img width="800" alt="APi example documentation" src="./api_doc_example.png">
+<img width="800" alt="API example documentation" src="./api_doc_example.png">
 
-#
-
+### Admin Panel
 ```bash
-#Admin
-http://laravel-app.local:{PORT}/admin/login
+http://laravel-app.local:8080/admin/login
 
 User: admin@app.com
 Password: password
-
 ```
-<img width="800" alt="APi example documentation" src="./admin_dashboard-example.png">
+<img width="800" alt="Admin dashboard example" src="./admin_dashboard-example.png">
 
-#
-
-## Command install o artisan command make file
+## Command Installation & Artisan Commands
 
 ```bash
+# Example: Install a package
+make sail command="composer require api-platform/laravel"
 
-#Example install package
-make sail command="composer require require api-platform/laravel"
-
-#Example command artisan
+# Example: Run an Artisan command
 make sail command="artisan tinker"
 
-#run scout jobs
+# Run Scout jobs
 make sail command="artisan queue:work redis --queue=scout"
 
-#generate key
-make sail command="artisan artisan key:generate"
-
+# Generate application key
+make sail command="artisan key:generate"
 ```
 
-## Create sail alias
+## Create Sail Alias
 
 ```bash
 #create alias
 alias sail="./vendor/bin/sail"
 ```
 
-## Execute command example
+## Execute Commands with Sail
 
 ```bash
-# run command
+# Run database migrations
 sail artisan migrate:fresh
 
-#install package
+# Install a package
 sail composer require api-platform/laravel
 
-#generate token
+# Generate an API token
 sail artisan app:token-api-generator admin@app.com password
-
 ```
 
-## Read the make file for more commands
+## Additional Commands
+Refer to the `Makefile` for more available commands.
