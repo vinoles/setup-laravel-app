@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'G-Player API',
+                'title' => 'Weetals API',
             ],
 
             'routes' => [
