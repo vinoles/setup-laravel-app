@@ -6,7 +6,7 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Info(
- *    title="Laravel-App API Documentation",
+ *    title="Weetals API Documentation",
  *    version="1.0.0",
  * )
  *
