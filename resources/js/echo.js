@@ -13,9 +13,9 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
-/**
- * Testing Channels & Events & Connections
- */
-window.Echo.channel("delivery").listen("PackageSent", (event) => {
-    console.log(event);
-});
+// /**
+//  * Testing Channels & Events & Connections
+//  */
+// window.Echo.channel("delivery").listen("PackageSent", (event) => {
+//     console.log(event);
+// });
