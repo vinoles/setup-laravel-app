@@ -2,7 +2,7 @@
 sail := ./vendor/bin/sail
 
 # Initial Config
-setup: up install migrate seed front-install db_fresh_test test
+setup: up install migrate seed front-install db_fresh_test test horizon
 
 # Build containers
 up:
@@ -102,3 +102,6 @@ slink:
 
 aload:
 	$(sail) composer dump-autoload
+
+horizon:
+	$(sail) artisan horizon
