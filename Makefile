@@ -2,7 +2,7 @@
 sail := ./vendor/bin/sail
 
 # Initial Config
-setup: up install migrate seed front-install db_fresh_test test horizon
+setup: up install migrate seed front-install db_fresh_test test
 
 # Build containers
 up:
@@ -105,3 +105,6 @@ aload:
 
 horizon:
 	$(sail) artisan horizon
+
+socket:
+	$(sail) artisan reverb:start --debug
