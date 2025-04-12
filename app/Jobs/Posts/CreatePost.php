@@ -7,7 +7,6 @@ use App\JsonApi\V1\Posts\PostSchema;
 use App\JsonApi\V1\Server;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use Illuminate\Support\Facades\Log;
 
 class CreatePost implements ShouldQueue
 {
