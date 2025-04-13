@@ -3,14 +3,15 @@
 namespace App\Jobs\Posts;
 
 use App\Events\Posts\CreatedPost;
+use App\JsonApi\V1\Helpers\ResolvesJsonApiServer;
 use App\JsonApi\V1\Posts\PostSchema;
-use App\JsonApi\V1\Server;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
 class CreatePost implements ShouldQueue
 {
-    use Queueable;
+    use Queueable,
+        ResolvesJsonApiServer;
 
     /**
      * Create a new job instance.
@@ -27,7 +28,7 @@ class CreatePost implements ShouldQueue
      */
     public function handle(): void
     {
-        $server = app(Server::class, ['name' => 'v1']);
+        $server = $this->resolveServer();
 
         $schema = new PostSchema($server);
 
