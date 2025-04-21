@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\Posts\CreatePost;
 use App\JsonApi\V1\Posts\PostRequest;
 use App\JsonApi\V1\Posts\PostSchema;
+use Illuminate\Support\Str;
 use LaravelJsonApi\Core\Document\Concerns\Serializable;
 use LaravelJsonApi\Core\Responses\DataResponse;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
@@ -37,8 +38,16 @@ class PostController extends Controller
     {
         $attributes = $request->validated();
 
+        $uuid = Str::uuid()->toString();
+
+        $attributes['uuid'] = $uuid;
+
         CreatePost::dispatch($attributes);
 
-        return DataResponse::make(null)->withMeta(['creating' => true]);
+        return DataResponse::make(null)
+            ->withMeta([
+                'creating' => true,
+                'uuid' => $uuid
+            ]);
     }
 }
