@@ -4,7 +4,6 @@ namespace Tests\Feature\Requests\Api\Post;
 
 use App\Models\Post;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Tests\Feature\Requests\PostRequest;
 
 class CreatePostRequest extends PostRequest
@@ -14,7 +13,7 @@ class CreatePostRequest extends PostRequest
      *
      * @param  Post|null  $post
      */
-    public function __construct(protected ?Post $post = null)
+    public function __construct(protected ?Post $post = null, public array $relationships = [])
     {
         if ($this->post !== null) {
             $this->fillPayload();
@@ -46,19 +45,11 @@ class CreatePostRequest extends PostRequest
                     'updated_at',
                     'created_at',
                     'id',
+                    'published_at'
                 ]
             ),
             static fn ($value) => $value !== null
         );
-
-        $password = Str::random(mt_rand(8, 31)).'!';
-
-        $this->set('password', $password)
-            ->set('password_confirmation', $password);
-
-
-        $this->set('birthdate', $this->payload['birthdate']->format('Y-m-d'));
-
 
         return $this;
     }
@@ -71,5 +62,15 @@ class CreatePostRequest extends PostRequest
     public function type(): string
     {
         return 'posts';
+    }
+
+    /**
+    * Retrieve type resource.
+    *
+    * @return array
+    */
+    public function relationships(): array
+    {
+        return $this->relationships;
     }
 }

@@ -2,7 +2,13 @@
 
 namespace Tests\Feature\Api\Post;
 
+use App\Events\Posts\CreatedPost;
+use App\Jobs\Posts\CreatePost;
 use App\Models\Post;
+use App\Models\User;
+use Exception;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
 use Tests\Feature\Requests\Api\Post\CreatePostRequest;
 use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Test;
@@ -24,34 +30,93 @@ class CreatePostTest extends TestCase
             ->assertUnauthorized();
     }
 
-    // /**
-    //  * Create post happy path
-    //  *
-    //  * @return void
-    //  */
-    // #[Test]
-    // public function create_post_happy_path(): void
-    // {
-    //     $post = Post::factory()->make();
+    /**
+     * Create post  assert job pushed
+     *
+     * @return void
+     */
+    #[Test]
+    public function create_post_assert_job_pushed(): void
+    {
+        Queue::fake([
+            CreatePost::class
+        ]);
 
-    //     $request = CreatePostRequest::make($post);
+        $post = Post::factory()->make();
 
-    //     $authPost = Post::factory()->create();
+        $author = User::factory()->create();
 
-    //     $response = $this->signIn($authPost)
-    //         ->sendRequestApiPostWithData($request);
+        $relationships = [
+            'author' => [
+                'data' => [
+                    'type' => 'users',
+                    'id'    => $author->uuid
+                ]
+            ]
+        ];
 
-    //     $response->assertSuccessful();
+        $request = CreatePostRequest::make($post, $relationships);
 
-    //     $this->assertDatabaseHas('posts', [
-    //         'first_name' => $post->first_name,
-    //         'last_name' => $post->last_name,
-    //         'address' => $post->address,
-    //         'city' => $post->city,
-    //         'country' => $post->country,
-    //         'postal_code' => $post->postal_code,
-    //         'phone' => $post->phone,
-    //     ]);
-    // }
+        $response = $this->signIn($author)
+            ->sendRequestApiPostWithData($request);
 
+        $response->assertSuccessful();
+
+        Queue::assertPushed(
+            CreatePost::class,
+            function ($job) {
+                return $job;
+            }
+        );
+    }
+
+    /**
+     * Create post persists in DB and dispatches CreatedPost event
+     *
+    * @return void
+    */
+    #[Test]
+    public function create_post_persists_and_dispatches_event(): void
+    {
+
+        Event::fake([
+            CreatedPost::class
+        ]);
+
+        $post = Post::factory()->make();
+
+        $author = User::factory()->create();
+
+        $relationships = [
+            'author' => [
+                'data' => [
+                    'type' => 'users',
+                    'id'    => $author->uuid
+                ]
+            ]
+        ];
+
+        $request = CreatePostRequest::make($post, $relationships);
+
+        $response = $this->signIn($author)
+            ->sendRequestApiPostWithData($request);
+
+        $response->assertSuccessful();
+
+        $author->refresh();
+
+        $post = $author->posts()->first();
+
+        Event::assertDispatched(CreatedPost::class, function ($event) use ($post) {
+            return $event->post->uuid === $post->uuid;
+        });
+
+        $this->assertDatabaseHas('posts', [
+            'id'        => $post->id,
+            'uuid'      => $post->uuid,
+            'title'     => $post->title,
+            'content'   => $post->content,
+            'slug'      => $post->slug,
+        ]);
+    }
 }

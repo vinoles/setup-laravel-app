@@ -17,7 +17,7 @@ class CreatedPost implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct(protected Post $post)
+    public function __construct(public Post $post)
     {
         //
     }
