@@ -30,8 +30,16 @@ class CreatedPost implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel("post.fac0062d-0607-4b3d-98de-924b315fd68i"),
+            new Channel('post.' . $this->post->uuid),
         ];
+    }
+
+    /**
+     * The event's broadcast name.
+     */
+    public function broadcastAs(): string
+    {
+        return 'post.created';
     }
 
     /**
