@@ -4,14 +4,18 @@ namespace Tests\Feature\Requests\Api\Post;
 
 use App\Models\Post;
 use Illuminate\Support\Arr;
+use Tests\Feature\Concerns\UsesRelationships;
 use Tests\Feature\Requests\PostRequest;
 
 class CreatePostRequest extends PostRequest
 {
+    use UsesRelationships;
+
     /**
      * Create a new instance of the request.
      *
      * @param  Post|null  $post
+     * @param  array  $relationship
      */
     public function __construct(protected ?Post $post = null, public array $relationships = [])
     {
@@ -62,15 +66,5 @@ class CreatePostRequest extends PostRequest
     public function type(): string
     {
         return 'posts';
-    }
-
-    /**
-    * Retrieve type resource.
-    *
-    * @return array
-    */
-    public function relationships(): array
-    {
-        return $this->relationships;
     }
 }
