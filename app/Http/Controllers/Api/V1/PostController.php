@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\Posts\CreatePost;
 use App\JsonApi\V1\Posts\PostRequest;
 use App\JsonApi\V1\Posts\PostSchema;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use LaravelJsonApi\Core\Document\Concerns\Serializable;
 use LaravelJsonApi\Core\Responses\DataResponse;
@@ -44,10 +45,14 @@ class PostController extends Controller
 
         CreatePost::dispatch($attributes);
 
-        return DataResponse::make(null)
-            ->withMeta([
+        return response()->json([
+            'jsonapi' => [
+                'version' => '1.0'
+            ],
+            'data' => [
+                'id' => $uuid,
                 'creating' => true,
-                'uuid' => $uuid
-            ]);
+            ]
+        ], Response::HTTP_CREATED);
     }
 }
