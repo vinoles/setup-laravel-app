@@ -6,7 +6,6 @@ use App\Events\Posts\CreatedPost;
 use App\Jobs\Posts\CreatePost;
 use App\Models\Post;
 use App\Models\User;
-use Exception;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
 use Tests\Feature\Requests\Api\Post\CreatePostRequest;
@@ -16,10 +15,10 @@ use PHPUnit\Framework\Attributes\Test;
 class CreatePostTest extends TestCase
 {
     /**
-    * A post not logged in cannot create the post
-    *
-    * @return void
-    */
+     * A post not logged in cannot create the post
+     *
+     * @return void
+     */
     #[Test]
     public function cannot_create_post_if_not_logged_in(): void
     {
@@ -73,8 +72,8 @@ class CreatePostTest extends TestCase
     /**
      * Create post persists in DB and dispatches CreatedPost event
      *
-    * @return void
-    */
+     * @return void
+     */
     #[Test]
     public function create_post_persists_and_dispatches_event(): void
     {
@@ -118,5 +117,45 @@ class CreatePostTest extends TestCase
             'content'   => $post->content,
             'slug'      => $post->slug,
         ]);
+    }
+
+    /**
+     * Cannot create post if without the required data.
+     *
+     * @return void
+     */
+    #[Test]
+    public function cannot_create_post_if_without_the_required_data(): void
+    {
+        $post = Post::factory()->make([
+            'title' => null,
+            'content' => null,
+        ]);
+
+        $request = CreatePostRequest::make($post);
+
+        $author = User::factory()->create();
+
+        $response = $this->signIn($author)
+            ->sendRequestApiPostWithData($request);
+
+        $response->assertUnprocessable();
+
+        $errors = collect($response->json('errors'))->pluck('detail')->all();
+
+        $this->assertContainsEquals(
+            trans('validation.required', ['attribute' => 'title']),
+            $errors
+        );
+
+        $this->assertContainsEquals(
+            trans('validation.required', ['attribute' => 'content']),
+            $errors
+        );
+
+        $this->assertContainsEquals(
+            trans('validation.required', ['attribute' => 'author']),
+            $errors
+        );
     }
 }

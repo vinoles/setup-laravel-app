@@ -139,7 +139,7 @@ trait SendsRequests
         $data['type'] = $request->type();
         $data['attributes'] = $request->payload();
 
-        if(count($request->relationships())) {
+        if (count($request->relationships())) {
             $data['relationships'] = $request->relationships();
         }
 
