@@ -9,7 +9,6 @@ use App\JsonApi\V1\Posts\PostSchema;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use LaravelJsonApi\Core\Document\Concerns\Serializable;
-use LaravelJsonApi\Core\Responses\DataResponse;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 use LaravelJsonApi\Laravel\Http\Requests\AnonymousQuery;
 
