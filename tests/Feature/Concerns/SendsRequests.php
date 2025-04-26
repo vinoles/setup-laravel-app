@@ -139,6 +139,10 @@ trait SendsRequests
         $data['type'] = $request->type();
         $data['attributes'] = $request->payload();
 
+        if (count($request->relationships())) {
+            $data['relationships'] = $request->relationships();
+        }
+
         return $this
             ->jsonApi()
             ->withData($data)

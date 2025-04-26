@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostObserver
@@ -16,16 +15,12 @@ class PostObserver
      */
     public function creating(Post $post): void
     {
-        if ($post->missingUuid()) {
-            $uuid = Str::uuid();
+        $shortUuid = Str::substr($post->uuid, -7);
 
-            $shortUuid = Str::substr($uuid, -7);
+        $post->fill([
+            'slug' =>  Str::slug("{$shortUuid} {$post->title}", '-')
+        ]);
 
-            $post->fill([
-                'uuid' => $uuid,
-                'slug' =>  Str::slug("{$shortUuid} {$post->title}", '-')
-            ]);
-        }
     }
 
     /**

@@ -6,16 +6,20 @@ use App\Constants\UserRole;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Tests\Feature\Concerns\UsesRelationships;
 use Tests\Feature\Requests\PostRequest;
 
 class CreateUserRequest extends PostRequest
 {
+    use UsesRelationships;
+
     /**
      * Create a new instance of the request.
      *
      * @param  User  $user
+     * @param  array  $relationship
      */
-    public function __construct(User $user = null)
+    public function __construct(User $user = null, public array $relationships = [])
     {
         if ($user !== null) {
             $this->fillPayload($user);

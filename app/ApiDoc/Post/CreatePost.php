@@ -24,7 +24,7 @@ use OpenApi\Annotations as OA;
  *     @OA\Response(
  *       response="201",
  *       description="CreatePost Successful",
- *         @OA\JsonContent(ref="#/components/schemas/PostApiResponse"),
+ *         @OA\JsonContent(ref="#/components/schemas/CreatePostApiResponse"),
  *     ),
  *     @OA\Response(
  *         response="422",
