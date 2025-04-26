@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'Weetals API',
+                'title' => 'Laravel-App API',
             ],
 
             'routes' => [

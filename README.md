@@ -1,6 +1,6 @@
-# Weetals
+# Laravel-App
 
-Weetals APP
+Laravel-App APP
 
 A quick-start project to set up a Laravel application using Laravel JSON:API, Laravel, and Filament PHP.
 ## Requirements
@@ -10,17 +10,17 @@ A quick-start project to set up a Laravel application using Laravel JSON:API, La
 - [Filament PHP](https://filamentphp.com/docs)
 - [Laravel JSON:API](https://laraveljsonapi.io/5.x/)
 - [Laravel](https://laravel.com/)
-- [Demo api](https://setup-weetals-production.up.railway.app/api/v1/documentation)
-- [Demo admin panel](https://setup-weetals-production.up.railway.app/admin)
+- [Demo api](https://setup-laravel-app-production.up.railway.app/api/v1/documentation)
+- [Demo admin panel](https://setup-laravel-app-production.up.railway.app/admin)
 
 ## How to Run
 
 ```bash
 # After cloning the project
-cd ./setup-weetals
+cd ./setup-laravel-app
 
 # Add the project to the hosts file
-sudo sh -c "echo '127.0.0.1 weetals.local' >> /etc/hosts"
+sudo sh -c "echo '127.0.0.1 laravel-app.local' >> /etc/hosts"
 
 # Install Sail
 docker run --rm \
@@ -60,13 +60,13 @@ make front-dev
 
 ### API
 ```bash
-http://weetals.local:8080/api/v1/documentation
+http://laravel-app.local:8080/api/v1/documentation
 ```
 <img width="800" alt="API example documentation" src="./api_doc_example.png">
 
 ### Admin Panel
 ```bash
-http://weetals.local:8080/admin/login
+http://laravel-app.local:8080/admin/login
 
 User: admin@app.com
 Password: password
