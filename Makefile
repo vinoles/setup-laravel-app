@@ -100,7 +100,7 @@ slink:
 	$(sail) artisan storage:unlink
 	$(sail) artisan storage:link
 
-aload:
+auto-load:
 	$(sail) composer dump-autoload
 
 horizon:

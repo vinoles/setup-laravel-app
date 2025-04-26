@@ -2,8 +2,9 @@
 
 namespace Tests\Feature\Api\Post;
 
-use App\Events\Posts\CreatedPost;
+use App\Events\Post\CreatedPost;
 use App\Jobs\Posts\CreatePost;
+use App\Listeners\Post\ContentValidator;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
@@ -109,6 +110,11 @@ class CreatePostTest extends TestCase
         Event::assertDispatched(CreatedPost::class, function ($event) use ($post) {
             return $event->post->uuid === $post->uuid;
         });
+
+        Event::assertListening(
+            CreatedPost::class,
+            ContentValidator::class
+        );
 
         $this->assertDatabaseHas('posts', [
             'id'        => $post->id,

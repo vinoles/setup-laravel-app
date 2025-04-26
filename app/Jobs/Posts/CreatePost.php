@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Posts;
 
-use App\Events\Posts\CreatedPost;
+use App\Events\Post\CreatedPost;
 use App\JsonApi\V1\Helpers\ResolvesJsonApiServer;
 use App\JsonApi\V1\Posts\PostSchema;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -37,6 +37,6 @@ class CreatePost implements ShouldQueue
             ->create()
             ->store($this->attributes);
 
-        createdPost::dispatch($post);
+        CreatedPost::dispatch($post);
     }
 }
