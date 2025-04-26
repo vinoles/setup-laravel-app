@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Fortify\Auth\LogoutController;
 use App\Http\Controllers\Api\Fortify\Auth\NewPasswordResetController;
 use App\Http\Controllers\Api\Fortify\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Api\Fortify\Auth\RegisterController;
+use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
@@ -33,7 +34,7 @@ Route::middleware('auth:sanctum')->group(static function () {
         ->name('v1.api.')
         ->resources(static function (ResourceRegistrar $server) {
 
-            $server->resource('posts', JsonApiController::class)
+            $server->resource('posts', PostController::class)
                 ->relationships(function (Relationships $relations) {
 
                     $relations->hasOne('author')

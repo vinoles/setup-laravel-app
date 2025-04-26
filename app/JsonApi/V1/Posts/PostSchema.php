@@ -47,6 +47,8 @@ class PostSchema extends Schema
 
             HasMany::make('comments'),
 
+            Str::make('uuid'),
+
             Str::make('content'),
 
             Str::make('slug'),

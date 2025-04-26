@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class PostSeeder extends Seeder
 {
@@ -35,6 +36,7 @@ class PostSeeder extends Seeder
         $tag2 = Tag::create(['name' => 'JSON:API']);
 
         $post = new Post([
+            'uuid' => Str::uuid(),
             'title' => 'Welcome to Laravel JSON:API',
             'published_at' => now(),
             'content' => 'In our first blog post, you will learn all about Laravel JSON:API...',

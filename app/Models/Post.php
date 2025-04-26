@@ -20,7 +20,14 @@ class Post extends Model
     /**
      * @var string[]
      */
-    protected $fillable = ['content', 'published_at', 'slug', 'title', 'author_id'];
+    protected $fillable = [
+        'uuid',
+        'content',
+        'slug',
+        'title',
+        'published_at',
+        'author_id',
+    ];
 
     /**
      * @var array

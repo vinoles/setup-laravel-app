@@ -13,8 +13,9 @@ class UpdateUserRequest extends PatchRequest
      * Create a new instance of the request.
      *
      * @param  User|null  $user
+     * @param  array  $relationship
      */
-    public function __construct(protected User|null $user = null)
+    public function __construct(protected User|null $user = null, public array $relationships = [])
     {
         if ($user === null) {
             $this->user = $user = User::factory()->create();
