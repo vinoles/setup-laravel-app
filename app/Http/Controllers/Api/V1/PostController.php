@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Helpers\ApiResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Jobs\Posts\CreatePost;
 use App\JsonApi\V1\Posts\PostRequest;
@@ -44,14 +45,9 @@ class PostController extends Controller
 
         CreatePost::dispatch($attributes);
 
-        return response()->json([
-            'jsonapi' => [
-                'version' => '1.0'
-            ],
-            'data' => [
-                'id' => $uuid,
-                'creating' => true,
-            ]
+        return ApiResponseHelper::jsonApiResponse([
+            'id' => $uuid,
+            'creating' => true,
         ], Response::HTTP_CREATED);
     }
 }

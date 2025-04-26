@@ -116,6 +116,12 @@ class CreatePostTest extends TestCase
             ContentValidator::class
         );
 
+        $data = $response->json('data');
+
+        $this->assertSame($post->uuid, $data['id']);
+
+        $this->assertTrue($data['creating']);
+
         $this->assertDatabaseHas('posts', [
             'id'        => $post->id,
             'uuid'      => $post->uuid,
