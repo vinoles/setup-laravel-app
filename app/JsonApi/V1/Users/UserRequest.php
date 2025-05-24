@@ -39,7 +39,7 @@ class UserRequest extends ResourceRequest
             'birthdate' => [
                 'required',
                 'date',
-                "before_or_equal:{$allowedBirthdate}",
+                'before_or_equal:' . $allowedBirthdate,
             ],
             'password' => $this->passwordRules(),
         ];
