@@ -2576,6 +2576,16 @@
                         "type": "string",
                         "format": "date-time",
                         "example": "2007-07-17T00:00:00.000000Z"
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "admin",
+                            "user"
+                        ]
                     }
                 },
                 "type": "object"
@@ -2669,6 +2679,16 @@
                                         "type": "string",
                                         "format": "password",
                                         "example": "strongPassword123"
+                                    },
+                                    "roles": {
+                                        "description": "Role of the user",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            "Admin"
+                                        ]
                                     }
                                 },
                                 "type": "object"

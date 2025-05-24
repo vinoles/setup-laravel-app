@@ -28,6 +28,7 @@ class UserResource extends JsonApiResource
             'city' => $this->city,
             'province' => $this->province,
             'birthdate' => $this->birthdate,
+            'roles' => $this->getRoleNames(),
         ];
     }
 

@@ -98,7 +98,14 @@ use OpenApi\Annotations as OA;
  *         format="password",
  *         description="Confirm password for the user account",
  *         example="strongPassword123"
- *     )
+ *     ),
+ *     @OA\Property(
+ *         property="roles",
+ *         type="array",
+ *         description="Role of the user",
+ *         @OA\Items(type="integer"),
+ *         example={"Admin"}
+ *     ),
  * )
  * )
  * )

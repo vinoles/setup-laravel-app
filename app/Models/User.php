@@ -98,4 +98,14 @@ class User extends Authenticatable  implements FilamentUser , HasName
         //TODO IMPLEMENT ROLES
         return $this->email == 'admin@app.com' && $this->hasVerifiedEmail();
     }
+
+    /**
+     * Return the full name of the user
+     *
+     * @return string
+     */
+
+    public function getFullNameAttribute() {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }
