@@ -102,10 +102,12 @@ class UserResource extends Resource
                     ->maxLength(255)
                     ->visible(fn (User $user): bool => empty($user->id)),
 
-                Select::make('roles')
-                ->label(__('admin.globals.roles'))
-                ->required()
-                ->relationship('roles', 'name'),
+                // TODO IMPLEMENT INPUT ROLES
+
+                // Select::make('roles')
+                // ->label(__('admin.globals.roles'))
+                // ->required()
+                // ->relationship('roles', 'name'),
             ]);
     }
 
@@ -163,8 +165,10 @@ class UserResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
-                TextColumn::make('roles.name')
-                    ->label(__('admin.globals.roles')),
+                // TODO IMPLEMENT INPUT ROLES
+
+                // TextColumn::make('roles.name')
+                //     ->label(__('admin.globals.roles')),
             ])
             ->filters([
                 //

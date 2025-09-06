@@ -27,11 +27,13 @@ class UserObserver
      */
     public function created(User $user): void
     {
-        $roles = request()->input('data.attributes.roles');
+        // TODO IMPLEMENT INPUT ROLES
 
-        if(isset($roles)) {
-            $user->syncRoles($roles);
-        }
+        // $roles = request()->input('data.attributes.roles');
+
+        // if(isset($roles)) {
+        //     $user->syncRoles($roles);
+        // }
     }
 
     /**

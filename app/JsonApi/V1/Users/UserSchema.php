@@ -65,7 +65,9 @@ class UserSchema extends Schema
             HasMany::make('posts')->readOnly(),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
-            ArrayList::make('roles')->readOnly(),
+
+            // TODO IMPLEMENT INPUT ROLES
+            // ArrayList::make('roles')->readOnly(),
         ];
     }
 

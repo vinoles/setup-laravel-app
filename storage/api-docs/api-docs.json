@@ -2679,16 +2679,6 @@
                                         "type": "string",
                                         "format": "password",
                                         "example": "strongPassword123"
-                                    },
-                                    "roles": {
-                                        "description": "Role of the user",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "integer"
-                                        },
-                                        "example": [
-                                            "Admin"
-                                        ]
                                     }
                                 },
                                 "type": "object"
