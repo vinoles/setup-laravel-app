@@ -10,7 +10,9 @@ enum UserRole: string
     use AvailableAsDropdownOptions;
     use CanBeRandomized;
 
-    case USER = 'user';
+    case TALENT = 'talent';
+    case SCOUT = 'scout';
+    case CLUB = 'club';
     case ADMIN = 'admin';
     case SUPER_ADMIN = 'super_admin';
 }
