@@ -1,19 +1,57 @@
-# Weetals
+# 🏅 Weetals – Talent Discovery Platform
 
-Weetals APP
+Weetals is a talent discovery and promotion platform, initially focused on sports, designed with a **scalable, event-driven architecture** and an **API-first approach**.
 
-A quick-start project to set up a Laravel application using Laravel JSON:API, Laravel, and Filament PHP.
-## Requirements
+🔗 [Demo API](https://setup-laravel-app-production.up.railway.app/api/v1/documentation)
+🔗 [Demo Admin Panel](https://setup-laravel-app-production.up.railway.app/admin)
+
+---
+
+## 🚀 Key Features
+
+- **API-First Design**
+  RESTful API built with [Laravel JSON:API](https://laraveljsonapi.io/) following the JSON:API v1 standard.
+  The API is designed as a **gateway layer**, enabling a future migration to **microservices**.
+
+- **Event-Driven Architecture (EDA)**
+  - **Jobs & Queues**: Asynchronous processing with [Laravel Horizon](https://laravel.com/docs/horizon).
+  - **Observers**: Model observers to track lifecycle events.
+  - **Listeners**: Event-based triggers for decoupled workflows.
+
+- **Real-Time Capabilities**
+  Native WebSockets with [Laravel Reverb](https://laravel.com/docs/reverb) for real-time updates (evaluations, notifications, chat).
+
+- **Robust Authentication & Authorization**
+  - Authentication via [Laravel Fortify](https://laravel.com/docs/fortify) and [Sanctum](https://laravel.com/docs/sanctum).
+  - Role & permission management with [Spatie Permissions](https://spatie.be/docs/laravel-permission).
+
+- **Admin & Management**
+  - [Filament](https://filamentphp.com/) admin panel with custom UI library.
+  - [L5 Swagger](https://github.com/DarkaOnLine/L5-Swagger) for API documentation.
+
+- **Scalable Infrastructure**
+  - Dockerized development & deployment.
+  - Modular service design with separation of concerns.
+  - Event-driven gateway prepared for **microservices**.
+
+- **Testing & Quality**
+  - +35 automated tests (Feature & Unit).
+  - Database migrations, factories & seeders for reproducibility.
+  - CI/CD-ready structure.
+
+---
+
+## 🛠️ Requirements
 
 - Docker
 - Docker Compose
 - [Filament PHP](https://filamentphp.com/docs)
 - [Laravel JSON:API](https://laraveljsonapi.io/5.x/)
 - [Laravel](https://laravel.com/)
-- [Demo api](https://setup-weetals-production.up.railway.app/api/v1/documentation)
-- [Demo admin panel](https://setup-weetals-production.up.railway.app/admin)
 
-## How to Run
+---
+
+## 🚀 How to Run
 
 ```bash
 # After cloning the project
@@ -111,3 +149,16 @@ sail artisan app:token-api-generator admin@app.com password
 
 ## Additional Commands
 Refer to the `Makefile` for more available commands.
+
+## 📌 Roadmap
+
+- ✅ Core API with JSON:API (Gateway layer)
+- ✅ Authentication & Role Management (Fortify, Sanctum, Spatie Permissions)
+- ✅ Admin Panel with Filament
+- ✅ Event-driven system (Jobs, Observers, Listeners)
+- ✅ API Documentation with Swagger
+- 🚧 Real-time chat & notifications (Laravel Reverb)
+- 🚧 Training plans & projections for Talents
+- 🚧 Club events & sponsorship system
+- 🚧 Advanced analytics & dashboards
+- 🚧 Migration to microservice-based architecture
