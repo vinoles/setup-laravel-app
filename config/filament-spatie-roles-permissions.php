@@ -13,14 +13,14 @@ return [
 
     'navigation_section_group' => 'filament-spatie-roles-permissions::filament-spatie.section.roles_and_permissions', // Default uses language constant
 
-    'team_model' => \App\Models\Team::class,
+    'team_model' => null, // No team model exists in this project
 
-    'scope_to_tenant' => true,
+    'scope_to_tenant' => false, // Disabled since no team model
 
-    'scope_roles_to_tenant' => true,
+    'scope_roles_to_tenant' => false, // Disabled since no team model
     'scope_premissions_to_tenant' => false,
 
-    'super_admin_role_name' => 'Super Admin',
+    'super_admin_role_name' => 'super_admin',
 
     /*
      * Set as false to remove from navigation.
