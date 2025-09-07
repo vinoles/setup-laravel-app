@@ -36,11 +36,11 @@ class UserRequest extends ResourceRequest
                 'date',
                 "before_or_equal:{$allowedBirthdate}",
             ],
-            'address' => ['nullable', 'max:50'],
+            'address' => ['nullable', 'max:150'],
             'city' => ['nullable', 'max:50'],
             'country' => ['nullable', 'max:50'],
             'postal_code' => ['nullable', 'max:50'],
-            'phone' => ['nullable', 'max:50'],
+            'phone' => ['nullable', 'max:20'],
             'password' => $this->passwordRules(),
         ];
     }
