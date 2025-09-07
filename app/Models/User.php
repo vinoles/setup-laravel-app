@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Concerns\HasUuid;
+use App\Models\Concerns\HasUserRoles;
 use App\Observers\UserObserver;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasName;
@@ -25,7 +26,8 @@ class User extends Authenticatable  implements FilamentUser , HasName
         Notifiable,
         HasApiTokens,
         HasUuid,
-        HasRoles;
+        HasRoles,
+        HasUserRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -95,8 +97,7 @@ class User extends Authenticatable  implements FilamentUser , HasName
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        //TODO IMPLEMENT ROLES
-        return $this->email == 'admin@app.com' && $this->hasVerifiedEmail();
+        return $this->isAnyAdmin() && $this->hasVerifiedEmail();
     }
 
     /**
