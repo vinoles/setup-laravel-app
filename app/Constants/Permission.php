@@ -45,81 +45,94 @@ enum Permission: string
     case MANAGE_CONTENT = 'manage_content';
 
     /**
+     * Get base permissions that all users should have
+     */
+    private static function getBasePermissions(): array
+    {
+        return [
+            self::VIEW_OWN_PROFILE->value,
+            self::EDIT_OWN_PROFILE->value,
+            self::CREATE_POSTS->value,
+            self::VIEW_CONNECTIONS->value,
+            self::REQUEST_CONNECTIONS->value,
+            self::ACCEPT_CONNECTIONS->value,
+            self::VIEW_MESSAGES->value,
+            self::SEND_MESSAGES->value,
+        ];
+    }
+
+    /**
+     * Get scout-specific permissions
+     */
+    private static function getScoutSpecificPermissions(): array
+    {
+        return [
+            self::VIEW_ALL_TALENTS->value,
+            self::SEARCH_TALENTS->value,
+            self::CREATE_SCOUTING_REPORTS->value,
+            self::INVITE_TO_TRIALS->value,
+            self::VIEW_TALENT_ANALYTICS->value,
+            self::MANAGE_CONNECTIONS->value,
+        ];
+    }
+
+    /**
+     * Get club-specific permissions
+     */
+    private static function getClubSpecificPermissions(): array
+    {
+        return [
+            self::VIEW_CLUB_DASHBOARD->value,
+            self::MANAGE_CLUB_PROFILE->value,
+            self::POST_JOB_OPENINGS->value,
+            self::VIEW_APPLICATIONS->value,
+            self::MANAGE_TRIALS->value,
+            self::VIEW_CLUB_ANALYTICS->value,
+        ];
+    }
+
+    /**
+     * Get admin-specific permissions
+     */
+    private static function getAdminSpecificPermissions(): array
+    {
+        return [
+            self::VIEW_ADMIN_PANEL->value,
+            self::MANAGE_USERS->value,
+            self::MANAGE_ROLES->value,
+            self::MANAGE_PERMISSIONS->value,
+            self::VIEW_SYSTEM_ANALYTICS->value,
+            self::MANAGE_CONTENT->value,
+        ];
+    }
+
+    /**
      * Get permissions grouped by role
      */
     public static function getPermissionsByRole(): array
     {
+        $basePermissions = self::getBasePermissions();
+        $scoutSpecific = self::getScoutSpecificPermissions();
+        $clubSpecific = self::getClubSpecificPermissions();
+        $adminSpecific = self::getAdminSpecificPermissions();
+
+        $talentPermissions = $basePermissions;
+
+        $scoutPermissions = array_merge($basePermissions, $scoutSpecific);
+
+        $clubPermissions = array_merge($basePermissions, $clubSpecific);
+
+        $adminPermissions = array_unique(array_merge(
+            $scoutPermissions,
+            $clubPermissions,
+            $adminSpecific
+        ));
+
         return [
-            UserRole::TALENT->value => [
-                self::VIEW_OWN_PROFILE->value,
-                self::EDIT_OWN_PROFILE->value,
-                self::CREATE_POSTS->value,
-                self::VIEW_CONNECTIONS->value,
-                self::REQUEST_CONNECTIONS->value,
-                self::ACCEPT_CONNECTIONS->value,
-                self::VIEW_MESSAGES->value,
-                self::SEND_MESSAGES->value,
-            ],
-            UserRole::SCOUT->value => [
-                self::VIEW_OWN_PROFILE->value,
-                self::EDIT_OWN_PROFILE->value,
-                self::CREATE_POSTS->value,
-                self::VIEW_CONNECTIONS->value,
-                self::REQUEST_CONNECTIONS->value,
-                self::ACCEPT_CONNECTIONS->value,
-                self::VIEW_MESSAGES->value,
-                self::SEND_MESSAGES->value,
-                self::VIEW_ALL_TALENTS->value,
-                self::SEARCH_TALENTS->value,
-                self::CREATE_SCOUTING_REPORTS->value,
-                self::INVITE_TO_TRIALS->value,
-                self::VIEW_TALENT_ANALYTICS->value,
-                self::MANAGE_CONNECTIONS->value,
-            ],
-            UserRole::CLUB->value => [
-                self::VIEW_OWN_PROFILE->value,
-                self::EDIT_OWN_PROFILE->value,
-                self::CREATE_POSTS->value,
-                self::VIEW_CONNECTIONS->value,
-                self::REQUEST_CONNECTIONS->value,
-                self::ACCEPT_CONNECTIONS->value,
-                self::VIEW_MESSAGES->value,
-                self::SEND_MESSAGES->value,
-                self::VIEW_CLUB_DASHBOARD->value,
-                self::MANAGE_CLUB_PROFILE->value,
-                self::POST_JOB_OPENINGS->value,
-                self::VIEW_APPLICATIONS->value,
-                self::MANAGE_TRIALS->value,
-                self::VIEW_CLUB_ANALYTICS->value,
-            ],
-            UserRole::ADMIN->value => [
-                self::VIEW_OWN_PROFILE->value,
-                self::EDIT_OWN_PROFILE->value,
-                self::CREATE_POSTS->value,
-                self::VIEW_CONNECTIONS->value,
-                self::REQUEST_CONNECTIONS->value,
-                self::ACCEPT_CONNECTIONS->value,
-                self::VIEW_MESSAGES->value,
-                self::SEND_MESSAGES->value,
-                self::VIEW_ALL_TALENTS->value,
-                self::SEARCH_TALENTS->value,
-                self::CREATE_SCOUTING_REPORTS->value,
-                self::INVITE_TO_TRIALS->value,
-                self::VIEW_TALENT_ANALYTICS->value,
-                self::MANAGE_CONNECTIONS->value,
-                self::VIEW_CLUB_DASHBOARD->value,
-                self::MANAGE_CLUB_PROFILE->value,
-                self::POST_JOB_OPENINGS->value,
-                self::VIEW_APPLICATIONS->value,
-                self::MANAGE_TRIALS->value,
-                self::VIEW_CLUB_ANALYTICS->value,
-                self::VIEW_ADMIN_PANEL->value,
-                self::MANAGE_USERS->value,
-                self::MANAGE_ROLES->value,
-                self::MANAGE_PERMISSIONS->value,
-                self::VIEW_SYSTEM_ANALYTICS->value,
-                self::MANAGE_CONTENT->value,
-            ],
+            UserRole::TALENT->value => $talentPermissions,
+            UserRole::SCOUT->value => $scoutPermissions,
+            UserRole::CLUB->value => $clubPermissions,
+            UserRole::ADMIN->value => $adminPermissions,
         ];
     }
 
