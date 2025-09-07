@@ -70,5 +70,13 @@ class UserSeeder extends Seeder
             'email' => 'norole@app.com',
             'password' => Hash::make($password),
         ]);
+
+        // Create a user  for testing api
+        User::factory()->create([
+            'first_name' => 'User',
+            'last_name' => 'Test',
+            'email' => 'user-test@app.com',
+            'password' => Hash::make($password),
+        ]);
     }
 }
