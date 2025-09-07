@@ -20,6 +20,7 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Select;
 
 class UserResource extends Resource
 {
@@ -100,6 +101,13 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->visible(fn (User $user): bool => empty($user->id)),
+
+                // TODO IMPLEMENT INPUT ROLES
+
+                // Select::make('roles')
+                // ->label(__('admin.globals.roles'))
+                // ->required()
+                // ->relationship('roles', 'name'),
             ]);
     }
 
@@ -111,51 +119,56 @@ class UserResource extends Resource
                 ->label(__('admin.globals.first_name'))
                 ->searchable(),
 
-            TextColumn::make('last_name')
-                ->label(__('admin.globals.last_name'))
-                ->searchable(),
+                TextColumn::make('last_name')
+                    ->label(__('admin.globals.last_name'))
+                    ->searchable(),
 
-            TextColumn::make('email')
-                ->label(__('admin.globals.first_name'))
-                ->searchable(),
+                TextColumn::make('email')
+                    ->label(__('admin.globals.first_name'))
+                    ->searchable(),
 
-            TextColumn::make('phone')
-                ->label(__('admin.globals.phone'))
-                ->searchable(),
+                TextColumn::make('phone')
+                    ->label(__('admin.globals.phone'))
+                    ->searchable(),
 
-            TextColumn::make('address')
-                ->label(__('admin.globals.address'))
-                ->searchable(),
+                TextColumn::make('address')
+                    ->label(__('admin.globals.address'))
+                    ->searchable(),
 
-            TextColumn::make('city')
-                ->label(__('admin.globals.city'))
-                ->searchable(),
+                TextColumn::make('city')
+                    ->label(__('admin.globals.city'))
+                    ->searchable(),
 
-            TextColumn::make('birthdate')
-                ->label(__('admin.globals.birthdate'))
-                ->date()
-                ->sortable(),
+                TextColumn::make('birthdate')
+                    ->label(__('admin.globals.birthdate'))
+                    ->date()
+                    ->sortable(),
 
-            TextColumn::make('email_verified_at')
-                ->label(__('admin.users.email_verified_at'))
-                ->dateTime()
-                ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('email_verified_at')
+                    ->label(__('admin.users.email_verified_at'))
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
 
-            TextColumn::make('created_at')
-                ->dateTime()
-                ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
 
-            TextColumn::make('updated_at')
-                ->dateTime()
-                ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
 
-            TextColumn::make('deleted_at')
-                ->dateTime()
-                ->sortable()
-                ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('deleted_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                // TODO IMPLEMENT INPUT ROLES
+
+                // TextColumn::make('roles.name')
+                //     ->label(__('admin.globals.roles')),
             ])
             ->filters([
                 //
