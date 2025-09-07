@@ -124,7 +124,7 @@ class UserResource extends Resource
                     ->searchable(),
 
                 TextColumn::make('email')
-                    ->label(__('admin.globals.first_name'))
+                    ->label(__('admin.globals.email'))
                     ->searchable(),
 
                 TextColumn::make('phone')
