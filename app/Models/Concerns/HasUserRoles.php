@@ -3,10 +3,6 @@
 namespace App\Models\Concerns;
 
 use App\Constants\UserRole;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 trait HasUserRoles
 {
@@ -89,7 +85,7 @@ trait HasUserRoles
     public function getPrimaryRole(): ?string
     {
         $roles = $this->getRoleNames();
-        
+
         // Priority order: super_admin > admin > club > scout > talent
         $priority = [
             UserRole::SUPER_ADMIN->value,
