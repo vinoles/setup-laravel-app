@@ -46,8 +46,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('viewPulse', function (User $user) {
-            // TODO verify user $user->isAdmin();
-            return true;
+            return $user->isAnyAdmin();
         });
     }
 }

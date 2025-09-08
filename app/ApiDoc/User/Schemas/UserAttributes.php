@@ -48,6 +48,14 @@ use OpenApi\Annotations as OA;
  *         type="string",
  *         format="date-time",
  *         example="2007-07-17T00:00:00.000000Z"
+ *     ),
+ *     @OA\Property(
+ *         property="roles",
+ *         type="array",
+ *         @OA\Items(
+ *             type="string"
+ *         ),
+ *         example={"admin", "user"}
  *     )
  * )
  */

@@ -25,7 +25,8 @@ return [
         'password' => 'Password',
         'created_at' => 'Created At',
         'updated_at' => 'Updated At',
-        'deleted_at' => 'Deleted At'
+        'deleted_at' => 'Deleted At',
+        'roles' => 'Roles'
     ],
     'users' => [
         'users' => 'Users',
