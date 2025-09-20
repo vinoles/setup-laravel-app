@@ -24,7 +24,7 @@ class PostPolicy
             return true;
         }
 
-        return $user && $user->is($post->author);
+        return $this->isOwnerOrAdmin($user, $post);
     }
 
     /**
@@ -64,7 +64,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        return $user && $user->is($post->author);
+        return $this->isOwnerOrAdmin($user, $post);
     }
 
     /**
@@ -72,7 +72,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return $user && $user->is($post->author);
+        return $this->isOwnerOrAdmin($user, $post);
     }
 
     /**
@@ -80,7 +80,7 @@ class PostPolicy
      */
     public function restore(User $user, Post $post): bool
     {
-        return $user && $user->is($post->author);
+        return $this->isOwnerOrAdmin($user, $post);
     }
 
     /**
@@ -88,7 +88,7 @@ class PostPolicy
      */
     public function forceDelete(User $user, Post $post): bool
     {
-        return $user && $user->is($post->author);
+        return $this->isOwnerOrAdmin($user, $post);
     }
 
 
@@ -114,5 +114,13 @@ class PostPolicy
     public function detachTags(User $user, Post $post): bool
     {
         return $this->update($user, $post);
+    }
+
+    /**
+     * Common rule: user is author or admin.
+     */
+    private function isOwnerOrAdmin(User $user, Post $post): bool
+    {
+        return $user->is($post->author) || $user->isAnyAdmin();
     }
 }
