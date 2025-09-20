@@ -30,7 +30,7 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
         Gate::define('viewHorizon', function ($user) {
             // TODO IMPLEMENT TO FUTURE ROLES AND PERMISSION
             return in_array($user->email, [
-                'admin@app.com'
+                'admin@setup-laravel-app.com'
             ]);
         });
     }

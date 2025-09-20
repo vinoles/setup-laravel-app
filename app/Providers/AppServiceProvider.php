@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
-use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -46,8 +46,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('viewPulse', function (User $user) {
-            // TODO verify user $user->isAdmin();
-            return true;
+            return $user->isAnyAdmin();
         });
     }
 }

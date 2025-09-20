@@ -98,7 +98,7 @@ use OpenApi\Annotations as OA;
  *         format="password",
  *         description="Confirm password for the user account",
  *         example="strongPassword123"
- *     )
+ *     ),
  * )
  * )
  * )
