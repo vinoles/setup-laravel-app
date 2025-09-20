@@ -17,8 +17,13 @@ class PostObserver
     {
         $shortUuid = Str::substr($post->uuid, -7);
 
+        if ($post->missingUuid()) {
+            $post->fill([
+                'uuid' => Str::uuid(),
+            ]);
+        }
+
         $post->fill([
-            'uuid' => Str::uuid(),
             'slug' =>  Str::slug("{$shortUuid} {$post->title}", '-')
         ]);
 
