@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'email' => 'superadmin@setup-laravel-app.com',
             'password' => Hash::make($password),
         ]);
-        $superAdmin->assignRole(UserRole::ADMIN->value);
+        $superAdmin->assignRole(UserRole::SUPER_ADMIN->value);
 
         $admin = User::factory()->create([
             'first_name' => 'Admin',
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@setup-laravel-app.com',
             'password' => Hash::make($password),
         ]);
-        $admin->assignRole(UserRole::SUPER_ADMIN->value);
+        $admin->assignRole(UserRole::ADMIN->value);
 
         $talent = User::factory()->create([
             'first_name' => 'Lionel',
