@@ -8,6 +8,7 @@ use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
 use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
 use LaravelJsonApi\Eloquent\Fields\Str;
+use LaravelJsonApi\Eloquent\Fields\ArrayList;
 use LaravelJsonApi\Eloquent\Filters\Where;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
@@ -64,6 +65,9 @@ class UserSchema extends Schema
             HasMany::make('posts')->readOnly(),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
+
+            // TODO IMPLEMENT INPUT ROLES
+            // ArrayList::make('roles')->readOnly(),
         ];
     }
 
@@ -101,10 +105,10 @@ class UserSchema extends Schema
     }
 
     /**
-      * Determine if the resource is authorizable.
-      *
-      * @return bool
-      */
+     * Determine if the resource is authorizable.
+     *
+     * @return bool
+     */
     public function authorizable(): bool
     {
         return true;

@@ -31,19 +31,17 @@ class UserRequest extends ResourceRequest
             ],
             'first_name' => ['required', 'max:50'],
             'last_name' => ['required', 'max:50'],
-            'phone' => ['required', 'string', 'min:10', 'max:20'],
-            'address' => ['required', 'string', 'max:150'],
-            'city' => ['required', 'string', 'max:100'],
-            'country' => ['required', 'string', 'max:100'],
-            'postal_code' => ['nullable', 'string', 'max:25'],
             'birthdate' => [
                 'required',
                 'date',
                 "before_or_equal:{$allowedBirthdate}",
             ],
+            'address' => ['nullable', 'max:150'],
+            'city' => ['nullable', 'max:50'],
+            'country' => ['nullable', 'max:50'],
+            'postal_code' => ['nullable', 'max:50'],
+            'phone' => ['nullable', 'max:20'],
             'password' => $this->passwordRules(),
         ];
-
     }
-
 }
