@@ -4,6 +4,7 @@ use App\Http\Middleware\CheckSanctumToken;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Exceptions\JsonApiException;
 use LaravelJsonApi\Exceptions\ExceptionParser;
 
@@ -28,6 +29,13 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
             CheckSanctumToken::class,
         ]);
+        $middleware->trustProxies(
+            at: '*',
+            headers: Request::HEADER_X_FORWARDED_FOR
+                   | Request::HEADER_X_FORWARDED_HOST
+                   | Request::HEADER_X_FORWARDED_PORT
+                   | Request::HEADER_X_FORWARDED_PROTO
+        );
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->dontReport(
