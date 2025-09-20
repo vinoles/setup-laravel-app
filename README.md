@@ -1,6 +1,6 @@
-# 🏅 Weetals – Talent Discovery Platform
+# 🏅  Setup laravel app – Talent Discovery Platform
 
-Weetals is a talent discovery and promotion platform, initially focused on sports, designed with a **scalable, event-driven architecture** and an **API-first approach**.
+Setup laravel app is a talent discovery and promotion platform, initially focused on sports, designed with a **scalable, event-driven architecture** and an **API-first approach**.
 
 🔗 [Demo API](https://setup-laravel-app-production.up.railway.app/api/v1/documentation)
 🔗 [Demo Admin Panel](https://setup-laravel-app-production.up.railway.app/admin)
@@ -60,7 +60,7 @@ Weetals is a talent discovery and promotion platform, initially focused on sport
 cd ./setup-laravel-app
 
 # Add the project to the hosts file
-sudo sh -c "echo '127.0.0.1 laravel-app.local' >> /etc/hosts"
+sudo sh -c "echo '127.0.0.1 setup-laravel-app.local' >> /etc/hosts"
 
 # Install Sail
 docker run --rm \
@@ -108,7 +108,7 @@ http://laravel-app.local:8080/api/v1/documentation
 ```bash
 http://laravel-app.local:8080/admin/login
 
-User: admin@weetals.com
+User: admin@setup-laravel-app.com
 Password: password
 ```
 <img width="800" alt="Admin dashboard example" src="./admin_dashboard-example.png">
@@ -146,7 +146,7 @@ sail artisan migrate:fresh
 sail composer require api-platform/laravel
 
 # Generate an API token
-sail artisan app:token-api-generator admin@weetals.com password
+sail artisan app:token-api-generator admin@setup-laravel-app.com password
 ```
 
 ## Additional Commands

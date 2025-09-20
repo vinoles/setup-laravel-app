@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         $superAdmin = User::factory()->create([
             'first_name' => 'Super',
             'last_name' => 'Admin',
-            'email' => 'superadmin@weetals.com',
+            'email' => 'superadmin@setup-laravel-app.com',
             'password' => Hash::make($password),
         ]);
         $superAdmin->assignRole(UserRole::ADMIN->value);
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
         $admin = User::factory()->create([
             'first_name' => 'Admin',
             'last_name' => 'Application',
-            'email' => 'admin@weetals.com',
+            'email' => 'admin@setup-laravel-app.com',
             'password' => Hash::make($password),
         ]);
         $admin->assignRole(UserRole::SUPER_ADMIN->value);
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
         $talent = User::factory()->create([
             'first_name' => 'Lionel',
             'last_name' => 'Messi',
-            'email' => 'messi@weetals.com',
+            'email' => 'messi@setup-laravel-app.com',
             'password' => Hash::make($password),
         ]);
         $talent->assignRole(UserRole::TALENT->value);
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
         $scout = User::factory()->create([
             'first_name' => 'Jose',
             'last_name' => 'Mourinho',
-            'email' => 'mourinho@weetals.com',
+            'email' => 'mourinho@setup-laravel-app.com',
             'password' => Hash::make($password),
         ]);
         $scout->assignRole(UserRole::SCOUT->value);
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
         $club = User::factory()->create([
             'first_name' => 'Real',
             'last_name' => 'Madrid',
-            'email' => 'realmadrid@weetals.com',
+            'email' => 'realmadrid@setup-laravel-app.com',
             'password' => Hash::make($password),
         ]);
         $club->assignRole(UserRole::CLUB->value);
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'first_name' => 'No',
             'last_name' => 'Role',
-            'email' => 'norole@weetals.com',
+            'email' => 'norole@setup-laravel-app.com',
             'password' => Hash::make($password),
         ]);
 
@@ -76,7 +76,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'first_name' => 'User',
             'last_name' => 'Test',
-            'email' => 'user-test@weetals.com',
+            'email' => 'user-test@setup-laravel-app.com',
             'password' => Hash::make($password),
         ]);
     }

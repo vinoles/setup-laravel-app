@@ -24,7 +24,7 @@ use OpenApi\Annotations as OA;
  *                     property="email",
  *                     type="string",
  *                     format="email",
- *                     default="user-test@weetals.com"
+ *                     default="user-test@setup-laravel-app.com"
  *                 ),
  *                 @OA\Property(
  *                     property="password",
