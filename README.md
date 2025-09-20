@@ -1,6 +1,7 @@
-# 🏅  Setup laravel app – Talent Discovery Platform
+# 🏅  Setup laravel app
 
-Setup laravel app is a talent discovery and promotion platform, initially focused on sports, designed with a **scalable, event-driven architecture** and an **API-first approach**.
+A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.io/) works with [Laravel](https://laravel.com/) and [FIlamentPhp](https://filamentphp.com/docs).
+
 
 🔗 [Demo API](https://setup-laravel-app-production.up.railway.app/api/v1/documentation)
 🔗 [Demo Admin Panel](https://setup-laravel-app-production.up.railway.app/admin)
@@ -160,7 +161,3 @@ Refer to the `Makefile` for more available commands.
 - ✅ Event-driven system (Jobs, Observers, Listeners)
 - ✅ API Documentation with Swagger
 - 🚧 Real-time chat & notifications (Laravel Reverb)
-- 🚧 Training plans & projections for Talents
-- 🚧 Club events & sponsorship system
-- 🚧 Advanced analytics & dashboards
-- 🚧 Migration to microservice-based architecture
