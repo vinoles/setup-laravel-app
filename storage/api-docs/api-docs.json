@@ -25,7 +25,7 @@
                                     "email": {
                                         "type": "string",
                                         "format": "email",
-                                        "default": "user-test@app.com"
+                                        "default": "user-test@setup-laravel-app.com"
                                     },
                                     "password": {
                                         "description": "The user password example",
@@ -130,7 +130,7 @@
                                     "email": {
                                         "type": "string",
                                         "format": "email",
-                                        "default": "user-test@app.com"
+                                        "default": "user-test@setup-laravel-app.com"
                                     }
                                 },
                                 "type": "object"
@@ -249,7 +249,7 @@
                                     "email": {
                                         "type": "string",
                                         "format": "email",
-                                        "default": "user-test@app.com"
+                                        "default": "user-test@setup-laravel-app.com"
                                     },
                                     "password": {
                                         "description": "The user password example",
@@ -769,7 +769,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/PostApiResponse"
+                                    "$ref": "#/components/schemas/CreatePostApiResponse"
                                 }
                             }
                         }
@@ -1838,6 +1838,36 @@
                 },
                 "type": "object"
             },
+            "CreatePostApiResponse": {
+                "properties": {
+                    "jsonapi": {
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/CreatePostResponse"
+                    }
+                },
+                "type": "object"
+            },
+            "CreatePostResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                    },
+                    "creating": {
+                        "type": "boolean",
+                        "example": "true"
+                    }
+                },
+                "type": "object"
+            },
             "PostApiResource": {
                 "properties": {
                     "type": {
@@ -2187,11 +2217,6 @@
                     "content": {
                         "type": "string",
                         "example": "the content application test post example"
-                    },
-                    "publishedAt": {
-                        "type": "string",
-                        "format": "date",
-                        "example": "2025-03-02T13:25:39.000000Z"
                     }
                 },
                 "type": "object"
@@ -2551,6 +2576,16 @@
                         "type": "string",
                         "format": "date-time",
                         "example": "2007-07-17T00:00:00.000000Z"
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "admin",
+                            "user"
+                        ]
                     }
                 },
                 "type": "object"

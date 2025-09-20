@@ -26,8 +26,8 @@ class PostRequest extends ResourceRequest
 
         return [
             'content' => ['required', 'string'],
-            'publishedAt' => ['nullable', JsonApiRule::dateTime()],
             'title' => ['required', 'string'],
+            'uuid' => ['nullable', 'string'],
             'author' => ['required'],
         ];
     }

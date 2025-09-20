@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use App\Models\User;
+use BezhanSalleh\LanguageSwitch\LanguageSwitch;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use L5Swagger\L5SwaggerServiceProvider;
@@ -41,6 +43,10 @@ class AppServiceProvider extends ServiceProvider
                     'en' => __('admin.locales.en'),
                     'fr' => __('admin.locales.fr'),
                 ]);
+        });
+
+        Gate::define('viewPulse', function (User $user) {
+            return $user->isAnyAdmin();
         });
     }
 }

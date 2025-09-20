@@ -17,12 +17,7 @@ use OpenApi\Annotations as OA;
  *         property="content",
  *         type="string",
  *         example="the content application test post example"
- *     ),
- *     @OA\Property(
- *         property="publishedAt",
- *         type="date",
- *         example="2025-03-02T13:25:39.000000Z"
- *     ),
+ *     )
  * )
  */
 class PostRequestAttributes
