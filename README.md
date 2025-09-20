@@ -101,13 +101,13 @@ make front-dev
 
 ### API
 ```bash
-http://laravel-app.local:8080/api/v1/documentation
+http://laravel-app.local:8082/api/v1/documentation
 ```
 <img width="800" alt="API example documentation" src="./api_doc_example.png">
 
 ### Admin Panel
 ```bash
-http://laravel-app.local:8080/admin/login
+http://setup-laravel-app.local:8082/admin/login
 
 User: admin@setup-laravel-app.com
 Password: password
