@@ -2,16 +2,15 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\CreateAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\CreateAction;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -20,7 +19,12 @@ class PostsRelationManager extends RelationManager
 {
     protected static string $relationship = 'posts';
 
-    public function form(Form $form): Form
+    public function isReadOnly(): bool
+    {
+        return false;
+    }
+
+    public function form(Schema $form): Schema
     {
         return $form
             ->schema([
@@ -49,11 +53,11 @@ class PostsRelationManager extends RelationManager
             ->headerActions([
                 CreateAction::make(),
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make(),
                 DeleteAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),

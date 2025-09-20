@@ -19,7 +19,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 #[ObservedBy([UserObserver::class])]
-class User extends Authenticatable  implements FilamentUser , HasName
+class User extends Authenticatable  implements FilamentUser, HasName
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory,
