@@ -106,7 +106,7 @@ http://weetals.local:8080/api/v1/documentation
 ```bash
 http://weetals.local:8080/admin/login
 
-User: admin@app.com
+User: admin@weetals.com
 Password: password
 ```
 <img width="800" alt="Admin dashboard example" src="./admin_dashboard-example.png">
@@ -144,7 +144,7 @@ sail artisan migrate:fresh
 sail composer require api-platform/laravel
 
 # Generate an API token
-sail artisan app:token-api-generator admin@app.com password
+sail artisan app:token-api-generator admin@weetals.com password
 ```
 
 ## Additional Commands

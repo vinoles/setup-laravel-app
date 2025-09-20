@@ -23,18 +23,27 @@ class UserSeeder extends Seeder
         });
 
         // Create specific test users with known roles
+
+        $superAdmin = User::factory()->create([
+            'first_name' => 'Super',
+            'last_name' => 'Admin',
+            'email' => 'superadmin@weetals.com',
+            'password' => Hash::make($password),
+        ]);
+        $superAdmin->assignRole(UserRole::ADMIN->value);
+
         $admin = User::factory()->create([
             'first_name' => 'Admin',
             'last_name' => 'Application',
-            'email' => 'admin@app.com',
+            'email' => 'admin@weetals.com',
             'password' => Hash::make($password),
         ]);
-        $admin->assignRole(UserRole::ADMIN->value);
+        $admin->assignRole(UserRole::SUPER_ADMIN->value);
 
         $talent = User::factory()->create([
             'first_name' => 'Lionel',
             'last_name' => 'Messi',
-            'email' => 'messi@app.com',
+            'email' => 'messi@weetals.com',
             'password' => Hash::make($password),
         ]);
         $talent->assignRole(UserRole::TALENT->value);
@@ -42,7 +51,7 @@ class UserSeeder extends Seeder
         $scout = User::factory()->create([
             'first_name' => 'Jose',
             'last_name' => 'Mourinho',
-            'email' => 'mourinho@app.com',
+            'email' => 'mourinho@weetals.com',
             'password' => Hash::make($password),
         ]);
         $scout->assignRole(UserRole::SCOUT->value);
@@ -50,24 +59,16 @@ class UserSeeder extends Seeder
         $club = User::factory()->create([
             'first_name' => 'Real',
             'last_name' => 'Madrid',
-            'email' => 'realmadrid@app.com',
+            'email' => 'realmadrid@weetals.com',
             'password' => Hash::make($password),
         ]);
         $club->assignRole(UserRole::CLUB->value);
-
-        $superAdmin = User::factory()->create([
-            'first_name' => 'Super',
-            'last_name' => 'Admin',
-            'email' => 'superadmin@app.com',
-            'password' => Hash::make($password),
-        ]);
-        $superAdmin->assignRole(UserRole::SUPER_ADMIN->value);
 
         // Create a user without role for testing
         User::factory()->create([
             'first_name' => 'No',
             'last_name' => 'Role',
-            'email' => 'norole@app.com',
+            'email' => 'norole@weetals.com',
             'password' => Hash::make($password),
         ]);
 
@@ -75,7 +76,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'first_name' => 'User',
             'last_name' => 'Test',
-            'email' => 'user-test@app.com',
+            'email' => 'user-test@weetals.com',
             'password' => Hash::make($password),
         ]);
     }
