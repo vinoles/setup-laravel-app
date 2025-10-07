@@ -28,11 +28,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (config('app.env') === 'production') {
-            URL::forceScheme('https');
+        $appUrl = config('app.url');
+
+        if ($appUrl) {
+            URL::forceRootUrl($appUrl);
+            $scheme = parse_url($appUrl, PHP_URL_SCHEME) ?: 'http';
+            URL::forceScheme($scheme);
         }
 
-        //
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
 
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
