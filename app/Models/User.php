@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Concerns\HasUuid;
@@ -17,6 +18,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 #[ObservedBy([UserObserver::class])]
 class User extends Authenticatable {
+    use CrudTrait;
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory,
