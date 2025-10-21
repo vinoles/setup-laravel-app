@@ -2,9 +2,9 @@ services:
     weetals.nginx:
         image: 'nginx:latest'
         ports:
-            - '${FORWARD_HTTP_PORT:-8000}:80'
+            - '${FORWARD_HTTP_PORT:-8000}:${HTTP_PORT:-80}'
             - '${FORWARD_SSL_PORT:-443}:${SSL_PORT:-443}'
-            - '${FORWARD_REVERB_PORT:-8081}:8081'
+            - '${FORWARD_REVERB_PORT:-8081}:${REVERB_PORT:-8080}'
         environment:
             - SSL_PORT=${SSL_PORT:-443}
             - APP_SERVICE=${APP_SERVICE:-weetals}
