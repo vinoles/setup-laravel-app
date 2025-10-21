@@ -20,7 +20,7 @@ services:
         networks:
             sail:
                 aliases:
-                    - 'abn-weetals.local'
+                    - 'weetals.local'
     weetals:
         build:
             context: ./docker/8.3
@@ -102,6 +102,7 @@ services:
             - JAVA_OPTS=-XX:ActiveProcessorCount=10
         extra_hosts:
             - "host.docker.internal:host-gateway"
+            - "weetals.local:host-gateway"
         volumes:
             - "/dev/shm:/dev/shm"
         networks:
