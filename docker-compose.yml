@@ -1,3 +1,4 @@
+name: weetals-api
 services:
     weetals.nginx:
         image: 'nginx:latest'
@@ -45,10 +46,14 @@ services:
         networks:
             - sail
         depends_on:
-            - postgres
-            - redis
-            - mailpit
-            - selenium
+            postgres:
+                condition: service_healthy
+            redis:
+                condition: service_started
+            mailpit:
+                condition: service_started
+            selenium:
+                condition: service_started
     postgres:
         image: "postgres:latest"
         ports:
@@ -58,6 +63,7 @@ services:
             POSTGRES_USER: "${DB_USERNAME}"
             POSTGRES_PASSWORD: "${DB_PASSWORD}"
             POSTGRES_DATABASE_TEST: "${DB_DATABASE_TEST}"
+        # lo que tiene que correr cuando arranca el servicio
         healthcheck:
             test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}"]
             interval: 10s
