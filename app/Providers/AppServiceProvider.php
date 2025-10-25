@@ -38,16 +38,6 @@ class AppServiceProvider extends ServiceProvider
 
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
 
-        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-            $switch
-                ->locales(config('app.locales'))
-                ->labels([
-                    'es' => __('admin.locales.es'),
-                    'en' => __('admin.locales.en'),
-                    'fr' => __('admin.locales.fr'),
-                ]);
-        });
-
         Gate::define('viewPulse', function (User $user) {
             return $user->isAnyAdmin();
         });

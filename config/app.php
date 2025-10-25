@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\ServiceProvider;
+
 return [
 
     /*
@@ -131,5 +133,4 @@ return [
 
     'minimum_age' => env('MINIMUM_AGE', 14),
     'prefix_api' => env('APP_LARAVEL_SETUP_PREFIX', '/api/v1'),
-
 ];
