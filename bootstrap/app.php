@@ -4,6 +4,8 @@ use App\Http\Middleware\CheckSanctumToken;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
+use Illuminate\Support\ServiceProvider;
 use LaravelJsonApi\Core\Exceptions\JsonApiException;
 use LaravelJsonApi\Exceptions\ExceptionParser;
 
@@ -28,6 +30,12 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
             CheckSanctumToken::class,
         ]);
+        $middleware->trustProxies(
+            at: '*'
+        );
+        $middleware->validateCsrfTokens(except: [
+            'api/*',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->dontReport(
@@ -36,4 +44,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->render(
             ExceptionParser::renderer(),
         );
-    })->create();
+    })
+    ->withProviders(
+        ServiceProvider::defaultProviders()->replace([
+            Illuminate\Translation\TranslationServiceProvider::class =>
+                Spatie\TranslationLoader\TranslationServiceProvider::class,
+        ])->toArray()
+    )
+    ->create();
