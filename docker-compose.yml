@@ -1,4 +1,27 @@
+name: laravel-app
 services:
+    laravel-app.nginx:
+        image: 'nginx:latest'
+        ports:
+            - '${FORWARD_HTTP_PORT:-8000}:${HTTP_PORT:-80}'
+            - '${FORWARD_SSL_PORT:-443}:${SSL_PORT:-443}'
+            - '${FORWARD_REVERB_PORT:-8081}:${REVERB_PORT:-8080}'
+        environment:
+            - SSL_PORT=${SSL_PORT:-443}
+            - APP_SERVICE=${APP_SERVICE:-laravel-app}
+            - FORWARD_REVERB_PORT=${FORWARD_REVERB_PORT:-8081}
+            - REVERB_PORT=${REVERB_PORT:-8080}
+        volumes:
+            - 'sail-nginx:/etc/nginx/certs'
+            - './nginx/certs/server.crt:/etc/nginx/certs/server.crt'
+            - './nginx/certs/server.key:/etc/nginx/certs/server.key'
+            - './nginx/templates:/etc/nginx/templates'
+        depends_on:
+            - ${APP_SERVICE:-laravel-app}
+        networks:
+            sail:
+                aliases:
+                    - 'laravel-app.local'
     laravel-app:
         build:
             context: ./docker/8.3
@@ -23,10 +46,14 @@ services:
         networks:
             - sail
         depends_on:
-            - postgres
-            - redis
-            - mailpit
-            - selenium
+            postgres:
+                condition: service_healthy
+            redis:
+                condition: service_started
+            mailpit:
+                condition: service_started
+            selenium:
+                condition: service_started
     postgres:
         image: "postgres:18"
         ports:
@@ -36,6 +63,7 @@ services:
             POSTGRES_USER: "${DB_USERNAME}"
             POSTGRES_PASSWORD: "${DB_PASSWORD}"
             POSTGRES_DATABASE_TEST: "${DB_DATABASE_TEST}"
+        # lo que tiene que correr cuando arranca el servicio
         healthcheck:
             test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}"]
             interval: 10s
@@ -80,6 +108,7 @@ services:
             - JAVA_OPTS=-XX:ActiveProcessorCount=10
         extra_hosts:
             - "host.docker.internal:host-gateway"
+            - "laravel-app.local:host-gateway"
         volumes:
             - "/dev/shm:/dev/shm"
         networks:
