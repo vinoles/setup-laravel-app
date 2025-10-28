@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\HasUserRoles;
 use App\Observers\UserObserver;
-use Filament\Models\Contracts\FilamentUser;
-use Filament\Models\Contracts\HasName;
-use Filament\Panel;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,8 +17,9 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 #[ObservedBy([UserObserver::class])]
-class User extends Authenticatable  implements FilamentUser , HasName
-{
+class User extends Authenticatable {
+    use CrudTrait;
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory,
         Notifiable,
@@ -81,31 +80,10 @@ class User extends Authenticatable  implements FilamentUser , HasName
     }
 
     /**
-     * Return filament name for admin panel
-     *
-     * @return string
-     */
-    public function getFilamentName(): string
-    {
-        return "{$this->first_name} {$this->last_name}";
-    }
-
-    /**
-     * Verify if user can access to panel admin
-     *
-     * @return bool
-     */
-    public function canAccessPanel(Panel $panel): bool
-    {
-        return $this->isAnyAdmin() && $this->hasVerifiedEmail();
-    }
-
-    /**
      * Return the full name of the user
      *
      * @return string
      */
-
     public function getFullNameAttribute(): string {
         return $this->first_name . ' ' . $this->last_name;
     }

@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use LaravelJsonApi\Testing\MakesJsonApiRequests;
 use Tests\Feature\Concerns\CreatesUsers;
@@ -12,7 +12,7 @@ use Tests\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
-    use CreatesUsers, MakesJsonApiRequests, SendsRequests, DatabaseTransactions;
+    use CreatesUsers, MakesJsonApiRequests, SendsRequests, RefreshDatabase;
 
     protected function setUp(): void
     {
