@@ -98,22 +98,24 @@ make front-dev
 
 ## Web Access
 
-### API
-```bash
-http://setup-laravel-app.local:8082/api/v1/documentation
-```
-<img width="800" alt="API example documentation" src="./api_doc_example.png">
+### [Admin Panel](https://setup-laravel-app.local/admin)
 
-### Admin Panel
 ```bash
-http://setup-laravel-app.local:8082/admin/login
+https://setup-laravel-app.local/admin
 
 User: admin@setup-laravel-app.com
 Password: password
 ```
 ****
 
-<img width="900" alt="Admin dashboard example" src="./admin_panel_list.png">
+<img  width="auto"  height="auto" alt="Admin dashboard example" src="./admin_panel_list.png">
+
+### [Api documentation](https://setup-laravel-app.local/api/v1/documentation)
+
+```bash
+https://setup-laravel-app.local/api/v1/documentation
+```
+<img width="auto"  height="auto" alt="API example documentation" src="./api_doc_example.png">
 
 ****
 
