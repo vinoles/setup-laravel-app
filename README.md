@@ -1,10 +1,9 @@
 # 🏅  Setup laravel app
 
-A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.io/) works with [Laravel](https://laravel.com/) and [FIlamentPhp](https://filamentphp.com/docs).
+A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.io/) works with [Laravel](https://laravel.com/) and [Backpack for laravel](https://backpackforlaravel.com/docs).
 
 
 🔗 [Demo API](https://setup-laravel-app-production.up.railway.app/api/v1/documentation)
-🔗 [Demo Admin Panel](https://setup-laravel-app-production.up.railway.app/admin)
 
 ---
 
@@ -27,7 +26,7 @@ A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.i
   - Role & permission management with [Spatie Permissions](https://spatie.be/docs/laravel-permission).
 
 - **Admin & Management**
-  - [Filament](https://filamentphp.com/) admin panel with custom UI library.
+  - [Backpack for laravel](https://backpackforlaravel.com/) admin panel with custom UI library.
   - [L5 Swagger](https://github.com/DarkaOnLine/L5-Swagger) for API documentation.
 
 - **Scalable Infrastructure**
@@ -46,7 +45,7 @@ A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.i
 
 - Docker
 - Docker Compose
-- [Filament PHP](https://filamentphp.com/docs)
+- [Backpackforlaravel](https://backpackforlaravel.com/docs)
 - [Laravel JSON:API](https://laraveljsonapi.io/5.x/)
 - [Laravel](https://laravel.com/)
 - [Demo api](https://setup-laravel-app-production.up.railway.app/api/v1/documentation)
@@ -61,7 +60,7 @@ A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.i
 cd ./setup-laravel-app
 
 # Add the project to the hosts file
-sudo sh -c "echo '127.0.0.1 setup-laravel-app.local' >> /etc/hosts"
+sudo sh -c "echo '127.0.0.1 setup-setup-laravel-app.local' >> /etc/hosts"
 
 # Install Sail
 docker run --rm \
@@ -101,18 +100,22 @@ make front-dev
 
 ### API
 ```bash
-http://laravel-app.local:8082/api/v1/documentation
+http://setup-laravel-app.local:8082/api/v1/documentation
 ```
 <img width="800" alt="API example documentation" src="./api_doc_example.png">
 
 ### Admin Panel
 ```bash
-http://setup-laravel-app.local:8082/admin/login
+http://setup-setup-laravel-app.local:8082/admin/login
 
 User: admin@setup-laravel-app.com
 Password: password
 ```
-<img width="800" alt="Admin dashboard example" src="./admin_dashboard-example.png">
+****
+
+<img width="900" alt="Admin dashboard example" src="./admin_panel_list.png">
+
+****
 
 ## Command Installation & Artisan Commands
 
@@ -157,7 +160,7 @@ Refer to the `Makefile` for more available commands.
 
 - ✅ Core API with JSON:API (Gateway layer)
 - ✅ Authentication & Role Management (Fortify, Sanctum, Spatie Permissions)
-- ✅ Admin Panel with Filament
+- ✅ Admin Panel with Backpack for laravel
 - ✅ Event-driven system (Jobs, Observers, Listeners)
 - ✅ API Documentation with Swagger
 - 🚧 Real-time chat & notifications (Laravel Reverb)
