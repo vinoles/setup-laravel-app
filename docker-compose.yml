@@ -1,6 +1,6 @@
-name: laravel-app
+name: setup-laravel-app
 services:
-    laravel-app.nginx:
+    setup-laravel-app.nginx:
         image: 'nginx:latest'
         ports:
             - '${FORWARD_HTTP_PORT:-8000}:${HTTP_PORT:-80}'
@@ -13,16 +13,16 @@ services:
             - REVERB_PORT=${REVERB_PORT:-8080}
         volumes:
             - 'sail-nginx:/etc/nginx/certs'
-            - './nginx/certs/server.crt:/etc/nginx/certs/server.crt'
-            - './nginx/certs/server.key:/etc/nginx/certs/server.key'
+            - './nginx/certs/setup-laravel-app.local.pem:/etc/nginx/certs/setup-laravel-app.local.pem'
+            - './nginx/certs/setup-laravel-app.local-key.pem:/etc/nginx/certs/setup-laravel-app.local-key.pem'
             - './nginx/templates:/etc/nginx/templates'
         depends_on:
-            - ${APP_SERVICE:-laravel-app}
+            - ${APP_SERVICE:-setup-laravel-app}
         networks:
             sail:
                 aliases:
-                    - 'laravel-app.local'
-    laravel-app:
+                    - 'setup-laravel-app.local'
+    setup-laravel-app:
         build:
             context: ./docker/8.3
             dockerfile: Dockerfile
