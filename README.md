@@ -106,7 +106,7 @@ http://setup-laravel-app.local:8082/api/v1/documentation
 
 ### Admin Panel
 ```bash
-http://setup-setup-laravel-app.local:8082/admin/login
+http://setup-laravel-app.local:8082/admin/login
 
 User: admin@setup-laravel-app.com
 Password: password
