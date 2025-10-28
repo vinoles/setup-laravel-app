@@ -1,6 +1,6 @@
 ---
-name: Template Weetals Base
-about: " Template Weetals Base for new issues and features"
+name: Template App Base
+about: " Template App Base for new issues and features"
 title: ''
 labels: ''
 assignees: ''
