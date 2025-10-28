@@ -60,7 +60,7 @@ A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.i
 cd ./setup-laravel-app
 
 # Add the project to the hosts file
-sudo sh -c "echo '127.0.0.1 setup-setup-laravel-app.local' >> /etc/hosts"
+sudo sh -c "echo '127.0.0.1 setup-laravel-app.local' >> /etc/hosts"
 
 # Install Sail
 docker run --rm \
@@ -106,7 +106,7 @@ http://setup-laravel-app.local:8082/api/v1/documentation
 
 ### Admin Panel
 ```bash
-http://setup-setup-laravel-app.local:8082/admin/login
+http://setup-laravel-app.local:8082/admin/login
 
 User: admin@setup-laravel-app.com
 Password: password

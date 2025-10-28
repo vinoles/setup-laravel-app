@@ -13,8 +13,8 @@ services:
             - REVERB_PORT=${REVERB_PORT:-8080}
         volumes:
             - 'sail-nginx:/etc/nginx/certs'
-            - './nginx/certs/setup-setup-laravel-app.local.pem:/etc/nginx/certs/setup-setup-laravel-app.local.pem'
-            - './nginx/certs/setup-setup-laravel-app.local-key.pem:/etc/nginx/certs/setup-setup-laravel-app.local-key.pem'
+            - './nginx/certs/setup-laravel-app.local.pem:/etc/nginx/certs/setup-laravel-app.local.pem'
+            - './nginx/certs/setup-laravel-app.local-key.pem:/etc/nginx/certs/setup-laravel-app.local-key.pem'
             - './nginx/templates:/etc/nginx/templates'
         depends_on:
             - ${APP_SERVICE:-setup-laravel-app}
