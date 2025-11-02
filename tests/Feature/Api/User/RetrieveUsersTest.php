@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\User;
 use App\Models\User;
 use Tests\Feature\Requests\Api\User\RetrieveUsersRequest;
 use Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 
 class RetrieveUsersTest extends TestCase
@@ -15,6 +16,8 @@ class RetrieveUsersTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_retrieve_users_if_not_logged_in(): void
     {
         $request = RetrieveUsersRequest::make();
@@ -30,6 +33,8 @@ class RetrieveUsersTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function can_retrieve_users_if_is_logged_in(): void
     {
         $users = User::factory()->count(3)->create();
@@ -56,6 +61,8 @@ class RetrieveUsersTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function can_retrieve_users_if_is_logged_paged(): void
     {
         $users = User::factory()->count(random_int(10, 100))->create();
@@ -96,6 +103,8 @@ class RetrieveUsersTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function can_retrieve_users_if_is_logged_in_filtered_by_first_name(): void
     {
         $firstName = fake()->firstName() . '1';

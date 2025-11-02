@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api\Auth;
 
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Auth\SignInRequest;
 use Tests\Feature\TestCase;
@@ -15,6 +16,8 @@ class SignInTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function can_sign_in_with_the_correct_email_and_password(): void
     {
         $user = User::factory()->withPassword()->create();
@@ -41,6 +44,8 @@ class SignInTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function cannot_sign_in_with_the_wrong_credentials(): void
     {
         $user = User::factory()->create();
