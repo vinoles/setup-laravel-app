@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\UserRequest;
+use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -22,7 +23,7 @@ class UserCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\User::class);
+        CRUD::setModel(User::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/users');
         CRUD::setEntityNameStrings('user', 'users');
     }

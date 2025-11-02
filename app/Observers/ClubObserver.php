@@ -15,11 +15,11 @@ class ClubObserver
      */
     public function creating(Club $club): void
     {
-        if ($club->missingUuid()) {
+        // if ($club->missingUuid()) {
             $club->fill([
                 'uuid' => Str::uuid(),
             ]);
-        }
+        // }
     }
 
     /**
