@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClubRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,7 @@ class ClubRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:150',
-            'address' => 'required|string|max:150',
+            // 'name' => 'required|min:5|max:255'
         ];
     }
 
