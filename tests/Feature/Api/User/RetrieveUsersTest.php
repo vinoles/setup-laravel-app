@@ -36,10 +36,7 @@ class RetrieveUsersTest extends TestCase
 
         $request = RetrieveUsersRequest::make();
 
-        $authUser = User::factory()->create();
-
-        $response = $this->signIn($authUser)
-            ->sendRequestApiGetList($request);
+        $response = $this->signIn($this->user)->sendRequestApiGetList($request);
 
         $response->assertSuccessful();
 
@@ -75,10 +72,7 @@ class RetrieveUsersTest extends TestCase
 
         $request = RetrieveUsersRequest::make($queryPage);
 
-        $authUser = User::factory()->create();
-
-        $response = $this->signIn($authUser)
-            ->sendRequestApiGetList($request);
+        $response = $this->signIn($this->user)->sendRequestApiGetList($request);
 
         $response->assertSuccessful();
 
@@ -127,10 +121,7 @@ class RetrieveUsersTest extends TestCase
 
         $request = RetrieveUsersRequest::make($queryPage, $filter);
 
-        $authUser = User::factory()->create();
-
-        $response = $this->signIn($authUser)
-            ->sendRequestApiGetList($request);
+        $response = $this->signIn($this->user)->sendRequestApiGetList($request);
 
         $response->assertSuccessful();
 
