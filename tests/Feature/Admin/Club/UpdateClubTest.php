@@ -15,8 +15,10 @@ class UpdateClubTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const MAX_LENGTH = 150;
-    private const EXCEEDS_MAX_LENGTH = 151;
+    private const NAME_MAX_LENGTH = 50;
+    private const NAME_EXCEEDS_MAX_LENGTH = 51;
+    private const ADDRESS_MAX_LENGTH = 150;
+    private const ADDRESS_EXCEEDS_MAX_LENGTH = 151;
 
     private Club $club;
     private Club $updatedClub;
@@ -124,12 +126,12 @@ class UpdateClubTest extends TestCase
     public function cannot_update_club_with_name_exceeding_max_length(): void
     {
         $request = UpdateClubRequest::make($this->club, $this->updatedClub)
-            ->with(['name' => Str::random(self::EXCEEDS_MAX_LENGTH)]);
+            ->with(['name' => Str::random(self::NAME_EXCEEDS_MAX_LENGTH)]);
 
         $response = $this->send($request);
 
         $response->assertInvalid([
-            'name' => __('validation.max.string', ['attribute' => 'name', 'max' => self::MAX_LENGTH]),
+            'name' => __('validation.max.string', ['attribute' => 'name', 'max' => self::NAME_MAX_LENGTH]),
         ]);
     }
 
@@ -144,12 +146,12 @@ class UpdateClubTest extends TestCase
     public function cannot_update_club_with_address_exceeding_max_length(): void
     {
         $request = UpdateClubRequest::make($this->club, $this->updatedClub)
-            ->with(['address' => Str::random(self::EXCEEDS_MAX_LENGTH)]);
+            ->with(['address' => Str::random(self::ADDRESS_EXCEEDS_MAX_LENGTH)]);
 
         $response = $this->send($request);
 
         $response->assertInvalid([
-            'address' => __('validation.max.string', ['attribute' => 'address', 'max' => self::MAX_LENGTH]),
+            'address' => __('validation.max.string', ['attribute' => 'address', 'max' => self::ADDRESS_MAX_LENGTH]),
         ]);
     }
 

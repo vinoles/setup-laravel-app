@@ -25,7 +25,7 @@ class ClubRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|string|max:150',
+            'name' => 'bail|required|string|min:5|max:50',
             'address' => 'bail|required|string|max:150',
         ];
     }
