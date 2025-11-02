@@ -6,25 +6,18 @@ use App\Constants\Permission;
 use App\Constants\UserRole;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission as SpatiePermission;
-use Tests\TestCase;
+use Tests\Feature\TestCase;
 
 class UserRoleTest extends TestCase
 {
     use RefreshDatabase;
-
-    private $user;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->user = User::factory()->create();
-
-        // Create roles
-        $this->createRoles();
-
     }
 
     /**
@@ -246,30 +239,5 @@ class UserRoleTest extends TestCase
         $this->assertFalse($this->user->can(Permission::VIEW_OWN_PROFILE->value));
         $this->assertFalse($this->user->can(Permission::CREATE_POSTS->value));
         $this->assertFalse($this->user->can(Permission::VIEW_ADMIN_PANEL->value));
-    }
-
-    /**
-     * Create roles and permissions for testing
-     */
-    private function createRoles(): void
-    {
-        // Create all permissions using the enum
-        $allPermissions = Permission::getAllPermissions();
-        foreach ($allPermissions as $permission) {
-            SpatiePermission::create(['name' => $permission]);
-        }
-
-        // Get permissions grouped by role from the enum
-        $permissionsByRole = Permission::getPermissionsByRole();
-
-        // Create roles and assign permissions
-        foreach ($permissionsByRole as $roleName => $permissions) {
-            $role = Role::create(['name' => $roleName]);
-            $role->givePermissionTo($permissions);
-        }
-
-        // Create super_admin role with all permissions
-        $userRole = Role::create(['name' => UserRole::SUPER_ADMIN->value]);
-        $userRole->givePermissionTo(SpatiePermission::all());
     }
 }
