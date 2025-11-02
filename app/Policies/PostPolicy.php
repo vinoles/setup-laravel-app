@@ -91,7 +91,6 @@ class PostPolicy
         return $this->isOwnerOrAdmin($user, $post);
     }
 
-
     /**
      * Determine whether the user can update the model's tags relationship.
      */

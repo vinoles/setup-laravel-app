@@ -6,9 +6,11 @@ use App\Models\Club;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
+use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
+
 
 class ClubSchema extends Schema
 {
@@ -28,7 +30,14 @@ class ClubSchema extends Schema
     public function fields(): array
     {
         return [
-            ID::make(),
+            ID::make()->uuid(),
+
+            Str::make('uuid'),
+
+            Str::make('name'),
+
+            Str::make('address'),
+
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
         ];
