@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ClubRequest;
+use App\Models\Club;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -22,8 +23,8 @@ class ClubCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Club::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/club');
+        CRUD::setModel(Club::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/clubs');
         CRUD::setEntityNameStrings('club', 'clubs');
     }
 
@@ -52,12 +53,23 @@ class ClubCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(ClubRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        //CRUD::setFromDb(); // set fields from db columns.
 
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
          */
+        CRUD::field([
+            'name' => 'name',
+            'type' => 'text',
+            'label' => __('admin.globals.name'),
+        ]);
+
+        CRUD::field([
+            'name' => 'address',
+            'type' => 'text',
+            'label' => __('admin.globals.address'),
+        ]);
     }
 
     /**

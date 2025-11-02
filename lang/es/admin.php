@@ -26,7 +26,10 @@ return [
         'created_at' => 'Creado',
         'updated_at' => 'Modificado',
         'deleted_at' => 'Borrado',
-        'roles' => 'Roles'
+        'roles' => 'Roles',
+        'name'  => 'Nombre',
+        'address' => 'Dirección',
+
     ],
     'users' => [
         'users' => 'Usuarios',

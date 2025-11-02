@@ -24,7 +24,10 @@ return [
         'password' => 'Mot de passe',
         'created_at' => 'Créé le',
         'updated_at' => 'Mis à jour le',
-        'deleted_at' => 'Supprimé le'
+        'deleted_at' => 'Supprimé le',
+        'roles' => 'Roles',
+        'name'  => 'Name',
+        'address' => 'Adresse',
     ],
     'users' => [
         'users' => 'Utilisateurs',
