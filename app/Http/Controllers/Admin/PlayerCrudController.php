@@ -21,19 +21,19 @@ class PlayerCrudController extends CrudController
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
-     * 
+     *
      * @return void
      */
     public function setup()
     {
         CRUD::setModel(\App\Models\Player::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/player');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/players');
         CRUD::setEntityNameStrings('player', 'players');
     }
 
     /**
      * Define what happens when the List operation is loaded.
-     * 
+     *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
@@ -49,7 +49,7 @@ class PlayerCrudController extends CrudController
 
     /**
      * Define what happens when the Create operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
@@ -94,7 +94,7 @@ class PlayerCrudController extends CrudController
 
     /**
      * Define what happens when the Update operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */
