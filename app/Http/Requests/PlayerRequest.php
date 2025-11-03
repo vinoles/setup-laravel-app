@@ -26,6 +26,13 @@ class PlayerRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+            'first_name' => 'required|max:80',
+            'last_name' => 'required|max:80',
+            'birthdate' => 'nullable|date',
+            'nationality' => 'nullable|max:80',
+            'position' => 'nullable|max:40',
+            'height_cm' => 'nullable|integer',
+            'weight_kg' => 'nullable|integer',
         ];
     }
 
