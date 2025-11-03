@@ -15,8 +15,28 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,  // Must run first to create roles and permissions
+            CatalogSeeder::class,
+        ]);
+
+
+        $this->call([
+            FederationSeeder::class,
+            LeagueSeeder::class,
+            SeasonSeeder::class,
+            TeamSeeder::class,
+            PlayerSeeder::class,
+            RefereeSeeder::class,
+        ]);
+
+
+        $this->call([
             UserSeeder::class,
             PostSeeder::class,
+            GameSeeder::class,
+            PlayerStatSeeder::class,
+            TeamStatSeeder::class,
         ]);
+
+
     }
 }
