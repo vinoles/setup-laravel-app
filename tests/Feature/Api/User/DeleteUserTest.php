@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\User;
 use App\Models\User;
 
 use Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\User\DeleteUserRequest;
 
@@ -17,6 +18,8 @@ class DeleteUserTest extends TestCase
     * @return void
     */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_delete_user_if_not_logged_in(): void
     {
         $request = DeleteUserRequest::make();
@@ -32,6 +35,8 @@ class DeleteUserTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function delete_user_happy_path(): void
     {
         $user = User::factory()->create();
@@ -65,6 +70,8 @@ class DeleteUserTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_delete_user_if_the_user_not_found(): void
     {
         $user = User::factory()->create();

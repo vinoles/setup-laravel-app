@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\User;
 use App\Models\User;
 use Tests\Feature\Requests\Api\User\CreateUserRequest;
 use Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 
 class CreateUserTest extends TestCase
@@ -15,6 +16,8 @@ class CreateUserTest extends TestCase
     * @return void
     */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_create_user_if_not_logged_in(): void
     {
         $request = CreateUserRequest::make();
@@ -30,6 +33,8 @@ class CreateUserTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function create_user_happy_path(): void
     {
         $user = User::factory()->make();
@@ -60,6 +65,8 @@ class CreateUserTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_create_user_if_without_the_required_data(): void
     {
         $user = User::factory()->create();

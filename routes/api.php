@@ -53,6 +53,8 @@ Route::middleware('auth:sanctum')->group(static function () {
 
             $server->resource('players', JsonApiController::class);
 
+            $server->resource('clubs', JsonApiController::class);
+
 
             $server->resource('users', UserController::class)
                 ->relationships(function (Relationships $relations) {

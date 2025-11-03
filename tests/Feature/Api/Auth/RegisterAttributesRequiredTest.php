@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api\Auth;
 
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Auth\RegisterRequest;
 use Tests\Feature\TestCase;
@@ -15,6 +16,8 @@ class RegisterAttributesRequiredTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function cannot_register_if_the_required_email_is_missing(): void
     {
         $user = User::factory()->make();
@@ -37,6 +40,8 @@ class RegisterAttributesRequiredTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function cannot_register_if_the_email_is_not_unique(): void
     {
         $user = User::factory()->create();
@@ -60,6 +65,8 @@ class RegisterAttributesRequiredTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function cannot_register_if_without_the_required_data(): void
     {
         $user = User::factory()->create();

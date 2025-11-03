@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Response;
 use Tests\Feature\Requests\Api\User\ConfirmPasswordRequest;
 use Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 
 class ConfirmPasswordTest extends TestCase
@@ -17,6 +18,8 @@ class ConfirmPasswordTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function can_confirm_password_with_the_correct_password(): void
     {
         $user = User::factory()->withPassword()->create();
@@ -39,6 +42,8 @@ class ConfirmPasswordTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_confirm_password_with_the_incorrect_password(): void
     {
         $user = User::factory()->withPassword()->create();
@@ -61,6 +66,8 @@ class ConfirmPasswordTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_confirm_password_another_user(): void
     {
         $user = User::factory()->withPassword()->create();

@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\User;
 use App\Models\User;
 use Tests\Feature\Requests\Api\User\UpdateUserRequest;
 use Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 
 class UpdateUserTest extends TestCase
@@ -16,6 +17,8 @@ class UpdateUserTest extends TestCase
     * @return void
     */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_update_user_if_not_logged_in(): void
     {
         $request = UpdateUserRequest::make();
@@ -31,6 +34,8 @@ class UpdateUserTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function update_user_happy_path(): void
     {
         $user = User::factory()->create();
@@ -64,6 +69,8 @@ class UpdateUserTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_update_user_if_the_user_not_found(): void
     {
         $user = User::factory()->create();
