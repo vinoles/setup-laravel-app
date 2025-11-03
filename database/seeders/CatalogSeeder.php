@@ -15,9 +15,5 @@ class CatalogSeeder extends Seeder
             SeasonStatusSeeder::class,
             RefereeRoleSeeder::class,
         ]);
-//        Sport::factory()->count(6)->create();
-//        GameStatus::factory()->count(5)->create();
-//        SeasonStatus::factory()->count(3)->create();
-//        RefereeRole::factory()->count(4)->create();
     }
 }

@@ -15,11 +15,9 @@ class PlayerStatSeeder extends Seeder
     {
         Game::with(['homeTeam', 'awayTeam'])->chunk(50, function ($games) {
             foreach ($games as $game) {
-                // 2 equipos del partido
                 $teams = collect([$game->homeTeam, $game->awayTeam])->filter();
 
                 foreach ($teams as $team) {
-                    // tomar 4-6 jugadores random del sistema (en real se filtra por plantilla)
                     $players = PlayerTeam::whereHas('teamSeason', function ($q) use ($team) {
                         $q->where('team_id', $team->id);
                     })

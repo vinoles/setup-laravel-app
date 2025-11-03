@@ -3,13 +3,14 @@
 namespace Database\Factories;
 
 use App\Models\Player;
+use App\Models\PlayerTeam;
 use App\Models\TeamSeason;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 class PlayerTeamFactory extends Factory
 {
-    protected $model = \App\Models\PlayerTeam::class;
+    protected $model = PlayerTeam::class;
 
     public function definition(): array
     {

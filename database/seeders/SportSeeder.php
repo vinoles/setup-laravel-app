@@ -23,8 +23,6 @@ class SportSeeder extends Seeder
                 'name' => $item['name'],
             ]);
         }
-
-        // Si quieres más random:
-        // Sport::factory()->count(3)->create();
+;
     }
 }

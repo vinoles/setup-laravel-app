@@ -14,7 +14,6 @@ class PlayerSeeder extends Seeder
         $teamSeasons = TeamSeason::all();
 
         foreach ($teamSeasons as $teamSeason) {
-            // 8-12 jugadores por equipo en temporada
             $players = Player::factory()->count(rand(8, 12))->create();
 
             foreach ($players as $player) {

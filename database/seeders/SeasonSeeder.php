@@ -15,7 +15,6 @@ class SeasonSeeder extends Seeder
         $statusPlanned = SeasonStatus::where('code', 'planned')->first();
 
         League::all()->each(function (League $league) use ($statusActive, $statusPlanned) {
-            // 1 activa + 1 planificada
             Season::factory()->create([
                 'league_id' => $league->id,
                 'status_id' => $statusActive?->id ?? $statusPlanned?->id,

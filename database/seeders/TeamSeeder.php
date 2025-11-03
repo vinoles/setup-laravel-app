@@ -11,10 +11,8 @@ class TeamSeeder extends Seeder
 {
     public function run(): void
     {
-        // Creamos un pool de equipos global
         $teams = Team::factory()->count(12)->create();
 
-        // Cada temporada toma 6 equipos
         Season::all()->each(function (Season $season) use ($teams) {
             $teams->random(6)->each(function (Team $team) use ($season) {
                 TeamSeason::factory()->create([

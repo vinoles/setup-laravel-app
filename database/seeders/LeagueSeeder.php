@@ -14,7 +14,6 @@ class LeagueSeeder extends Seeder
         $federations = Federation::all();
         $sports = Sport::all();
 
-        // por cada federación, 2 ligas
         foreach ($federations as $federation) {
             League::factory()
                 ->count(2)

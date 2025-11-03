@@ -20,10 +20,8 @@ class GameSeeder extends Seeder
         $statuses = GameStatus::all();
 
         Season::with('league')->get()->each(function (Season $season) use ($referees, $roles, $statuses) {
-            // tomamos algunos equipos
             $teams = Team::inRandomOrder()->take(6)->get();
 
-            // 10 partidos por temporada
             for ($i = 0; $i < 10; $i++) {
                 $home = $teams->random();
                 $away = $teams->where('id', '!=', $home->id)->random();
@@ -35,7 +33,6 @@ class GameSeeder extends Seeder
                     'status_id'   => $statuses->random()->id,
                 ]);
 
-                // asignar 3 árbitros
                 $referees->random(3)->values()->each(function ($ref, $index) use ($game, $roles) {
                     GameReferee::factory()->create([
                         'game_id'    => $game->id,
