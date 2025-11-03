@@ -25,7 +25,6 @@ class PlayerRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
             'first_name' => 'required|max:80',
             'last_name' => 'required|max:80',
             'birthdate' => 'nullable|date',
