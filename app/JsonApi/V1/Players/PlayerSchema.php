@@ -6,9 +6,12 @@ use App\Models\Player;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
+use LaravelJsonApi\Eloquent\Fields\Str;
+use LaravelJsonApi\Eloquent\Fields\Number;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
+
 
 class PlayerSchema extends Schema
 {
@@ -28,7 +31,16 @@ class PlayerSchema extends Schema
     public function fields(): array
     {
         return [
-            ID::make(),
+            ID::make()->uuid(),
+
+            Str::make('first_name'),
+            Str::make('last_name'),
+            Str::make('birthdate'),
+            Str::make('nationality'),
+            Str::make('position'),
+            Number::make('height_cm'),
+            Number::make('weight_kg'),
+
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
         ];
