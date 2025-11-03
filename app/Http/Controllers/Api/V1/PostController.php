@@ -27,6 +27,7 @@ class PostController extends Controller
     use Actions\DetachRelationship;
     use Serializable;
 
+
     /**
      * Create a new resource.
      *

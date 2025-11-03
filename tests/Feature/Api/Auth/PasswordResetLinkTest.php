@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api\Auth;
 
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Auth\PasswordResetLinkRequest;
 use Tests\Feature\TestCase;
@@ -15,6 +16,8 @@ class PasswordResetLinkTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function can_requested_a_link_for_reset_your_password(): void
     {
         $user = User::factory()->withPassword()->create();
@@ -39,6 +42,8 @@ class PasswordResetLinkTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function cannot_requested_a_link_for_reset_your_password_if_your_email_not_exist_in_db(): void
     {
         $response = $this->sendRequest(

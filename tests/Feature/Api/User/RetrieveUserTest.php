@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Response;
 use Tests\Feature\Requests\Api\User\RetrieveUserRequest;
 use Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 
 class RetrieveUserTest extends TestCase
@@ -15,6 +16,8 @@ class RetrieveUserTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_retrieve_user_if_not_logged_in(): void
     {
         $request = RetrieveUserRequest::make();
@@ -32,6 +35,8 @@ class RetrieveUserTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function can_retrieve_user_if_is_logged_with_permissions(): void
     {
         $user = User::factory()->create();
@@ -63,6 +68,8 @@ class RetrieveUserTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_retrieve_user_without_permissions(): void
     {
         $this->markTestSkipped("Skipped test await for implement roles in user");
@@ -88,6 +95,8 @@ class RetrieveUserTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_see_a_user_that_doesnt_exist(): void
     {
         $user = User::factory()->create();

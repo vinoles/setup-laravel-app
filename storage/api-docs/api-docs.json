@@ -312,6 +312,320 @@
                 }
             }
         },
+        "/api/v1/clubs": {
+            "get": {
+                "tags": [
+                    "Clubs"
+                ],
+                "summary": "List clubs",
+                "description": "List clubs endpoint",
+                "operationId": "retrieveClubs",
+                "parameters": [
+                    {
+                        "name": "page[number]",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "page[size]",
+                        "in": "query",
+                        "description": "Page size",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Sort field",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "-createdAt"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieve Clubs Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClubsApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Clubs"
+                ],
+                "summary": "Create club",
+                "description": "Create endpoint for club",
+                "operationId": "createClub",
+                "requestBody": {
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClubCreateRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "CreateClub Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClubApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/clubs/{club}": {
+            "get": {
+                "tags": [
+                    "Clubs"
+                ],
+                "summary": "Show club",
+                "description": "Show club endpoint",
+                "operationId": "retrieveClub",
+                "parameters": [
+                    {
+                        "name": "club",
+                        "in": "path",
+                        "description": "ID of club (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieve Club Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClubApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Clubs"
+                ],
+                "summary": "Delete club",
+                "description": "Delete club endpoint",
+                "operationId": "deleteClub",
+                "parameters": [
+                    {
+                        "name": "club",
+                        "in": "path",
+                        "description": "ID of club (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Delete Club Successfully"
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Clubs"
+                ],
+                "summary": "Update club",
+                "description": "Update club endpoint",
+                "operationId": "updateClub",
+                "parameters": [
+                    {
+                        "name": "club",
+                        "in": "path",
+                        "description": "ID of club (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClubUpdateRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update Club Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClubApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/v1/comments": {
             "post": {
                 "tags": [
@@ -1563,6 +1877,179 @@
                 },
                 "type": "object"
             },
+            "ClubApiResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "clubs"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/ClubAttributes"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/clubs/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "ClubApiResponse": {
+                "properties": {
+                    "jsonapi": {
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/clubs/6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/ClubApiResource"
+                    }
+                },
+                "type": "object"
+            },
+            "ClubAttributes": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Club de Fútbol Barcelona"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Carrer d'Aristides Maillol, 12, 08028 Barcelona, España"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-01-15T10:30:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-01-15T10:30:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "ClubCreateRequest": {
+                "required": [
+                    "name",
+                    "address"
+                ],
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "clubs"
+                            },
+                            "attributes": {
+                                "$ref": "#/components/schemas/ClubRequestAttributes"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "ClubRequestAttributes": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Club de Fútbol Barcelona"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Carrer d'Aristides Maillol, 12, 08028 Barcelona, España"
+                    }
+                },
+                "type": "object"
+            },
+            "ClubUpdateRequest": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "clubs"
+                            },
+                            "id": {
+                                "type": "string",
+                                "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
+                            },
+                            "attributes": {
+                                "$ref": "#/components/schemas/ClubRequestAttributes"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "ClubsApiResponse": {
+                "properties": {
+                    "meta": {
+                        "$ref": "#/components/schemas/PaginationMeta"
+                    },
+                    "jsonapi": {
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "first": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/clubs?page%5Bnumber%5D=1&page%5Bsize%5D=10&sort=-createdAt"
+                            },
+                            "last": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/clubs?page%5Bnumber%5D=4&page%5Bsize%5D=10&sort=-createdAt"
+                            },
+                            "next": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/clubs?page%5Bnumber%5D=2&page%5Bsize%5D=10&sort=-createdAt"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ClubApiResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "CommentApiResource": {
                 "properties": {
                     "type": {
@@ -2765,6 +3252,10 @@
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "Clubs",
+            "description": "Clubs"
         },
         {
             "name": "Comments",

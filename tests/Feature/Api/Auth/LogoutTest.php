@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\Auth;
 use Tests\Feature\Requests\Api\User\ConfirmPasswordRequest;
 use App\Models\User;
 use Illuminate\Http\Response;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Auth\LogoutRequest;
 use Tests\Feature\Requests\Api\Auth\SignInRequest;
@@ -19,6 +20,8 @@ class LogoutTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function logout_user(): void
     {
         $user = User::factory()->withPassword()->create();

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
 use Tests\Feature\Requests\Api\Post\CreatePostRequest;
 use Tests\Feature\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 
 class CreatePostTest extends TestCase
@@ -21,6 +22,8 @@ class CreatePostTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_post')]
     public function cannot_create_post_if_not_logged_in(): void
     {
         $request = CreatePostRequest::make();
@@ -36,6 +39,8 @@ class CreatePostTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_post')]
     public function create_post_assert_job_pushed(): void
     {
         Queue::fake([
@@ -76,6 +81,8 @@ class CreatePostTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_post')]
     public function create_post_persists_and_dispatches_event(): void
     {
 
@@ -137,6 +144,8 @@ class CreatePostTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_post')]
     public function cannot_create_post_if_without_the_required_data(): void
     {
         $post = Post::factory()->make([

@@ -4,6 +4,7 @@ namespace Tests\Feature\Api\Auth;
 
 
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Auth\RegisterRequest;
 use Tests\Feature\TestCase;
@@ -17,6 +18,8 @@ class RegisterTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function sign_up_happy_path(): void
     {
         $user = User::factory()->make();
@@ -44,6 +47,8 @@ class RegisterTest extends TestCase
      * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function sign_up_and_create_user_profile(): void
     {
         $user = User::factory()->make();

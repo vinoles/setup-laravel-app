@@ -46,10 +46,6 @@ seed:
 db_fresh:
 	$(sail) artisan migrate:fresh --seed --force
 
-# Refresh test database and migrations
-db_fresh_test:
-	$(sail) artisan migrate:fresh --force --database=pgsql_testing
-
 # Rollback migrations
 rollback:
 	$(sail) artisan migrate:rollback
