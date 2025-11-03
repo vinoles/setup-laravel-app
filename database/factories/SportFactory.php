@@ -10,7 +10,6 @@ class SportFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => Str::uuid(),
             'code' => strtoupper($this->faker->unique()->lexify('???')),
             'name' => $this->faker->randomElement([
                 'Football', 'Basketball', 'Volleyball', 'Baseball', 'Tennis', 'Handball'

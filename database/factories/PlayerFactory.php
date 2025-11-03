@@ -10,7 +10,6 @@ class PlayerFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => Str::uuid(),
             'first_name' => $this->faker->firstName(),
             'last_name'  => $this->faker->lastName(),
             'birthdate'  => $this->faker->optional()->date(),
