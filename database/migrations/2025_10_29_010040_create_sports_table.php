@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('sports', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique()->default(DB::raw('gen_random_uuid()'));
+            $table->uuid()->unique()->default(DB::raw('gen_random_uuid()'));
             $table->string('code', 50)->unique();
             $table->string('name', 120);
             $table->timestampsTz();
