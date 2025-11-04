@@ -21,7 +21,6 @@ class PlayerResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'id' => $this->resource->uuid,
             'firstName' => $this->resource->first_name,
             'lastName' => $this->resource->last_name,
             'birthdate' => $this->resource->birthdate,
