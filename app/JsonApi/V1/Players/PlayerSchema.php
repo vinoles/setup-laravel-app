@@ -75,6 +75,6 @@ class PlayerSchema extends Schema
      */
     public function authorizable(): bool
     {
-        return false;
+        return true;
     }
 }
