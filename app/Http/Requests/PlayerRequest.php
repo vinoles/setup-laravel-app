@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Player;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PlayerRequest extends FormRequest
@@ -24,15 +25,7 @@ class PlayerRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'first_name' => 'required|max:80',
-            'last_name' => 'required|max:80',
-            'birthdate' => 'nullable|date',
-            'nationality' => 'nullable|max:80',
-            'position' => 'nullable|max:40',
-            'height_cm' => 'nullable|integer',
-            'weight_kg' => 'nullable|integer',
-        ];
+        return Player::getValidationRules();
     }
 
     /**
