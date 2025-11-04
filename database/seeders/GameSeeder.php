@@ -20,8 +20,9 @@ class GameSeeder extends Seeder
         $statuses = GameStatus::all();
 
         Season::with('league')->get()->each(function (Season $season) use ($referees, $roles, $statuses) {
-            $teams = Team::inRandomOrder()->take(6)->get();
-
+            $teams = Team::whereHas('teamSeasons', function ($query) use ($season) {
+                $query->where('season_id', $season->id);
+            })->get();
             for ($i = 0; $i < 10; $i++) {
                 $home = $teams->random();
                 $away = $teams->where('id', '!=', $home->id)->random();
