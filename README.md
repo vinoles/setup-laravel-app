@@ -73,28 +73,9 @@ docker run --rm \
 # Setup environment variables
 cp .env.example .env
 
-# Build containers
+# Build containers all container and start app
 make setup
 
-# Start all containers
-make up
-
-# Run migrations and seed database
-make migrate
-make seed
-
-# Alternatively, run migrations and seed in one command
-make db_fresh
-
-# Migrate test database
-make db_fresh_test
-
-# Stop all containers
-make stop
-
-# Run frontend in development mode
-make front-dev
-```
 
 ## Web Access
 
@@ -106,6 +87,29 @@ https://weetals.local/admin
 User: admin@weetals.com
 Password: password
 ```
+# Additional Commands
+Refer to the `Makefile` for more available commands.
+
+## Start containers for second
+make up
+
+## Run migrations and seed database
+make migrate
+make seed
+
+## Alternatively, run migrations and seed in one command
+make db_fresh
+
+## Migrate test database
+make db_fresh_test
+
+## Stop all containers
+make stop
+
+## Run frontend in development mode
+make front-dev
+```
+
 ****
 
 <img  width="auto"  height="auto" alt="Admin dashboard example" src="./admin_panel_list.png">
@@ -119,7 +123,7 @@ https://weetals.local/api/v1/documentation
 
 ****
 
-## Command Installation & Artisan Commands
+# Command Installation & Artisan Commands
 
 ```bash
 # Example: Install a package
@@ -154,9 +158,6 @@ sail composer require api-platform/laravel
 # Generate an API token
 sail artisan app:token-api-generator admin@weetals.com password
 ```
-
-## Additional Commands
-Refer to the `Makefile` for more available commands.
 
 ## 📌 Roadmap
 
