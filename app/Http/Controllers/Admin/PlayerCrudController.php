@@ -68,34 +68,14 @@ class PlayerCrudController extends CrudController
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
          */
-        CRUD::field([
-            'name' => 'first_name',
-            'label' => __('admin.globals.first_name'),
-        ]);
-        CRUD::field([
-            'name' => 'last_name',
-            'label' => __('admin.globals.last_name'),
-        ]);
-        CRUD::field([
-            'name' => 'birthdate',
-            'label' => __('admin.globals.birthdate'),
-        ]);
-        CRUD::field([
-            'name' => 'nationality',
-            'label' => __('admin.globals.nationality'),
-        ]);
-        CRUD::field([
-            'name' => 'position',
-            'label' => __('admin.globals.position'),
-        ]);
-        CRUD::field([
-            'name' => 'height_cm',
-            'label' => __('admin.globals.height_cm'),
-        ]);
-        CRUD::field([
-            'name' => 'weight_kg',
-            'label' => __('admin.globals.weight_kg'),
-        ]);
+        CRUD::field('first_name')->label(__('admin.globals.first_name'));
+        CRUD::field('last_name')->label(__('admin.globals.last_name'));
+        CRUD::field('birthdate')->label(__('admin.globals.birthdate'));
+        CRUD::field('nationality')->label(__('admin.globals.nationality'));
+        CRUD::field('position')->label(__('admin.globals.position'));
+        CRUD::field('height_cm')->label(__('admin.globals.height_cm'));
+        CRUD::field('weight_kg')->label(__('admin.globals.weight_kg'));
+
     }
 
     /**
