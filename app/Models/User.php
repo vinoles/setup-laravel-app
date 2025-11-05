@@ -7,8 +7,6 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 
 use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\HasUserRoles;
-use App\Observers\UserObserver;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,7 +14,6 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-#[ObservedBy([UserObserver::class])]
 class User extends Authenticatable {
     use CrudTrait;
 

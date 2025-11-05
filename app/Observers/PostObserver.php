@@ -15,10 +15,6 @@ class PostObserver
      */
     public function creating(Post $post): void
     {
-        if ($post->missingUuid()) {
-            $post->uuid = Str::uuid();
-        }
-
         $shortUuid = Str::substr($post->uuid, -7);
 
         $post->slug = Str::slug("{$shortUuid} {$post->title}", '-');
