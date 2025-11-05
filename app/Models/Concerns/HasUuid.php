@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 trait HasUuid
 {
@@ -63,5 +65,17 @@ trait HasUuid
     public function missingUuid(): bool
     {
         return Arr::get($this->getAttributes(), 'uuid') === null;
+    }
+
+    protected static function bootHasUuid(): void
+    {
+        static::creating(function ($model) {
+            // Solo asigna si el modelo tiene una columna uuid y está vacía
+            if ($model->isFillable('uuid') || Schema::hasColumn($model->getTable(), 'uuid')) {
+                if (empty($model->uuid)) {
+                    $model->uuid = (string) Str::uuid();
+                }
+            }
+        });
     }
 }
