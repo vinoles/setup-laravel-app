@@ -18,7 +18,6 @@ class SportSeeder extends Seeder
 
         foreach ($fixed as $item) {
             Sport::firstOrCreate([
-                'uuid' => Str::uuid(),
                 'code' => $item['code'],
                 'name' => $item['name'],
             ]);
