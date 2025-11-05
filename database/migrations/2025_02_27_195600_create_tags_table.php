@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid('uuid')->unique();
             $table->string('name');
             $table->timestamps();
         });
 
         Schema::create('post_tag', function (Blueprint $table) {
-            // $table->string('uuid');
+            // $table->uuid('uuid')->unique();
             $table->foreignId('post_id')
                 ->constrained()
                 ->cascadeOnDelete()
