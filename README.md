@@ -75,7 +75,7 @@ cp .env.example .env
 
 # Build containers all container and start app
 make setup
-
+```
 
 ## Web Access
 

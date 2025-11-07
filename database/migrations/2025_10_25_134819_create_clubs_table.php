@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid()->unique();
             $table->string('name');
             $table->text('address');
             $table->timestamps();

@@ -20,12 +20,7 @@ use LaravelJsonApi\Laravel\Routing\ResourceRegistrar;
 //     ->prefix('v1')
 //     ->name('v1.api.')
 //     ->resources(function (ResourceRegistrar $server) {
-
-//         $server->resource('comments', JsonApiController::class)
-//             ->relationships(function (Relationships $relations) {
-//                 $relations->hasOne('post');
-//                 $relations->hasOne('user');
-//             });
+//         $server->resource('players', JsonApiController::class);
 //     });
 
 Route::middleware('auth:sanctum')->group(static function () {
@@ -55,6 +50,8 @@ Route::middleware('auth:sanctum')->group(static function () {
                         ->readOnly()
                         ->except('show');
                 });
+
+            $server->resource('players', JsonApiController::class);
 
             $server->resource('clubs', JsonApiController::class);
 

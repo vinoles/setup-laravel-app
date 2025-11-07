@@ -10,9 +10,9 @@ class DeletePostRequest extends DeleteRequest
     /**
      * Create a new instance of the request.
      *
-     * @param  Post|int  $postOrId
+     * @param  int  $postId
      */
-    public function __construct(protected Post|int $postOrId)
+    public function __construct(protected int $postId)
     {
     }
 
@@ -21,8 +21,6 @@ class DeletePostRequest extends DeleteRequest
      */
     public function endpoint(): string
     {
-        $id = $this->postOrId instanceof Post ? $this->postOrId->id : $this->postOrId;
-
-        return route('admin.posts.destroy', ['id' => $id]);
+        return route('admin.posts.destroy', ['id' => $this->postId]);
     }
 }

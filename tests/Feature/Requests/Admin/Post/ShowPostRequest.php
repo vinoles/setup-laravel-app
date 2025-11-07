@@ -7,7 +7,7 @@ use Tests\Feature\Requests\GetRequest;
 
 class ShowPostRequest extends GetRequest
 {
-    public function __construct(protected Post|int $postOrId)
+    public function __construct(protected int $postId)
     {
     }
 
@@ -16,8 +16,6 @@ class ShowPostRequest extends GetRequest
      */
     public function endpoint(): string
     {
-        $id = $this->postOrId instanceof Post ? $this->postOrId->id : $this->postOrId;
-
-        return route('admin.posts.show', ['id' => $id]);
+        return route('admin.posts.show', ['id' => $this->postId]);
     }
 }

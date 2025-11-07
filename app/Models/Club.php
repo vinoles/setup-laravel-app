@@ -3,17 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUuid;
-use App\Observers\ClubObserver;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[ObservedBy([ClubObserver::class])]
 class Club extends Model
 {
     use CrudTrait;
-    /** @use HasFactory<\Database\Factories\ClubFactory> */
     use HasFactory,
         HasUuid;
 
@@ -25,4 +22,9 @@ class Club extends Model
         'name',
         'address',
     ];
+
+    public function teams(): HasMany
+    {
+        return $this->hasMany(Team::class);
+    }
 }

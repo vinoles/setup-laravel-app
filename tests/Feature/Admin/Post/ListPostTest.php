@@ -20,16 +20,6 @@ class ListPostTest extends TestCase
         parent::setUp();
 
         $this->user->assignRole(UserRole::ADMIN->value);
-
-        // Avoid external HTTP calls during view rendering (e.g. CDNs)
-        Http::fake([
-            'cdnjs.cloudflare.com/*' => Http::response('', 200),
-            'fonts.googleapis.com/*' => Http::response('', 200),
-            'fonts.gstatic.com/*' => Http::response('', 200),
-            'www.gravatar.com/*' => Http::response('', 200),
-            'secure.gravatar.com/*' => Http::response('', 200),
-            '*.gravatar.com/*' => Http::response('', 200),
-        ]);
     }
 
     /**
