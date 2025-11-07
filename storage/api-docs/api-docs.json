@@ -1724,6 +1724,319 @@
                 ]
             }
         },
+        "/api/v1/teams": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "List teams",
+                "description": "Retrieve a paginated list of teams with their clubs",
+                "operationId": "75fcaaf4a9690712228f8d2bb2859519",
+                "parameters": [
+                    {
+                        "name": "page[number]",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "page[size]",
+                        "in": "query",
+                        "description": "Items per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 10
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Sort field (e.g. -createdAt)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TeamsApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Create team",
+                "description": "Create endpoint for teams",
+                "operationId": "createTeam",
+                "requestBody": {
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TeamCreateRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Team created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TeamApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/teams/{team}": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Show team",
+                "description": "Retrieve a team along with its club information",
+                "operationId": "41c27c1fa43729d27a6d209b2e1f4131",
+                "parameters": [
+                    {
+                        "name": "team",
+                        "in": "path",
+                        "description": "Team identifier (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TeamApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Team not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Delete team",
+                "description": "Delete endpoint for teams",
+                "operationId": "deleteTeam",
+                "parameters": [
+                    {
+                        "name": "team",
+                        "in": "path",
+                        "description": "Team identifier (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Team deleted"
+                    },
+                    "404": {
+                        "description": "Team not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Update team",
+                "description": "Update endpoint for teams",
+                "operationId": "updateTeam",
+                "parameters": [
+                    {
+                        "name": "team",
+                        "in": "path",
+                        "description": "Team identifier (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TeamUpdateRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Team updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TeamApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Team not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnprocessableEntityError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/v1/users/confirm-password/{user}": {
             "post": {
                 "tags": [
@@ -2242,10 +2555,6 @@
             },
             "ClubAttributes": {
                 "properties": {
-                    "id": {
-                        "type": "string",
-                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                    },
                     "name": {
                         "type": "string",
                         "example": "Club de Fútbol Barcelona"
@@ -2418,10 +2727,6 @@
             },
             "CommentAttributes": {
                 "properties": {
-                    "id": {
-                        "type": "string",
-                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                    },
                     "content": {
                         "type": "string",
                         "example": "the content application test comment example"
@@ -2720,10 +3025,6 @@
             },
             "PlayerAttributes": {
                 "properties": {
-                    "uuid": {
-                        "type": "string",
-                        "example": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
-                    },
                     "first_name": {
                         "type": "string",
                         "example": "Lionel"
@@ -2975,10 +3276,6 @@
             },
             "PostAttributes": {
                 "properties": {
-                    "id": {
-                        "type": "string",
-                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                    },
                     "title": {
                         "type": "string",
                         "example": "Application post example"
@@ -3055,10 +3352,6 @@
             },
             "PostCommentAttributes": {
                 "properties": {
-                    "id": {
-                        "type": "string",
-                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                    },
                     "content": {
                         "type": "string",
                         "example": "the content application test post example"
@@ -3521,6 +3814,273 @@
                 },
                 "type": "object"
             },
+            "TeamApiResource": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "teams"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "2b6a4bfa-4d90-4f64-8d39-2d8948d0e888"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/TeamAttributes"
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/TeamRelationships"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/teams/2b6a4bfa-4d90-4f64-8d39-2d8948d0e888"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "TeamApiResponse": {
+                "properties": {
+                    "jsonapi": {
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "example": "1.0"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "links": {
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/teams/2b6a4bfa-4d90-4f64-8d39-2d8948d0e888"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/TeamApiResource"
+                    }
+                },
+                "type": "object"
+            },
+            "TeamAttributes": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Weetals FC"
+                    },
+                    "short_name": {
+                        "type": "string",
+                        "example": "WFC"
+                    },
+                    "city": {
+                        "type": "string",
+                        "example": "Valencia"
+                    },
+                    "logo_path": {
+                        "type": "string",
+                        "example": "https://cdn.example.com/logos/weetals-fc.svg"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-04-15T12:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-04-16T08:30:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "TeamClubRequestRelationship": {
+                "properties": {
+                    "club": {
+                        "description": "Optional association to an existing club",
+                        "properties": {
+                            "data": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "clubs"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "format": "uuid",
+                                        "example": "a8c1fdb7-8c1e-4c1a-8d0a-0c1fdb7a8c1f"
+                                    }
+                                },
+                                "type": "object",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "TeamCreateRequest": {
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "required": [
+                            "type",
+                            "attributes"
+                        ],
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "teams"
+                            },
+                            "attributes": {
+                                "$ref": "#/components/schemas/TeamRequestAttributes"
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/TeamClubRequestRelationship"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "TeamRelationships": {
+                "properties": {
+                    "club": {
+                        "properties": {
+                            "links": {
+                                "properties": {
+                                    "related": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/teams/2b6a4bfa-4d90-4f64-8d39-2d8948d0e888/club"
+                                    },
+                                    "self": {
+                                        "type": "string",
+                                        "example": "http://server.example/api/v1/teams/2b6a4bfa-4d90-4f64-8d39-2d8948d0e888/relationships/club"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "data": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "clubs"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "format": "uuid",
+                                        "example": "a8c1fdb7-8c1e-4c1a-8d0a-0c1fdb7a8c1f"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "TeamRequestAttributes": {
+                "properties": {
+                    "name": {
+                        "description": "Team name (required, max 120 characters)",
+                        "type": "string",
+                        "example": "Weetals FC"
+                    },
+                    "short_name": {
+                        "description": "Optional short alias (max 20 characters)",
+                        "type": "string",
+                        "example": "WFC"
+                    },
+                    "city": {
+                        "description": "City where the team is based (optional, max 80 characters)",
+                        "type": "string",
+                        "example": "Valencia"
+                    },
+                    "logo_path": {
+                        "description": "Optional logo URL (max 255 characters)",
+                        "type": "string",
+                        "example": "https://cdn.example.com/logos/weetals-fc.svg"
+                    }
+                },
+                "type": "object"
+            },
+            "TeamUpdateRequest": {
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "required": [
+                            "type",
+                            "id"
+                        ],
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "example": "teams"
+                            },
+                            "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "example": "2b6a4bfa-4d90-4f64-8d39-2d8948d0e888"
+                            },
+                            "attributes": {
+                                "$ref": "#/components/schemas/TeamRequestAttributes"
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/TeamClubRequestRelationship"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "TeamsApiResponse": {
+                "properties": {
+                    "meta": {
+                        "$ref": "#/components/schemas/PaginationMeta"
+                    },
+                    "jsonapi": {
+                        "$ref": "#/components/schemas/VersionMeta"
+                    },
+                    "links": {
+                        "properties": {
+                            "first": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/teams?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+                            },
+                            "last": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/teams?page%5Bnumber%5D=4&page%5Bsize%5D=10"
+                            },
+                            "next": {
+                                "type": "string",
+                                "example": "http://server.example/api/v1/teams?page%5Bnumber%5D=2&page%5Bsize%5D=10"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TeamApiResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ConfirmPasswordResponse": {
                 "properties": {
                     "jsonapi": {
@@ -3594,10 +4154,6 @@
             },
             "UserAttributes": {
                 "properties": {
-                    "id": {
-                        "type": "string",
-                        "example": "6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
-                    },
                     "first_name": {
                         "type": "string",
                         "example": "Application"
@@ -3832,6 +4388,10 @@
         {
             "name": "Posts",
             "description": "Posts"
+        },
+        {
+            "name": "Teams",
+            "description": "Teams"
         },
         {
             "name": "Users",
