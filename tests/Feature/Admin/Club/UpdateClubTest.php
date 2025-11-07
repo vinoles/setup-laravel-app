@@ -42,7 +42,7 @@ class UpdateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_update_club_if_is_unauthorized(): void
     {
         $request = UpdateClubRequest::make($this->club, $this->updatedClub);
@@ -61,7 +61,7 @@ class UpdateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function can_update_club_with_valid_data(): void
     {
         $request = UpdateClubRequest::make($this->club, $this->updatedClub);
@@ -84,7 +84,7 @@ class UpdateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_update_club_without_name(): void
     {
         $request = UpdateClubRequest::make($this->club, null)->with(['address' => $this->updatedClub->address]);
@@ -103,7 +103,7 @@ class UpdateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_update_club_without_address(): void
     {
         $request = UpdateClubRequest::make($this->club, null)->with(['name' => $this->updatedClub->name]);
@@ -122,7 +122,7 @@ class UpdateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_update_club_with_name_exceeding_max_length(): void
     {
         $request = UpdateClubRequest::make($this->club, $this->updatedClub)
@@ -142,7 +142,7 @@ class UpdateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_update_club_with_address_exceeding_max_length(): void
     {
         $request = UpdateClubRequest::make($this->club, $this->updatedClub)
@@ -162,7 +162,7 @@ class UpdateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_update_club_with_name_not_string(): void
     {
         $request = UpdateClubRequest::make($this->club, $this->updatedClub)->with(['name' => 12345]);
@@ -181,7 +181,7 @@ class UpdateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_update_club_with_address_not_string(): void
     {
         $request = UpdateClubRequest::make($this->club, $this->updatedClub)->with(['address' => 12345]);

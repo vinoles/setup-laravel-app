@@ -37,7 +37,7 @@ class CreateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_create_club_if_is_unauthorized(): void
     {
         $request = CreateClubRequest::make($this->club);
@@ -56,7 +56,7 @@ class CreateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function can_create_club_with_valid_data(): void
     {
         $request = CreateClubRequest::make($this->club);
@@ -78,7 +78,7 @@ class CreateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_create_club_without_name(): void
     {
         $request = CreateClubRequest::make(null)->with(['address' => $this->club->address]);
@@ -97,7 +97,7 @@ class CreateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_create_club_without_address(): void
     {
         $request = CreateClubRequest::make(null)->with(['name' => $this->club->name]);
@@ -116,7 +116,7 @@ class CreateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_create_club_with_name_exceeding_max_length(): void
     {
         $request = CreateClubRequest::make($this->club)->with(['name' => Str::random(self::NAME_EXCEEDS_MAX_LENGTH)]);
@@ -135,7 +135,7 @@ class CreateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_create_club_with_address_exceeding_max_length(): void
     {
         $request = CreateClubRequest::make($this->club)->with(['address' => Str::random(self::ADDRESS_EXCEEDS_MAX_LENGTH)]);
@@ -154,7 +154,7 @@ class CreateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_create_club_with_name_not_string(): void
     {
         $request = CreateClubRequest::make($this->club)->with(['name' => 12345]);
@@ -173,7 +173,7 @@ class CreateClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_create_club_with_address_not_string(): void
     {
         $request = CreateClubRequest::make($this->club)->with(['address' => 12345]);

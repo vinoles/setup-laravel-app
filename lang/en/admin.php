@@ -29,6 +29,10 @@ return [
         'roles' => 'Roles',
         'name'  => 'Name',
         'address' => 'Address',
+        'title' => 'Title',
+        'content' => 'Content',
+        'slug' => 'Slug',
+        'published_at' => 'Published At',
     ],
     'users' => [
         'users' => 'Users',
