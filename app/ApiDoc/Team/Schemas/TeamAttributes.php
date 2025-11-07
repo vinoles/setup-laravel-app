@@ -29,27 +29,6 @@ use OpenApi\Annotations as OA;
  *         example="https://cdn.example.com/logos/weetals-fc.svg"
  *     ),
  *     @OA\Property(
- *         property="club",
- *         type="object",
- *         nullable=true,
- *         @OA\Property(
- *             property="id",
- *             type="string",
- *             format="uuid",
- *             example="a8c1fdb7-8c1e-4c1a-8d0a-0c1fdb7a8c1f"
- *         ),
- *         @OA\Property(
- *             property="name",
- *             type="string",
- *             example="Club Deportivo Weetals"
- *         ),
- *         @OA\Property(
- *             property="address",
- *             type="string",
- *             example="Av. Principal 123, Valencia"
- *         )
- *     ),
- *     @OA\Property(
  *         property="created_at",
  *         type="string",
  *         format="date-time",
