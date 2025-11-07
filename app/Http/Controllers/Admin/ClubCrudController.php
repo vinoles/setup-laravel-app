@@ -59,13 +59,13 @@ class ClubCrudController extends CrudController
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
          */
-        CRUD::field([
+        CRUD::addField([
             'name' => 'name',
             'type' => 'text',
             'label' => __('admin.globals.name'),
         ]);
 
-        CRUD::field([
+        CRUD::addField([
             'name' => 'address',
             'type' => 'text',
             'label' => __('admin.globals.address'),
