@@ -50,13 +50,13 @@ class Player extends Model
     public static function getValidationRules(): array
     {
         return [
-            'first_name' => 'required|max:80',
-            'last_name' => 'required|max:80',
-            'birthdate' => 'nullable|date',
-            'nationality' => 'nullable|max:80',
-            'position' => 'nullable|max:40',
-            'height_cm' => 'nullable|integer',
-            'weight_kg' => 'nullable|integer',
+            'first_name' => ['required', 'max:80'],
+            'last_name' => ['required', 'max:80'],
+            'birthdate' => ['nullable', 'date'],
+            'nationality' => ['nullable', 'max:80'],
+            'position' => ['nullable', 'max:40'],
+            'height_cm' => ['nullable', 'integer'],
+            'weight_kg' => ['nullable', 'integer'],
         ];
     }
 }
