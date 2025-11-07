@@ -60,7 +60,13 @@ Route::middleware('auth:sanctum')->group(static function () {
                         ->except('show');
                 });
 
-            $server->resource('clubs', JsonApiController::class);
+            $server->resource('clubs', JsonApiController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasMany('teams')
+                        ->readOnly()
+                        ->except('show');
+
+                });
 
 
             $server->resource('users', UserController::class)

@@ -10,9 +10,9 @@ class DeleteClubRequest extends DeleteRequest
     /**
      * Create a new instance of the request.
      *
-     * @param  Club|int  $clubOrId
+     * @param  int  $clubId
      */
-    public function __construct(protected Club|int $clubOrId)
+    public function __construct(protected int $clubId)
     {
     }
 
@@ -23,9 +23,7 @@ class DeleteClubRequest extends DeleteRequest
      */
     public function endpoint(): string
     {
-        $id = $this->clubOrId instanceof Club ? $this->clubOrId->id : $this->clubOrId;
-
-        return route('admin.clubs.destroy', ['id' => $id]);
+        return route('admin.clubs.destroy', ['id' => $this->clubId]);
     }
 }
 

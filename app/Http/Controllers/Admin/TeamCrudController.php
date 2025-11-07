@@ -38,7 +38,17 @@ class TeamCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column('name');
+        CRUD::column('short_name');
+        CRUD::column('city');
+        CRUD::addColumn([
+            'name' => 'club_id',
+            'label' => 'Club',
+            'type' => 'select',
+            'entity' => 'club',
+            'attribute' => 'name',
+            'model' => "App\Models\Club",
+        ]);
     }
 
     /**
@@ -86,7 +96,7 @@ class TeamCrudController extends CrudController
     }
 
     /**
-     addField* Define what happens when the Update operation is loaded.
+     * Define what happens when the Update operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void

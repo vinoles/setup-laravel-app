@@ -36,7 +36,7 @@ class DeleteClubTest extends TestCase
     #[Group('admin_clubs')]
     public function cannot_delete_club_if_is_unauthorized(): void
     {
-        $request = DeleteClubRequest::make($this->club);
+        $request = DeleteClubRequest::make($this->club->id);
 
         $this->user->removeRole(UserRole::ADMIN->value);
 
@@ -55,7 +55,7 @@ class DeleteClubTest extends TestCase
     #[Group('admin_clubs')]
     public function can_delete_club_successfully(): void
     {
-        $request = DeleteClubRequest::make($this->club);
+        $request = DeleteClubRequest::make($this->club->id);
 
         $response = $this->send($request);
 

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Resources\JsonApiResource;
 
 /**
- * @property Post $resource
+ * @property Post
  */
 class PostResource extends JsonApiResource
 {

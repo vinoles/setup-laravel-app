@@ -34,7 +34,6 @@ class TeamSchema extends Schema
             BelongsTo::make('club')
                 ->type('clubs'),
 
-            Str::make('uuid'),
             Str::make('name'),
             Str::make('short_name'),
             Str::make('city'),

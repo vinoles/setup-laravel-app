@@ -23,7 +23,16 @@ class ClubPolicy
         return true;
     }
 
-        /**
+
+    /**
+     * Determine whether the user can view the post's comments.
+     */
+    public function viewTeams(User $user, Club $club): bool
+    {
+        return $this->view($user, $club);
+    }
+
+     /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
@@ -62,4 +71,6 @@ class ClubPolicy
     {
         return true;
     }
+
+
 }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Resources\JsonApiResource;
 
 /**
- * @property Team $resource
+ * @property Team
  */
 class TeamResource extends JsonApiResource
 {
@@ -20,13 +20,12 @@ class TeamResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'name' => $this->resource->name,
-            'short_name' => $this->resource->short_name,
-            'city' => $this->resource->city,
-            'logo_path' => $this->resource->logo_path,
-            'club' => $this->transformClub(),
-            'created_at' => $this->resource->created_at,
-            'updated_at' => $this->resource->updated_at,
+            'name' =>  $this->name,
+            'short_name' =>  $this->short_name,
+            'city' =>  $this->city,
+            'logo_path' =>  $this->logo_path,
+            'created_at' =>  $this->created_at,
+            'updated_at' =>  $this->updated_at,
         ];
     }
 
@@ -37,11 +36,11 @@ class TeamResource extends JsonApiResource
      */
     private function transformClub(): ?array
     {
-        if (! $this->resource->relationLoaded('club')) {
+        if (!  $this->relationLoaded('club')) {
             return null;
         }
 
-        $club = $this->resource->club;
+        $club =  $this->club;
 
         if ($club === null) {
             return null;
