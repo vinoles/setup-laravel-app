@@ -24,7 +24,6 @@ class TeamResource extends JsonApiResource
             'short_name' =>  $this->short_name,
             'city' =>  $this->city,
             'logo_path' =>  $this->logo_path,
-            'club' => $this->transformClub(),
             'created_at' =>  $this->created_at,
             'updated_at' =>  $this->updated_at,
         ];
