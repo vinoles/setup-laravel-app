@@ -69,7 +69,10 @@ class PostCrudController extends CrudController
             ->entity('author')
             ->searchLogic(function ($query, $column, $searchTerm) {
                 $query->orWhereHas('author', function ($q) use ($searchTerm) {
-                    $q->whereRaw('(first_name ILIKE ? OR last_name ILIKE ?)', ["%$searchTerm%", "%$searchTerm%"]);
+                    $q->whereRaw('(LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ?)', [
+                        '%' . strtolower($searchTerm) . '%',
+                        '%' . strtolower($searchTerm) . '%',
+                    ]);
                 });
             });
 
