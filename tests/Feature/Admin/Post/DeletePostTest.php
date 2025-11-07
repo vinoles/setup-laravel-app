@@ -34,7 +34,7 @@ class DeletePostTest extends TestCase
     #[Group('admin_posts')]
     public function cannot_delete_post_if_is_unauthorized(): void
     {
-        $request = DeletePostRequest::make($this->post);
+        $request = DeletePostRequest::make($this->post->id);
 
         $this->user->removeRole(UserRole::ADMIN->value);
 
@@ -51,7 +51,7 @@ class DeletePostTest extends TestCase
     #[Group('admin_posts')]
     public function can_delete_post_successfully(): void
     {
-        $request = DeletePostRequest::make($this->post);
+        $request = DeletePostRequest::make($this->post->id);
 
         $response = $this->send($request);
 
