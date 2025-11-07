@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->string('short_name', 20)->nullable();
             $table->string('city', 80)->nullable();
             $table->string('logo_path', 255)->nullable();
+            $table->foreignId('club_id')
+            ->nullable()->constrained('clubs')->onDelete('cascade');
             $table->timestampsTz();
             $table->softDeletesTz();
         });
