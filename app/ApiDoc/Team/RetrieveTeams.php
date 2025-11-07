@@ -2,6 +2,7 @@
 
 namespace App\ApiDoc\Team;
 
+use App\ApiDoc\ApiDoc;
 use OpenApi\Annotations as OA;
 
 /**
@@ -44,6 +45,6 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class RetrieveTeams
+class RetrieveTeams extends ApiDoc
 {
 }
