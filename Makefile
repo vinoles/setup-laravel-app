@@ -2,7 +2,7 @@
 sail := ./vendor/bin/sail
 
 # Initial Config
-setup: up install migrate seed front-install test slink
+setup: up install migrate seed front-install test slink l5g
 
 # Build containers
 up:
