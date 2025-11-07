@@ -86,31 +86,35 @@ https://weetals.local/admin
 
 User: admin@weetals.com
 Password: password
+
 ```
 # Additional Commands
 Refer to the `Makefile` for more available commands.
 
-## Start containers for second
+### Start containers for second
 make up
 
-## Run migrations and seed database
+### Run migrations and seed database
 make migrate
 make seed
 
-## Alternatively, run migrations and seed in one command
+### Alternatively, run migrations and seed in one command
 make db_fresh
 
-## Migrate test database
+### Migrate test database
 make db_fresh_test
 
-## Stop all containers
+### Stop all containers
 make stop
 
-## Run frontend in development mode
+### Run frontend in development mode
 make front-dev
-```
+
+### Generate api doc
+make l5g
 
 ****
+
 
 <img  width="auto"  height="auto" alt="Admin dashboard example" src="./admin_panel_list.png">
 
