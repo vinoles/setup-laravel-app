@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PlayerRequest;
+use App\Models\Player;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -13,11 +14,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class PlayerCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use UsesBacpackOperations;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -26,7 +23,7 @@ class PlayerCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Player::class);
+        CRUD::setModel(Player::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/players');
         CRUD::setEntityNameStrings('player', 'players');
     }
