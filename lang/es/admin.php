@@ -31,7 +31,11 @@ return [
         'short_name' => 'Nombre corto',
         'logo_path' => 'URL del logo',
         'club' => 'Club',
-
+        'address' => 'Dirección',
+        'title' => 'Título',
+        'content' => 'Contenido',
+        'slug' => 'Slug',
+        'published_at' => 'Publicado el',
     ],
     'users' => [
         'users' => 'Usuarios',

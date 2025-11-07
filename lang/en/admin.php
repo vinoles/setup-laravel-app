@@ -31,6 +31,11 @@ return [
         'short_name' => 'Short name',
         'logo_path' => 'Logo URL',
         'club' => 'Club',
+        'address' => 'Address',
+        'title' => 'Title',
+        'content' => 'Content',
+        'slug' => 'Slug',
+        'published_at' => 'Published At',
     ],
     'users' => [
         'users' => 'Users',

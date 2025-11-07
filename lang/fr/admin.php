@@ -30,6 +30,11 @@ return [
         'short_name' => 'Nom abrégé',
         'logo_path' => 'URL du logo',
         'club' => 'Club',
+        'address' => 'Adresse',
+        'title' => 'Titre',
+        'content' => 'Contenu',
+        'slug' => 'Slug',
+        'published_at' => 'Publié le',
     ],
     'users' => [
         'users' => 'Utilisateurs',
