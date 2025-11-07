@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('player_stats', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
+            $table->uuid()->unique();
 
             $table->foreignId('game_id')->constrained('games')->cascadeOnDelete();
             $table->foreignId('player_id')->constrained('players')->cascadeOnDelete();

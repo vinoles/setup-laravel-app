@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             FederationSeeder::class,
             LeagueSeeder::class,
             SeasonSeeder::class,
+            ClubSeeder::class,
             TeamSeeder::class,
             PlayerSeeder::class,
             RefereeSeeder::class,
@@ -34,7 +35,6 @@ class DatabaseSeeder extends Seeder
             GameSeeder::class,
             PlayerStatSeeder::class,
             TeamStatSeeder::class,
-            ClubSeeder::class,
         ]);
     }
 }

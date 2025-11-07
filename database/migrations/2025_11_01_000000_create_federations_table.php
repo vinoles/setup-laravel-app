@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('federations', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
+            $table->uuid()->unique();
             $table->string('name', 150);
             $table->string('type', 60)->nullable();
             $table->string('acronym', 20)->nullable();

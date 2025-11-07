@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('leagues', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
+            $table->uuid()->unique();
 
             $table->foreignId('federation_id')
                 ->nullable()

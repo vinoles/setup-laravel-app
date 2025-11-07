@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('season_statuses', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
+            $table->uuid()->unique();
             $table->string('code', 50)->unique();
             $table->string('name', 120);
             $table->timestampsTz();

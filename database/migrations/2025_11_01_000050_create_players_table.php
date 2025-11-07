@@ -10,7 +10,7 @@ return new class extends Migration {
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
+            $table->uuid()->unique();
 
             $table->string('first_name', 80);
             $table->string('last_name', 80);
