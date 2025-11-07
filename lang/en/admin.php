@@ -28,7 +28,9 @@ return [
         'deleted_at' => 'Deleted At',
         'roles' => 'Roles',
         'name'  => 'Name',
-        'address' => 'Address',
+        'short_name' => 'Short name',
+        'logo_path' => 'Logo URL',
+        'club' => 'Club',
     ],
     'users' => [
         'users' => 'Users',

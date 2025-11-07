@@ -28,7 +28,9 @@ return [
         'deleted_at' => 'Borrado',
         'roles' => 'Roles',
         'name'  => 'Nombre',
-        'address' => 'Dirección',
+        'short_name' => 'Nombre corto',
+        'logo_path' => 'URL del logo',
+        'club' => 'Club',
 
     ],
     'users' => [

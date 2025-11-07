@@ -7,6 +7,7 @@ use App\JsonApi\V1\Comments\CommentSchema;
 use App\JsonApi\V1\Players\PlayerSchema;
 use App\JsonApi\V1\Posts\PostSchema;
 use App\JsonApi\V1\Tags\TagSchema;
+use App\JsonApi\V1\Teams\TeamSchema;
 use App\JsonApi\V1\Users\UserSchema;
 use LaravelJsonApi\Core\Server\Server as BaseServer;
 
@@ -45,6 +46,7 @@ class Server extends BaseServer
             TagSchema::class,
             PlayerSchema::class,
             ClubSchema::class,
+            TeamSchema::class,
         ];
     }
 }

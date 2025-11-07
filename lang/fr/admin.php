@@ -27,7 +27,9 @@ return [
         'deleted_at' => 'Supprimé le',
         'roles' => 'Roles',
         'name'  => 'Name',
-        'address' => 'Adresse',
+        'short_name' => 'Nom abrégé',
+        'logo_path' => 'URL du logo',
+        'club' => 'Club',
     ],
     'users' => [
         'users' => 'Utilisateurs',
