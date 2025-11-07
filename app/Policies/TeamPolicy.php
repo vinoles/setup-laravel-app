@@ -23,6 +23,14 @@ class TeamPolicy
         return true;
     }
 
+        /**
+     * Determine whether the user can view the team's author.
+     */
+    public function viewClub(?User $user, Team $team): bool
+    {
+        return $this->view($user, $team);
+    }
+
     /**
      * Determine whether the user can create models.
      */

@@ -2037,6 +2037,65 @@
                 ]
             }
         },
+        "/api/v1/teams/{team}/club": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Show team club information",
+                "description": "Show team club endpoint",
+                "operationId": "retrieveTeamClub",
+                "parameters": [
+                    {
+                        "name": "team",
+                        "in": "path",
+                        "description": "ID of team (UUID)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0ec37904-ce76-4e3a-b6c5-0a3b77d70e54"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retrieve Team Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClubApiResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalServerError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/v1/users/confirm-password/{user}": {
             "post": {
                 "tags": [
