@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Resources\JsonApiResource;
 
 /**
- * @property Player $resource
+ * @property Player
  */
 class PlayerResource extends JsonApiResource
 {
@@ -21,15 +21,15 @@ class PlayerResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'firstName' => $this->resource->first_name,
-            'lastName' => $this->resource->last_name,
-            'birthdate' => $this->resource->birthdate,
-            'nationality' => $this->resource->nationality,
-            'position' => $this->resource->position,
-            'heightCm' => $this->resource->height_cm,
-            'weightKg' => $this->resource->weight_kg,
-            'createdAt' => $this->resource->created_at,
-            'updatedAt' => $this->resource->updated_at,
+            'firstName' =>  $this->first_name,
+            'lastName' =>  $this->last_name,
+            'birthdate' =>  $this->birthdate,
+            'nationality' =>  $this->nationality,
+            'position' =>  $this->position,
+            'heightCm' =>  $this->height_cm,
+            'weightKg' =>  $this->weight_kg,
+            'createdAt' =>  $this->created_at,
+            'updatedAt' =>  $this->updated_at,
         ];
     }
 
