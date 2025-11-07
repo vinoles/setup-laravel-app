@@ -37,7 +37,7 @@ class ListPostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_list_posts_if_is_unauthorized(): void
     {
         $request = ListPostRequest::make();
@@ -54,7 +54,7 @@ class ListPostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function can_list_posts_successfully(): void
     {
         Post::factory()->for($this->user, 'author')->count(3)->create();

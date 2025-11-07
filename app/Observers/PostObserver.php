@@ -42,13 +42,19 @@ class PostObserver
      */
     public function updated(Post $post): void
     {
-        $shortUuid = Str::substr($post->uuid, -7);
 
-        $post->slug = Str::slug("{$shortUuid} {$post->title}", '-');
+    }
 
-        Post::withoutEvents(function () use ($post) {
-            $post->save();
-        });
+    /**
+     * Handle the Post "updating" event.
+     */
+    public function updating(Post $post): void
+    {
+        //TODO: Consider refactoring in the future
+        if ($post->isDirty('title')) {
+            $shortUuid = Str::substr($post->uuid, -7);
+            $post->slug = Str::slug("{$shortUuid} {$post->title}", '-');
+        }
     }
 
     /**

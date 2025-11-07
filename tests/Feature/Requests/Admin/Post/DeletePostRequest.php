@@ -23,6 +23,6 @@ class DeletePostRequest extends DeleteRequest
     {
         $id = $this->postOrId instanceof Post ? $this->postOrId->id : $this->postOrId;
 
-        return route('admin.post.destroy', ['id' => $id]);
+        return route('admin.posts.destroy', ['id' => $id]);
     }
 }

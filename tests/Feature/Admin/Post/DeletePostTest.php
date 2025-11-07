@@ -31,7 +31,7 @@ class DeletePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_delete_post_if_is_unauthorized(): void
     {
         $request = DeletePostRequest::make($this->post);
@@ -48,7 +48,7 @@ class DeletePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function can_delete_post_successfully(): void
     {
         $request = DeletePostRequest::make($this->post);
@@ -67,7 +67,7 @@ class DeletePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_delete_post_if_not_found(): void
     {
         $nonExistentId = 99999;

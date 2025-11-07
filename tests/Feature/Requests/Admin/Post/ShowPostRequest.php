@@ -18,6 +18,6 @@ class ShowPostRequest extends GetRequest
     {
         $id = $this->postOrId instanceof Post ? $this->postOrId->id : $this->postOrId;
 
-        return route('admin.post.show', ['id' => $id]);
+        return route('admin.posts.show', ['id' => $id]);
     }
 }

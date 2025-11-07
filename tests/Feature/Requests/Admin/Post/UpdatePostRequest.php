@@ -25,7 +25,7 @@ class UpdatePostRequest extends PutRequest
      */
     public function endpoint(): string
     {
-        return route('admin.post.update', ['id' => $this->post->id]);
+        return route('admin.posts.update', ['id' => $this->post->id]);
     }
 
     /**
@@ -55,3 +55,4 @@ class UpdatePostRequest extends PutRequest
         return $this;
     }
 }
+

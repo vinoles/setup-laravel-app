@@ -38,7 +38,7 @@ class UpdatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_update_post_if_is_unauthorized(): void
     {
         $request = UpdatePostRequest::make($this->post, $this->updatedPost);
@@ -55,7 +55,7 @@ class UpdatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function can_update_post_with_valid_data(): void
     {
         $request = UpdatePostRequest::make($this->post, $this->updatedPost);
@@ -76,7 +76,7 @@ class UpdatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_update_post_without_title(): void
     {
         $request = UpdatePostRequest::make($this->post, null)->with([
@@ -96,7 +96,7 @@ class UpdatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_update_post_without_content(): void
     {
         $request = UpdatePostRequest::make($this->post, null)->with([
@@ -116,7 +116,7 @@ class UpdatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_update_post_with_title_too_short(): void
     {
         $shortTitle = Str::random(self::TITLE_MIN_LENGTH - 1);
@@ -136,7 +136,7 @@ class UpdatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_update_post_with_content_too_short(): void
     {
         $shortContent = Str::random(self::CONTENT_MIN_LENGTH - 1);
@@ -156,7 +156,7 @@ class UpdatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_update_post_with_title_not_string(): void
     {
         $request = UpdatePostRequest::make($this->post, $this->updatedPost)->with([
@@ -175,7 +175,7 @@ class UpdatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_update_post_with_content_not_string(): void
     {
         $request = UpdatePostRequest::make($this->post, $this->updatedPost)->with([
@@ -187,6 +187,26 @@ class UpdatePostTest extends TestCase
         $response->assertInvalid([
             'content' => __('validation.string', ['attribute' => 'content']),
         ]);
+    }
+
+    /**
+     * Slug should be regenerated on update when title changes.
+     */
+    #[Test]
+    #[Group('admin')]
+    #[Group('admin_post')]
+    public function slug_is_regenerated_on_update_when_title_changes(): void
+    {
+        $originalSlug = $this->post->slug;
+        $request = UpdatePostRequest::make($this->post, $this->updatedPost);
+
+        $this->send($request)->assertRedirect();
+
+        $this->post->refresh();
+
+        $this->assertNotEquals($originalSlug, $this->post->slug);
+        $expectedSlugPart = Str::slug($this->updatedPost->title);
+        $this->assertStringContainsString($expectedSlugPart, $this->post->slug);
     }
 
     /**

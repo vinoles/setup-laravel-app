@@ -19,6 +19,6 @@ class SearchPostRequest extends PostRequest
      */
     public function endpoint(): string
     {
-        return route('admin.post.search');
+        return route('admin.posts.search');
     }
 }

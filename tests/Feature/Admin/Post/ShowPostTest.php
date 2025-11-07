@@ -31,7 +31,7 @@ class ShowPostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_show_post_if_is_unauthorized(): void
     {
         $request = ShowPostRequest::make($this->post);
@@ -48,7 +48,7 @@ class ShowPostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function can_show_post_successfully(): void
     {
         $request = ShowPostRequest::make($this->post);
@@ -65,7 +65,7 @@ class ShowPostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_show_post_if_not_found(): void
     {
         $nonExistentId = 99999;

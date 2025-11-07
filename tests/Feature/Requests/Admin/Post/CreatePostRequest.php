@@ -25,7 +25,7 @@ class CreatePostRequest extends PostRequest
      */
     public function endpoint(): string
     {
-        return route('admin.post.store');
+        return route('admin.posts.store');
     }
 
     /**

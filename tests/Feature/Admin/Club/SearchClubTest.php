@@ -28,7 +28,7 @@ class SearchClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_search_clubs_if_is_unauthorized(): void
     {
         $request = SearchClubRequest::make();
@@ -47,7 +47,7 @@ class SearchClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function can_search_clubs_successfully(): void
     {
         $clubs = Club::factory()->count(5)->create();
@@ -74,7 +74,7 @@ class SearchClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function can_search_clubs_with_filters(): void
     {
         Club::factory()->create([
@@ -106,7 +106,7 @@ class SearchClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function can_search_clubs_returns_empty_when_no_matches(): void
     {
         Club::factory()->count(3)->create([

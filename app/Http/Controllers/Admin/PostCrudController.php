@@ -27,7 +27,7 @@ class PostCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\Post::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/post');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/posts');
         CRUD::setEntityNameStrings('post', 'posts');
     }
 
@@ -61,6 +61,7 @@ class PostCrudController extends CrudController
             ->type('datetime')
             ->label(__('admin.globals.published_at'));
 
+        // TODO: Consider refactoring in the future
         CRUD::column('author_id')
             ->type('select')
             ->model('App\Models\User')
@@ -109,12 +110,6 @@ class PostCrudController extends CrudController
             'label' => __('admin.globals.content'),
         ]);
 
-        // CRUD::field([
-        //     'name' => 'slug',
-        //     'type' => 'text',
-        //     'label' => __('admin.globals.slug'),
-        // ]);
-
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
@@ -140,41 +135,6 @@ class PostCrudController extends CrudController
      */
     protected function setupShowOperation()
     {
-        // CRUD::setFromDb();
-
-
-        CRUD::column('id')
-            ->type('text')
-            ->label(__('#'));
-
-        CRUD::column('title')
-            ->type('text')
-            ->label(__('admin.globals.title'));
-
-        CRUD::column('slug')
-            ->type('text')
-            ->label(__('admin.globals.slug'));
-
-        CRUD::column('content')
-            ->type('textarea')
-            ->label(__('admin.globals.content'));
-
-        CRUD::column('published_at')
-            ->type('datetime')
-            ->label(__('admin.globals.published_at'));
-
-        CRUD::column('author_id')
-            ->type('select')
-            ->model('App\Models\User')
-            ->attribute('full_name')
-            ->entity('author');
-
-        CRUD::column('created_at')
-            ->type('datetime')
-            ->label(__('admin.globals.created_at'));
-
-        CRUD::column('updated_at')
-            ->type('datetime')
-            ->label(__('admin.globals.updated_at'));
+        $this->setupListOperation();
     }
 }

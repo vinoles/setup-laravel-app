@@ -34,7 +34,7 @@ class CreatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_create_post_if_is_unauthorized(): void
     {
         $request = CreatePostRequest::make($this->post);
@@ -51,7 +51,7 @@ class CreatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function can_create_post_with_valid_data(): void
     {
         $request = CreatePostRequest::make($this->post);
@@ -71,10 +71,10 @@ class CreatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_create_post_without_title(): void
     {
-        $request = CreatePostRequest::make(null)->with(['content' => $this->post->content]);
+        $request = CreatePostRequest::make()->with(['content' => $this->post->content]);
 
         $response = $this->send($request);
 
@@ -88,10 +88,10 @@ class CreatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_create_post_without_content(): void
     {
-        $request = CreatePostRequest::make(null)->with(['title' => $this->post->title]);
+        $request = CreatePostRequest::make()->with(['title' => $this->post->title]);
 
         $response = $this->send($request);
 
@@ -101,11 +101,11 @@ class CreatePostTest extends TestCase
     }
 
     /**
-     * Cannot create post with title shorter than min length (min:5)
+     * Cannot create post with title shorter than min length (min:2)
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_create_post_with_title_too_short(): void
     {
         $shortTitle = Str::random(self::TITLE_MIN_LENGTH - 1);
@@ -123,7 +123,7 @@ class CreatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_create_post_with_content_too_short(): void
     {
         $shortContent = Str::random(self::CONTENT_MIN_LENGTH - 1);
@@ -141,7 +141,7 @@ class CreatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_create_post_with_title_not_string(): void
     {
         $request = CreatePostRequest::make($this->post)->with(['title' => 12345]);
@@ -158,7 +158,7 @@ class CreatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_create_post_with_content_not_string(): void
     {
         $request = CreatePostRequest::make($this->post)->with(['content' => 12345]);
@@ -175,7 +175,7 @@ class CreatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function can_generate_slug_on_create(): void
     {
         $request = CreatePostRequest::make($this->post);
@@ -199,7 +199,7 @@ class CreatePostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function sets_author_id_automatically_when_authenticated(): void
     {
         $request = CreatePostRequest::make($this->post);

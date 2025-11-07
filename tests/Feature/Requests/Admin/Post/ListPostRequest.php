@@ -11,6 +11,6 @@ class ListPostRequest extends GetRequest
      */
     public function endpoint(): string
     {
-        return route('admin.post.index');
+        return route('admin.posts.index');
     }
 }

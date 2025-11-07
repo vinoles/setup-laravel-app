@@ -26,7 +26,7 @@ class SearchPostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function cannot_search_posts_if_is_unauthorized(): void
     {
         $request = SearchPostRequest::make();
@@ -43,7 +43,7 @@ class SearchPostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function can_search_posts_successfully(): void
     {
         Post::factory()->for($this->user, 'author')->count(5)->create();
@@ -65,7 +65,7 @@ class SearchPostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function can_search_posts_with_filters(): void
     {
         Post::factory()->for($this->user, 'author')->create([
@@ -95,7 +95,7 @@ class SearchPostTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_post')]
+    #[Group('admin_posts')]
     public function can_search_posts_returns_empty_when_no_matches(): void
     {
         Post::factory()->for($this->user, 'author')->count(3)->create([
