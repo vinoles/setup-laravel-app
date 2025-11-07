@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('seasons', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
+            $table->uuid()->unique();
 
             $table->foreignId('league_id')->constrained('leagues')->cascadeOnDelete();
             $table->string('name', 80);
