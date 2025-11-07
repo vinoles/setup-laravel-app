@@ -20,7 +20,6 @@ class TeamResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'id' => $this->resource->uuid,
             'name' => $this->resource->name,
             'short_name' => $this->resource->short_name,
             'city' => $this->resource->city,

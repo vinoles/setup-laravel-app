@@ -20,7 +20,6 @@ class PostResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'id' => $this->uuid,
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,

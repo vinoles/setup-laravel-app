@@ -9,12 +9,6 @@ use OpenApi\Annotations as OA;
  *     schema="TeamAttributes",
  *     type="object",
  *     @OA\Property(
- *         property="id",
- *         type="string",
- *         format="uuid",
- *         example="d6b3c6e9-f88c-4c75-908d-7d3ac8f0b0c7"
- *     ),
- *     @OA\Property(
  *         property="name",
  *         type="string",
  *         example="Weetals FC"
