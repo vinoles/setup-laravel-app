@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Feature\Admin\Club;
+namespace Tests\Feature\Admin\Post;
 
 use App\Constants\UserRole;
-use App\Models\Club;
+use App\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\Feature\Requests\Admin\Club\SearchClubRequest;
+use Tests\Feature\Requests\Admin\Post\SearchPostRequest;
 use Tests\Feature\TestCase;
 
-class SearchClubTest extends TestCase
+class SearchPostTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -22,16 +22,14 @@ class SearchClubTest extends TestCase
     }
 
     /**
-     * Cannot search clubs if is unauthorized
-     *
-     * @return void
+     * Cannot search posts if is unauthorized
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_clubs')]
-    public function cannot_search_clubs_if_is_unauthorized(): void
+    #[Group('admin_posts')]
+    public function cannot_search_posts_if_is_unauthorized(): void
     {
-        $request = SearchClubRequest::make();
+        $request = SearchPostRequest::make();
 
         $this->user->removeRole(UserRole::ADMIN->value);
 
@@ -41,18 +39,16 @@ class SearchClubTest extends TestCase
     }
 
     /**
-     * Happy path: can search clubs successfully
-     *
-     * @return void
+     * Happy path: can search posts successfully
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_clubs')]
-    public function can_search_clubs_successfully(): void
+    #[Group('admin_posts')]
+    public function can_search_posts_successfully(): void
     {
-        $clubs = Club::factory()->count(5)->create();
+        Post::factory()->for($this->user, 'author')->count(5)->create();
 
-        $request = SearchClubRequest::make();
+        $request = SearchPostRequest::make();
 
         $response = $this->send($request);
 
@@ -60,34 +56,29 @@ class SearchClubTest extends TestCase
 
         $this->assertSame($response->json('recordsFiltered'), 5);
         $this->assertSame($response->json('recordsTotal'), 5);
-
-        $this->assertCount($response->json('recordsFiltered'),  $clubs);
-        $this->assertCount($response->json('recordsTotal'),  $clubs);
-
-        $response->assertSee('clubs');
+        $this->assertIsArray($response->json('data'));
+        $this->assertCount(5, $response->json('data'));
     }
 
     /**
-     * Can search clubs with filters
-     *
-     * @return void
+     * Can search posts with filters
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_clubs')]
-    public function can_search_clubs_with_filters(): void
+    #[Group('admin_posts')]
+    public function can_search_posts_with_filters(): void
     {
-        Club::factory()->create([
-            'name' => 'Barcelona FC',
+        Post::factory()->for($this->user, 'author')->create([
+            'title' => 'Barcelona news',
         ]);
 
-        Club::factory()->count(5)->create([
-            'name' => 'Real Madrid',
+        Post::factory()->for($this->user, 'author')->count(5)->create([
+            'title' => 'Real Madrid news',
         ]);
 
         $filter['search'] = ['value' => 'Barcelona'];
 
-        $request = SearchClubRequest::make($filter);
+        $request = SearchPostRequest::make($filter);
 
         $response = $this->send($request);
 
@@ -96,26 +87,24 @@ class SearchClubTest extends TestCase
         $this->assertSame($response->json('recordsFiltered'), 1);
         $this->assertSame($response->json('recordsTotal'), 6);
 
-        $response->assertSee('Barcelona FC');
+        $response->assertSee('Barcelona news');
     }
 
     /**
-     * Can search clubs and returns empty when no matches
-     *
-     * @return void
+     * Can search posts and returns empty when no matches
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_clubs')]
-    public function can_search_clubs_returns_empty_when_no_matches(): void
+    #[Group('admin_posts')]
+    public function can_search_posts_returns_empty_when_no_matches(): void
     {
-        Club::factory()->count(3)->create([
-            'name' => 'Real Madrid',
+        Post::factory()->for($this->user, 'author')->count(3)->create([
+            'title' => 'Real Madrid news',
         ]);
 
         $filter['search'] = ['value' => 'Barcelona'];
 
-        $request = SearchClubRequest::make($filter);
+        $request = SearchPostRequest::make($filter);
 
         $response = $this->send($request);
 
@@ -127,13 +116,9 @@ class SearchClubTest extends TestCase
 
     /**
      * Send a request with the authenticated admin user.
-     *
-     * @param  SearchClubRequest  $request
-     * @return \Illuminate\Testing\TestResponse
      */
-    private function send(SearchClubRequest $request)
+    private function send(SearchPostRequest $request)
     {
         return $this->adminSignIn($this->user)->sendRequest($request);
     }
 }
-

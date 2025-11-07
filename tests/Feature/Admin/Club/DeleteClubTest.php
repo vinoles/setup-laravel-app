@@ -33,7 +33,7 @@ class DeleteClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_delete_club_if_is_unauthorized(): void
     {
         $request = DeleteClubRequest::make($this->club);
@@ -52,7 +52,7 @@ class DeleteClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function can_delete_club_successfully(): void
     {
         $request = DeleteClubRequest::make($this->club);
@@ -73,7 +73,7 @@ class DeleteClubTest extends TestCase
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_club')]
+    #[Group('admin_clubs')]
     public function cannot_delete_club_if_not_found(): void
     {
         // Use a non-existent ID

@@ -28,6 +28,10 @@ return [
         'roles' => 'Roles',
         'name'  => 'Name',
         'address' => 'Adresse',
+        'title' => 'Titre',
+        'content' => 'Contenu',
+        'slug' => 'Slug',
+        'published_at' => 'Publié le',
     ],
     'users' => [
         'users' => 'Utilisateurs',
