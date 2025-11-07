@@ -149,8 +149,8 @@ class CreatePostTest extends TestCase
     public function cannot_create_post_if_without_the_required_data(): void
     {
         $post = Post::factory()->make([
-            'title' => null,
-            'content' => null,
+            'title' => '',
+            'content' => '',
         ]);
 
         $request = CreatePostRequest::make($post);

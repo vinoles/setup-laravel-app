@@ -1,20 +1,20 @@
 <?php
 
-namespace Tests\Feature\Admin\Post;
+namespace Tests\Feature\Admin\Club;
 
 use App\Constants\UserRole;
-use App\Models\Post;
+use App\Models\Club;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\Feature\Requests\Admin\Post\DeletePostRequest;
+use Tests\Feature\Requests\Admin\Club\ShowClubRequest;
 use Tests\Feature\TestCase;
 
-class DeletePostTest extends TestCase
+class ShowClubTest extends TestCase
 {
     use RefreshDatabase;
 
-    private Post $post;
+    private Club $club;
 
     protected function setUp(): void
     {
@@ -22,19 +22,19 @@ class DeletePostTest extends TestCase
 
         $this->user->assignRole(UserRole::ADMIN->value);
 
-        $this->post = Post::factory()->for($this->user, 'author')->create();
-        $this->post->refresh();
+        $this->club = Club::factory()->create();
+        $this->club->refresh();
     }
 
     /**
-     * Cannot delete post if is unauthorized
+     * Cannot show club if is unauthorized
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_posts')]
-    public function cannot_delete_post_if_is_unauthorized(): void
+    #[Group('admin_clubs')]
+    public function cannot_show_club_if_is_unauthorized(): void
     {
-        $request = DeletePostRequest::make($this->post->id);
+        $request = ShowClubRequest::make($this->club->id);
 
         $this->user->removeRole(UserRole::ADMIN->value);
 
@@ -44,35 +44,31 @@ class DeletePostTest extends TestCase
     }
 
     /**
-     * Happy path: can delete post successfully
+     * Happy path: can show club successfully
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_posts')]
-    public function can_delete_post_successfully(): void
+    #[Group('admin_clubs')]
+    public function can_show_club_successfully(): void
     {
-        $request = DeletePostRequest::make($this->post->id);
+        $request = ShowClubRequest::make($this->club->id);
 
         $response = $this->send($request);
 
         $response->assertSuccessful();
-
-        $this->assertDatabaseMissing('posts', [
-            'id' => $this->post->id,
-        ]);
     }
 
     /**
-     * Cannot delete post if not found
+     * Cannot show club if not found
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_posts')]
-    public function cannot_delete_post_if_not_found(): void
+    #[Group('admin_clubs')]
+    public function cannot_show_club_if_not_found(): void
     {
         $nonExistentId = 99999;
 
-        $request = DeletePostRequest::make($nonExistentId);
+        $request = ShowClubRequest::make($nonExistentId);
 
         $response = $this->send($request);
 
@@ -82,8 +78,9 @@ class DeletePostTest extends TestCase
     /**
      * Send a request with the authenticated admin user.
      */
-    private function send(DeletePostRequest $request)
+    private function send(ShowClubRequest $request)
     {
         return $this->adminSignIn($this->user)->sendRequest($request);
     }
 }
+

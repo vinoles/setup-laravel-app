@@ -60,5 +60,9 @@ class PostSeeder extends Seeder
         $comment->user()
             ->associate($commenter)
             ->save();
+
+        Post::factory()->count(20)->create([
+            'author_id' => User::factory()->create()
+        ]);
     }
 }

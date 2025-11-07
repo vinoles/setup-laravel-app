@@ -1,17 +1,16 @@
 <?php
 
-namespace Tests\Feature\Admin\Post;
+namespace Tests\Feature\Admin\Club;
 
 use App\Constants\UserRole;
-use App\Models\Post;
+use App\Models\Club;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\Feature\Requests\Admin\Post\ListPostRequest;
+use Tests\Feature\Requests\Admin\Club\ListClubRequest;
 use Tests\Feature\TestCase;
 
-class ListPostTest extends TestCase
+class ListClubTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -23,14 +22,14 @@ class ListPostTest extends TestCase
     }
 
     /**
-     * Cannot list posts if is unauthorized
+     * Cannot list clubs if is unauthorized
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_posts')]
-    public function cannot_list_posts_if_is_unauthorized(): void
+    #[Group('admin_clubs')]
+    public function cannot_list_clubs_if_is_unauthorized(): void
     {
-        $request = ListPostRequest::make();
+        $request = ListClubRequest::make();
 
         $this->user->removeRole(UserRole::ADMIN->value);
 
@@ -40,16 +39,16 @@ class ListPostTest extends TestCase
     }
 
     /**
-     * Happy path: can list posts successfully
+     * Happy path: can list clubs successfully
      */
     #[Test]
     #[Group('admin')]
-    #[Group('admin_posts')]
-    public function can_list_posts_successfully(): void
+    #[Group('admin_clubs')]
+    public function can_list_clubs_successfully(): void
     {
-        Post::factory()->for($this->user, 'author')->count(3)->create();
+        Club::factory()->count(3)->create();
 
-        $request = ListPostRequest::make();
+        $request = ListClubRequest::make();
 
         $response = $this->send($request);
 
@@ -59,8 +58,9 @@ class ListPostTest extends TestCase
     /**
      * Send a request with the authenticated admin user.
      */
-    private function send(ListPostRequest $request)
+    private function send(ListClubRequest $request)
     {
         return $this->adminSignIn($this->user)->sendRequest($request);
     }
 }
+

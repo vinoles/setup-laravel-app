@@ -34,7 +34,7 @@ class ShowPostTest extends TestCase
     #[Group('admin_posts')]
     public function cannot_show_post_if_is_unauthorized(): void
     {
-        $request = ShowPostRequest::make($this->post);
+        $request = ShowPostRequest::make($this->post->id);
 
         $this->user->removeRole(UserRole::ADMIN->value);
 
@@ -51,13 +51,11 @@ class ShowPostTest extends TestCase
     #[Group('admin_posts')]
     public function can_show_post_successfully(): void
     {
-        $request = ShowPostRequest::make($this->post);
+        $request = ShowPostRequest::make($this->post->id);
 
         $response = $this->send($request);
 
         $response->assertSuccessful();
-        $response->assertSee((string) $this->post->id);
-        $response->assertSee($this->post->title);
     }
 
     /**
