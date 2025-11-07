@@ -4,7 +4,6 @@
 /public/vendor/api-platform
 /public/hot
 /public/storage
-/public/api-docs
 /storage/*.key
 /storage/pail
 /vendor
@@ -24,3 +23,4 @@ yarn-error.log
 /.vscode
 /.zed
 /storage/
+storage/api-docs/
