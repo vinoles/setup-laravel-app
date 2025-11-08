@@ -1,27 +1,25 @@
 <?php
 
-namespace App\JsonApi\V1\Clubs;
+namespace App\JsonApi\V1\Teams;
 
-use App\Models\Club;
+use App\Models\Team;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
-use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
+use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
 
-
-class ClubSchema extends Schema
+class TeamSchema extends Schema
 {
-
     /**
      * The model the schema corresponds to.
      *
-     * @var string
+     * @var class-string<Team>
      */
-    public static string $model = Club::class;
+    public static string $model = Team::class;
 
     /**
      * Get the resource fields.
@@ -33,13 +31,13 @@ class ClubSchema extends Schema
         return [
             ID::make()->uuid(),
 
-            HasMany::make('teams'),
-
-            Str::make('uuid'),
+            BelongsTo::make('club')
+                ->type('clubs'),
 
             Str::make('name'),
-
-            Str::make('address'),
+            Str::make('short_name'),
+            Str::make('city'),
+            Str::make('logo_path'),
 
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),

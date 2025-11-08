@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use App\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,15 +13,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Team extends Model
 {
+    use CrudTrait;
     use HasFactory;
     use HasUuid;
     use SoftDeletes;
 
     protected $fillable = [
+        'club_id',
         'name',
         'short_name',
         'city',
         'logo_path',
+    ];
+
+    /**
+     * Always include the owning club so API responses can expose it without extra queries.
+     *
+     * @var array<int, string>
+     */
+    protected $with = [
+        'club',
     ];
 
     public function teamSeasons(): HasMany
@@ -51,5 +63,20 @@ class Team extends Model
     public function club(): BelongsTo
     {
         return $this->belongsTo(Club::class);
+    }
+
+    public function getClubNameAttribute(): ?string
+    {
+        return optional($this->club)->name;
+    }
+
+    public static function getValidationRules(): array
+    {
+        return [
+            'name' => ['required', 'string', 'max:120'],
+            'short_name' => ['nullable', 'string', 'max:20'],
+            'city' => ['nullable', 'string', 'max:80'],
+            'logo_path' => ['nullable', 'string', 'max:255'],
+        ];
     }
 }

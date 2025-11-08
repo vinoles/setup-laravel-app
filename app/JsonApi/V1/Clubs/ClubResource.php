@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Resources\JsonApiResource;
 
 /**
- * @property Club $resource
+ * @property Club
  */
 class ClubResource extends JsonApiResource
 {
@@ -21,7 +21,6 @@ class ClubResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'id' => $this->uuid,
             'name' => $this->name,
             'address' => $this->address,
         ];

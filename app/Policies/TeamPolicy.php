@@ -2,15 +2,15 @@
 
 namespace App\Policies;
 
-use App\Models\Club;
+use App\Models\Team;
 use App\Models\User;
 
-class ClubPolicy
+class TeamPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user, ?User $targetUser = null): bool
+    public function viewAny(User $user): bool
     {
         return true;
     }
@@ -18,21 +18,20 @@ class ClubPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(?User $user, Club $club): bool
+    public function view(?User $user, Team $team): bool
     {
         return true;
     }
 
-
-    /**
-     * Determine whether the user can view the post's comments.
+        /**
+     * Determine whether the user can view the team's author.
      */
-    public function viewTeams(User $user, Club $club): bool
+    public function viewClub(?User $user, Team $team): bool
     {
-        return $this->view($user, $club);
+        return $this->view($user, $team);
     }
 
-     /**
+    /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
@@ -43,7 +42,7 @@ class ClubPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Club $club): bool
+    public function update(User $user, Team $team): bool
     {
         return true;
     }
@@ -51,7 +50,7 @@ class ClubPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Club $club): bool
+    public function delete(User $user, Team $team): bool
     {
         return true;
     }
@@ -59,7 +58,7 @@ class ClubPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Club $club): bool
+    public function restore(User $user, Team $team): bool
     {
         return true;
     }
@@ -67,10 +66,8 @@ class ClubPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Club $club): bool
+    public function forceDelete(User $user, Team $team): bool
     {
         return true;
     }
-
-
 }

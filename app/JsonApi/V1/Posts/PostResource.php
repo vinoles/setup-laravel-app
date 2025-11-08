@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Resources\JsonApiResource;
 
 /**
- * @property Post $resource
+ * @property Post
  */
 class PostResource extends JsonApiResource
 {
@@ -20,7 +20,6 @@ class PostResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'id' => $this->uuid,
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,

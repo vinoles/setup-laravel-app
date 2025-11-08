@@ -1,17 +1,22 @@
 <?php
 
-namespace App\ApiDoc\Post\Schemas;
+namespace App\ApiDoc\Club\Schemas;
 
 use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
- *     schema="PostCommentAttributes",
+ *     schema="ClubTeamAttributes",
  *     type="object",
  *     @OA\Property(
- *         property="content",
+ *         property="name",
  *         type="string",
- *         example="the content application test post example"
+ *         example="Granada FC"
+ *     ),
+ *     @OA\Property(
+ *         property="short_name",
+ *         type="string",
+ *         example="GFC"
  *     ),
  *     @OA\Property(
  *         property="createdAt",
@@ -25,6 +30,6 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class PostCommentAttributes
+class ClubTeamAttributes
 {
 }

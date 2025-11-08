@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Resources\JsonApiResource;
 
 /**
- * @property User $resource
+ * @property User
  */
 class UserResource extends JsonApiResource
 {
@@ -20,14 +20,13 @@ class UserResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'id' => $this->uuid,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'phone' => $this->phone,
-            'address' => $this->address,
-            'city' => $this->city,
-            'province' => $this->province,
-            'birthdate' => $this->birthdate,
+            'first_name' =>  $this->first_name,
+            'last_name' =>  $this->last_name,
+            'phone' =>  $this->phone,
+            'address' =>  $this->address,
+            'city' =>  $this->city,
+            'province' =>  $this->province,
+            'birthdate' =>  $this->birthdate,
         ];
     }
 
