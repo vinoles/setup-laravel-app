@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\TeamRequest;
+use App\Http\Requests\Admin\TeamRequest;
 use App\Models\Club;
 use App\Models\Team;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
