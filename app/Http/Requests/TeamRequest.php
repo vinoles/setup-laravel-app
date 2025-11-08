@@ -25,7 +25,13 @@ class TeamRequest extends FormRequest
      */
     public function rules(): array
     {
-        return Team::getValidationRules();
+
+        return array_merge(
+            [
+                'club_id' => ['nullable', 'exists:clubs,id']
+            ],
+            Team::getValidationRules()
+        );
     }
 
     /**

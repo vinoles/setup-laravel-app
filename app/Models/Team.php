@@ -77,7 +77,6 @@ class Team extends Model
             'short_name' => ['nullable', 'string', 'max:20'],
             'city' => ['nullable', 'string', 'max:80'],
             'logo_path' => ['nullable', 'string', 'max:255'],
-            'club_id' => ['nullable', 'exists:clubs,id'],
         ];
     }
 }
