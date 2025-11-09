@@ -7,12 +7,13 @@ use App\Http\Requests\Admin\PostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class PostCrudController
  *
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
+ * @property-read CrudPanel $crud
  */
 class PostCrudController extends CrudController
 {
@@ -40,21 +41,24 @@ class PostCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::addColumn([
-            'name'  => 'title',
-            'type'  => 'text',
-            'label' => __('admin.globals.title'),
+            'name'        => 'title',
+            'type'        => 'text',
+            'label'       => __('admin.globals.title'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'title', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name'  => 'slug',
-            'type'  => 'text',
-            'label' => __('admin.globals.slug'),
+            'name'        => 'slug',
+            'type'        => 'text',
+            'label'       => __('admin.globals.slug'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'slug', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name'  => 'content',
-            'type'  => 'textarea',
-            'label' => __('admin.globals.content'),
+            'name'        => 'content',
+            'type'        => 'textarea',
+            'label'       => __('admin.globals.content'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'content', $searchTerm),
         ]);
 
         CRUD::addColumn([
@@ -64,7 +68,7 @@ class PostCrudController extends CrudController
         ]);
 
         CRUD::addColumn(
-            self::linkColumn('author', User::class, 'full_name', 'users', ['first_name', 'last_name'])
+            $this->linkColumn('author', User::class, 'full_name', 'users', ['first_name', 'last_name'])
         );
 
         CRUD::addColumn([

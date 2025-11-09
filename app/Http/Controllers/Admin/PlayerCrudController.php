@@ -6,12 +6,13 @@ use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Requests\Admin\PlayerRequest;
 use App\Models\Player;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class PlayerCrudController
  *
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
+ * @property-read CrudPanel $crud
  */
 class PlayerCrudController extends CrudController
 {
@@ -39,29 +40,47 @@ class PlayerCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::addColumn([
-            'name'  => 'full_name',
-            'label' => 'Name',
+            'name'        => 'full_name',
+            'label'       => __('admin.globals.full_name'),
+            'searchLogic' => function ($query, $column, $searchTerm) {
+                $this->applyTextSearch($query, 'first_name', $searchTerm);
+                $this->applyTextSearch($query, 'last_name', $searchTerm);
+            },
         ]);
 
         CRUD::addColumn([
-            'name' => 'nationality',
+            'name'        => 'nationality',
+            'type'        => 'text',
+            'label'       => __('admin.globals.nationality'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'nationality', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name' => 'position',
+            'name'        => 'position',
+            'type'        => 'text',
+            'label'       => __('admin.globals.position'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'position', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name' => 'birthdate',
-            'type' => 'date',
+            'name'        => 'birthdate',
+            'type'        => 'date',
+            'label'       => __('admin.globals.birthdate'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'birthdate', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name' => 'height_cm',
+            'name'        => 'height_cm',
+            'type'        => 'number',
+            'label'       => __('admin.globals.height_cm'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'height_cm', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name' => 'weight_kg',
+            'name'        => 'weight_kg',
+            'type'        => 'number',
+            'label'       => __('admin.globals.weight_kg'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'weight_kg', $searchTerm),
         ]);
 
         /**

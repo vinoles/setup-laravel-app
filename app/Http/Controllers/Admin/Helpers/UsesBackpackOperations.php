@@ -12,8 +12,8 @@ trait UsesBackpackOperations
 {
     use CreateOperation;
     use DeleteOperation;
+    use HandlesCrudSearches;
     use HasCrudLinks;
-    use ListOperation;
     use ListOperation;
     use ShowOperation;
     use UpdateOperation;

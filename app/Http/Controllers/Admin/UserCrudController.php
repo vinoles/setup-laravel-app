@@ -6,12 +6,13 @@ use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Requests\Admin\UserRequest;
 use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class UserCrudController
  *
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
+ * @property-read CrudPanel $crud
  */
 class UserCrudController extends CrudController
 {
@@ -39,28 +40,40 @@ class UserCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::addColumn([
-            'name'  => 'full_name',
-            'label' => __('admin.globals.full_name'),
+            'name'        => 'full_name',
+            'label'       => __('admin.globals.full_name'),
+            'searchLogic' => function ($query, $column, $searchTerm) {
+                $this->applyTextSearch($query, 'first_name', $searchTerm);
+                $this->applyTextSearch($query, 'last_name', $searchTerm);
+            },
         ]);
 
         CRUD::addColumn([
-            'name'  => 'email',
-            'label' => __('admin.globals.email'),
+            'name'        => 'email',
+            'type'        => 'email',
+            'label'       => __('admin.globals.email'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'email', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name'  => 'phone',
-            'label' => __('admin.globals.phone'),
+            'name'        => 'phone',
+            'type'        => 'text',
+            'label'       => __('admin.globals.phone'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'phone', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name'  => 'city',
-            'label' => __('admin.globals.city'),
+            'name'        => 'city',
+            'type'        => 'text',
+            'label'       => __('admin.globals.city'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'city', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name'  => 'country',
-            'label' => __('admin.globals.country'),
+            'name'        => 'country',
+            'type'        => 'text',
+            'label'       => __('admin.globals.country'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'country', $searchTerm),
         ]);
 
         CRUD::addColumn([

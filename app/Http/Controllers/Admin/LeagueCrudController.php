@@ -34,26 +34,31 @@ class LeagueCrudController extends CrudController
     protected function setupListOperation(): void
     {
         CRUD::addColumn([
-            'name'  => 'name',
-            'label' => __('admin.globals.name'),
+            'name'        => 'name',
+            'type'        => 'text',
+            'label'       => __('admin.globals.name'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'name', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name'  => 'country',
-            'label' => __('admin.globals.country'),
+            'name'        => 'country',
+            'type'        => 'text',
+            'label'       => __('admin.globals.country'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'country', $searchTerm),
         ]);
 
         CRUD::addColumn(
-            self::linkColumn('federation', Federation::class, 'name', 'federations', ['name'])
+            $this->linkColumn('federation', Federation::class, 'name', 'federations', ['name'])
         );
 
         CRUD::addColumn([
-            'name'      => 'sport_id',
-            'label'     => __('admin.globals.sport'),
-            'type'      => 'select',
-            'entity'    => 'sport',
-            'attribute' => 'name',
-            'model'     => Sport::class,
+            'name'        => 'sport_id',
+            'label'       => __('admin.globals.sport'),
+            'type'        => 'select',
+            'entity'      => 'sport',
+            'attribute'   => 'name',
+            'model'       => Sport::class,
+            'searchLogic' => $this->relationSearchLogic('sport', ['name']),
         ]);
     }
 

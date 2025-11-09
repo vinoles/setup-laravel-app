@@ -6,12 +6,13 @@ use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Requests\Admin\ClubRequest;
 use App\Models\Club;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class ClubCrudController
  *
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
+ * @property-read CrudPanel $crud
  */
 class ClubCrudController extends CrudController
 {
@@ -39,15 +40,17 @@ class ClubCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::addColumn([
-            'name'  => 'name',
-            'type'  => 'text',
-            'label' => __('admin.globals.name'),
+            'name'        => 'name',
+            'type'        => 'text',
+            'label'       => __('admin.globals.name'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'name', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name'  => 'address',
-            'type'  => 'text',
-            'label' => __('admin.globals.address'),
+            'name'        => 'address',
+            'type'        => 'text',
+            'label'       => __('admin.globals.address'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'address', $searchTerm),
         ]);
     }
 

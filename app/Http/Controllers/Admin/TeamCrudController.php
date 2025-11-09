@@ -41,19 +41,28 @@ class TeamCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::addColumn([
-            'name' => 'name',
+            'name'        => 'name',
+            'type'        => 'text',
+            'label'       => __('admin.globals.name'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'name', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name' => 'short_name',
+            'name'        => 'short_name',
+            'type'        => 'text',
+            'label'       => __('admin.globals.short_name'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'short_name', $searchTerm),
         ]);
 
         CRUD::addColumn([
-            'name' => 'city',
+            'name'        => 'city',
+            'type'        => 'text',
+            'label'       => __('admin.globals.city'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'city', $searchTerm),
         ]);
 
         CRUD::addColumn(
-            self::linkColumn('club', Club::class, 'name', 'clubs', ['name'])
+            $this->linkColumn('club', Club::class, 'name', 'clubs', ['name'])
         );
     }
 
