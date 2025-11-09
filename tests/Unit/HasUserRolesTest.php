@@ -2,35 +2,19 @@
 
 namespace Tests\Unit;
 
-use App\Constants\Permission;
 use App\Constants\UserRole;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Spatie\Permission\Models\Permission as SpatiePermission;
-use Spatie\Permission\Models\Role;
-use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\TestCase;
 
 class HasUserRolesTest extends TestCase
 {
     use RefreshDatabase;
 
-    private User $user;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-
-        // Create roles and permissions
-        $this->createRoles();
-    }
-
     /**
      * Test isAdmin() function
-     *
-     * @test
      */
+    #[Test]
     public function is_admin_function(): void
     {
         // Test user without admin role
@@ -48,9 +32,8 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isSuperAdmin() function
-     *
-     * @test
      */
+    #[Test]
     public function is_super_admin_function(): void
     {
         // Test user without super admin role
@@ -68,9 +51,8 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isTalent() function
-     *
-     * @test
      */
+    #[Test]
     public function is_talent_function(): void
     {
         // Test user without talent role
@@ -88,9 +70,8 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isScout() function
-     *
-     * @test
      */
+    #[Test]
     public function is_scout_function(): void
     {
         // Test user without scout role
@@ -108,9 +89,8 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isClub() function
-     *
-     * @test
      */
+    #[Test]
     public function is_club_function(): void
     {
         // Test user without club role
@@ -128,9 +108,8 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isAnyAdmin() function
-     *
-     * @test
      */
+    #[Test]
     public function is_any_admin_function(): void
     {
         // Test user without any admin role
@@ -153,9 +132,8 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test hasAnyOfRoles() function
-     *
-     * @test
      */
+    #[Test]
     public function has_any_of_roles_function(): void
     {
         // Test user without any roles
@@ -183,9 +161,8 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test getPrimaryRole() function
-     *
-     * @test
      */
+    #[Test]
     public function get_primary_role_function(): void
     {
         // Test user without roles
@@ -211,9 +188,8 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test multiple roles scenario
-     *
-     * @test
      */
+    #[Test]
     public function multiple_roles_scenario(): void
     {
         // Assign multiple roles
@@ -240,9 +216,8 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test edge cases
-     *
-     * @test
      */
+    #[Test]
     public function edge_cases(): void
     {
         // Test hasAnyOfRoles with empty array
@@ -259,9 +234,8 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test role verification after role changes
-     *
-     * @test
      */
+    #[Test]
     public function role_verification_after_changes(): void
     {
         // Start with talent role
@@ -282,30 +256,5 @@ class HasUserRolesTest extends TestCase
         $this->assertTrue($this->user->isSuperAdmin());
         $this->assertTrue($this->user->isAnyAdmin());
         $this->assertEquals(UserRole::SUPER_ADMIN->value, $this->user->getPrimaryRole());
-    }
-
-    /**
-     * Create roles and permissions for testing
-     */
-    private function createRoles(): void
-    {
-        // Create all permissions using the enum
-        $allPermissions = Permission::getAllPermissions();
-        foreach ($allPermissions as $permission) {
-            SpatiePermission::create(['name' => $permission]);
-        }
-
-        // Get permissions grouped by role from the enum
-        $permissionsByRole = Permission::getPermissionsByRole();
-
-        // Create roles and assign permissions
-        foreach ($permissionsByRole as $roleName => $permissions) {
-            $role = Role::create(['name' => $roleName]);
-            $role->givePermissionTo($permissions);
-        }
-
-        // Create super_admin role with all permissions
-        $userRole = Role::create(['name' => UserRole::SUPER_ADMIN->value]);
-        $userRole->givePermissionTo(SpatiePermission::all());
     }
 }
