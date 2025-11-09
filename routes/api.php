@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\Fortify\User\ConfirmPasswordController;
 use App\Http\Controllers\Api\Fortify\Auth\LoginController;
 use App\Http\Controllers\Api\Fortify\Auth\LogoutController;
 use App\Http\Controllers\Api\Fortify\Auth\NewPasswordResetController;
 use App\Http\Controllers\Api\Fortify\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Api\Fortify\Auth\RegisterController;
+use App\Http\Controllers\Api\Fortify\User\ConfirmPasswordController;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +13,6 @@ use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use LaravelJsonApi\Laravel\Routing\Relationships;
 use LaravelJsonApi\Laravel\Routing\ResourceRegistrar;
-
 
 // Example testing without login
 // JsonApiRoute::server('v1')

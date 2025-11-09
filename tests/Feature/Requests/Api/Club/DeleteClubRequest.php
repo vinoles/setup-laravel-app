@@ -49,4 +49,3 @@ class DeleteClubRequest extends PatchRequest
         return $this->club->uuid;
     }
 }
-

@@ -7,7 +7,6 @@ use Database\Factories\UserFactory;
 
 trait CreatesUsers
 {
-
     /**
      * Retrieve the factory used to create a new user instance.
      *

@@ -7,7 +7,6 @@ use LaravelJsonApi\Laravel\Http\Requests\ResourceRequest;
 
 class PostRequest extends ResourceRequest
 {
-
     /**
      * Get the validation rules for the resource.
      *

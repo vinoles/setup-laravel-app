@@ -12,7 +12,7 @@ class PasswordResetLinkRequest extends PostRequest
     public function __construct(string $email)
     {
         $this->with([
-            'email' => $email
+            'email' => $email,
         ]);
     }
 

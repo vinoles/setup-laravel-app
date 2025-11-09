@@ -27,7 +27,7 @@ return [
         'updated_at' => 'Updated At',
         'deleted_at' => 'Deleted At',
         'roles' => 'Roles',
-        'name'  => 'Name',
+        'name' => 'Name',
         'short_name' => 'Short name',
         'logo_path' => 'Logo URL',
         'club' => 'Club',
@@ -40,5 +40,5 @@ return [
     'users' => [
         'users' => 'Users',
         'user' => 'User',
-    ]
+    ],
 ];

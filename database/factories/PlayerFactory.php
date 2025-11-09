@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class PlayerFactory extends Factory
 {
@@ -11,12 +10,12 @@ class PlayerFactory extends Factory
     {
         return [
             'first_name' => $this->faker->firstName(),
-            'last_name'  => $this->faker->lastName(),
-            'birthdate'  => $this->faker->optional()->date(),
-            'nationality'=> $this->faker->country(),
-            'position'   => $this->faker->randomElement(['GK', 'DF', 'MF', 'FW']),
-            'height_cm'  => $this->faker->numberBetween(160, 195),
-            'weight_kg'  => $this->faker->numberBetween(55, 95),
+            'last_name' => $this->faker->lastName(),
+            'birthdate' => $this->faker->optional()->date(),
+            'nationality' => $this->faker->country(),
+            'position' => $this->faker->randomElement(['GK', 'DF', 'MF', 'FW']),
+            'height_cm' => $this->faker->numberBetween(160, 195),
+            'weight_kg' => $this->faker->numberBetween(55, 95),
         ];
     }
 }

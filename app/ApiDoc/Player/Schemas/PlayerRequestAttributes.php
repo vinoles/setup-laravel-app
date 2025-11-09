@@ -56,4 +56,3 @@ use OpenApi\Annotations as OA;
 class PlayerRequestAttributes
 {
 }
-

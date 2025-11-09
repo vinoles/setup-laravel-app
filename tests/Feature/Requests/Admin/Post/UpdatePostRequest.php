@@ -55,4 +55,3 @@ class UpdatePostRequest extends PutRequest
         return $this;
     }
 }
-

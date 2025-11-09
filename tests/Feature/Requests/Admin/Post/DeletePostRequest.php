@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Requests\Admin\Post;
 
-use App\Models\Post;
 use Tests\Feature\Requests\DeleteRequest;
 
 class DeletePostRequest extends DeleteRequest

@@ -14,4 +14,3 @@ class ListClubRequest extends GetRequest
         return route('admin.clubs.index');
     }
 }
-

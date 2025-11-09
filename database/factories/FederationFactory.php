@@ -6,7 +6,6 @@ use App\Models\Federation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-
 class FederationFactory extends Factory
 {
     protected $model = Federation::class;

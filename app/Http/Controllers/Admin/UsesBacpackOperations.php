@@ -8,8 +8,8 @@ use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 
-trait UsesBacpackOperations {
-
+trait UsesBacpackOperations
+{
     use ListOperation;
     use CreateOperation;
     use UpdateOperation;

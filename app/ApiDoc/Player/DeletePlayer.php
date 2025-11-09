@@ -44,4 +44,3 @@ use OpenApi\Annotations as OA;
 class DeletePlayer extends ApiDoc
 {
 }
-

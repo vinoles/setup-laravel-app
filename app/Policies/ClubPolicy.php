@@ -32,9 +32,9 @@ class ClubPolicy
         return $this->view($user, $club);
     }
 
-     /**
-     * Determine whether the user can create models.
-     */
+    /**
+    * Determine whether the user can create models.
+    */
     public function create(User $user): bool
     {
         return true;

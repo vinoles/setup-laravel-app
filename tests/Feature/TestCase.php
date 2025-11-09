@@ -2,21 +2,24 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use App\Constants\Permission;
 use App\Constants\UserRole;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use LaravelJsonApi\Testing\MakesJsonApiRequests;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission as SpatiePermission;
+use Spatie\Permission\Models\Role;
 use Tests\Feature\Concerns\CreatesUsers;
 use Tests\Feature\Concerns\SendsRequests;
 use Tests\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
-    use CreatesUsers, MakesJsonApiRequests, SendsRequests, RefreshDatabase;
+    use CreatesUsers;
+    use MakesJsonApiRequests;
+    use SendsRequests;
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
@@ -46,7 +49,7 @@ class TestCase extends BaseTestCase
     {
         $this->user = $user;
 
-        if($user !== null) {
+        if ($user !== null) {
             Sanctum::actingAs($this->user, $scopes);
         }
 
@@ -64,7 +67,7 @@ class TestCase extends BaseTestCase
     {
         $this->user = $user;
 
-        if($user !== null) {
+        if ($user !== null) {
             // $this->actingAs($this->user);
             $this->actingAs($user, 'backpack');
         }

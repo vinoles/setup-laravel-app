@@ -29,4 +29,3 @@ class RetrieveClubRequest extends GetRequest
         return route('v1.api.clubs.show', ['club' => $this->club]);
     }
 }
-

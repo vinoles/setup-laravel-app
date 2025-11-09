@@ -12,10 +12,10 @@ class TeamFactory extends Factory
     {
         return [
             'uuid' => Str::uuid(),
-            'name'       => $this->faker->city() . ' FC',
+            'name' => $this->faker->city() . ' FC',
             'short_name' => strtoupper($this->faker->lexify('???')),
-            'city'       => $this->faker->city(),
-            'logo_path'  => $this->faker->imageUrl(),
+            'city' => $this->faker->city(),
+            'logo_path' => $this->faker->imageUrl(),
             'club_id' => Club::factory(),
 
         ];

@@ -18,6 +18,6 @@ class NewPasswordResetTest extends TestCase
     #[Group('api_auth')]
     public function can_reset_new_password(): void
     {
-        $this->markTestSkipped("TODO implement test with token request refactor template email");
+        $this->markTestSkipped('TODO implement test with token request refactor template email');
     }
 }

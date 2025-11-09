@@ -53,4 +53,3 @@ class CreateClubRequest extends PostRequest
         return $this;
     }
 }
-

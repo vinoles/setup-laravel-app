@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Api\Auth;
 
-
 use App\Models\User;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
@@ -11,7 +10,6 @@ use Tests\Feature\TestCase;
 
 class RegisterTest extends TestCase
 {
-
     /**
      * Sign up happy path
      *

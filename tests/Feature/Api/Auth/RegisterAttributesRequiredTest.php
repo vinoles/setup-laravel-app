@@ -55,7 +55,7 @@ class RegisterAttributesRequiredTest extends TestCase
         $response->assertUnprocessable();
 
         $response->assertInvalid([
-            'email' =>  trans('validation.unique', ['attribute' => 'email'])
+            'email' => trans('validation.unique', ['attribute' => 'email']),
         ]);
     }
 

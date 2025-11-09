@@ -3,10 +3,10 @@
 namespace Tests\Feature\Api\User;
 
 use App\Models\User;
-use Tests\Feature\Requests\Api\User\CreateUserRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\User\CreateUserRequest;
+use Tests\Feature\TestCase;
 
 class CreateUserTest extends TestCase
 {

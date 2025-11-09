@@ -183,8 +183,10 @@ class UserRoleTest extends TestCase
         // Assert super admin has all permissions
         $allPermissions = SpatiePermission::all();
         foreach ($allPermissions as $permission) {
-            $this->assertTrue($this->user->can($permission->name),
-                "Super admin should have permission: {$permission->name}");
+            $this->assertTrue(
+                $this->user->can($permission->name),
+                "Super admin should have permission: {$permission->name}"
+            );
         }
     }
 

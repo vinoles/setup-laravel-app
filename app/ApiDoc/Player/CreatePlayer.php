@@ -42,4 +42,3 @@ use OpenApi\Annotations as OA;
 class CreatePlayer extends ApiDoc
 {
 }
-

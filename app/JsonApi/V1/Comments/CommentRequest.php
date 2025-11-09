@@ -6,7 +6,6 @@ use LaravelJsonApi\Laravel\Http\Requests\ResourceRequest;
 
 class CommentRequest extends ResourceRequest
 {
-
     /**
      * Get the validation rules for the resource.
      *

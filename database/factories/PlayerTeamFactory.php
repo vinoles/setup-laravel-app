@@ -16,11 +16,11 @@ class PlayerTeamFactory extends Factory
     {
         return [
             'uuid' => Str::uuid(),
-            'player_id'      => Player::query()->inRandomOrder()->value('id') ?? Player::factory(),
+            'player_id' => Player::query()->inRandomOrder()->value('id') ?? Player::factory(),
             'team_season_id' => TeamSeason::query()->inRandomOrder()->value('id') ?? TeamSeason::factory(),
-            'jersey_number'  => (string) $this->faker->numberBetween(1, 99),
-            'start_date'     => $this->faker->optional()->date(),
-            'end_date'       => null,
+            'jersey_number' => (string) $this->faker->numberBetween(1, 99),
+            'start_date' => $this->faker->optional()->date(),
+            'end_date' => null,
         ];
     }
 }

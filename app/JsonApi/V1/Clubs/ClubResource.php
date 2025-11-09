@@ -11,7 +11,6 @@ use LaravelJsonApi\Core\Resources\JsonApiResource;
  */
 class ClubResource extends JsonApiResource
 {
-
     /**
      * Get the resource's attributes.
      *

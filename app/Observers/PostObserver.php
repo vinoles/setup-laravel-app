@@ -48,7 +48,7 @@ class PostObserver
     {
         //TODO: Consider refactoring in the future
         if ($post->isDirty('title')) {
-            $shortUuid = Str::substr($post->uuid, -7);
+            $shortUuid  = Str::substr($post->uuid, -7);
             $post->slug = Str::slug("{$shortUuid} {$post->title}", '-');
         }
     }

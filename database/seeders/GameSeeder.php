@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Season;
 use App\Models\Game;
-use App\Models\Team;
+use App\Models\GameReferee;
+use App\Models\GameStatus;
 use App\Models\Referee;
 use App\Models\RefereeRole;
-use App\Models\GameStatus;
-use App\Models\GameReferee;
+use App\Models\Season;
+use App\Models\Team;
 use Illuminate\Database\Seeder;
 
 class GameSeeder extends Seeder
@@ -28,17 +28,17 @@ class GameSeeder extends Seeder
                 $away = $teams->where('id', '!=', $home->id)->random();
 
                 $game = Game::factory()->create([
-                    'season_id'   => $season->id,
-                    'home_team_id'=> $home->id,
-                    'away_team_id'=> $away->id,
-                    'status_id'   => $statuses->random()->id,
+                    'season_id' => $season->id,
+                    'home_team_id' => $home->id,
+                    'away_team_id' => $away->id,
+                    'status_id' => $statuses->random()->id,
                 ]);
 
                 $referees->random(3)->values()->each(function ($ref, $index) use ($game, $roles) {
                     GameReferee::factory()->create([
-                        'game_id'    => $game->id,
+                        'game_id' => $game->id,
                         'referee_id' => $ref->id,
-                        'role_id'    => $roles[$index % $roles->count()]->id,
+                        'role_id' => $roles[$index % $roles->count()]->id,
                     ]);
                 });
             }

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use App\Models\Concerns\HasUuid;
 use App\Observers\PostObserver;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Post extends Model
 {
     use CrudTrait;
-    use HasFactory,
-        HasUuid;
+    use HasFactory;
+    use HasUuid;
 
     /**
      * @var string[]

@@ -18,4 +18,3 @@ class ShowClubRequest extends GetRequest
         return route('admin.clubs.show', ['id' => $this->clubId]);
     }
 }
-

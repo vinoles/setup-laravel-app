@@ -52,4 +52,3 @@ use OpenApi\Annotations as OA;
 class UpdatePlayer extends ApiDoc
 {
 }
-

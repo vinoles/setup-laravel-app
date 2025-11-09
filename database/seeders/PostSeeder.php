@@ -40,7 +40,7 @@ class PostSeeder extends Seeder
             'title' => 'Welcome to Laravel JSON:API',
             'published_at' => now(),
             'content' => 'In our first blog post, you will learn all about Laravel JSON:API...',
-            'slug' => 'welcome-to-laravel-jsonapi'
+            'slug' => 'welcome-to-laravel-jsonapi',
         ]);
 
         $post->author()
@@ -62,7 +62,7 @@ class PostSeeder extends Seeder
             ->save();
 
         Post::factory()->count(20)->create([
-            'author_id' => User::factory()->create()
+            'author_id' => User::factory()->create(),
         ]);
     }
 }

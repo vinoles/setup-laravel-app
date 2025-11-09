@@ -15,9 +15,9 @@ class UpdateClubTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const NAME_MAX_LENGTH = 50;
-    private const NAME_EXCEEDS_MAX_LENGTH = 51;
-    private const ADDRESS_MAX_LENGTH = 150;
+    private const NAME_MAX_LENGTH            = 50;
+    private const NAME_EXCEEDS_MAX_LENGTH    = 51;
+    private const ADDRESS_MAX_LENGTH         = 150;
     private const ADDRESS_EXCEEDS_MAX_LENGTH = 151;
 
     private Club $club;
@@ -204,4 +204,3 @@ class UpdateClubTest extends TestCase
         return $this->adminSignIn($this->user)->sendRequest($request);
     }
 }
-

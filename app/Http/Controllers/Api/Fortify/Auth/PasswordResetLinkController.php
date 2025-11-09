@@ -14,7 +14,6 @@ use Laravel\Fortify\Fortify;
 
 class PasswordResetLinkController extends Controller
 {
-
     /**
      * Send a reset link to the given user.
      *

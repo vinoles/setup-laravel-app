@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Api\Auth;
 
-use Tests\Feature\Requests\Api\User\ConfirmPasswordRequest;
 use App\Models\User;
 use Illuminate\Http\Response;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Auth\LogoutRequest;
 use Tests\Feature\Requests\Api\Auth\SignInRequest;
+use Tests\Feature\Requests\Api\User\ConfirmPasswordRequest;
 use Tests\Feature\TestCase;
 
 class LogoutTest extends TestCase
@@ -26,7 +26,7 @@ class LogoutTest extends TestCase
     {
         $user = User::factory()->withPassword()->create();
 
-        $request = SignInRequest::make($user->email, 'password');
+        $request  = SignInRequest::make($user->email, 'password');
         $response = $this->sendRequest($request);
 
         $response->assertSuccessful();
@@ -54,7 +54,7 @@ class LogoutTest extends TestCase
 
         $data = $responseConfirmPassword->json('meta');
 
-        $this->assertTrue($data["status"]);
+        $this->assertTrue($data['status']);
 
         $responseLogout = $this->sendRequest(LogoutRequest::make());
 
@@ -67,9 +67,9 @@ class LogoutTest extends TestCase
         $confirmPasswordRequest = ConfirmPasswordRequest::make($user, 'password');
 
         $responseConfirmPassword = $this->sendRequestApiPostWithPayloadAndToken(
-                $confirmPasswordRequest,
-                $token
-            );
+            $confirmPasswordRequest,
+            $token
+        );
 
         $responseConfirmPassword->assertUnauthorized();
 

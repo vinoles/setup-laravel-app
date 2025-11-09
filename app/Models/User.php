@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use App\Models\Concerns\HasUserRoles;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Concerns\HasUuid;
-use App\Models\Concerns\HasUserRoles;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,16 +14,17 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable {
+class User extends Authenticatable
+{
     use CrudTrait;
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory,
-        Notifiable,
-        HasApiTokens,
-        HasUuid,
-        HasRoles,
-        HasUserRoles;
+    use HasFactory;
+    use Notifiable;
+    use HasApiTokens;
+    use HasUuid;
+    use HasRoles;
+    use HasUserRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -81,7 +82,8 @@ class User extends Authenticatable {
      *
      * @return string
      */
-    public function getFullNameAttribute(): string {
+    public function getFullNameAttribute(): string
+    {
         return $this->first_name . ' ' . $this->last_name;
     }
 }

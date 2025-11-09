@@ -9,10 +9,10 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
-use Tests\Feature\Requests\Api\Post\CreatePostRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\Post\CreatePostRequest;
+use Tests\Feature\TestCase;
 
 class CreatePostTest extends TestCase
 {
@@ -44,7 +44,7 @@ class CreatePostTest extends TestCase
     public function create_post_assert_job_pushed(): void
     {
         Queue::fake([
-            CreatePost::class
+            CreatePost::class,
         ]);
 
         $post = Post::factory()->make();
@@ -55,9 +55,9 @@ class CreatePostTest extends TestCase
             'author' => [
                 'data' => [
                     'type' => 'users',
-                    'id'    => $author->uuid
-                ]
-            ]
+                    'id' => $author->uuid,
+                ],
+            ],
         ];
 
         $request = CreatePostRequest::make($post, $relationships);
@@ -87,7 +87,7 @@ class CreatePostTest extends TestCase
     {
 
         Event::fake([
-            CreatedPost::class
+            CreatedPost::class,
         ]);
 
         $post = Post::factory()->make();
@@ -98,9 +98,9 @@ class CreatePostTest extends TestCase
             'author' => [
                 'data' => [
                     'type' => 'users',
-                    'id'    => $author->uuid
-                ]
-            ]
+                    'id' => $author->uuid,
+                ],
+            ],
         ];
 
         $request = CreatePostRequest::make($post, $relationships);
@@ -130,11 +130,11 @@ class CreatePostTest extends TestCase
         $this->assertTrue($data['creating']);
 
         $this->assertDatabaseHas('posts', [
-            'id'        => $post->id,
-            'uuid'      => $post->uuid,
-            'title'     => $post->title,
-            'content'   => $post->content,
-            'slug'      => $post->slug,
+            'id' => $post->id,
+            'uuid' => $post->uuid,
+            'title' => $post->title,
+            'content' => $post->content,
+            'slug' => $post->slug,
         ]);
     }
 

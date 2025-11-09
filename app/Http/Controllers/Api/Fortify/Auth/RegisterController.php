@@ -27,7 +27,7 @@ class RegisterController extends Controller
             array_merge(
                 [
                     'uuid' => Str::uuid(),
-                    'birthdate' => Carbon::parse($birthdate)->format('Y-m-d')
+                    'birthdate' => Carbon::parse($birthdate)->format('Y-m-d'),
                 ],
                 $attributes
             )

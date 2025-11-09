@@ -53,7 +53,7 @@ class PasswordResetLinkTest extends TestCase
         $response->assertUnprocessable();
 
         $response->assertInvalid([
-            'email' =>  "We can't find a user with that email address.",
+            'email' => "We can't find a user with that email address.",
         ]);
 
         $data = $response->json();

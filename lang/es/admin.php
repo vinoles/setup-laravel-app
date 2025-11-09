@@ -27,7 +27,7 @@ return [
         'updated_at' => 'Modificado',
         'deleted_at' => 'Borrado',
         'roles' => 'Roles',
-        'name'  => 'Nombre',
+        'name' => 'Nombre',
         'short_name' => 'Nombre corto',
         'logo_path' => 'URL del logo',
         'club' => 'Club',

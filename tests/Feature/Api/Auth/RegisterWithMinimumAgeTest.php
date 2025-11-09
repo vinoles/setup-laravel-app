@@ -11,7 +11,6 @@ use Tests\Feature\TestCase;
 
 class RegisterWithMinimumAgeTest extends TestCase
 {
-
     /**
      * Can register if the age is greater than or equal to 14
      *

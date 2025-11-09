@@ -59,4 +59,3 @@ class UpdateClubRequest extends PutRequest
         return $this;
     }
 }
-

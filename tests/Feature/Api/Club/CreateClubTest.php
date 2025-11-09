@@ -4,10 +4,10 @@ namespace Tests\Feature\Api\Club;
 
 use App\Models\Club;
 use App\Models\User;
-use Tests\Feature\Requests\Api\Club\CreateClubRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\Club\CreateClubRequest;
+use Tests\Feature\TestCase;
 
 class CreateClubTest extends TestCase
 {
@@ -71,8 +71,8 @@ class CreateClubTest extends TestCase
     public function cannot_create_club_if_without_the_required_data(): void
     {
         $club = Club::factory()->make([
-            'name'      => '',
-            'address'   => '',
+            'name' => '',
+            'address' => '',
         ]);
 
         $request = CreateClubRequest::make($club);
@@ -95,4 +95,3 @@ class CreateClubTest extends TestCase
         );
     }
 }
-

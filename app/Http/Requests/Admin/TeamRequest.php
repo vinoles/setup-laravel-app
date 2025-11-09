@@ -28,7 +28,7 @@ class TeamRequest extends FormRequest
 
         return array_merge(
             [
-                'club_id' => ['nullable', 'exists:clubs,id']
+                'club_id' => ['nullable', 'exists:clubs,id'],
             ],
             Team::getValidationRules()
         );

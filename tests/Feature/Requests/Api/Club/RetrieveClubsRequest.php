@@ -56,4 +56,3 @@ class RetrieveClubsRequest extends GetRequest
         return $this->filters;
     }
 }
-

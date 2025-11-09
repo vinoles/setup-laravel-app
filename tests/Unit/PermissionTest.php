@@ -39,7 +39,7 @@ class PermissionTest extends TestCase
     public function test_scout_specific_permissions_are_included_in_scout_role(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
-        $scoutPermissions = $permissionsByRole[UserRole::SCOUT->value];
+        $scoutPermissions  = $permissionsByRole[UserRole::SCOUT->value];
         $talentPermissions = $permissionsByRole[UserRole::TALENT->value];
 
         $expectedScoutSpecificPermissions = [
@@ -53,7 +53,7 @@ class PermissionTest extends TestCase
 
         // Scout should have all talent permissions plus scout specific ones
         $this->assertCount(14, $scoutPermissions); // 8 base + 6 scout specific
-        
+
         // Check that scout has all base permissions
         foreach ($talentPermissions as $permission) {
             $this->assertContains($permission, $scoutPermissions);
@@ -72,7 +72,7 @@ class PermissionTest extends TestCase
     public function test_club_specific_permissions_are_included_in_club_role(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
-        $clubPermissions = $permissionsByRole[UserRole::CLUB->value];
+        $clubPermissions   = $permissionsByRole[UserRole::CLUB->value];
         $talentPermissions = $permissionsByRole[UserRole::TALENT->value];
 
         $expectedClubSpecificPermissions = [
@@ -86,7 +86,7 @@ class PermissionTest extends TestCase
 
         // Club should have all talent permissions plus club specific ones
         $this->assertCount(14, $clubPermissions); // 8 base + 6 club specific
-        
+
         // Check that club has all base permissions
         foreach ($talentPermissions as $permission) {
             $this->assertContains($permission, $clubPermissions);
@@ -105,7 +105,7 @@ class PermissionTest extends TestCase
     public function test_admin_specific_permissions_are_included_in_admin_role(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
-        $adminPermissions = $permissionsByRole[UserRole::ADMIN->value];
+        $adminPermissions  = $permissionsByRole[UserRole::ADMIN->value];
 
         $expectedAdminSpecificPermissions = [
             Permission::VIEW_ADMIN_PANEL->value,
@@ -161,7 +161,7 @@ class PermissionTest extends TestCase
     public function test_get_permissions_by_role_admin_has_unique_permissions(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
-        $adminPermissions = $permissionsByRole[UserRole::ADMIN->value];
+        $adminPermissions  = $permissionsByRole[UserRole::ADMIN->value];
 
         // Check that admin has all expected permissions
         $this->assertContains(Permission::VIEW_OWN_PROFILE->value, $adminPermissions);
@@ -198,7 +198,7 @@ class PermissionTest extends TestCase
      */
     public function test_get_all_permissions_matches_permissions_by_role(): void
     {
-        $allPermissions = Permission::getAllPermissions();
+        $allPermissions    = Permission::getAllPermissions();
         $permissionsByRole = Permission::getPermissionsByRole();
 
         // Get all permissions from the role-based method
@@ -263,13 +263,13 @@ class PermissionTest extends TestCase
     public function test_scout_and_club_specific_permissions_dont_overlap(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
-        $scoutPermissions = $permissionsByRole[UserRole::SCOUT->value];
-        $clubPermissions = $permissionsByRole[UserRole::CLUB->value];
+        $scoutPermissions  = $permissionsByRole[UserRole::SCOUT->value];
+        $clubPermissions   = $permissionsByRole[UserRole::CLUB->value];
         $talentPermissions = $permissionsByRole[UserRole::TALENT->value];
 
         // Get scout specific permissions (scout permissions minus base permissions)
         $scoutSpecific = array_diff($scoutPermissions, $talentPermissions);
-        
+
         // Get club specific permissions (club permissions minus base permissions)
         $clubSpecific = array_diff($clubPermissions, $talentPermissions);
 
@@ -284,20 +284,20 @@ class PermissionTest extends TestCase
     public function test_admin_permissions_include_all_categories(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
-        $adminPermissions = $permissionsByRole[UserRole::ADMIN->value];
-        $scoutPermissions = $permissionsByRole[UserRole::SCOUT->value];
-        $clubPermissions = $permissionsByRole[UserRole::CLUB->value];
+        $adminPermissions  = $permissionsByRole[UserRole::ADMIN->value];
+        $scoutPermissions  = $permissionsByRole[UserRole::SCOUT->value];
+        $clubPermissions   = $permissionsByRole[UserRole::CLUB->value];
         $talentPermissions = $permissionsByRole[UserRole::TALENT->value];
 
         // Admin should have all permissions from all roles
         foreach ($talentPermissions as $permission) {
             $this->assertContains($permission, $adminPermissions);
         }
-        
+
         foreach ($scoutPermissions as $permission) {
             $this->assertContains($permission, $adminPermissions);
         }
-        
+
         foreach ($clubPermissions as $permission) {
             $this->assertContains($permission, $adminPermissions);
         }

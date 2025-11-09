@@ -74,4 +74,3 @@ class UpdateClubRequest extends PatchRequest
         return $this->club->uuid;
     }
 }
-

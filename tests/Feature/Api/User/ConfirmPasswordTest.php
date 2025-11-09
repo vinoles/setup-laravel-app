@@ -4,14 +4,13 @@ namespace Tests\Feature\Api\User;
 
 use App\Models\User;
 use Illuminate\Http\Response;
-use Tests\Feature\Requests\Api\User\ConfirmPasswordRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\User\ConfirmPasswordRequest;
+use Tests\Feature\TestCase;
 
 class ConfirmPasswordTest extends TestCase
 {
-
     /**
      * A user can confirm password with the correct password.
      *
@@ -32,7 +31,7 @@ class ConfirmPasswordTest extends TestCase
 
         $data = $response->json('meta');
 
-        $this->assertTrue($data["status"]);
+        $this->assertTrue($data['status']);
 
     }
 
@@ -56,7 +55,7 @@ class ConfirmPasswordTest extends TestCase
 
         $data = $response->json('meta');
 
-        $this->assertFalse($data["status"]);
+        $this->assertFalse($data['status']);
 
     }
 

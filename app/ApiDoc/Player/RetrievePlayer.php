@@ -45,4 +45,3 @@ use OpenApi\Annotations as OA;
 class RetrievePlayer extends ApiDoc
 {
 }
-

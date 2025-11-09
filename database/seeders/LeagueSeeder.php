@@ -12,14 +12,14 @@ class LeagueSeeder extends Seeder
     public function run(): void
     {
         $federations = Federation::all();
-        $sports = Sport::all();
+        $sports      = Sport::all();
 
         foreach ($federations as $federation) {
             League::factory()
                 ->count(2)
                 ->create([
                     'federation_id' => $federation->id,
-                    'sport_id'      => $sports->random()->id,
+                    'sport_id' => $sports->random()->id,
                 ]);
         }
     }

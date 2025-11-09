@@ -4,7 +4,6 @@ namespace Tests\Feature\Concerns;
 
 trait UsesRelationships
 {
-
     /**
     * Retrieve type resource.
     *
@@ -15,4 +14,3 @@ trait UsesRelationships
         return $this->relationships;
     }
 }
-

@@ -26,7 +26,7 @@ return [
         'updated_at' => 'Mis à jour le',
         'deleted_at' => 'Supprimé le',
         'roles' => 'Roles',
-        'name'  => 'Name',
+        'name' => 'Name',
         'short_name' => 'Nom abrégé',
         'logo_path' => 'URL du logo',
         'club' => 'Club',
@@ -39,5 +39,5 @@ return [
     'users' => [
         'users' => 'Utilisateurs',
         'user' => 'Utilisateur',
-    ]
+    ],
 ];

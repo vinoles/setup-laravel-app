@@ -5,8 +5,8 @@ namespace Tests\Unit;
 use App\Constants\UserRole;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission as SpatiePermission;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class HasUserRolesTest extends TestCase

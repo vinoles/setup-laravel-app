@@ -20,12 +20,12 @@ class TeamResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'name' =>  $this->name,
-            'short_name' =>  $this->short_name,
-            'city' =>  $this->city,
-            'logo_path' =>  $this->logo_path,
-            'created_at' =>  $this->created_at,
-            'updated_at' =>  $this->updated_at,
+            'name' => $this->name,
+            'short_name' => $this->short_name,
+            'city' => $this->city,
+            'logo_path' => $this->logo_path,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 
@@ -40,7 +40,7 @@ class TeamResource extends JsonApiResource
             return null;
         }
 
-        $club =  $this->club;
+        $club = $this->club;
 
         if ($club === null) {
             return null;

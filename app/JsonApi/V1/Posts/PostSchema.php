@@ -18,7 +18,6 @@ use LaravelJsonApi\Eloquent\Schema;
 
 class PostSchema extends Schema
 {
-
     /**
      * The model the schema corresponds to.
      *

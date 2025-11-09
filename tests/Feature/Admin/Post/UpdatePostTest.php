@@ -15,7 +15,7 @@ class UpdatePostTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const TITLE_MIN_LENGTH = 2;
+    private const TITLE_MIN_LENGTH   = 2;
     private const CONTENT_MIN_LENGTH = 10;
 
     private Post $post;
@@ -120,7 +120,7 @@ class UpdatePostTest extends TestCase
     public function cannot_update_post_with_title_too_short(): void
     {
         $shortTitle = Str::random(self::TITLE_MIN_LENGTH - 1);
-        $request = UpdatePostRequest::make($this->post, $this->updatedPost)->with([
+        $request    = UpdatePostRequest::make($this->post, $this->updatedPost)->with([
             'title' => $shortTitle,
         ]);
 
@@ -140,7 +140,7 @@ class UpdatePostTest extends TestCase
     public function cannot_update_post_with_content_too_short(): void
     {
         $shortContent = Str::random(self::CONTENT_MIN_LENGTH - 1);
-        $request = UpdatePostRequest::make($this->post, $this->updatedPost)->with([
+        $request      = UpdatePostRequest::make($this->post, $this->updatedPost)->with([
             'content' => $shortContent,
         ]);
 
@@ -198,7 +198,7 @@ class UpdatePostTest extends TestCase
     public function slug_is_regenerated_on_update_when_title_changes(): void
     {
         $originalSlug = $this->post->slug;
-        $request = UpdatePostRequest::make($this->post, $this->updatedPost);
+        $request      = UpdatePostRequest::make($this->post, $this->updatedPost);
 
         $this->send($request)->assertRedirect();
 

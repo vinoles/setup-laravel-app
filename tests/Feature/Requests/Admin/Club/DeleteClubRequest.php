@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Requests\Admin\Club;
 
-use App\Models\Club;
 use Tests\Feature\Requests\DeleteRequest;
 
 class DeleteClubRequest extends DeleteRequest
@@ -26,4 +25,3 @@ class DeleteClubRequest extends DeleteRequest
         return route('admin.clubs.destroy', ['id' => $this->clubId]);
     }
 }
-

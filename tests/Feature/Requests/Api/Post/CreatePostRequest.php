@@ -49,7 +49,7 @@ class CreatePostRequest extends PostRequest
                     'updated_at',
                     'created_at',
                     'id',
-                    'published_at'
+                    'published_at',
                 ]
             ),
             static fn ($value) => $value !== null

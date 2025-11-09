@@ -11,9 +11,9 @@ class RefereeFactory extends Factory
     {
         return [
             'uuid' => Str::uuid(),
-            'first_name'  => $this->faker->firstName(),
-            'last_name'   => $this->faker->lastName(),
-            'license_code'=> $this->faker->optional()->bothify('REF-###-??'),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'license_code' => $this->faker->optional()->bothify('REF-###-??'),
             'nationality' => $this->faker->country(),
         ];
     }

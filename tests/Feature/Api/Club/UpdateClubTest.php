@@ -3,10 +3,10 @@
 namespace Tests\Feature\Api\Club;
 
 use App\Models\Club;
-use Tests\Feature\Requests\Api\Club\UpdateClubRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\Club\UpdateClubRequest;
+use Tests\Feature\TestCase;
 
 class UpdateClubTest extends TestCase
 {
@@ -97,8 +97,8 @@ class UpdateClubTest extends TestCase
         $club = Club::factory()->create();
 
         $clubData = Club::factory()->make([
-            'name'      => '',
-            'address'   => '',
+            'name' => '',
+            'address' => '',
         ]);
 
         $request = UpdateClubRequest::make($club)
@@ -122,4 +122,3 @@ class UpdateClubTest extends TestCase
         );
     }
 }
-

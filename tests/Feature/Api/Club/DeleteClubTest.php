@@ -3,10 +3,10 @@
 namespace Tests\Feature\Api\Club;
 
 use App\Models\Club;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Club\DeleteClubRequest;
+use Tests\Feature\TestCase;
 
 class DeleteClubTest extends TestCase
 {
@@ -78,8 +78,7 @@ class DeleteClubTest extends TestCase
 
         $response = $this->signIn($this->user)
             ->sendRequestApiDelete($request);
-        
+
         $response->assertNotFound();
     }
 }
-

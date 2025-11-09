@@ -21,7 +21,7 @@ class PostFactory extends Factory
             'uuid' => Str::uuid(),
             'title' => fake()->word(5),
             'published_at' => now(),
-            'content' => fake()->paragraph()
+            'content' => fake()->paragraph(),
         ];
     }
 }

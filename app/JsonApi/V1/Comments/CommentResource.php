@@ -20,7 +20,7 @@ class CommentResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'content' =>  $this->content,
+            'content' => $this->content,
         ];
     }
 

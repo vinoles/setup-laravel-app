@@ -116,7 +116,7 @@ trait SendsRequests
     protected function sendRequestApiPostWithPayloadAndToken(...$args): TestResponse
     {
         $request = Arr::get($args, 0);
-        $token = Arr::get($args, 1);
+        $token   = Arr::get($args, 1);
 
         return $this
             ->jsonApi()
@@ -136,7 +136,7 @@ trait SendsRequests
     {
         $request = Arr::get($args, 0);
 
-        $data['type'] = $request->type();
+        $data['type']       = $request->type();
         $data['attributes'] = $request->payload();
 
         if (count($request->relationships())) {
@@ -158,9 +158,9 @@ trait SendsRequests
     protected function sendRequestApiPatchWithData(...$args): TestResponse
     {
 
-        $request = Arr::get($args, 0);
-        $data['type'] = $request->type();
-        $data['id'] = $request->modelUuid();
+        $request            = Arr::get($args, 0);
+        $data['type']       = $request->type();
+        $data['id']         = $request->modelUuid();
         $data['attributes'] = $request->payload();
 
         return $this

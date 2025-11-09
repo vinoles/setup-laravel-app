@@ -12,10 +12,8 @@ use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
 
-
 class CommentSchema extends Schema
 {
-
     /**
      * The model the schema corresponds to.
      *

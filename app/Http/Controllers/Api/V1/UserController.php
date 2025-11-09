@@ -7,7 +7,6 @@ use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 
 class UserController extends Controller
 {
-
     use Actions\FetchMany;
     use Actions\FetchOne;
     use Actions\Store;

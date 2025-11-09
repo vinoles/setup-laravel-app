@@ -14,9 +14,9 @@ class GameRefereeFactory extends Factory
     {
         return [
             'uuid' => Str::uuid(),
-            'game_id'    => Game::query()->inRandomOrder()->value('id') ?? Game::factory(),
+            'game_id' => Game::query()->inRandomOrder()->value('id') ?? Game::factory(),
             'referee_id' => Referee::query()->inRandomOrder()->value('id') ?? Referee::factory(),
-            'role_id'    => RefereeRole::query()->inRandomOrder()->value('id') ?? RefereeRole::factory(),
+            'role_id' => RefereeRole::query()->inRandomOrder()->value('id') ?? RefereeRole::factory(),
         ];
     }
 }

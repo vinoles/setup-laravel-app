@@ -5,7 +5,6 @@ namespace Tests\Feature\Admin\Post;
 use App\Constants\UserRole;
 use App\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Admin\Post\ListPostRequest;

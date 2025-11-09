@@ -26,4 +26,3 @@ class SearchClubRequest extends PostRequest
         return route('admin.clubs.search');
     }
 }
-

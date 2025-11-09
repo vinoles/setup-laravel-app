@@ -97,4 +97,3 @@ class DeleteClubTest extends TestCase
         return $this->adminSignIn($this->user)->sendRequest($request);
     }
 }
-

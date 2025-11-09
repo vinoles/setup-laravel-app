@@ -13,7 +13,6 @@ use LaravelJsonApi\Eloquent\Schema;
 
 class TagSchema extends Schema
 {
-
     /**
      * The model the schema corresponds to.
      *

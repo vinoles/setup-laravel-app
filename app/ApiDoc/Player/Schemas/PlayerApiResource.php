@@ -37,4 +37,3 @@ use OpenApi\Annotations as OA;
 class PlayerApiResource
 {
 }
-

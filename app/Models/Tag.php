@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tag extends Model
 {
-    use HasFactory,
-        HasUuid;
+    use HasFactory;
+    use HasUuid;
 
     /**
      * @var string[]

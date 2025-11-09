@@ -17,8 +17,8 @@ class SeasonFactory extends Factory
             'uuid' => Str::uuid(),
             'league_id' => League::query()->inRandomOrder()->value('id') ?? League::factory(),
             'name' => $this->faker->year() . '/' . ($this->faker->dateTimeBetween('next year', '+1 year')->format('Y')),
-            'start_date'=> $start,
-            'end_date'  => (clone $start)->modify('+5 months'),
+            'start_date' => $start,
+            'end_date' => (clone $start)->modify('+5 months'),
             'status_id' => SeasonStatus::query()->inRandomOrder()->value('id') ?? SeasonStatus::factory(),
         ];
     }

@@ -51,4 +51,3 @@ use OpenApi\Annotations as OA;
 class PlayersApiResponse
 {
 }
-

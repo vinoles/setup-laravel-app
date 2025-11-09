@@ -27,4 +27,6 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class ConfirmPasswordResponse {}
+class ConfirmPasswordResponse
+{
+}

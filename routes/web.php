@@ -12,7 +12,7 @@ Route::get('/redoc-api', function () {
 });
 
 Route::get('/storage/redocapi', function () {
-    $path = storage_path("api-docs/api-docs.json");
+    $path = storage_path('api-docs/api-docs.json');
 
     return response()->file($path);
 })->name('storage_rerdoc');

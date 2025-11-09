@@ -61,8 +61,8 @@ class SearchClubTest extends TestCase
         $this->assertSame($response->json('recordsFiltered'), 5);
         $this->assertSame($response->json('recordsTotal'), 5);
 
-        $this->assertCount($response->json('recordsFiltered'),  $clubs);
-        $this->assertCount($response->json('recordsTotal'),  $clubs);
+        $this->assertCount($response->json('recordsFiltered'), $clubs);
+        $this->assertCount($response->json('recordsTotal'), $clubs);
 
         $response->assertSee('clubs');
     }
@@ -136,4 +136,3 @@ class SearchClubTest extends TestCase
         return $this->adminSignIn($this->user)->sendRequest($request);
     }
 }
-

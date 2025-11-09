@@ -15,7 +15,6 @@ use LaravelJsonApi\Laravel\Http\Requests\AnonymousQuery;
 
 class PostController extends Controller
 {
-
     use Actions\FetchMany;
     use Actions\FetchOne;
     use Actions\Update;

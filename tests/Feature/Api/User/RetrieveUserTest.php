@@ -1,12 +1,13 @@
 <?php
 
 namespace Tests\Feature\Api\User;
+
 use App\Models\User;
 use Illuminate\Http\Response;
-use Tests\Feature\Requests\Api\User\RetrieveUserRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\User\RetrieveUserRequest;
+use Tests\Feature\TestCase;
 
 class RetrieveUserTest extends TestCase
 {
@@ -57,7 +58,7 @@ class RetrieveUserTest extends TestCase
         $this->assertEquals($data['id'], $user->uuid);
 
         $this->assertDatabaseHas('users', [
-            'id' => $user->id
+            'id' => $user->id,
         ]);
 
     }
@@ -72,7 +73,7 @@ class RetrieveUserTest extends TestCase
     #[Group('api_user')]
     public function cannot_retrieve_user_without_permissions(): void
     {
-        $this->markTestSkipped("Skipped test await for implement roles in user");
+        $this->markTestSkipped('Skipped test await for implement roles in user');
 
         $user = User::factory()->create();
 
@@ -116,7 +117,7 @@ class RetrieveUserTest extends TestCase
 
         $data = $response->json('errors');
 
-        $response->assertStatus($data[0]["status"]);
+        $response->assertStatus($data[0]['status']);
     }
 
 }

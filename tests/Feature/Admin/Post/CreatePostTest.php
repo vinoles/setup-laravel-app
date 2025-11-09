@@ -15,7 +15,7 @@ class CreatePostTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const TITLE_MIN_LENGTH = 2;
+    private const TITLE_MIN_LENGTH   = 2;
     private const CONTENT_MIN_LENGTH = 10;
 
     private Post $post;
@@ -109,7 +109,7 @@ class CreatePostTest extends TestCase
     public function cannot_create_post_with_title_too_short(): void
     {
         $shortTitle = Str::random(self::TITLE_MIN_LENGTH - 1);
-        $request = CreatePostRequest::make($this->post)->with(['title' => $shortTitle]);
+        $request    = CreatePostRequest::make($this->post)->with(['title' => $shortTitle]);
 
         $response = $this->send($request);
 
@@ -127,7 +127,7 @@ class CreatePostTest extends TestCase
     public function cannot_create_post_with_content_too_short(): void
     {
         $shortContent = Str::random(self::CONTENT_MIN_LENGTH - 1);
-        $request = CreatePostRequest::make($this->post)->with(['content' => $shortContent]);
+        $request      = CreatePostRequest::make($this->post)->with(['content' => $shortContent]);
 
         $response = $this->send($request);
 

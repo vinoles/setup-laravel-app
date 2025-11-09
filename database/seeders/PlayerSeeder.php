@@ -18,7 +18,7 @@ class PlayerSeeder extends Seeder
 
             foreach ($players as $player) {
                 PlayerTeam::factory()->create([
-                    'player_id'      => $player->id,
+                    'player_id' => $player->id,
                     'team_season_id' => $teamSeason->id,
                 ]);
             }

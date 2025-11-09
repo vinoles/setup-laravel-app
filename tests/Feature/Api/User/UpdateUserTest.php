@@ -3,14 +3,13 @@
 namespace Tests\Feature\Api\User;
 
 use App\Models\User;
-use Tests\Feature\Requests\Api\User\UpdateUserRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\User\UpdateUserRequest;
+use Tests\Feature\TestCase;
 
 class UpdateUserTest extends TestCase
 {
-
     /**
     * A user not logged in cannot update the user
     *
