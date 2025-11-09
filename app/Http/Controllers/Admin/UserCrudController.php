@@ -14,7 +14,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class UserCrudController extends CrudController
 {
-    use UsesBacpackOperations;
+    use UsesBackpackOperations;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
