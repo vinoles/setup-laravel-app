@@ -98,13 +98,13 @@ class PostCrudController extends CrudController
         CRUD::setValidation(PostRequest::class);
         // CRUD::setFromDb(); // set fields from db columns.
 
-        CRUD::field([
+        CRUD::addField([
             'name' => 'title',
             'type' => 'text',
             'label' => __('admin.globals.title'),
         ]);
 
-        CRUD::field([
+        CRUD::addField([
             'name' => 'content',
             'type' => 'textarea',
             'label' => __('admin.globals.content'),
