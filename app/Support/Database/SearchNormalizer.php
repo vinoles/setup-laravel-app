@@ -65,6 +65,11 @@ class SearchNormalizer
         $grammar = DB::connection()->getQueryGrammar();
         $expression = $grammar->wrap($column);
         $expression = "CONCAT('', {$expression})";
+        $driver = DB::connection()->getDriverName();
+
+        if ($driver === 'sqlite') {
+            return "LOWER({$expression})";
+        }
 
         foreach (self::REPLACEMENTS as $from => $to) {
             $expression = sprintf(
