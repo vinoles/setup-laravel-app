@@ -37,6 +37,7 @@ return [
         'content'          => 'Content',
         'slug'             => 'Slug',
         'published_at'     => 'Published At',
+        'author'           => 'Author',
         'type'             => 'Type',
         'acronym'          => 'Acronym',
         'foundation_year'  => 'Foundation year',

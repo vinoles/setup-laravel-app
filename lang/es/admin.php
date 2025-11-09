@@ -37,6 +37,7 @@ return [
         'content'          => 'Contenido',
         'slug'             => 'Slug',
         'published_at'     => 'Publicado el',
+        'author'           => 'Autor',
         'type'             => 'Tipo',
         'acronym'          => 'Acrónimo',
         'foundation_year'  => 'Año de fundación',
