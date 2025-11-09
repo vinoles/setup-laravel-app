@@ -22,7 +22,6 @@ class LeagueResource extends JsonApiResource
         return [
             'name' => $this->name,
             'country' => $this->country,
-            'sport_id' => $this->sport_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
