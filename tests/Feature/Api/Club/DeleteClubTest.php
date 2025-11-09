@@ -45,8 +45,8 @@ class DeleteClubTest extends TestCase
         $response->assertNoContent();
 
         $this->assertDatabaseMissing('clubs', [
-            'uuid' => $club->uuid,
-            'name' => $club->name,
+            'uuid'    => $club->uuid,
+            'name'    => $club->name,
             'address' => $club->address,
         ]);
     }

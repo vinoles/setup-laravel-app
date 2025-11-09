@@ -23,16 +23,16 @@ foreach ($dirs as $dir) {
 
 return (new PhpCsFixer\Config)
     ->setRules([
-        '@PSR12' => true,                            // Base PSR12
-        'array_syntax' => ['syntax' => 'short'],     // [] en vez de array()
+        '@PSR12'                      => true,                            // Base PSR12
+        'array_syntax'                => ['syntax' => 'short'],     // [] en vez de array()
         'trailing_comma_in_multiline' => true,      // Coma al final en arrays multilínea
-        'single_quote' => true,                      // Strings con comillas simples
-        'no_unused_imports' => true,                 // Quitar imports no usados
-        'ordered_imports' => ['sort_algorithm' => 'alpha'], // Imports ordenados
-        'binary_operator_spaces' => [
+        'single_quote'                => true,                      // Strings con comillas simples
+        'no_unused_imports'           => true,                 // Quitar imports no usados
+        'ordered_imports'             => ['sort_algorithm' => 'alpha'], // Imports ordenados
+        'binary_operator_spaces'      => [
             'operators' => ['=' => 'align_single_space_minimal'],
         ],
-        'no_alias_functions' => ['functions' => ['dump', 'dd', 'ray']],
+        'no_alias_functions'          => ['functions' => ['dump', 'dd', 'ray']],
     ])
     ->setFinder($finder)
     ->setUsingCache(true);

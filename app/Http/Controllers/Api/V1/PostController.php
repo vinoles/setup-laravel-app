@@ -42,7 +42,7 @@ class PostController extends Controller
         CreatePost::dispatch($attributes);
 
         return ApiResponseHelper::jsonApiResponse([
-            'id' => $uuid,
+            'id'       => $uuid,
             'creating' => true,
         ], Response::HTTP_CREATED);
     }

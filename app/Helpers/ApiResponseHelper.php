@@ -12,7 +12,7 @@ class ApiResponseHelper
             'jsonapi' => [
                 'version' => '1.0',
             ],
-            'data' => $data,
+            'data'    => $data,
         ], $status);
     }
 }

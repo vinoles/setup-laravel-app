@@ -12,18 +12,18 @@ return [
     'contentClass' => 'col-md-12',
 
     // Automatically add all columns from the db table?
-    'setFromDb' => true,
+    'setFromDb'    => true,
 
     // Automatically add created_at and updated_at columns, if model has timestamps?
-    'timestamps' => true,
+    'timestamps'   => true,
 
     // If model has SoftDeletes, allow the admin to access the Show page for
     // soft deleted items & add a deleted_at column to ShowOperation?
-    'softDeletes' => false,
+    'softDeletes'  => false,
 
     // Enable to group columns in tabs
-    'tabsEnabled' => false,
+    'tabsEnabled'  => false,
 
     // When using tabbed forms (create & update), what kind of tabs would you like?
-    'tabsType' => 'horizontal', // options: horizontal, vertical
+    'tabsType'     => 'horizontal', // options: horizontal, vertical
 ];

@@ -12,7 +12,7 @@ class ClubRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            'name' => ['bail', 'required', 'string', 'min:5', 'max:50'],
+            'name'    => ['bail', 'required', 'string', 'min:5', 'max:50'],
             'address' => ['bail', 'required', 'string', 'min:5', 'max:150'],
         ];
     }

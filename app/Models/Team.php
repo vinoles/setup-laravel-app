@@ -38,10 +38,10 @@ class Team extends Model
     public static function getValidationRules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:120'],
+            'name'       => ['required', 'string', 'max:120'],
             'short_name' => ['nullable', 'string', 'max:20'],
-            'city' => ['nullable', 'string', 'max:80'],
-            'logo_path' => ['nullable', 'string', 'max:255'],
+            'city'       => ['nullable', 'string', 'max:80'],
+            'logo_path'  => ['nullable', 'string', 'max:255'],
         ];
     }
 

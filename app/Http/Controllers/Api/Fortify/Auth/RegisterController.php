@@ -24,7 +24,7 @@ class RegisterController extends Controller
         $user = User::create(
             array_merge(
                 [
-                    'uuid' => Str::uuid(),
+                    'uuid'      => Str::uuid(),
                     'birthdate' => Carbon::parse($birthdate)->format('Y-m-d'),
                 ],
                 $attributes

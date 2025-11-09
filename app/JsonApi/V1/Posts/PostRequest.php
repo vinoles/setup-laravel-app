@@ -22,9 +22,9 @@ class PostRequest extends ResourceRequest
 
         return [
             'content' => ['required', 'string'],
-            'title' => ['required', 'string'],
-            'uuid' => ['nullable', 'string'],
-            'author' => ['required'],
+            'title'   => ['required', 'string'],
+            'uuid'    => ['nullable', 'string'],
+            'author'  => ['required'],
         ];
     }
 }

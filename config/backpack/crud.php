@@ -12,10 +12,10 @@ return [
     |-------------------
     */
 
-    'show_translatable_field_icon' => true,
+    'show_translatable_field_icon'     => true,
     'translatable_field_icon_position' => 'right', // left or right
 
-    'locales' => [
+    'locales'                          => [
         // "af_NA" => "Afrikaans (Namibia)",
         // "af_ZA" => "Afrikaans (South Africa)",
         // "af" => "Afrikaans",
@@ -452,14 +452,14 @@ return [
         // "zu" => "Zulu"
     ],
 
-    'view_namespaces' => [
+    'view_namespaces'                  => [
         'buttons' => [
             'crud::buttons', // falls back to 'resources/views/vendor/backpack/crud/buttons'
         ],
         'columns' => [
             'crud::columns', // falls back to 'resources/views/vendor/backpack/crud/columns'
         ],
-        'fields' => [
+        'fields'  => [
             'crud::fields', // falls back to 'resources/views/vendor/backpack/crud/fields'
         ],
         'filters' => [
@@ -467,14 +467,14 @@ return [
         ],
     ],
     // the uploaders for the `withFiles` macro
-    'uploaders' => [
+    'uploaders'                        => [
         'withFiles' => [
-            'image' => \Backpack\CRUD\app\Library\Uploaders\SingleBase64Image::class,
-            'upload' => \Backpack\CRUD\app\Library\Uploaders\SingleFile::class,
+            'image'           => \Backpack\CRUD\app\Library\Uploaders\SingleBase64Image::class,
+            'upload'          => \Backpack\CRUD\app\Library\Uploaders\SingleFile::class,
             'upload_multiple' => \Backpack\CRUD\app\Library\Uploaders\MultipleFiles::class,
         ],
     ],
 
-    'file_name_generator' => \Backpack\CRUD\app\Library\Uploaders\Support\FileNameGenerator::class,
+    'file_name_generator'              => \Backpack\CRUD\app\Library\Uploaders\Support\FileNameGenerator::class,
 
 ];

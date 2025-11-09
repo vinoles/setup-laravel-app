@@ -27,13 +27,13 @@ class RegisterTest extends TestCase
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('users', [
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'address' => $user->address,
-            'city' => $user->city,
-            'country' => $user->country,
+            'first_name'  => $user->first_name,
+            'last_name'   => $user->last_name,
+            'address'     => $user->address,
+            'city'        => $user->city,
+            'country'     => $user->country,
             'postal_code' => $user->postal_code,
-            'phone' => $user->phone,
+            'phone'       => $user->phone,
         ]);
     }
 
@@ -54,13 +54,13 @@ class RegisterTest extends TestCase
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('users', [
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'address' => $user->address,
-            'city' => $user->city,
-            'country' => $user->country,
+            'first_name'  => $user->first_name,
+            'last_name'   => $user->last_name,
+            'address'     => $user->address,
+            'city'        => $user->city,
+            'country'     => $user->country,
             'postal_code' => $user->postal_code,
-            'phone' => $user->phone,
+            'phone'       => $user->phone,
         ]);
     }
 }

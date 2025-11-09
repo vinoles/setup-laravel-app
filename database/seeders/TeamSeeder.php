@@ -16,7 +16,7 @@ class TeamSeeder extends Seeder
         Season::all()->each(function (Season $season) use ($teams) {
             $teams->random(6)->each(function (Team $team) use ($season) {
                 TeamSeason::factory()->create([
-                    'team_id' => $team->id,
+                    'team_id'   => $team->id,
                     'season_id' => $season->id,
                 ]);
             });

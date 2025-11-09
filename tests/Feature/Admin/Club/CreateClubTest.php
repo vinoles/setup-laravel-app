@@ -63,7 +63,7 @@ class CreateClubTest extends TestCase
         $response->assertRedirect();
 
         $this->assertDatabaseHas('clubs', [
-            'name' => $this->club->name,
+            'name'    => $this->club->name,
             'address' => $this->club->address,
         ]);
     }

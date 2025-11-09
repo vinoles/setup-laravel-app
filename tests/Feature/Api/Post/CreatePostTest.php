@@ -51,7 +51,7 @@ class CreatePostTest extends TestCase
             'author' => [
                 'data' => [
                     'type' => 'users',
-                    'id' => $author->uuid,
+                    'id'   => $author->uuid,
                 ],
             ],
         ];
@@ -92,7 +92,7 @@ class CreatePostTest extends TestCase
             'author' => [
                 'data' => [
                     'type' => 'users',
-                    'id' => $author->uuid,
+                    'id'   => $author->uuid,
                 ],
             ],
         ];
@@ -124,11 +124,11 @@ class CreatePostTest extends TestCase
         $this->assertTrue($data['creating']);
 
         $this->assertDatabaseHas('posts', [
-            'id' => $post->id,
-            'uuid' => $post->uuid,
-            'title' => $post->title,
+            'id'      => $post->id,
+            'uuid'    => $post->uuid,
+            'title'   => $post->title,
             'content' => $post->content,
-            'slug' => $post->slug,
+            'slug'    => $post->slug,
         ]);
     }
 
@@ -141,7 +141,7 @@ class CreatePostTest extends TestCase
     public function cannot_create_post_if_without_the_required_data(): void
     {
         $post = Post::factory()->make([
-            'title' => '',
+            'title'   => '',
             'content' => '',
         ]);
 

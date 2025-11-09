@@ -10,11 +10,11 @@ class RefereeFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => Str::uuid(),
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
+            'uuid'         => Str::uuid(),
+            'first_name'   => $this->faker->firstName(),
+            'last_name'    => $this->faker->lastName(),
             'license_code' => $this->faker->optional()->bothify('REF-###-??'),
-            'nationality' => $this->faker->country(),
+            'nationality'  => $this->faker->country(),
         ];
     }
 }

@@ -51,7 +51,7 @@ class CreateClubTest extends TestCase
         $this->assertSame($club->address, $data['attributes']['address']);
 
         $this->assertDatabaseHas('clubs', [
-            'name' => $club->name,
+            'name'    => $club->name,
             'address' => $club->address,
         ]);
     }
@@ -65,7 +65,7 @@ class CreateClubTest extends TestCase
     public function cannot_create_club_if_without_the_required_data(): void
     {
         $club = Club::factory()->make([
-            'name' => '',
+            'name'    => '',
             'address' => '',
         ]);
 

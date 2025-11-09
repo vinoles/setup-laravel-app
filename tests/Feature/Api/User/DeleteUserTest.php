@@ -47,14 +47,14 @@ class DeleteUserTest extends TestCase
         $response->assertNoContent();
 
         $this->assertDatabaseMissing('users', [
-            'uuid' => $user->uuid,
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'address' => $user->address,
-            'city' => $user->city,
-            'country' => $user->country,
+            'uuid'        => $user->uuid,
+            'first_name'  => $user->first_name,
+            'last_name'   => $user->last_name,
+            'address'     => $user->address,
+            'city'        => $user->city,
+            'country'     => $user->country,
             'postal_code' => $user->postal_code,
-            'phone' => $user->phone,
+            'phone'       => $user->phone,
         ]);
     }
 

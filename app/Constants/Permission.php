@@ -68,9 +68,9 @@ enum Permission: string
 
         return [
             UserRole::TALENT->value => $talentPermissions,
-            UserRole::SCOUT->value => $scoutPermissions,
-            UserRole::CLUB->value => $clubPermissions,
-            UserRole::ADMIN->value => $adminPermissions,
+            UserRole::SCOUT->value  => $scoutPermissions,
+            UserRole::CLUB->value   => $clubPermissions,
+            UserRole::ADMIN->value  => $adminPermissions,
         ];
     }
 

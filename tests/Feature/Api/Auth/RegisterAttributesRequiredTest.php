@@ -82,9 +82,9 @@ class RegisterAttributesRequiredTest extends TestCase
 
         $response->assertInvalid([
             'first_name' => trans('validation.required', ['attribute' => 'first name']),
-            'last_name' => trans('validation.required', ['attribute' => 'last name']),
-            'email' => trans('validation.required', ['attribute' => 'email']),
-            'birthdate' => trans('validation.required', ['attribute' => 'birthdate']),
+            'last_name'  => trans('validation.required', ['attribute' => 'last name']),
+            'email'      => trans('validation.required', ['attribute' => 'email']),
+            'birthdate'  => trans('validation.required', ['attribute' => 'birthdate']),
         ]);
     }
 }

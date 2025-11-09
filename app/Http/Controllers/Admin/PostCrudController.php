@@ -101,14 +101,14 @@ class PostCrudController extends CrudController
         // CRUD::setFromDb(); // set fields from db columns.
 
         CRUD::field([
-            'name' => 'title',
-            'type' => 'text',
+            'name'  => 'title',
+            'type'  => 'text',
             'label' => __('admin.globals.title'),
         ]);
 
         CRUD::field([
-            'name' => 'content',
-            'type' => 'textarea',
+            'name'  => 'content',
+            'type'  => 'textarea',
             'label' => __('admin.globals.content'),
         ]);
 

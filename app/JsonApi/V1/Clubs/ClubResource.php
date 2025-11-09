@@ -19,7 +19,7 @@ class ClubResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'name' => $this->name,
+            'name'    => $this->name,
             'address' => $this->address,
         ];
     }

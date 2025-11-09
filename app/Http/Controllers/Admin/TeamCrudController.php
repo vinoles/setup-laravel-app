@@ -43,12 +43,12 @@ class TeamCrudController extends CrudController
         CRUD::column('short_name');
         CRUD::column('city');
         CRUD::addColumn([
-            'name' => 'club_id',
-            'label' => 'Club',
-            'type' => 'select',
-            'entity' => 'club',
+            'name'      => 'club_id',
+            'label'     => 'Club',
+            'type'      => 'select',
+            'entity'    => 'club',
             'attribute' => 'name',
-            'model' => "App\Models\Club",
+            'model'     => "App\Models\Club",
         ]);
     }
 
@@ -64,36 +64,36 @@ class TeamCrudController extends CrudController
         CRUD::setValidation(TeamRequest::class);
 
         CRUD::addField([
-            'name' => 'name',
-            'type' => 'text',
+            'name'  => 'name',
+            'type'  => 'text',
             'label' => __('admin.globals.name'),
         ]);
 
         CRUD::addField([
-            'name' => 'short_name',
-            'type' => 'text',
+            'name'  => 'short_name',
+            'type'  => 'text',
             'label' => __('admin.globals.short_name'),
         ]);
 
         CRUD::addField([
-            'name' => 'city',
-            'type' => 'text',
+            'name'  => 'city',
+            'type'  => 'text',
             'label' => __('admin.globals.city'),
         ]);
 
         CRUD::addField([
-            'name' => 'logo_path',
-            'type' => 'text',
+            'name'  => 'logo_path',
+            'type'  => 'text',
             'label' => __('admin.globals.logo_path'),
         ]);
 
         CRUD::addField([
-            'name' => 'club_id',
-            'type' => 'select',
-            'entity' => 'club',
-            'model' => Club::class,
+            'name'      => 'club_id',
+            'type'      => 'select',
+            'entity'    => 'club',
+            'model'     => Club::class,
             'attribute' => 'name',
-            'label' => __('admin.globals.club'),
+            'label'     => __('admin.globals.club'),
         ]);
     }
 

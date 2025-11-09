@@ -12,15 +12,15 @@ class TeamStatFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => Str::uuid(),
+            'uuid'    => Str::uuid(),
             'game_id' => Game::query()->inRandomOrder()->value('id') ?? Game::factory(),
             'team_id' => Team::query()->inRandomOrder()->value('id') ?? Team::factory(),
             'metrics' => [
-                'possession' => $this->faker->numberBetween(35, 65),
-                'shots' => $this->faker->numberBetween(3, 15),
+                'possession'      => $this->faker->numberBetween(35, 65),
+                'shots'           => $this->faker->numberBetween(3, 15),
                 'shots_on_target' => $this->faker->numberBetween(1, 10),
-                'corners' => $this->faker->numberBetween(0, 8),
-                'fouls' => $this->faker->numberBetween(5, 15),
+                'corners'         => $this->faker->numberBetween(0, 8),
+                'fouls'           => $this->faker->numberBetween(5, 15),
             ],
         ];
     }

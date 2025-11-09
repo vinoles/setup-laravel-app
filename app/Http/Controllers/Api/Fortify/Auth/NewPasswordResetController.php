@@ -39,9 +39,9 @@ class NewPasswordResetController extends Controller
     public function __invoke(Request $request): Responsable
     {
         $request->validate([
-            'token' => 'required',
+            'token'          => 'required',
             Fortify::email() => 'required|email',
-            'password' => 'required',
+            'password'       => 'required',
         ]);
 
         // Here we will attempt to reset the user's password. If it is successful we

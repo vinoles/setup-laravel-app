@@ -62,14 +62,14 @@ class ClubCrudController extends CrudController
          * - CRUD::field('price')->type('number');
          */
         CRUD::addField([
-            'name' => 'name',
-            'type' => 'text',
+            'name'  => 'name',
+            'type'  => 'text',
             'label' => __('admin.globals.name'),
         ]);
 
         CRUD::addField([
-            'name' => 'address',
-            'type' => 'text',
+            'name'  => 'address',
+            'type'  => 'text',
             'label' => __('admin.globals.address'),
         ]);
     }

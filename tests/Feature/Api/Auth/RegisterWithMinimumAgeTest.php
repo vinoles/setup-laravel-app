@@ -63,7 +63,7 @@ class RegisterWithMinimumAgeTest extends TestCase
                 'validation.before_or_equal',
                 [
                     'attribute' => 'birthdate',
-                    'date' => $allowedBirthdate,
+                    'date'      => $allowedBirthdate,
                 ]
             ),
         ]);

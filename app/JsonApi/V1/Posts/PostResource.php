@@ -19,9 +19,9 @@ class PostResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
-            'title' => $this->title,
-            'slug' => $this->slug,
-            'content' => $this->content,
+            'title'        => $this->title,
+            'slug'         => $this->slug,
+            'content'      => $this->content,
             'published_at' => $this->published_at,
         ];
     }

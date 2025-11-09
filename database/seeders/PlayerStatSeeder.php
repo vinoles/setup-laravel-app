@@ -27,9 +27,9 @@ class PlayerStatSeeder extends Seeder
 
                     foreach ($players as $player) {
                         PlayerStat::factory()->create([
-                            'game_id' => $game->id,
+                            'game_id'   => $game->id,
                             'player_id' => $player->id,
-                            'team_id' => $team->id,
+                            'team_id'   => $team->id,
                         ]);
                     }
                 }

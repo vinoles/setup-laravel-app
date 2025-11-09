@@ -48,13 +48,13 @@ class UpdateUserTest extends TestCase
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('users', [
-            'first_name' => $userData->first_name,
-            'last_name' => $userData->last_name,
-            'address' => $userData->address,
-            'city' => $userData->city,
-            'country' => $userData->country,
+            'first_name'  => $userData->first_name,
+            'last_name'   => $userData->last_name,
+            'address'     => $userData->address,
+            'city'        => $userData->city,
+            'country'     => $userData->country,
             'postal_code' => $userData->postal_code,
-            'phone' => $userData->phone,
+            'phone'       => $userData->phone,
         ]);
     }
 

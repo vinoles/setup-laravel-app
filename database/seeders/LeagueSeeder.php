@@ -19,7 +19,7 @@ class LeagueSeeder extends Seeder
                 ->count(2)
                 ->create([
                     'federation_id' => $federation->id,
-                    'sport_id' => $sports->random()->id,
+                    'sport_id'      => $sports->random()->id,
                 ]);
         }
     }

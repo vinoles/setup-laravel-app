@@ -67,8 +67,8 @@ class UpdateClubTest extends TestCase
         $response->assertRedirect();
 
         $this->assertDatabaseHas('clubs', [
-            'id' => $this->club->id,
-            'name' => $this->updatedClub->name,
+            'id'      => $this->club->id,
+            'name'    => $this->updatedClub->name,
             'address' => $this->updatedClub->address,
         ]);
     }

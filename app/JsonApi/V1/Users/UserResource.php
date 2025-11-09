@@ -20,12 +20,12 @@ class UserResource extends JsonApiResource
     {
         return [
             'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'phone' => $this->phone,
-            'address' => $this->address,
-            'city' => $this->city,
-            'province' => $this->province,
-            'birthdate' => $this->birthdate,
+            'last_name'  => $this->last_name,
+            'phone'      => $this->phone,
+            'address'    => $this->address,
+            'city'       => $this->city,
+            'province'   => $this->province,
+            'birthdate'  => $this->birthdate,
         ];
     }
 

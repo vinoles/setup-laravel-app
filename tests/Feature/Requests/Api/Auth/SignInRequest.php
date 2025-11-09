@@ -12,7 +12,7 @@ class SignInRequest extends PostRequest
     public function __construct(string $email, string $password)
     {
         $this->with([
-            'email' => $email,
+            'email'    => $email,
             'password' => $password,
         ]);
     }

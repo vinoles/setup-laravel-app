@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'domain' => env('HORIZON_DOMAIN'),
+    'domain'           => env('HORIZON_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'path' => env('HORIZON_PATH', 'horizon'),
+    'path'             => env('HORIZON_PATH', 'horizon'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'use' => 'default',
+    'use'              => 'default',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'prefix' => env(
+    'prefix'           => env(
         'HORIZON_PREFIX',
         Str::slug(env('APP_NAME', 'laravel'), '_') . '_horizon:'
     ),
@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'middleware' => ['web'],
+    'middleware'       => ['web'],
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'waits' => [
+    'waits'            => [
         'redis:default' => 60,
     ],
 
@@ -98,13 +98,13 @@ return [
     |
     */
 
-    'trim' => [
-        'recent' => 60,
-        'pending' => 60,
-        'completed' => 60,
+    'trim'             => [
+        'recent'        => 60,
+        'pending'       => 60,
+        'completed'     => 60,
         'recent_failed' => 10080,
-        'failed' => 10080,
-        'monitored' => 10080,
+        'failed'        => 10080,
+        'monitored'     => 10080,
     ],
 
     /*
@@ -118,7 +118,7 @@ return [
     |
     */
 
-    'silenced' => [
+    'silenced'         => [
         // App\Jobs\ExampleJob::class,
     ],
 
@@ -133,9 +133,9 @@ return [
     |
     */
 
-    'metrics' => [
+    'metrics'          => [
         'trim_snapshots' => [
-            'job' => 24,
+            'job'   => 24,
             'queue' => 24,
         ],
     ],
@@ -166,7 +166,7 @@ return [
     |
     */
 
-    'memory_limit' => 64,
+    'memory_limit'     => 64,
 
     /*
     |--------------------------------------------------------------------------
@@ -179,39 +179,39 @@ return [
     |
     */
 
-    'defaults' => [
+    'defaults'         => [
         'supervisor-1' => [
-            'connection' => 'redis',
-            'queue' => ['default'],
-            'balance' => 'simple',
+            'connection'          => 'redis',
+            'queue'               => ['default'],
+            'balance'             => 'simple',
             'autoScalingStrategy' => 'time',
-            'maxProcesses' => 1,
-            'maxTime' => 0,
-            'maxJobs' => 0,
-            'memory' => 128,
-            'tries' => 1,
-            'timeout' => 60,
-            'nice' => 0,
+            'maxProcesses'        => 1,
+            'maxTime'             => 0,
+            'maxJobs'             => 0,
+            'memory'              => 128,
+            'tries'               => 1,
+            'timeout'             => 60,
+            'nice'                => 0,
         ],
     ],
 
-    'environments' => [
+    'environments'     => [
         'production' => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
-                'balance' => 'auto',
-                'processes' => 3,
-                'tries' => 3,
+                'queue'      => ['default'],
+                'balance'    => 'auto',
+                'processes'  => 3,
+                'tries'      => 3,
             ],
         ],
-        'local' => [
+        'local'      => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
-                'balance' => 'simple',
-                'processes' => 1,
-                'tries' => 1,
+                'queue'      => ['default'],
+                'balance'    => 'simple',
+                'processes'  => 1,
+                'tries'      => 1,
             ],
         ],
     ],

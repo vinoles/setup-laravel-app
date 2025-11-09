@@ -15,11 +15,11 @@ class TeamSeasonFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => Str::uuid(),
-            'team_id' => Team::query()->inRandomOrder()->value('id') ?? Team::factory(),
+            'uuid'      => Str::uuid(),
+            'team_id'   => Team::query()->inRandomOrder()->value('id') ?? Team::factory(),
             'season_id' => Season::query()->inRandomOrder()->value('id') ?? Season::factory(),
-            'group' => $this->faker->randomElement([null, 'A', 'B']),
-            'seed' => $this->faker->numberBetween(1, 10),
+            'group'     => $this->faker->randomElement([null, 'A', 'B']),
+            'seed'      => $this->faker->numberBetween(1, 10),
         ];
     }
 }

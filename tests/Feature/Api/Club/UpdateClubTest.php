@@ -51,8 +51,8 @@ class UpdateClubTest extends TestCase
         $this->assertSame($clubData->address, $data['attributes']['address']);
 
         $this->assertDatabaseHas('clubs', [
-            'id' => $club->id,
-            'name' => $clubData->name,
+            'id'      => $club->id,
+            'name'    => $clubData->name,
             'address' => $clubData->address,
         ]);
     }
@@ -89,7 +89,7 @@ class UpdateClubTest extends TestCase
         $club = Club::factory()->create();
 
         $clubData = Club::factory()->make([
-            'name' => '',
+            'name'    => '',
             'address' => '',
         ]);
 
