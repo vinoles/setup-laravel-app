@@ -9,12 +9,14 @@ use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 
-trait UsesBackpackOperations {
+trait UsesBackpackOperations
+{
 
     use ListOperation;
     use CreateOperation;
-    use UpdateOperation;
     use DeleteOperation;
+    use ListOperation;
     use ShowOperation;
+    use UpdateOperation;
     use HasCrudLinks;
 }

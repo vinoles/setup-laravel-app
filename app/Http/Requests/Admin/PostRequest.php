@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
         return [
             'content' => 'bail|required|string|min:10',
             // 'slug' => 'bail|required|string',
-            'title' => 'bail|required|string|min:2',
+            'title'   => 'bail|required|string|min:2',
         ];
     }
 

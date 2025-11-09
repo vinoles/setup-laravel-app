@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use App\Models\Concerns\HasUuid;
-use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -34,6 +34,16 @@ class Team extends Model
     protected $with = [
         'club',
     ];
+
+    public static function getValidationRules(): array
+    {
+        return [
+            'name'       => ['required', 'string', 'max:120'],
+            'short_name' => ['nullable', 'string', 'max:20'],
+            'city'       => ['nullable', 'string', 'max:80'],
+            'logo_path'  => ['nullable', 'string', 'max:255'],
+        ];
+    }
 
     public function teamSeasons(): HasMany
     {
@@ -68,15 +78,5 @@ class Team extends Model
     public function getClubNameAttribute(): ?string
     {
         return optional($this->club)->name;
-    }
-
-    public static function getValidationRules(): array
-    {
-        return [
-            'name' => ['required', 'string', 'max:120'],
-            'short_name' => ['nullable', 'string', 'max:20'],
-            'city' => ['nullable', 'string', 'max:80'],
-            'logo_path' => ['nullable', 'string', 'max:255'],
-        ];
     }
 }

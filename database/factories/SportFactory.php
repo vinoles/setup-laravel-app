@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class SportFactory extends Factory
 {
@@ -12,7 +11,7 @@ class SportFactory extends Factory
         return [
             'code' => strtoupper($this->faker->unique()->lexify('???')),
             'name' => $this->faker->randomElement([
-                'Football', 'Basketball', 'Volleyball', 'Baseball', 'Tennis', 'Handball'
+                'Football', 'Basketball', 'Volleyball', 'Baseball', 'Tennis', 'Handball',
             ]),
         ];
     }

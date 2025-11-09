@@ -14,23 +14,28 @@ abstract class Request
     protected $payload = [];
 
     /**
-     * Retrieve the endpoint of the request.
+     * Make a new request instance.
      *
-     * @return string
+     * @param  mixed  $args
+     */
+    public static function make(...$args): static
+    {
+        return new static(...$args);
+    }
+
+    /**
+     * Retrieve the endpoint of the request.
      */
     abstract public function endpoint(): string;
 
     /**
      * Retrieve the method of the request.
-     *
-     * @return string
      */
     abstract public function method(): string;
 
     /**
      * Retrieve a value from the payload.
      *
-     * @param  string  $key
      * @return mixed
      */
     public function get(string $key)
@@ -40,9 +45,6 @@ abstract class Request
 
     /**
      * Check if the payload has a key.
-     *
-     * @param  string  $key
-     * @return bool
      */
     public function has(string $key): bool
     {
@@ -50,20 +52,7 @@ abstract class Request
     }
 
     /**
-     * Make a new request instance.
-     *
-     * @param  mixed  $args
-     * @return static
-     */
-    public static function make(...$args): static
-    {
-        return new static(...$args);
-    }
-
-    /**
      * Retrieve the payload of the request.
-     *
-     * @return array
      */
     public function payload(): array
     {
@@ -84,9 +73,6 @@ abstract class Request
 
     /**
      * Set multiple values of the payload.
-     *
-     * @param  array  $payload
-     * @return static
      */
     public function with(array $payload): static
     {

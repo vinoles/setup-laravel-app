@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="CommentApiResponse",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="jsonapi",
  *         type="object",
@@ -33,6 +34,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class CommentApiResponse
-{
-}
+class CommentApiResponse {}

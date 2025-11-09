@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="PostCommentsApiResponse",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="jsonapi",
  *         type="object",
@@ -29,12 +30,11 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *          property="data",
  *          type="array",
+ *
  *          @OA\Items(
  *              ref="#/components/schemas/PostCommentApiResource",
  *          ),
  *     )
  * )
  */
-class PostCommentsApiResponse
-{
-}
+class PostCommentsApiResponse {}

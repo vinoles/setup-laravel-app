@@ -3,17 +3,15 @@
 namespace Tests\Feature\Api\Club;
 
 use App\Models\Club;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Club\DeleteClubRequest;
+use Tests\Feature\TestCase;
 
 class DeleteClubTest extends TestCase
 {
     /**
      * A user not logged in cannot delete the club
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -29,8 +27,6 @@ class DeleteClubTest extends TestCase
 
     /**
      * Delete club happy path
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -49,16 +45,14 @@ class DeleteClubTest extends TestCase
         $response->assertNoContent();
 
         $this->assertDatabaseMissing('clubs', [
-            'uuid' => $club->uuid,
-            'name' => $club->name,
+            'uuid'    => $club->uuid,
+            'name'    => $club->name,
             'address' => $club->address,
         ]);
     }
 
     /**
      * Cannot delete club if the club not found.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -78,8 +72,7 @@ class DeleteClubTest extends TestCase
 
         $response = $this->signIn($this->user)
             ->sendRequestApiDelete($request);
-        
+
         $response->assertNotFound();
     }
 }
-

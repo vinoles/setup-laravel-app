@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="PostCommentApiResource",
  *     type="object",
+ *
  *     @OA\Property(
  *          property="type",
  *          type="string",
@@ -21,10 +22,12 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *          property="attributes",
  *          type="array",
+ *
  *          @OA\Items(
  *              ref="#/components/schemas/PostCommentAttributes",
  *          ),
  *      ),
+ *
  *      @OA\Property(
  *          property="relationships",
  *          ref="#/components/schemas/PostCommentRelationships"
@@ -40,6 +43,4 @@ use OpenApi\Annotations as OA;
  *      )
  * )
  */
-class PostCommentApiResource
-{
-}
+class PostCommentApiResource {}

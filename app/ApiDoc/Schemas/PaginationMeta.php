@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="PaginationMeta",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="page",
  *         type="object",
@@ -20,7 +21,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-
-class PaginationMeta
-{
-}
+class PaginationMeta {}

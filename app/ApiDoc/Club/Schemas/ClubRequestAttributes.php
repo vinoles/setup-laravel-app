@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="ClubRequestAttributes",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="name",
  *         type="string",
@@ -20,6 +21,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class ClubRequestAttributes
-{
-}
+class ClubRequestAttributes {}

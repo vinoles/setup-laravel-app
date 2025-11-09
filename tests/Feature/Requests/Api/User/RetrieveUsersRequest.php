@@ -8,18 +8,11 @@ class RetrieveUsersRequest extends GetRequest
 {
     /**
      * Create a new instance of the request.
-     *
-     * @param  array  $query
-     * @param  array  $filters
      */
-    public function __construct(protected array $query = [], protected array $filters = [])
-    {
-    }
+    public function __construct(protected array $query = [], protected array $filters = []) {}
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {
@@ -28,8 +21,6 @@ class RetrieveUsersRequest extends GetRequest
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function expects(): string
     {

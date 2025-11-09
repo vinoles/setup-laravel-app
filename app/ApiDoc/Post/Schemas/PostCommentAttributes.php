@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="PostCommentAttributes",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="content",
  *         type="string",
@@ -25,6 +26,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class PostCommentAttributes
-{
-}
+class PostCommentAttributes {}

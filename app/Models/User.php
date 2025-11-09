@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\HasUserRoles;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Concerns\HasUuid;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,16 +13,17 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable {
+class User extends Authenticatable
+{
     use CrudTrait;
 
+    use HasApiTokens;
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory,
-        Notifiable,
-        HasApiTokens,
-        HasUuid,
-        HasRoles,
-        HasUserRoles;
+    use HasFactory;
+    use HasRoles;
+    use HasUserRoles;
+    use HasUuid;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -58,6 +59,14 @@ class User extends Authenticatable {
     ];
 
     /**
+     * Return the full name of the user
+     */
+    public function getFullNameAttribute(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -65,9 +74,9 @@ class User extends Authenticatable {
     protected function casts(): array
     {
         return [
-            'birthdate' => 'date:Y-m-d',
+            'birthdate'         => 'date:Y-m-d',
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
     }
 

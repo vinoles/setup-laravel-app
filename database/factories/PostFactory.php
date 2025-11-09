@@ -18,10 +18,10 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => Str::uuid(),
-            'title' => fake()->word(5),
+            'uuid'         => Str::uuid(),
+            'title'        => fake()->word(5),
             'published_at' => now(),
-            'content' => fake()->paragraph()
+            'content'      => fake()->paragraph(),
         ];
     }
 }

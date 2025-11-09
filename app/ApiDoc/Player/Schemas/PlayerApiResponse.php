@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="PlayerApiResponse",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="jsonapi",
  *         type="object",
@@ -33,7 +34,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class PlayerApiResponse
-{
-}
-
+class PlayerApiResponse {}

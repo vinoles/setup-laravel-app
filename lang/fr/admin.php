@@ -7,12 +7,12 @@ return [
         'fr' => 'French',
     ],
     'globals' => [
-        'email' => 'E-mail',
-        'first_name' => 'Prénom',
-        'second_name' => 'Deuxième prénom',
-        'full_name' => 'Nom complet',
-        'last_name' => 'Nom de famille',
-        'first_last_name' => 'Premier nom de famille',
+        'email'            => 'E-mail',
+        'first_name'       => 'Prénom',
+        'second_name'      => 'Deuxième prénom',
+        'full_name'        => 'Nom complet',
+        'last_name'        => 'Nom de famille',
+        'first_last_name'  => 'Premier nom de famille',
         'second_last_name' => 'Deuxième nom de famille',
         'social' => 'Social',
         'phone' => 'Téléphone',
@@ -43,8 +43,8 @@ return [
         'website' => 'Site web',
         'contact_email' => 'Email de contact',
     ],
-    'users' => [
+    'users'   => [
         'users' => 'Utilisateurs',
-        'user' => 'Utilisateur',
-    ]
+        'user'  => 'Utilisateur',
+    ],
 ];

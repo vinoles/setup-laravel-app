@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Club extends Model
 {
     use CrudTrait;
-    use HasFactory,
-        HasUuid;
+    use HasFactory;
+    use HasUuid;
 
     /**
      * @var string[]

@@ -9,6 +9,7 @@ use OpenApi\Annotations as OA;
  *     schema="ClubCreateRequest",
  *     type="object",
  *     required={"name", "address"},
+ *
  *     @OA\Property(
  *         property="data",
  *         type="object",
@@ -25,6 +26,4 @@ use OpenApi\Annotations as OA;
  *    ),
  * )
  */
-class ClubCreateRequest
-{
-}
+class ClubCreateRequest {}

@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="PostRelationships",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="author",
  *         type="object",
@@ -60,8 +61,10 @@ use OpenApi\Annotations as OA;
  *         @OA\Property(
  *              property="data",
  *              type="array",
+ *
  *             @OA\Items(
  *                  type="object",
+ *
  *                  @OA\Property(
  *                      property="type",
  *                      type="string",
@@ -95,6 +98,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class PostRelationships
-{
-}
+class PostRelationships {}

@@ -18,8 +18,8 @@ class ClubFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => Str::uuid(),
-            'name' => fake()->name(),
+            'uuid'    => Str::uuid(),
+            'name'    => fake()->name(),
             'address' => fake()->address,
         ];
     }

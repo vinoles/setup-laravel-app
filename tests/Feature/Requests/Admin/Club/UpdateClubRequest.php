@@ -10,9 +10,6 @@ class UpdateClubRequest extends PutRequest
 {
     /**
      * Create a new instance of the request.
-     *
-     * @param  Club  $club
-     * @param  Club|null  $updatedClub
      */
     public function __construct(
         protected Club $club,
@@ -25,8 +22,6 @@ class UpdateClubRequest extends PutRequest
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {
@@ -35,8 +30,6 @@ class UpdateClubRequest extends PutRequest
 
     /**
      * Fill the payload of the request based on the given updated club.
-     *
-     * @return static
      */
     protected function fillPayload(): static
     {
@@ -59,4 +52,3 @@ class UpdateClubRequest extends PutRequest
         return $this;
     }
 }
-

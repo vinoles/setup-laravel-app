@@ -3,20 +3,16 @@
 namespace Tests\Feature\Api\User;
 
 use App\Models\User;
-
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\User\DeleteUserRequest;
+use Tests\Feature\TestCase;
 
 class DeleteUserTest extends TestCase
 {
-
     /**
-    * A user not logged in cannot delete the user
-    *
-    * @return void
-    */
+     * A user not logged in cannot delete the user
+     */
     #[Test]
     #[Group('api')]
     #[Group('api_user')]
@@ -31,8 +27,6 @@ class DeleteUserTest extends TestCase
 
     /**
      * Create user happy path
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -53,21 +47,19 @@ class DeleteUserTest extends TestCase
         $response->assertNoContent();
 
         $this->assertDatabaseMissing('users', [
-            'uuid' => $user->uuid,
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'address' => $user->address,
-            'city' => $user->city,
-            'country' => $user->country,
+            'uuid'        => $user->uuid,
+            'first_name'  => $user->first_name,
+            'last_name'   => $user->last_name,
+            'address'     => $user->address,
+            'city'        => $user->city,
+            'country'     => $user->country,
             'postal_code' => $user->postal_code,
-            'phone' => $user->phone,
+            'phone'       => $user->phone,
         ]);
     }
 
     /**
      * Cannot delete user if the user not found.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Team;
 use App\Models\Season;
+use App\Models\Team;
 use App\Models\TeamSeason;
 use Illuminate\Database\Seeder;
 

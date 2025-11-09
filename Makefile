@@ -104,3 +104,9 @@ horizon:
 
 socket:
 	$(sail) artisan reverb:start --debug
+
+duster-lint:
+	$(sail) php ./vendor/bin/duster lint
+
+duster-fix:
+	$(sail) php ./vendor/bin/duster fix

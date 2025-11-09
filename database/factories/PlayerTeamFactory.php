@@ -15,7 +15,7 @@ class PlayerTeamFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => Str::uuid(),
+            'uuid'           => Str::uuid(),
             'player_id'      => Player::query()->inRandomOrder()->value('id') ?? Player::factory(),
             'team_season_id' => TeamSeason::query()->inRandomOrder()->value('id') ?? TeamSeason::factory(),
             'jersey_number'  => (string) $this->faker->numberBetween(1, 99),

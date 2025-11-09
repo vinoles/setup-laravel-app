@@ -12,7 +12,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class PostCrudController
- * @package App\Http\Controllers\Admin
+ *
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class PostCrudController extends CrudController
@@ -35,6 +35,7 @@ class PostCrudController extends CrudController
      * Define what happens when the List operation is loaded.
      *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
+     *
      * @return void
      */
     protected function setupListOperation()
@@ -82,6 +83,7 @@ class PostCrudController extends CrudController
      * Define what happens when the Create operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
+     *
      * @return void
      */
     protected function setupCreateOperation()
@@ -105,6 +107,7 @@ class PostCrudController extends CrudController
      * Define what happens when the Update operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
+     *
      * @return void
      */
     protected function setupUpdateOperation()
@@ -116,6 +119,7 @@ class PostCrudController extends CrudController
      * Define what happens when the Show operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-show
+     *
      * @return void
      */
     protected function setupShowOperation()

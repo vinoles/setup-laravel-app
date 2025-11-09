@@ -12,7 +12,7 @@ class LeagueFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => Str::uuid(),
+            'uuid'          => Str::uuid(),
             'federation_id' => Federation::query()->inRandomOrder()->value('id') ?? Federation::factory(),
             'sport_id'      => Sport::query()->inRandomOrder()->value('id') ?? Sport::factory(),
             'name'          => $this->faker->unique()->company() . ' League',

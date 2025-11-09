@@ -2,14 +2,11 @@
 
 namespace Tests\Feature\Requests\Admin\Post;
 
-use App\Models\Post;
 use Tests\Feature\Requests\GetRequest;
 
 class ShowPostRequest extends GetRequest
 {
-    public function __construct(protected int $postId)
-    {
-    }
+    public function __construct(protected int $postId) {}
 
     /**
      * Retrieve the endpoint of the request.

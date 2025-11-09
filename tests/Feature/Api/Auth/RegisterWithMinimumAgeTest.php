@@ -11,11 +11,8 @@ use Tests\Feature\TestCase;
 
 class RegisterWithMinimumAgeTest extends TestCase
 {
-
     /**
      * Can register if the age is greater than or equal to 14
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -37,8 +34,6 @@ class RegisterWithMinimumAgeTest extends TestCase
 
     /**
      * Cannot register if the age is less than or equal to 14
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -68,7 +63,7 @@ class RegisterWithMinimumAgeTest extends TestCase
                 'validation.before_or_equal',
                 [
                     'attribute' => 'birthdate',
-                    'date' => $allowedBirthdate,
+                    'date'      => $allowedBirthdate,
                 ]
             ),
         ]);

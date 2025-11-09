@@ -6,9 +6,7 @@ use Tests\Feature\Requests\GetRequest;
 
 class ShowClubRequest extends GetRequest
 {
-    public function __construct(protected int $clubId)
-    {
-    }
+    public function __construct(protected int $clubId) {}
 
     /**
      * Retrieve the endpoint of the request.
@@ -18,4 +16,3 @@ class ShowClubRequest extends GetRequest
         return route('admin.clubs.show', ['id' => $this->clubId]);
     }
 }
-
