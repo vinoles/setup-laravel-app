@@ -56,7 +56,7 @@ class TeamCrudController extends CrudController
             'type' => 'select',
             'entity' => 'club',
             'attribute' => 'name',
-            'model' => "App\Models\Club",
+            'model' => Club::class,
         ]);
     }
 
