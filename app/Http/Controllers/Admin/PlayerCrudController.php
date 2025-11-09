@@ -39,10 +39,6 @@ class PlayerCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::addColumn([
-            'name' => 'uuid',
-        ]);
-
-        CRUD::addColumn([
             'name'  => 'full_name',
             'label' => 'Name',
         ]);
@@ -85,13 +81,47 @@ class PlayerCrudController extends CrudController
     {
         CRUD::setValidation(PlayerRequest::class);
 
-        CRUD::field('first_name')->label(__('admin.globals.first_name'));
-        CRUD::field('last_name')->label(__('admin.globals.last_name'));
-        CRUD::field('birthdate')->label(__('admin.globals.birthdate'));
-        CRUD::field('nationality')->label(__('admin.globals.nationality'));
-        CRUD::field('position')->label(__('admin.globals.position'));
-        CRUD::field('height_cm')->label(__('admin.globals.height_cm'));
-        CRUD::field('weight_kg')->label(__('admin.globals.weight_kg'));
+        CRUD::addField([
+            'name'  => 'first_name',
+            'type'  => 'text',
+            'label' => __('admin.globals.first_name'),
+        ]);
+
+        CRUD::addField([
+            'name'  => 'last_name',
+            'type'  => 'text',
+            'label' => __('admin.globals.last_name'),
+        ]);
+
+        CRUD::addField([
+            'name'  => 'birthdate',
+            'type'  => 'date',
+            'label' => __('admin.globals.birthdate'),
+        ]);
+
+        CRUD::addField([
+            'name'  => 'nationality',
+            'type'  => 'text',
+            'label' => __('admin.globals.nationality'),
+        ]);
+
+        CRUD::addField([
+            'name'  => 'position',
+            'type'  => 'text',
+            'label' => __('admin.globals.position'),
+        ]);
+
+        CRUD::addField([
+            'name'  => 'height_cm',
+            'type'  => 'number',
+            'label' => __('admin.globals.height_cm'),
+        ]);
+
+        CRUD::addField([
+            'name'  => 'weight_kg',
+            'type'  => 'number',
+            'label' => __('admin.globals.weight_kg'),
+        ]);
     }
 
     /**
