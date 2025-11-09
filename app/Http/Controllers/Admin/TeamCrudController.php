@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Helpers\HasCrudLinks;
+use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Requests\Admin\TeamRequest;
 use App\Models\Club;
 use App\Models\Team;
@@ -50,14 +52,7 @@ class TeamCrudController extends CrudController
             'name' => 'city',
         ]);
 
-        CRUD::addColumn([
-            'name' => 'club_id',
-            'label' => 'Club',
-            'type' => 'select',
-            'entity' => 'club',
-            'attribute' => 'name',
-            'model' => Club::class,
-        ]);
+        CRUD::addColumn(self::linkColumn('club', Club::class, 'name', 'clubs', ['name']));
     }
 
     /**
