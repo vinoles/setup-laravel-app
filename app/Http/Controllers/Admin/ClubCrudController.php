@@ -38,13 +38,13 @@ class ClubCrudController extends CrudController
     {
         CRUD::addColumn([
             'name' => 'name',
-            'type' => 'string',
+            'type' => 'text',
             'label' => __('admin.globals.name'),
         ]);
 
         CRUD::addColumn([
             'name' => 'address',
-            'type' => 'string',
+            'type' => 'text',
             'label' => __('admin.globals.address'),
         ]);
     }
