@@ -12,18 +12,27 @@ use Illuminate\Support\Str;
 use LaravelJsonApi\Core\Document\Concerns\Serializable;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 use LaravelJsonApi\Laravel\Http\Requests\AnonymousQuery;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\AttachRelationship;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\Destroy;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\DetachRelationship;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchMany;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchOne;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchRelated;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchRelationship;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\Update;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\UpdateRelationship;
 
 class PostController extends Controller
 {
-    use Actions\AttachRelationship;
-    use Actions\Destroy;
-    use Actions\DetachRelationship;
-    use Actions\FetchMany;
-    use Actions\FetchOne;
-    use Actions\FetchRelated;
-    use Actions\FetchRelationship;
-    use Actions\Update;
-    use Actions\UpdateRelationship;
+    use AttachRelationship;
+    use Destroy;
+    use DetachRelationship;
+    use FetchMany;
+    use FetchOne;
+    use FetchRelated;
+    use FetchRelationship;
+    use Update;
+    use UpdateRelationship;
     use Serializable;
 
     /**

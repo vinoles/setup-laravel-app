@@ -1,5 +1,6 @@
 <?php
 
+use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
 $finder = Finder::create();
@@ -21,7 +22,7 @@ foreach ($dirs as $dir) {
     }
 }
 
-return (new PhpCsFixer\Config)
+return (new Config)
     ->setRules([
         '@PSR12'                      => true,                            // Base PSR12
         'array_syntax'                => ['syntax' => 'short'],     // [] en vez de array()

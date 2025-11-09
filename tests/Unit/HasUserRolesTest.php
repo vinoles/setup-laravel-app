@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Constants\Permission;
 use App\Constants\UserRole;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -289,13 +290,13 @@ class HasUserRolesTest extends TestCase
     private function createRoles(): void
     {
         // Create all permissions using the enum
-        $allPermissions = \App\Constants\Permission::getAllPermissions();
+        $allPermissions = Permission::getAllPermissions();
         foreach ($allPermissions as $permission) {
             SpatiePermission::create(['name' => $permission]);
         }
 
         // Get permissions grouped by role from the enum
-        $permissionsByRole = \App\Constants\Permission::getPermissionsByRole();
+        $permissionsByRole = Permission::getPermissionsByRole();
 
         // Create roles and assign permissions
         foreach ($permissionsByRole as $roleName => $permissions) {
