@@ -17,7 +17,7 @@ class GameStatusFactory extends Factory
                 'In Progress',
                 'Finished',
                 'Postponed',
-                'Cancelled'
+                'Cancelled',
             ]),
         ];
     }

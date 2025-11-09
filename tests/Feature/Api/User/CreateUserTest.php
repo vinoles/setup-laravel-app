@@ -3,18 +3,16 @@
 namespace Tests\Feature\Api\User;
 
 use App\Models\User;
-use Tests\Feature\Requests\Api\User\CreateUserRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\User\CreateUserRequest;
+use Tests\Feature\TestCase;
 
 class CreateUserTest extends TestCase
 {
     /**
-    * A user not logged in cannot create the user
-    *
-    * @return void
-    */
+     * A user not logged in cannot create the user
+     */
     #[Test]
     #[Group('api')]
     #[Group('api_user')]
@@ -29,8 +27,6 @@ class CreateUserTest extends TestCase
 
     /**
      * Create user happy path
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -49,20 +45,18 @@ class CreateUserTest extends TestCase
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('users', [
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'address' => $user->address,
-            'city' => $user->city,
-            'country' => $user->country,
+            'first_name'  => $user->first_name,
+            'last_name'   => $user->last_name,
+            'address'     => $user->address,
+            'city'        => $user->city,
+            'country'     => $user->country,
             'postal_code' => $user->postal_code,
-            'phone' => $user->phone,
+            'phone'       => $user->phone,
         ]);
     }
 
     /**
      * Cannot create user if without the required data.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

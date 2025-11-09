@@ -7,6 +7,25 @@ use Closure;
 class CheckIfAdmin
 {
     /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        if (backpack_auth()->guest()) {
+            return $this->respondToUnauthorizedRequest($request);
+        }
+
+        if (! $this->checkIfUserIsAdmin(backpack_user())) {
+            return $this->respondToUnauthorizedRequest($request);
+        }
+
+        return $next($request);
+    }
+
+    /**
      * Checked that the logged in user is an administrator.
      *
      * --------------
@@ -43,25 +62,5 @@ class CheckIfAdmin
         } else {
             return redirect()->guest(backpack_url('login'));
         }
-    }
-
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
-    {
-        if (backpack_auth()->guest()) {
-            return $this->respondToUnauthorizedRequest($request);
-        }
-
-        if (! $this->checkIfUserIsAdmin(backpack_user())) {
-            return $this->respondToUnauthorizedRequest($request);
-        }
-
-        return $next($request);
     }
 }

@@ -83,4 +83,3 @@ class ShowClubTest extends TestCase
         return $this->adminSignIn($this->user)->sendRequest($request);
     }
 }
-

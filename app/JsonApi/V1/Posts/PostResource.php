@@ -14,39 +14,28 @@ class PostResource extends JsonApiResource
     /**
      * Get the resource's attributes.
      *
-     * @param Request|null $request
-     * @return iterable
+     * @param  Request|null  $request
      */
     public function attributes($request): iterable
     {
         return [
-            'title' => $this->title,
-            'slug' => $this->slug,
-            'content' => $this->content,
+            'title'        => $this->title,
+            'slug'         => $this->slug,
+            'content'      => $this->content,
             'published_at' => $this->published_at,
         ];
     }
 
-    /**
-     * @return array
-     */
     public function deleteRules(): array
     {
         return [];
     }
 
-    /**
-     * @return array
-     */
     public function deleteMessages(): array
     {
         return [];
     }
 
-    /**
-     * @param Post $post
-     * @return array
-     */
     public function metaForDelete(Post $post): array
     {
         return [];

@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="TeamApiResource",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="type",
  *         type="string",
@@ -37,6 +38,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class TeamApiResource
-{
-}
+class TeamApiResource {}

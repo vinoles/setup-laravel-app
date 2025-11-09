@@ -9,17 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tag extends Model
 {
-    use HasFactory,
-        HasUuid;
+    use HasFactory;
+    use HasUuid;
 
     /**
      * @var string[]
      */
     protected $fillable = ['name'];
 
-    /**
-     * @return BelongsToMany
-     */
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class);

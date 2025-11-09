@@ -4,11 +4,11 @@ namespace App\Models;
 
 use App\Models\Concerns\HasUuid;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Player extends Model
 {
@@ -26,6 +26,19 @@ class Player extends Model
         'height_cm',
         'weight_kg',
     ];
+
+    public static function getValidationRules(): array
+    {
+        return [
+            'first_name'  => ['required', 'max:80'],
+            'last_name'   => ['required', 'max:80'],
+            'birthdate'   => ['nullable', 'date'],
+            'nationality' => ['nullable', 'max:80'],
+            'position'    => ['nullable', 'max:40'],
+            'height_cm'   => ['nullable', 'integer'],
+            'weight_kg'   => ['nullable', 'integer'],
+        ];
+    }
 
     public function playerTeams(): HasMany
     {
@@ -45,18 +58,5 @@ class Player extends Model
     public function getFullNameAttribute(): string
     {
         return "{$this->first_name} {$this->last_name}";
-    }
-
-    public static function getValidationRules(): array
-    {
-        return [
-            'first_name' => ['required', 'max:80'],
-            'last_name' => ['required', 'max:80'],
-            'birthdate' => ['nullable', 'date'],
-            'nationality' => ['nullable', 'max:80'],
-            'position' => ['nullable', 'max:40'],
-            'height_cm' => ['nullable', 'integer'],
-            'weight_kg' => ['nullable', 'integer'],
-        ];
     }
 }

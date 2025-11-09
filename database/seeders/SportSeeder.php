@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Sport;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class SportSeeder extends Seeder
 {
@@ -22,6 +21,6 @@ class SportSeeder extends Seeder
                 'name' => $item['name'],
             ]);
         }
-;
+
     }
 }

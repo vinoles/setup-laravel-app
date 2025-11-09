@@ -9,9 +9,6 @@ class PostObserver
 {
     /**
      * Triggered before creating an post.
-     *
-     * @param  Post  $post
-     * @return void
      */
     public function creating(Post $post): void
     {
@@ -36,17 +33,14 @@ class PostObserver
     /**
      * Handle the Post "updated" event.
      */
-    public function updated(Post $post): void
-    {
-
-    }
+    public function updated(Post $post): void {}
 
     /**
      * Handle the Post "updating" event.
      */
     public function updating(Post $post): void
     {
-        //TODO: Consider refactoring in the future
+        // TODO: Consider refactoring in the future
         if ($post->isDirty('title')) {
             $shortUuid = Str::substr($post->uuid, -7);
             $post->slug = Str::slug("{$shortUuid} {$post->title}", '-');

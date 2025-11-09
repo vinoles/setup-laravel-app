@@ -14,18 +14,17 @@ class TeamResource extends JsonApiResource
     /**
      * Get the resource's attributes.
      *
-     * @param Request|null $request
-     * @return iterable
+     * @param  Request|null  $request
      */
     public function attributes($request): iterable
     {
         return [
-            'name' =>  $this->name,
-            'short_name' =>  $this->short_name,
-            'city' =>  $this->city,
-            'logo_path' =>  $this->logo_path,
-            'created_at' =>  $this->created_at,
-            'updated_at' =>  $this->updated_at,
+            'name'       => $this->name,
+            'short_name' => $this->short_name,
+            'city'       => $this->city,
+            'logo_path'  => $this->logo_path,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 
@@ -36,19 +35,19 @@ class TeamResource extends JsonApiResource
      */
     private function transformClub(): ?array
     {
-        if (!  $this->relationLoaded('club')) {
+        if (! $this->relationLoaded('club')) {
             return null;
         }
 
-        $club =  $this->club;
+        $club = $this->club;
 
         if ($club === null) {
             return null;
         }
 
         return [
-            'id' => $club->uuid,
-            'name' => $club->name,
+            'id'      => $club->uuid,
+            'name'    => $club->name,
             'address' => $club->address,
         ];
     }

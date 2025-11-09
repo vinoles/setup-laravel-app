@@ -45,6 +45,44 @@ enum Permission: string
     case MANAGE_CONTENT = 'manage_content';
 
     /**
+     * Get permissions grouped by role
+     */
+    public static function getPermissionsByRole(): array
+    {
+        $basePermissions = self::getBasePermissions();
+        $scoutSpecific = self::getScoutSpecificPermissions();
+        $clubSpecific = self::getClubSpecificPermissions();
+        $adminSpecific = self::getAdminSpecificPermissions();
+
+        $talentPermissions = $basePermissions;
+
+        $scoutPermissions = array_merge($basePermissions, $scoutSpecific);
+
+        $clubPermissions = array_merge($basePermissions, $clubSpecific);
+
+        $adminPermissions = array_unique(array_merge(
+            $scoutPermissions,
+            $clubPermissions,
+            $adminSpecific
+        ));
+
+        return [
+            UserRole::TALENT->value => $talentPermissions,
+            UserRole::SCOUT->value  => $scoutPermissions,
+            UserRole::CLUB->value   => $clubPermissions,
+            UserRole::ADMIN->value  => $adminPermissions,
+        ];
+    }
+
+    /**
+     * Get all unique permissions
+     */
+    public static function getAllPermissions(): array
+    {
+        return array_unique(array_merge(...array_values(self::getPermissionsByRole())));
+    }
+
+    /**
      * Get base permissions that all users should have
      */
     private static function getBasePermissions(): array
@@ -104,43 +142,5 @@ enum Permission: string
             self::VIEW_SYSTEM_ANALYTICS->value,
             self::MANAGE_CONTENT->value,
         ];
-    }
-
-    /**
-     * Get permissions grouped by role
-     */
-    public static function getPermissionsByRole(): array
-    {
-        $basePermissions = self::getBasePermissions();
-        $scoutSpecific = self::getScoutSpecificPermissions();
-        $clubSpecific = self::getClubSpecificPermissions();
-        $adminSpecific = self::getAdminSpecificPermissions();
-
-        $talentPermissions = $basePermissions;
-
-        $scoutPermissions = array_merge($basePermissions, $scoutSpecific);
-
-        $clubPermissions = array_merge($basePermissions, $clubSpecific);
-
-        $adminPermissions = array_unique(array_merge(
-            $scoutPermissions,
-            $clubPermissions,
-            $adminSpecific
-        ));
-
-        return [
-            UserRole::TALENT->value => $talentPermissions,
-            UserRole::SCOUT->value => $scoutPermissions,
-            UserRole::CLUB->value => $clubPermissions,
-            UserRole::ADMIN->value => $adminPermissions,
-        ];
-    }
-
-    /**
-     * Get all unique permissions
-     */
-    public static function getAllPermissions(): array
-    {
-        return array_unique(array_merge(...array_values(self::getPermissionsByRole())));
     }
 }

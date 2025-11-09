@@ -3,17 +3,15 @@
 namespace Tests\Feature\Api\User;
 
 use App\Models\User;
-use Tests\Feature\Requests\Api\User\RetrieveUsersRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\User\RetrieveUsersRequest;
+use Tests\Feature\TestCase;
 
 class RetrieveUsersTest extends TestCase
 {
     /**
      * A user not logged in cannot retrieve the users
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -29,8 +27,6 @@ class RetrieveUsersTest extends TestCase
 
     /**
      * A user logged in can retrieve the users
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -57,8 +53,6 @@ class RetrieveUsersTest extends TestCase
 
     /**
      * A user logged in can retrieve the users paged
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -71,7 +65,7 @@ class RetrieveUsersTest extends TestCase
 
         $size = random_int(5, 10);
 
-        $total = $users->count() + 1 ;
+        $total = $users->count() + 1;
 
         $pages = ceil($total / $size);
 
@@ -95,12 +89,9 @@ class RetrieveUsersTest extends TestCase
         $this->assertIsArray($links);
     }
 
-
     // TODO DEJARLO COMO EJEMPLO PARA FUTUROS TEST Y LUEGO BORRARLO
     /**
      * A user logged in can retrieve the users filtered by firs_name
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

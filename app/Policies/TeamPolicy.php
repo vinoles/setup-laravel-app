@@ -23,7 +23,7 @@ class TeamPolicy
         return true;
     }
 
-        /**
+    /**
      * Determine whether the user can view the team's author.
      */
     public function viewClub(?User $user, Team $team): bool

@@ -37,8 +37,6 @@ class UpdateClubTest extends TestCase
 
     /**
      * Happy path: cannot update club if is unauthorized
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -56,8 +54,6 @@ class UpdateClubTest extends TestCase
 
     /**
      * Happy path: can update club successfully with valid data
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -71,16 +67,14 @@ class UpdateClubTest extends TestCase
         $response->assertRedirect();
 
         $this->assertDatabaseHas('clubs', [
-            'id' => $this->club->id,
-            'name' => $this->updatedClub->name,
+            'id'      => $this->club->id,
+            'name'    => $this->updatedClub->name,
             'address' => $this->updatedClub->address,
         ]);
     }
 
     /**
      * Cannot update club without name (required validation)
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -98,8 +92,6 @@ class UpdateClubTest extends TestCase
 
     /**
      * Cannot update club without address (required validation)
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -117,8 +109,6 @@ class UpdateClubTest extends TestCase
 
     /**
      * Cannot update club with name exceeding max length (max:150)
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -137,8 +127,6 @@ class UpdateClubTest extends TestCase
 
     /**
      * Cannot update club with address exceeding max length (max:150)
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -157,8 +145,6 @@ class UpdateClubTest extends TestCase
 
     /**
      * Cannot update club if name is not a string
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -176,8 +162,6 @@ class UpdateClubTest extends TestCase
 
     /**
      * Cannot update club if address is not a string
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -196,7 +180,6 @@ class UpdateClubTest extends TestCase
     /**
      * Send a request with the authenticated admin user.
      *
-     * @param  UpdateClubRequest  $request
      * @return \Illuminate\Testing\TestResponse
      */
     private function send(UpdateClubRequest $request)
@@ -204,4 +187,3 @@ class UpdateClubTest extends TestCase
         return $this->adminSignIn($this->user)->sendRequest($request);
     }
 }
-

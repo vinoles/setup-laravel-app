@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="PostRequestAttributes",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="title",
  *         type="string",
@@ -20,6 +21,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class PostRequestAttributes
-{
-}
+class PostRequestAttributes {}

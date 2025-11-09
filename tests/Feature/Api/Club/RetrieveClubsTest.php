@@ -3,17 +3,15 @@
 namespace Tests\Feature\Api\Club;
 
 use App\Models\Club;
-use Tests\Feature\Requests\Api\Club\RetrieveClubsRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\Club\RetrieveClubsRequest;
+use Tests\Feature\TestCase;
 
 class RetrieveClubsTest extends TestCase
 {
     /**
      * A user not logged in cannot retrieve the clubs
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -29,8 +27,6 @@ class RetrieveClubsTest extends TestCase
 
     /**
      * A user logged in can retrieve the clubs
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -56,8 +52,6 @@ class RetrieveClubsTest extends TestCase
 
     /**
      * A user logged in can retrieve the clubs paged
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -94,4 +88,3 @@ class RetrieveClubsTest extends TestCase
         $this->assertIsArray($links);
     }
 }
-

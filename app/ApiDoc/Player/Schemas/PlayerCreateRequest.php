@@ -9,6 +9,7 @@ use OpenApi\Annotations as OA;
  *     schema="PlayerCreateRequest",
  *     type="object",
  *     required={"first_name", "last_name"},
+ *
  *     @OA\Property(
  *         property="data",
  *         type="object",
@@ -25,7 +26,4 @@ use OpenApi\Annotations as OA;
  *    ),
  * )
  */
-class PlayerCreateRequest
-{
-}
-
+class PlayerCreateRequest {}

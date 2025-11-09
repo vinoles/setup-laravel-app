@@ -9,6 +9,7 @@ use OpenApi\Annotations as OA;
  *     schema="UserRequest",
  *     type="object",
  *     required={"email", "first_name", "last_name", "phone", "address", "city", "country", "birthdate", "role", "password"},
+ *
  *     @OA\Property(
  *         property="data",
  *         type="object",
@@ -103,6 +104,4 @@ use OpenApi\Annotations as OA;
  * )
  * )
  */
-class UserRequest
-{
-}
+class UserRequest {}

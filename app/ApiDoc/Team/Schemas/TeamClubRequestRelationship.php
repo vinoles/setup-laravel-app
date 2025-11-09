@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="TeamClubRequestRelationship",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="club",
  *         type="object",
@@ -32,6 +33,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class TeamClubRequestRelationship
-{
-}
+class TeamClubRequestRelationship {}

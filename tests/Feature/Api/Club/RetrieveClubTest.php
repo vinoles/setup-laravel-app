@@ -4,17 +4,15 @@ namespace Tests\Feature\Api\Club;
 
 use App\Models\Club;
 use Illuminate\Http\Response;
-use Tests\Feature\Requests\Api\Club\RetrieveClubRequest;
-use Tests\Feature\TestCase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\Requests\Api\Club\RetrieveClubRequest;
+use Tests\Feature\TestCase;
 
 class RetrieveClubTest extends TestCase
 {
     /**
      * A user not logged in cannot retrieve the club
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -31,8 +29,6 @@ class RetrieveClubTest extends TestCase
 
     /**
      * A user logged in can retrieve the club
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -56,14 +52,12 @@ class RetrieveClubTest extends TestCase
         $this->assertEquals('clubs', $data['type']);
 
         $this->assertDatabaseHas('clubs', [
-            'id' => $club->id
+            'id' => $club->id,
         ]);
     }
 
     /**
      * A user cannot see a club that doesn't exist
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -85,7 +79,6 @@ class RetrieveClubTest extends TestCase
 
         $data = $response->json('errors');
 
-        $response->assertStatus($data[0]["status"]);
+        $response->assertStatus($data[0]['status']);
     }
 }
-

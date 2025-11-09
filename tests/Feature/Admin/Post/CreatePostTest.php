@@ -61,7 +61,7 @@ class CreatePostTest extends TestCase
         $response->assertRedirect();
 
         $this->assertDatabaseHas('posts', [
-            'title' => $this->post->title,
+            'title'   => $this->post->title,
             'content' => $this->post->content,
         ]);
     }

@@ -12,8 +12,6 @@ class RegisterAttributesRequiredTest extends TestCase
 {
     /**
      * Cannot register if the required email is missing
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -36,8 +34,6 @@ class RegisterAttributesRequiredTest extends TestCase
 
     /**
      * Cannot register if the  email is not unique.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -55,14 +51,12 @@ class RegisterAttributesRequiredTest extends TestCase
         $response->assertUnprocessable();
 
         $response->assertInvalid([
-            'email' =>  trans('validation.unique', ['attribute' => 'email'])
+            'email' => trans('validation.unique', ['attribute' => 'email']),
         ]);
     }
 
     /**
      * Cannot register if without the required data.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -88,9 +82,9 @@ class RegisterAttributesRequiredTest extends TestCase
 
         $response->assertInvalid([
             'first_name' => trans('validation.required', ['attribute' => 'first name']),
-            'last_name' => trans('validation.required', ['attribute' => 'last name']),
-            'email' => trans('validation.required', ['attribute' => 'email']),
-            'birthdate' => trans('validation.required', ['attribute' => 'birthdate']),
+            'last_name'  => trans('validation.required', ['attribute' => 'last name']),
+            'email'      => trans('validation.required', ['attribute' => 'email']),
+            'birthdate'  => trans('validation.required', ['attribute' => 'birthdate']),
         ]);
     }
 }

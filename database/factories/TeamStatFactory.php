@@ -12,7 +12,7 @@ class TeamStatFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => Str::uuid(),
+            'uuid'    => Str::uuid(),
             'game_id' => Game::query()->inRandomOrder()->value('id') ?? Game::factory(),
             'team_id' => Team::query()->inRandomOrder()->value('id') ?? Team::factory(),
             'metrics' => [

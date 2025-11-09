@@ -3,10 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Game;
-use App\Models\Player;
 use App\Models\PlayerStat;
 use App\Models\PlayerTeam;
-use App\Models\Team;
 use Illuminate\Database\Seeder;
 
 class PlayerStatSeeder extends Seeder
@@ -26,7 +24,6 @@ class PlayerStatSeeder extends Seeder
                         ->take(rand(4, 6))
                         ->get()
                         ->pluck('player');
-
 
                     foreach ($players as $player) {
                         PlayerStat::factory()->create([

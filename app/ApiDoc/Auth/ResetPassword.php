@@ -6,20 +6,24 @@ use App\ApiDoc\ApiDoc;
 use OpenApi\Annotations as OA;
 
 /**
- *
  * @OA\Post(
  *     path="/api/v1/auth/reset-password",
  *     operationId="reset-password",
  *     tags={"Auth"},
  *     summary="reset password user",
  *     description="reset password endpoint for user",
+ *
  *     @OA\RequestBody(
+ *
  *         @OA\JsonContent(),
+ *
  *         @OA\MediaType(
  *             mediaType="multipart/form-data",
+ *
  *             @OA\Schema(
  *                 type="object",
  *                 required={"email", "password"},
+ *
  *                 @OA\Property(
  *                     property="email",
  *                     type="string",
@@ -50,24 +54,27 @@ use OpenApi\Annotations as OA;
  *             ),
  *         ),
  *     ),
+ *
  *     @OA\Response(
  *       response="200",
  *       description="Request reset link Successful",
+ *
  *         @OA\JsonContent(ref="#/components/schemas/ResetPasswordResponse"),
  *     ),
+ *
  *     @OA\Response(
  *         response="422",
  *         description="Unprocessable Entity",
+ *
  *         @OA\JsonContent(ref="#/components/schemas/UnprocessableEntityError"),
  *     ),
+ *
  *     @OA\Response(
  *         response="500",
  *         description="Internal Server Error",
+ *
  *         @OA\JsonContent(ref="#/components/schemas/InternalServerError"),
  *     ),
  * )
- *
  */
-class ResetPassword extends ApiDoc
-{
-}
+class ResetPassword extends ApiDoc {}

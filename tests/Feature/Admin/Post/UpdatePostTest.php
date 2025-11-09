@@ -65,8 +65,8 @@ class UpdatePostTest extends TestCase
         $response->assertRedirect();
 
         $this->assertDatabaseHas('posts', [
-            'id' => $this->post->id,
-            'title' => $this->updatedPost->title,
+            'id'      => $this->post->id,
+            'title'   => $this->updatedPost->title,
             'content' => $this->updatedPost->content,
         ]);
     }
@@ -80,7 +80,7 @@ class UpdatePostTest extends TestCase
     public function cannot_update_post_without_title(): void
     {
         $request = UpdatePostRequest::make($this->post, null)->with([
-            'title' => null,
+            'title'   => null,
             'content' => $this->updatedPost->content,
         ]);
 
@@ -100,7 +100,7 @@ class UpdatePostTest extends TestCase
     public function cannot_update_post_without_content(): void
     {
         $request = UpdatePostRequest::make($this->post, null)->with([
-            'title' => $this->updatedPost->title,
+            'title'   => $this->updatedPost->title,
             'content' => null,
         ]);
 

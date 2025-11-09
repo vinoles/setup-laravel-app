@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="ClubTeamApiResource",
  *     type="object",
+ *
  *     @OA\Property(
  *          property="type",
  *          type="string",
@@ -21,10 +22,12 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *          property="attributes",
  *          type="array",
+ *
  *          @OA\Items(
  *              ref="#/components/schemas/ClubTeamAttributes",
  *          ),
  *      ),
+ *
  *      @OA\Property(
  *          property="relationships",
  *          ref="#/components/schemas/ClubTeamRelationships"
@@ -40,6 +43,4 @@ use OpenApi\Annotations as OA;
  *      )
  * )
  */
-class ClubTeamApiResource
-{
-}
+class ClubTeamApiResource {}

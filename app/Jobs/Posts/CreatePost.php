@@ -10,13 +10,11 @@ use Illuminate\Foundation\Queue\Queueable;
 
 class CreatePost implements ShouldQueue
 {
-    use Queueable,
-        ResolvesJsonApiServer;
+    use Queueable;
+    use ResolvesJsonApiServer;
 
     /**
      * Create a new job instance.
-     *
-     * @param array $attributes
      */
     public function __construct(protected array $attributes)
     {

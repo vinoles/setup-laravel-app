@@ -11,8 +11,10 @@ class PermissionTest extends TestCase
     /**
      * Test that base permissions are correctly included in talent role
      * (Testing private getBasePermissions through public getPermissionsByRole)
+     *
+     * @test
      */
-    public function test_base_permissions_are_included_in_talent_role(): void
+    public function base_permissions_are_included_in_talent_role(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
         $talentPermissions = $permissionsByRole[UserRole::TALENT->value];
@@ -35,8 +37,10 @@ class PermissionTest extends TestCase
     /**
      * Test that scout specific permissions are correctly included in scout role
      * (Testing private getScoutSpecificPermissions through public getPermissionsByRole)
+     *
+     * @test
      */
-    public function test_scout_specific_permissions_are_included_in_scout_role(): void
+    public function scout_specific_permissions_are_included_in_scout_role(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
         $scoutPermissions = $permissionsByRole[UserRole::SCOUT->value];
@@ -53,7 +57,7 @@ class PermissionTest extends TestCase
 
         // Scout should have all talent permissions plus scout specific ones
         $this->assertCount(14, $scoutPermissions); // 8 base + 6 scout specific
-        
+
         // Check that scout has all base permissions
         foreach ($talentPermissions as $permission) {
             $this->assertContains($permission, $scoutPermissions);
@@ -68,8 +72,10 @@ class PermissionTest extends TestCase
     /**
      * Test that club specific permissions are correctly included in club role
      * (Testing private getClubSpecificPermissions through public getPermissionsByRole)
+     *
+     * @test
      */
-    public function test_club_specific_permissions_are_included_in_club_role(): void
+    public function club_specific_permissions_are_included_in_club_role(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
         $clubPermissions = $permissionsByRole[UserRole::CLUB->value];
@@ -86,7 +92,7 @@ class PermissionTest extends TestCase
 
         // Club should have all talent permissions plus club specific ones
         $this->assertCount(14, $clubPermissions); // 8 base + 6 club specific
-        
+
         // Check that club has all base permissions
         foreach ($talentPermissions as $permission) {
             $this->assertContains($permission, $clubPermissions);
@@ -101,8 +107,10 @@ class PermissionTest extends TestCase
     /**
      * Test that admin specific permissions are correctly included in admin role
      * (Testing private getAdminSpecificPermissions through public getPermissionsByRole)
+     *
+     * @test
      */
-    public function test_admin_specific_permissions_are_included_in_admin_role(): void
+    public function admin_specific_permissions_are_included_in_admin_role(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
         $adminPermissions = $permissionsByRole[UserRole::ADMIN->value];
@@ -127,8 +135,10 @@ class PermissionTest extends TestCase
 
     /**
      * Test that getPermissionsByRole returns correct structure and permissions for each role
+     *
+     * @test
      */
-    public function test_get_permissions_by_role_returns_correct_structure(): void
+    public function get_permissions_by_role_returns_correct_structure(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
 
@@ -157,8 +167,10 @@ class PermissionTest extends TestCase
 
     /**
      * Test that getPermissionsByRole returns unique permissions for admin role
+     *
+     * @test
      */
-    public function test_get_permissions_by_role_admin_has_unique_permissions(): void
+    public function get_permissions_by_role_admin_has_unique_permissions(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
         $adminPermissions = $permissionsByRole[UserRole::ADMIN->value];
@@ -175,8 +187,10 @@ class PermissionTest extends TestCase
 
     /**
      * Test that getAllPermissions returns all unique permissions
+     *
+     * @test
      */
-    public function test_get_all_permissions_returns_all_unique_permissions(): void
+    public function get_all_permissions_returns_all_unique_permissions(): void
     {
         $allPermissions = Permission::getAllPermissions();
 
@@ -195,8 +209,10 @@ class PermissionTest extends TestCase
 
     /**
      * Test that getAllPermissions matches the result from getPermissionsByRole
+     *
+     * @test
      */
-    public function test_get_all_permissions_matches_permissions_by_role(): void
+    public function get_all_permissions_matches_permissions_by_role(): void
     {
         $allPermissions = Permission::getAllPermissions();
         $permissionsByRole = Permission::getPermissionsByRole();
@@ -209,8 +225,10 @@ class PermissionTest extends TestCase
 
     /**
      * Test that permission values are strings
+     *
+     * @test
      */
-    public function test_permission_values_are_strings(): void
+    public function permission_values_are_strings(): void
     {
         $allPermissions = Permission::getAllPermissions();
 
@@ -222,8 +240,10 @@ class PermissionTest extends TestCase
 
     /**
      * Test that permission values follow the expected naming convention
+     *
+     * @test
      */
-    public function test_permission_values_follow_naming_convention(): void
+    public function permission_values_follow_naming_convention(): void
     {
         $allPermissions = Permission::getAllPermissions();
 
@@ -238,8 +258,10 @@ class PermissionTest extends TestCase
 
     /**
      * Test that each role has the expected number of permissions
+     *
+     * @test
      */
-    public function test_each_role_has_expected_permission_count(): void
+    public function each_role_has_expected_permission_count(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
 
@@ -259,8 +281,10 @@ class PermissionTest extends TestCase
     /**
      * Test that scout and club permissions don't overlap with each other
      * (Testing through public getPermissionsByRole method)
+     *
+     * @test
      */
-    public function test_scout_and_club_specific_permissions_dont_overlap(): void
+    public function scout_and_club_specific_permissions_dont_overlap(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
         $scoutPermissions = $permissionsByRole[UserRole::SCOUT->value];
@@ -269,7 +293,7 @@ class PermissionTest extends TestCase
 
         // Get scout specific permissions (scout permissions minus base permissions)
         $scoutSpecific = array_diff($scoutPermissions, $talentPermissions);
-        
+
         // Get club specific permissions (club permissions minus base permissions)
         $clubSpecific = array_diff($clubPermissions, $talentPermissions);
 
@@ -280,8 +304,10 @@ class PermissionTest extends TestCase
     /**
      * Test that admin permissions include all other permission categories
      * (Testing through public getPermissionsByRole method)
+     *
+     * @test
      */
-    public function test_admin_permissions_include_all_categories(): void
+    public function admin_permissions_include_all_categories(): void
     {
         $permissionsByRole = Permission::getPermissionsByRole();
         $adminPermissions = $permissionsByRole[UserRole::ADMIN->value];
@@ -293,11 +319,11 @@ class PermissionTest extends TestCase
         foreach ($talentPermissions as $permission) {
             $this->assertContains($permission, $adminPermissions);
         }
-        
+
         foreach ($scoutPermissions as $permission) {
             $this->assertContains($permission, $adminPermissions);
         }
-        
+
         foreach ($clubPermissions as $permission) {
             $this->assertContains($permission, $adminPermissions);
         }

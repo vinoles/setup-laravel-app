@@ -63,4 +63,3 @@ class ListClubTest extends TestCase
         return $this->adminSignIn($this->user)->sendRequest($request);
     }
 }
-

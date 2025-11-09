@@ -7,6 +7,7 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Schema(
  *     type="object",
+ *
  *     @OA\Property(
  *         property="first_name",
  *         type="string",
@@ -57,7 +58,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class PlayerAttributes
-{
-}
-
+class PlayerAttributes {}

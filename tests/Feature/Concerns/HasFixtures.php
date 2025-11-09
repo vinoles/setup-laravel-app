@@ -6,10 +6,6 @@ trait HasFixtures
 {
     /**
      * Load a fixture's content.
-     *
-     * @param  string  $name
-     * @param  array  $replacements
-     * @return string
      */
     protected function fixture(string $name, array $replacements = []): string
     {

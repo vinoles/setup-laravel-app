@@ -10,8 +10,6 @@ class CreateClubRequest extends PostRequest
 {
     /**
      * Create a new instance of the request.
-     *
-     * @param  Club|null  $club
      */
     public function __construct(protected ?Club $club = null)
     {
@@ -22,8 +20,6 @@ class CreateClubRequest extends PostRequest
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {
@@ -31,9 +27,23 @@ class CreateClubRequest extends PostRequest
     }
 
     /**
+     * Retrieve type resource.
+     */
+    public function type(): string
+    {
+        return 'clubs';
+    }
+
+    /**
+     * Retrieve relationships (empty for clubs).
+     */
+    public function relationships(): array
+    {
+        return [];
+    }
+
+    /**
      * Fill the payload of the request based on the given club.
-     *
-     * @return static
      */
     protected function fillPayload(): static
     {
@@ -52,25 +62,4 @@ class CreateClubRequest extends PostRequest
 
         return $this;
     }
-
-    /**
-    * Retrieve type resource.
-    *
-    * @return string
-    */
-    public function type(): string
-    {
-        return 'clubs';
-    }
-
-    /**
-     * Retrieve relationships (empty for clubs).
-     *
-     * @return array
-     */
-    public function relationships(): array
-    {
-        return [];
-    }
 }
-
