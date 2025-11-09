@@ -47,8 +47,6 @@ class League extends Model
         return [
             'name' => ['required', 'string', 'max:150'],
             'country' => ['nullable', 'string', 'max:80'],
-            'sport_id' => ['nullable', 'integer', 'exists:sports,id'],
-            'federation_id' => ['nullable', 'integer', 'exists:federations,id'],
         ];
     }
 }

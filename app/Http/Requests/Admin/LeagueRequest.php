@@ -25,6 +25,7 @@ class LeagueRequest extends FormRequest
         return array_merge(
             League::getValidationRules(),
             [
+                'sport_id' => ['nullable', 'integer', 'exists:sports,id'],
                 'federation_id' => ['required', 'integer', 'exists:federations,id'],
             ]
         );
