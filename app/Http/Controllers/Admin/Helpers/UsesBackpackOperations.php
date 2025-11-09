@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Helpers;
 
+use App\Http\Controllers\Admin\Helpers\HasCrudLinks;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
@@ -15,4 +16,5 @@ trait UsesBackpackOperations {
     use UpdateOperation;
     use DeleteOperation;
     use ShowOperation;
+    use HasCrudLinks;
 }

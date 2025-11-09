@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Admin\Helpers\HasCrudLinks;
+use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Requests\Admin\PostRequest;
 use App\Models\Post;
 use App\Models\User;
@@ -17,7 +18,6 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class PostCrudController extends CrudController
 {
     use UsesBackpackOperations;
-    use HasCrudLinks;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.

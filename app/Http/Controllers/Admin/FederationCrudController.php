@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Requests\Admin\FederationRequest;
 use App\Models\Federation;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
