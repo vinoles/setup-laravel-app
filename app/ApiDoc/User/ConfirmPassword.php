@@ -25,7 +25,6 @@ use OpenApi\Annotations as OA;
  *     description="Confirm password for critical operations",
  *     security={ {"sanctum": {} }},
  *     @OA\RequestBody(
- *         @OA\JsonContent(),
  *         @OA\MediaType(
  *             mediaType="multipart/form-data",
  *             @OA\Schema(

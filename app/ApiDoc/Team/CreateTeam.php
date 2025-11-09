@@ -15,7 +15,6 @@ use OpenApi\Annotations as OA;
  *     description="Create endpoint for teams",
  *     security={ {"sanctum": {} }},
  *     @OA\RequestBody(
- *         @OA\JsonContent(),
  *         @OA\MediaType(
  *             mediaType="application/vnd.api+json",
  *             @OA\Schema(ref="#/components/schemas/TeamCreateRequest"),

@@ -14,7 +14,6 @@ use OpenApi\Annotations as OA;
  *     summary="Password reset link user",
  *     description="Password reset link endpoint for user",
  *     @OA\RequestBody(
- *         @OA\JsonContent(),
  *         @OA\MediaType(
  *             mediaType="multipart/form-data",
  *             @OA\Schema(

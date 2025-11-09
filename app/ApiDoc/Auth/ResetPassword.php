@@ -14,7 +14,6 @@ use OpenApi\Annotations as OA;
  *     summary="reset password user",
  *     description="reset password endpoint for user",
  *     @OA\RequestBody(
- *         @OA\JsonContent(),
  *         @OA\MediaType(
  *             mediaType="multipart/form-data",
  *             @OA\Schema(
