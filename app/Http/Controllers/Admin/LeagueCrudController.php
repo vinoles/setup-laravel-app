@@ -43,14 +43,9 @@ class LeagueCrudController extends CrudController
             'label' => __('admin.globals.country'),
         ]);
 
-        CRUD::addColumn([
-            'name'      => 'federation_id',
-            'label'     => __('admin.globals.federation'),
-            'type'      => 'select',
-            'entity'    => 'federation',
-            'attribute' => 'name',
-            'model'     => Federation::class,
-        ]);
+        CRUD::addColumn(
+            self::linkColumn('federation', Federation::class, 'name', 'federations', ['name'])
+        );
 
         CRUD::addColumn([
             'name'      => 'sport_id',

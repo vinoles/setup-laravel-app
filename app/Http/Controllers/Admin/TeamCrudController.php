@@ -52,7 +52,9 @@ class TeamCrudController extends CrudController
             'name' => 'city',
         ]);
 
-        CRUD::addColumn(self::linkColumn('club', Club::class, 'name', 'clubs', ['name']));
+        CRUD::addColumn(
+            self::linkColumn('club', Club::class, 'name', 'clubs', ['name'])
+        );
     }
 
     /**

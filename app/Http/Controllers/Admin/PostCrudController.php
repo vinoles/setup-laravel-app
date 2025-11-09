@@ -63,7 +63,9 @@ class PostCrudController extends CrudController
             'label' => __('admin.globals.published_at'),
         ]);
 
-        CRUD::addColumn(self::linkColumn('author', User::class, 'full_name', 'users', ['first_name', 'last_name']));
+        CRUD::addColumn(
+            self::linkColumn('author', User::class, 'full_name', 'users', ['first_name', 'last_name'])
+        );
 
         CRUD::addColumn([
             'name'  => 'created_at',
