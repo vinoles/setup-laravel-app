@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\CarbonInterval;
 use Spatie\Permission\DefaultTeamResolver;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -187,8 +188,9 @@ return [
          * When permissions or roles are updated the cache is flushed automatically.
          */
 
-        'expiration_time' => \DateInterval::createFromDateString('24 hours'),
+        // 'expiration_time' => \DateInterval::createFromDateString('24 hours'),
 
+        'expiration_time' => CarbonInterval::createFromDateString('24 hours'),
         /*
          * The cache key used to store all permissions.
          */
