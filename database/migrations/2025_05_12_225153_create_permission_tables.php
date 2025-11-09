@@ -1,9 +1,9 @@
 <?php
 
+use Exception;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Exception;
 
 return new class extends Migration
 {
