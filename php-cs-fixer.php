@@ -4,8 +4,6 @@ use PhpCsFixer\Finder;
 
 $finder = Finder::create();
 
-dump('HOLA');
-
 // Lista de directorios que quieres analizar
 $dirs = [
     __DIR__ . '/app',
@@ -34,6 +32,7 @@ return (new PhpCsFixer\Config())
         'binary_operator_spaces' => [
             'operators' => ['=' => 'align_single_space_minimal']
         ],
+        'no_alias_functions' => ['functions' => ['dump', 'dd', 'ray']],
     ])
     ->setFinder($finder)
     ->setUsingCache(true);

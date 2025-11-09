@@ -104,3 +104,6 @@ horizon:
 
 socket:
 	$(sail) artisan reverb:start --debug
+
+cs-fixer:
+	$(sail) php ./vendor/bin/php-cs-fixer fix --config=php-cs-fixer.php

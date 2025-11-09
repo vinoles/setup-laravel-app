@@ -73,6 +73,7 @@ class PlayerCrudController extends CrudController
         CRUD::field('position')->label(__('admin.globals.position'));
         CRUD::field('height_cm')->label(__('admin.globals.height_cm'));
         CRUD::field('weight_kg')->label(__('admin.globals.weight_kg'));
+        dump('HOLS');
     }
 
     /**
