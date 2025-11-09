@@ -17,7 +17,7 @@ class TeamRequest extends ResourceRequest
     {
         return array_merge(
             [
-                'club' => ['nullable', JsonApiRule::toOne('clubs')],
+                'club' => ['nullable', JsonApiRule::toOne()],
             ],
             Team::getValidationRules()
         );
