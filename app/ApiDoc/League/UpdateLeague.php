@@ -22,7 +22,6 @@ use OpenApi\Annotations as OA;
  *         @OA\Schema(type="string", format="uuid")
  *     ),
  *     @OA\RequestBody(
- *         @OA\JsonContent(),
  *         @OA\MediaType(
  *             mediaType="application/vnd.api+json",
  *             @OA\Schema(ref="#/components/schemas/LeagueUpdateRequest"),

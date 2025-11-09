@@ -15,7 +15,6 @@ use OpenApi\Annotations as OA;
  *     description="Create endpoint for federations",
  *     security={{"sanctum": {}}},
  *     @OA\RequestBody(
- *         @OA\JsonContent(),
  *         @OA\MediaType(
  *             mediaType="application/vnd.api+json",
  *             @OA\Schema(ref="#/components/schemas/FederationCreateRequest"),
