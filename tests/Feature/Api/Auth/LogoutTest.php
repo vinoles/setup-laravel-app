@@ -16,8 +16,6 @@ class LogoutTest extends TestCase
     /**
      * A user can sign in with the correct credentials,
      * confirm password make logout and cannot confirm password.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -26,7 +24,7 @@ class LogoutTest extends TestCase
     {
         $user = User::factory()->withPassword()->create();
 
-        $request  = SignInRequest::make($user->email, 'password');
+        $request = SignInRequest::make($user->email, 'password');
         $response = $this->sendRequest($request);
 
         $response->assertSuccessful();

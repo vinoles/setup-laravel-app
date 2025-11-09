@@ -12,8 +12,6 @@ class PasswordResetLinkTest extends TestCase
 {
     /**
      * A user can requested a link for reset your password.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -38,8 +36,6 @@ class PasswordResetLinkTest extends TestCase
 
     /**
      * A user cannot requested a link for reset your password if your email not exists in db..
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

@@ -14,8 +14,7 @@ class TeamResource extends JsonApiResource
     /**
      * Get the resource's attributes.
      *
-     * @param Request|null $request
-     * @return iterable
+     * @param  Request|null  $request
      */
     public function attributes($request): iterable
     {
@@ -36,7 +35,7 @@ class TeamResource extends JsonApiResource
      */
     private function transformClub(): ?array
     {
-        if (!  $this->relationLoaded('club')) {
+        if (! $this->relationLoaded('club')) {
             return null;
         }
 

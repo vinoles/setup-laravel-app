@@ -14,7 +14,6 @@ class CreatePostRequest extends PostRequest
     /**
      * Create a new instance of the request.
      *
-     * @param  Post|null  $post
      * @param  array  $relationship
      */
     public function __construct(protected ?Post $post = null, public array $relationships = [])
@@ -26,8 +25,6 @@ class CreatePostRequest extends PostRequest
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {
@@ -35,9 +32,15 @@ class CreatePostRequest extends PostRequest
     }
 
     /**
+     * Retrieve type resource.
+     */
+    public function type(): string
+    {
+        return 'posts';
+    }
+
+    /**
      * Fill the payload of the request based on the given post.
-     *
-     * @return static
      */
     protected function fillPayload(): static
     {
@@ -56,15 +59,5 @@ class CreatePostRequest extends PostRequest
         );
 
         return $this;
-    }
-
-    /**
-    * Retrieve type resource.
-    *
-    * @return string
-    */
-    public function type(): string
-    {
-        return 'posts';
     }
 }

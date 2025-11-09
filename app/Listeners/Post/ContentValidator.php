@@ -20,7 +20,7 @@ class ContentValidator
      */
     public function handle(CreatedPost $event): void
     {
-        //TODO LOGIC VALIDATION CONTENT POST
+        // TODO LOGIC VALIDATION CONTENT POST
 
         ValidatedPost::dispatch($event->post);
     }

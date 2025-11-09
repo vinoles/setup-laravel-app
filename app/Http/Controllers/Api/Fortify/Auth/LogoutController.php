@@ -10,9 +10,6 @@ class LogoutController extends Controller
 {
     /**
      * Destroy an authenticated session.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Laravel\Fortify\Contracts\LogoutResponse
      */
     public function __invoke(Request $request): LogoutResponse
     {

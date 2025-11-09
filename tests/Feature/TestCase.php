@@ -18,8 +18,15 @@ class TestCase extends BaseTestCase
 {
     use CreatesUsers;
     use MakesJsonApiRequests;
-    use SendsRequests;
     use RefreshDatabase;
+    use SendsRequests;
+
+    /**
+     * The authenticated user.
+     *
+     * @var \App\Models\User
+     */
+    protected $user;
 
     protected function setUp(): void
     {
@@ -29,50 +36,6 @@ class TestCase extends BaseTestCase
 
         // Create roles
         $this->createRoles();
-    }
-
-    /**
-     * The authenticated user.
-     *
-     * @var \App\Models\User
-     */
-    protected $user;
-
-    /**
-     * Simulate the request from the user's perspective.
-     *
-     * @param  \App\Models\User|null  $user
-     * @param  array|null  $scopes
-     * @return static
-     */
-    protected function signIn(User $user = null, $scopes = ['*']): static
-    {
-        $this->user = $user;
-
-        if ($user !== null) {
-            Sanctum::actingAs($this->user, $scopes);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Simulate the request from the user's perspective.
-     *
-     * @param  \App\Models\User|null  $user
-     * @param  array|null  $scopes
-     * @return static
-     */
-    protected function adminSignIn(User $user = null): static
-    {
-        $this->user = $user;
-
-        if ($user !== null) {
-            // $this->actingAs($this->user);
-            $this->actingAs($user, 'backpack');
-        }
-
-        return $this;
     }
 
     /**
@@ -98,5 +61,38 @@ class TestCase extends BaseTestCase
         // Create super_admin role with all permissions
         $userRole = Role::create(['name' => UserRole::SUPER_ADMIN->value]);
         $userRole->givePermissionTo(SpatiePermission::all());
+    }
+
+    /**
+     * Simulate the request from the user's perspective.
+     *
+     * @param  array|null  $scopes
+     */
+    protected function signIn(?User $user = null, $scopes = ['*']): static
+    {
+        $this->user = $user;
+
+        if ($user !== null) {
+            Sanctum::actingAs($this->user, $scopes);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Simulate the request from the user's perspective.
+     *
+     * @param  array|null  $scopes
+     */
+    protected function adminSignIn(?User $user = null): static
+    {
+        $this->user = $user;
+
+        if ($user !== null) {
+            // $this->actingAs($this->user);
+            $this->actingAs($user, 'backpack');
+        }
+
+        return $this;
     }
 }

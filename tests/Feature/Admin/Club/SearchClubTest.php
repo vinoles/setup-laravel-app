@@ -23,8 +23,6 @@ class SearchClubTest extends TestCase
 
     /**
      * Cannot search clubs if is unauthorized
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -42,8 +40,6 @@ class SearchClubTest extends TestCase
 
     /**
      * Happy path: can search clubs successfully
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -69,8 +65,6 @@ class SearchClubTest extends TestCase
 
     /**
      * Can search clubs with filters
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -101,8 +95,6 @@ class SearchClubTest extends TestCase
 
     /**
      * Can search clubs and returns empty when no matches
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -128,7 +120,6 @@ class SearchClubTest extends TestCase
     /**
      * Send a request with the authenticated admin user.
      *
-     * @param  SearchClubRequest  $request
      * @return \Illuminate\Testing\TestResponse
      */
     private function send(SearchClubRequest $request)

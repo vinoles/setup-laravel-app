@@ -25,7 +25,6 @@ class PlayerStatSeeder extends Seeder
                         ->get()
                         ->pluck('player');
 
-
                     foreach ($players as $player) {
                         PlayerStat::factory()->create([
                             'game_id' => $game->id,

@@ -13,8 +13,6 @@ class ConfirmPasswordTest extends TestCase
 {
     /**
      * A user can confirm password with the correct password.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -37,8 +35,6 @@ class ConfirmPasswordTest extends TestCase
 
     /**
      * A user cannot confirm password with the incorrect password.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -61,8 +57,6 @@ class ConfirmPasswordTest extends TestCase
 
     /**
      * A user cannot confirm password another user
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

@@ -15,9 +15,9 @@ class CreateClubTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const NAME_MAX_LENGTH            = 50;
-    private const NAME_EXCEEDS_MAX_LENGTH    = 51;
-    private const ADDRESS_MAX_LENGTH         = 150;
+    private const NAME_MAX_LENGTH = 50;
+    private const NAME_EXCEEDS_MAX_LENGTH = 51;
+    private const ADDRESS_MAX_LENGTH = 150;
     private const ADDRESS_EXCEEDS_MAX_LENGTH = 151;
 
     private Club $club;
@@ -33,7 +33,6 @@ class CreateClubTest extends TestCase
 
     /**
      * Happy path: cannot create club if is unauthorized
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -51,8 +50,6 @@ class CreateClubTest extends TestCase
 
     /**
      * Happy path: can create club successfully with valid data
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -73,8 +70,6 @@ class CreateClubTest extends TestCase
 
     /**
      * Cannot create club without name (required validation)
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -92,8 +87,6 @@ class CreateClubTest extends TestCase
 
     /**
      * Cannot create club without address (required validation)
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -111,8 +104,6 @@ class CreateClubTest extends TestCase
 
     /**
      * Cannot create club with name exceeding max length (max:150)
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -130,8 +121,6 @@ class CreateClubTest extends TestCase
 
     /**
      * Cannot create club with address exceeding max length (max:150)
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -149,8 +138,6 @@ class CreateClubTest extends TestCase
 
     /**
      * Cannot create club if name is not a string
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -168,8 +155,6 @@ class CreateClubTest extends TestCase
 
     /**
      * Cannot create club if address is not a string
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -188,7 +173,6 @@ class CreateClubTest extends TestCase
     /**
      * Send a request with the authenticated admin user.
      *
-     * @param  CreateClubRequest  $request
      * @return \Illuminate\Testing\TestResponse
      */
     private function send(CreateClubRequest $request)

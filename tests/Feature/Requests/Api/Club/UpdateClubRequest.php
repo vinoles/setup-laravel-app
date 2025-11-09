@@ -10,10 +10,8 @@ class UpdateClubRequest extends PatchRequest
 {
     /**
      * Create a new instance of the request.
-     *
-     * @param  Club|null  $club
      */
-    public function __construct(protected Club|null $club = null)
+    public function __construct(protected ?Club $club = null)
     {
         if ($club === null) {
             $this->club = $club = Club::factory()->create();
@@ -22,8 +20,6 @@ class UpdateClubRequest extends PatchRequest
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {
@@ -32,9 +28,6 @@ class UpdateClubRequest extends PatchRequest
 
     /**
      * Fill the payload of the request based on the given club.
-     *
-     * @param  Club  $club
-     * @return static
      */
     public function fillPayload(Club $club): static
     {
@@ -55,20 +48,16 @@ class UpdateClubRequest extends PatchRequest
     }
 
     /**
-    * Retrieve type resource.
-    *
-    * @return string
-    */
+     * Retrieve type resource.
+     */
     public function type(): string
     {
         return 'clubs';
     }
 
     /**
-    * Retrieve uuid model
-    *
-    * @return string
-    */
+     * Retrieve uuid model
+     */
     public function modelUuid(): string
     {
         return $this->club->uuid;

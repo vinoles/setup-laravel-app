@@ -116,7 +116,6 @@ return [
          * bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white.
          *
          * For links to be visible on different background colors use: "navbar-dark", "navbar-light".
-         *
          */
         'topHeader' => null,
 
@@ -161,14 +160,14 @@ return [
         'tableWrapper' => null,
     ],
 
-    /**
-     * 4th Layer of customization
-     *
-     * Alright, if nothing so far met your need, then you still have an easy way to build
-     * a custom layout using the already existing components of this theme.
-     *
-     * 1. Create a new blade file in resources/views/layouts/your-custom-layout.blade.php
-     * 2. Replace the value of layout on this file with "your-custom-layout"
-     * 3. Customize the blade and place components such as sidebar, header, top-bar, where you need them!
-     */
+/**
+ * 4th Layer of customization
+ *
+ * Alright, if nothing so far met your need, then you still have an easy way to build
+ * a custom layout using the already existing components of this theme.
+ *
+ * 1. Create a new blade file in resources/views/layouts/your-custom-layout.blade.php
+ * 2. Replace the value of layout on this file with "your-custom-layout"
+ * 3. Customize the blade and place components such as sidebar, header, top-bar, where you need them!
+ */
 ];

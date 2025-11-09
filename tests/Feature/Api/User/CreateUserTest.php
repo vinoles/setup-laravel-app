@@ -11,10 +11,8 @@ use Tests\Feature\TestCase;
 class CreateUserTest extends TestCase
 {
     /**
-    * A user not logged in cannot create the user
-    *
-    * @return void
-    */
+     * A user not logged in cannot create the user
+     */
     #[Test]
     #[Group('api')]
     #[Group('api_user')]
@@ -29,8 +27,6 @@ class CreateUserTest extends TestCase
 
     /**
      * Create user happy path
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -61,8 +57,6 @@ class CreateUserTest extends TestCase
 
     /**
      * Cannot create user if without the required data.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

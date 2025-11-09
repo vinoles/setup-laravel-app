@@ -27,8 +27,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isAdmin() function
+     *
+     * @test
      */
-    public function test_is_admin_function(): void
+    public function is_admin_function(): void
     {
         // Test user without admin role
         $this->assertFalse($this->user->isAdmin());
@@ -45,8 +47,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isSuperAdmin() function
+     *
+     * @test
      */
-    public function test_is_super_admin_function(): void
+    public function is_super_admin_function(): void
     {
         // Test user without super admin role
         $this->assertFalse($this->user->isSuperAdmin());
@@ -63,8 +67,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isTalent() function
+     *
+     * @test
      */
-    public function test_is_talent_function(): void
+    public function is_talent_function(): void
     {
         // Test user without talent role
         $this->assertFalse($this->user->isTalent());
@@ -81,8 +87,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isScout() function
+     *
+     * @test
      */
-    public function test_is_scout_function(): void
+    public function is_scout_function(): void
     {
         // Test user without scout role
         $this->assertFalse($this->user->isScout());
@@ -99,8 +107,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isClub() function
+     *
+     * @test
      */
-    public function test_is_club_function(): void
+    public function is_club_function(): void
     {
         // Test user without club role
         $this->assertFalse($this->user->isClub());
@@ -117,8 +127,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test isAnyAdmin() function
+     *
+     * @test
      */
-    public function test_is_any_admin_function(): void
+    public function is_any_admin_function(): void
     {
         // Test user without any admin role
         $this->assertFalse($this->user->isAnyAdmin());
@@ -140,8 +152,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test hasAnyOfRoles() function
+     *
+     * @test
      */
-    public function test_has_any_of_roles_function(): void
+    public function has_any_of_roles_function(): void
     {
         // Test user without any roles
         $this->assertFalse($this->user->hasAnyOfRoles([UserRole::TALENT->value, UserRole::SCOUT->value]));
@@ -168,8 +182,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test getPrimaryRole() function
+     *
+     * @test
      */
-    public function test_get_primary_role_function(): void
+    public function get_primary_role_function(): void
     {
         // Test user without roles
         $this->assertNull($this->user->getPrimaryRole());
@@ -194,8 +210,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test multiple roles scenario
+     *
+     * @test
      */
-    public function test_multiple_roles_scenario(): void
+    public function multiple_roles_scenario(): void
     {
         // Assign multiple roles
         $this->user->assignRole(UserRole::TALENT->value);
@@ -221,8 +239,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test edge cases
+     *
+     * @test
      */
-    public function test_edge_cases(): void
+    public function edge_cases(): void
     {
         // Test hasAnyOfRoles with empty array
         $this->assertFalse($this->user->hasAnyOfRoles([]));
@@ -238,8 +258,10 @@ class HasUserRolesTest extends TestCase
 
     /**
      * Test role verification after role changes
+     *
+     * @test
      */
-    public function test_role_verification_after_changes(): void
+    public function role_verification_after_changes(): void
     {
         // Start with talent role
         $this->user->assignRole(UserRole::TALENT->value);

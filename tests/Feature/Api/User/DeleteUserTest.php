@@ -11,10 +11,8 @@ use Tests\Feature\TestCase;
 class DeleteUserTest extends TestCase
 {
     /**
-    * A user not logged in cannot delete the user
-    *
-    * @return void
-    */
+     * A user not logged in cannot delete the user
+     */
     #[Test]
     #[Group('api')]
     #[Group('api_user')]
@@ -29,8 +27,6 @@ class DeleteUserTest extends TestCase
 
     /**
      * Create user happy path
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -64,8 +60,6 @@ class DeleteUserTest extends TestCase
 
     /**
      * Cannot delete user if the user not found.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

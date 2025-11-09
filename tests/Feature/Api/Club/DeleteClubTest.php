@@ -12,8 +12,6 @@ class DeleteClubTest extends TestCase
 {
     /**
      * A user not logged in cannot delete the club
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -29,8 +27,6 @@ class DeleteClubTest extends TestCase
 
     /**
      * Delete club happy path
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -57,8 +53,6 @@ class DeleteClubTest extends TestCase
 
     /**
      * Cannot delete club if the club not found.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

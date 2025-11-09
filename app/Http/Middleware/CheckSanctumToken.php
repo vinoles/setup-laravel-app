@@ -14,7 +14,7 @@ class CheckSanctumToken
         $token = $request->bearerToken();
 
         // Check  token has expired
-        if ($token && !PersonalAccessToken::findToken($token)) {
+        if ($token && ! PersonalAccessToken::findToken($token)) {
             return response()->json(['message' => 'Token has expired'], Response::HTTP_UNAUTHORIZED);
         }
 

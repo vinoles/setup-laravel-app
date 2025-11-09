@@ -16,10 +16,9 @@ class CreateUserRequest extends PostRequest
     /**
      * Create a new instance of the request.
      *
-     * @param  User  $user
      * @param  array  $relationship
      */
-    public function __construct(User $user = null, public array $relationships = [])
+    public function __construct(?User $user = null, public array $relationships = [])
     {
         if ($user !== null) {
             $this->fillPayload($user);
@@ -28,8 +27,6 @@ class CreateUserRequest extends PostRequest
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {
@@ -37,44 +34,7 @@ class CreateUserRequest extends PostRequest
     }
 
     /**
-     * Fill the payload of the request based on the given user.
-     *
-     * @param  User  $user
-     * @return static
-     */
-    protected function fillPayload(User $user): static
-    {
-        $this->payload = array_filter(
-            Arr::except(
-                $user->getAttributes(),
-                [
-                    'uuid',
-                    'updated_at',
-                    'created_at',
-                    'id',
-                ]
-            ),
-            static fn ($value) => $value !== null
-        );
-
-        $password = Str::random(mt_rand(8, 31)).'!';
-
-        $this->set('password', $password)
-            ->set('password_confirmation', $password);
-
-
-        $this->set('birthdate', $this->payload['birthdate']->format('Y-m-d'));
-
-
-        return $this;
-    }
-
-    /**
      * Fill the payload of the request based on the given user and remote attribute parameter.
-     *
-     * @param  User  $user
-     * @param  array  $attributes
-     * @return static
      */
     public function fillPayloadAndRemoveAttribute(User $user, array $attributes): static
     {
@@ -94,7 +54,7 @@ class CreateUserRequest extends PostRequest
             static fn ($value) => $value !== null
         );
 
-        $password = Str::random(mt_rand(8, 31)).'!';
+        $password = Str::random(mt_rand(8, 31)) . '!';
 
         $this->set('password', $password)
             ->set('password_confirmation', $password);
@@ -104,9 +64,6 @@ class CreateUserRequest extends PostRequest
 
     /**
      * Fill the payload of the request based on the given user.
-     *
-     * @param  UserRole  $role
-     * @return static
      */
     public function setRole(UserRole $role): static
     {
@@ -116,12 +73,38 @@ class CreateUserRequest extends PostRequest
     }
 
     /**
-    * Retrieve type resource.
-    *
-    * @return string
-    */
+     * Retrieve type resource.
+     */
     public function type(): string
     {
         return 'users';
+    }
+
+    /**
+     * Fill the payload of the request based on the given user.
+     */
+    protected function fillPayload(User $user): static
+    {
+        $this->payload = array_filter(
+            Arr::except(
+                $user->getAttributes(),
+                [
+                    'uuid',
+                    'updated_at',
+                    'created_at',
+                    'id',
+                ]
+            ),
+            static fn ($value) => $value !== null
+        );
+
+        $password = Str::random(mt_rand(8, 31)) . '!';
+
+        $this->set('password', $password)
+            ->set('password_confirmation', $password);
+
+        $this->set('birthdate', $this->payload['birthdate']->format('Y-m-d'));
+
+        return $this;
     }
 }

@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="PlayerRequestAttributes",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="first_name",
  *         type="string",
@@ -53,6 +54,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class PlayerRequestAttributes
-{
-}
+class PlayerRequestAttributes {}

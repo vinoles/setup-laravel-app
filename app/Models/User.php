@@ -18,13 +18,13 @@ class User extends Authenticatable
 {
     use CrudTrait;
 
+    use HasApiTokens;
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
-    use Notifiable;
-    use HasApiTokens;
-    use HasUuid;
     use HasRoles;
     use HasUserRoles;
+    use HasUuid;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -55,6 +55,19 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'author_id', 'id');
+    }
+
+    /**
+     * Return the full name of the user
+     */
+    public function getFullNameAttribute(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -67,23 +80,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function posts(): HasMany
-    {
-        return $this->hasMany(Post::class, 'author_id', 'id');
-    }
-
-    /**
-     * Return the full name of the user
-     *
-     * @return string
-     */
-    public function getFullNameAttribute(): string
-    {
-        return $this->first_name . ' ' . $this->last_name;
     }
 }

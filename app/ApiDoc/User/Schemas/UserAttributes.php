@@ -7,6 +7,7 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Schema(
  *     type="object",
+ *
  *     @OA\Property(
  *         property="first_name",
  *         type="string",
@@ -47,6 +48,7 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *         property="roles",
  *         type="array",
+ *
  *         @OA\Items(
  *             type="string"
  *         ),
@@ -54,6 +56,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class UserAttributes
-{
-}
+class UserAttributes {}

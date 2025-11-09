@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="PostAuthorRequestRelationship",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="author",
  *         type="object",
@@ -28,6 +29,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class PostAuthorRequestRelationship
-{
-}
+class PostAuthorRequestRelationship {}

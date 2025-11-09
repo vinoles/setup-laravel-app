@@ -14,7 +14,6 @@ class ConfirmPasswordController extends Controller
     /**
      * Confirm that the given password is valid for the given user.
      *
-     * @param  \Illuminate\Contracts\Auth\StatefulGuard  $guard
      * @param  mixed  $user
      * @param  string|null  $password
      * @return bool
@@ -39,7 +38,6 @@ class ConfirmPasswordController extends Controller
      * Confirm the user's password using a custom callback.
      *
      * @param  mixed  $user
-     * @param  string|null  $password
      * @return bool
      */
     protected function confirmPasswordUsingCustomCallback($user, ?string $password = null)

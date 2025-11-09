@@ -7,6 +7,7 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Schema(
  *     type="object",
+ *
  *     @OA\Property(
  *         property="meta",
  *         ref="#/components/schemas/PaginationMeta"
@@ -55,10 +56,12 @@ use OpenApi\Annotations as OA;
  *         @OA\Property(
  *             property="attributes",
  *             type="array",
+ *
  *             @OA\Items(
  *                 ref="#/components/schemas/UserAttributes",
  *             ),
  *         ),
+ *
  *         @OA\Property(
  *             property="links",
  *             type="object",
@@ -71,6 +74,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class UsersApiResponse
-{
-}
+class UsersApiResponse {}

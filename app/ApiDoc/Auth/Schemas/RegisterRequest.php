@@ -9,6 +9,7 @@ use OpenApi\Annotations as OA;
  *     schema="RegisterRequest",
  *     type="object",
  *     required={"email", "first_name", "last_name", "phone", "address", "city", "country", "birthdate", "role", "password"},
+ *
  *     @OA\Property(
  *         property="email",
  *         type="string",
@@ -96,6 +97,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class RegisterRequest
-{
-}
+class RegisterRequest {}

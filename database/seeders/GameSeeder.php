@@ -16,7 +16,7 @@ class GameSeeder extends Seeder
     public function run(): void
     {
         $referees = Referee::all();
-        $roles    = RefereeRole::all();
+        $roles = RefereeRole::all();
         $statuses = GameStatus::all();
 
         Season::with('league')->get()->each(function (Season $season) use ($referees, $roles, $statuses) {

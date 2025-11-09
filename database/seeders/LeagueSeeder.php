@@ -12,7 +12,7 @@ class LeagueSeeder extends Seeder
     public function run(): void
     {
         $federations = Federation::all();
-        $sports      = Sport::all();
+        $sports = Sport::all();
 
         foreach ($federations as $federation) {
             League::factory()

@@ -28,8 +28,6 @@ class DeleteClubTest extends TestCase
 
     /**
      * Cannot delete club if is unauthorized
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -47,8 +45,6 @@ class DeleteClubTest extends TestCase
 
     /**
      * Happy path: can delete club successfully
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -68,8 +64,6 @@ class DeleteClubTest extends TestCase
 
     /**
      * Cannot delete club if not found
-     *
-     * @return void
      */
     #[Test]
     #[Group('admin')]
@@ -89,7 +83,6 @@ class DeleteClubTest extends TestCase
     /**
      * Send a request with the authenticated admin user.
      *
-     * @param  DeleteClubRequest  $request
      * @return \Illuminate\Testing\TestResponse
      */
     private function send(DeleteClubRequest $request)

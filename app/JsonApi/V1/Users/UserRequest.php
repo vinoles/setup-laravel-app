@@ -9,17 +9,14 @@ class UserRequest extends ResourceRequest
 {
     use PasswordValidationRules;
 
-
     /**
      * Get the validation rules for the resource.
-     *
-     * @return array
      */
     public function rules(): array
     {
         $allowedBirthdate = now()
-                    ->subYears(config('app.minimum_age'))
-                    ->format('Y-m-d');
+            ->subYears(config('app.minimum_age'))
+            ->format('Y-m-d');
 
         return [
             'email' => [

@@ -21,7 +21,7 @@ foreach ($dirs as $dir) {
     }
 }
 
-return (new PhpCsFixer\Config())
+return (new PhpCsFixer\Config)
     ->setRules([
         '@PSR12' => true,                            // Base PSR12
         'array_syntax' => ['syntax' => 'short'],     // [] en vez de array()
@@ -30,7 +30,7 @@ return (new PhpCsFixer\Config())
         'no_unused_imports' => true,                 // Quitar imports no usados
         'ordered_imports' => ['sort_algorithm' => 'alpha'], // Imports ordenados
         'binary_operator_spaces' => [
-            'operators' => ['=' => 'align_single_space_minimal']
+            'operators' => ['=' => 'align_single_space_minimal'],
         ],
         'no_alias_functions' => ['functions' => ['dump', 'dd', 'ray']],
     ])

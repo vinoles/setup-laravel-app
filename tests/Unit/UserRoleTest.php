@@ -22,8 +22,10 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that a talent user has the correct role and permissions
+     *
+     * @test
      */
-    public function test_talent_user_has_correct_role_and_permissions(): void
+    public function talent_user_has_correct_role_and_permissions(): void
     {
         // Assign talent role
         $this->user->assignRole(UserRole::TALENT->value);
@@ -56,8 +58,10 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that a scout user has the correct role and permissions
+     *
+     * @test
      */
-    public function test_scout_user_has_correct_role_and_permissions(): void
+    public function scout_user_has_correct_role_and_permissions(): void
     {
         // Assign scout role
         $this->user->assignRole(UserRole::SCOUT->value);
@@ -91,8 +95,10 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that a club user has the correct role and permissions
+     *
+     * @test
      */
-    public function test_club_user_has_correct_role_and_permissions(): void
+    public function club_user_has_correct_role_and_permissions(): void
     {
         // Assign club role
         $this->user->assignRole(UserRole::CLUB->value);
@@ -129,8 +135,10 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that an admin user has the correct role and permissions
+     *
+     * @test
      */
-    public function test_admin_user_has_correct_role_and_permissions(): void
+    public function admin_user_has_correct_role_and_permissions(): void
     {
         // Assign admin role
         $this->user->assignRole(UserRole::ADMIN->value);
@@ -167,8 +175,10 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that a super admin user has the correct role and permissions
+     *
+     * @test
      */
-    public function test_super_admin_user_has_correct_role_and_permissions(): void
+    public function super_admin_user_has_correct_role_and_permissions(): void
     {
         // Assign super admin role
         $this->user->assignRole(UserRole::SUPER_ADMIN->value);
@@ -192,8 +202,10 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that a user can only have one role (business rule)
+     *
+     * @test
      */
-    public function test_user_can_only_have_one_role(): void
+    public function user_can_only_have_one_role(): void
     {
         // Assign first role
         $this->user->assignRole(UserRole::TALENT->value);
@@ -211,8 +223,10 @@ class UserRoleTest extends TestCase
 
     /**
      * Test role assignment and removal
+     *
+     * @test
      */
-    public function test_role_assignment_and_removal(): void
+    public function role_assignment_and_removal(): void
     {
         // Initially no roles
         $this->assertFalse($this->user->hasRole(UserRole::TALENT->value));
@@ -231,8 +245,10 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that users without roles have no permissions
+     *
+     * @test
      */
-    public function test_user_without_role_has_no_permissions(): void
+    public function user_without_role_has_no_permissions(): void
     {
         // Assert no roles
         $this->assertEquals(0, $this->user->roles()->count());

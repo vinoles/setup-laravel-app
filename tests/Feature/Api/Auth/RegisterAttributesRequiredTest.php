@@ -12,8 +12,6 @@ class RegisterAttributesRequiredTest extends TestCase
 {
     /**
      * Cannot register if the required email is missing
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -36,8 +34,6 @@ class RegisterAttributesRequiredTest extends TestCase
 
     /**
      * Cannot register if the  email is not unique.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -61,8 +57,6 @@ class RegisterAttributesRequiredTest extends TestCase
 
     /**
      * Cannot register if without the required data.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

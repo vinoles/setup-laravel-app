@@ -16,9 +16,6 @@ class PasswordResetLinkController extends Controller
 {
     /**
      * Send a reset link to the given user.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Support\Responsable
      */
     public function __invoke(Request $request): Responsable
     {
@@ -45,8 +42,6 @@ class PasswordResetLinkController extends Controller
 
     /**
      * Get the broker to be used during password reset.
-     *
-     * @return \Illuminate\Contracts\Auth\PasswordBroker
      */
     protected function broker(): PasswordBroker
     {

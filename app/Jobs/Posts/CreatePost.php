@@ -15,8 +15,6 @@ class CreatePost implements ShouldQueue
 
     /**
      * Create a new job instance.
-     *
-     * @param array $attributes
      */
     public function __construct(protected array $attributes)
     {

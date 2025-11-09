@@ -13,8 +13,6 @@ class RetrieveUserTest extends TestCase
 {
     /**
      * A user not logged in cannot retrieve the user
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -32,8 +30,6 @@ class RetrieveUserTest extends TestCase
 
     /**
      * A user logged in can retrieve the user with permissions
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -65,8 +61,6 @@ class RetrieveUserTest extends TestCase
 
     /**
      * A user cannot retrieve the user without permissions
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -92,8 +86,6 @@ class RetrieveUserTest extends TestCase
 
     /**
      * A user cannot see a user that doesn't exist
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -119,5 +111,4 @@ class RetrieveUserTest extends TestCase
 
         $response->assertStatus($data[0]['status']);
     }
-
 }

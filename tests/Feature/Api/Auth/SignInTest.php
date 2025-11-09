@@ -12,8 +12,6 @@ class SignInTest extends TestCase
 {
     /**
      * A user can sign in with the correct credentials.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -40,8 +38,6 @@ class SignInTest extends TestCase
 
     /**
      * A user cannot sign in with the wrong login credentials.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

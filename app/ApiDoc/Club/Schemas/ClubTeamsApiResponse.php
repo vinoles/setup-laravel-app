@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="ClubTeamsApiResponse",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="jsonapi",
  *         type="object",
@@ -29,12 +30,11 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *          property="data",
  *          type="array",
+ *
  *          @OA\Items(
  *              ref="#/components/schemas/ClubTeamApiResource",
  *          ),
  *     )
  * )
  */
-class ClubTeamsApiResponse
-{
-}
+class ClubTeamsApiResponse {}

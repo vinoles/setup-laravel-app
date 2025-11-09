@@ -12,8 +12,6 @@ class RegisterTest extends TestCase
 {
     /**
      * Sign up happy path
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -41,8 +39,6 @@ class RegisterTest extends TestCase
 
     /**
      * Sign up and create user profile
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

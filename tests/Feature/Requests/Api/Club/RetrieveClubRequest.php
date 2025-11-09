@@ -9,10 +9,8 @@ class RetrieveClubRequest extends GetRequest
 {
     /**
      * Create a new instance of the request.
-     *
-     * @param  Club|null  $club
      */
-    public function __construct(protected Club|null $club = null)
+    public function __construct(protected ?Club $club = null)
     {
         if ($club === null) {
             $this->club = $club = Club::factory()->create();
@@ -21,8 +19,6 @@ class RetrieveClubRequest extends GetRequest
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {

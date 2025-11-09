@@ -9,8 +9,5 @@ use OpenApi\Annotations as OA;
  *    title="Weetals API Documentation",
  *    version="1.0.0",
  * )
- *
  */
-class ApiDoc
-{
-}
+class ApiDoc {}

@@ -18,9 +18,9 @@ class GameStatusSeeder extends Seeder
 
         foreach ($statuses as $status) {
             GameStatus::firstOrCreate([
-               'uuid' => Str::uuid(),
-               'code' => $status['code'],
-               'name' => $status['name'],
+                'uuid' => Str::uuid(),
+                'code' => $status['code'],
+                'name' => $status['name'],
             ]);
         }
     }

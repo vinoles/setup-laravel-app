@@ -67,7 +67,6 @@ Route::middleware('auth:sanctum')->group(static function () {
 
                 });
 
-
             $server->resource('users', UserController::class)
                 ->relationships(function (Relationships $relations) {
                     $relations->hasMany('posts');

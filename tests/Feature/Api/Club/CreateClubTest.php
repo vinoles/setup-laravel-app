@@ -13,8 +13,6 @@ class CreateClubTest extends TestCase
 {
     /**
      * A user not logged in cannot create the club
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -30,8 +28,6 @@ class CreateClubTest extends TestCase
 
     /**
      * Create club happy path
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -62,8 +58,6 @@ class CreateClubTest extends TestCase
 
     /**
      * Cannot create club if without the required data.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

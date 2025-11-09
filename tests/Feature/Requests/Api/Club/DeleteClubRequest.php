@@ -9,10 +9,8 @@ class DeleteClubRequest extends PatchRequest
 {
     /**
      * Create a new instance of the request.
-     *
-     * @param  Club|null  $club
      */
-    public function __construct(protected Club|null $club = null)
+    public function __construct(protected ?Club $club = null)
     {
         if ($club === null) {
             $this->club = $club = Club::factory()->create();
@@ -21,8 +19,6 @@ class DeleteClubRequest extends PatchRequest
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {
@@ -30,20 +26,16 @@ class DeleteClubRequest extends PatchRequest
     }
 
     /**
-    * Retrieve type resource.
-    *
-    * @return string
-    */
+     * Retrieve type resource.
+     */
     public function type(): string
     {
         return 'clubs';
     }
 
     /**
-    * Retrieve uuid model
-    *
-    * @return string
-    */
+     * Retrieve uuid model
+     */
     public function modelUuid(): string
     {
         return $this->club->uuid;

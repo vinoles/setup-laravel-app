@@ -53,9 +53,6 @@ class UserFactory extends Factory
 
     /**
      * Indicates that the user has a password.
-     *
-     * @param  string  $password
-     * @return static
      */
     public function withPassword(string $password = 'password'): static
     {
@@ -78,7 +75,6 @@ class UserFactory extends Factory
      * Indicates that the user has a password.
      *
      * @param  string  $password
-     * @return static
      */
     public function withFirstName(string $firstName): static
     {

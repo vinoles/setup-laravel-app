@@ -12,8 +12,6 @@ class RetrieveClubsTest extends TestCase
 {
     /**
      * A user not logged in cannot retrieve the clubs
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -29,8 +27,6 @@ class RetrieveClubsTest extends TestCase
 
     /**
      * A user logged in can retrieve the clubs
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -56,8 +52,6 @@ class RetrieveClubsTest extends TestCase
 
     /**
      * A user logged in can retrieve the clubs paged
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

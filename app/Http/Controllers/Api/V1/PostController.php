@@ -15,24 +15,20 @@ use LaravelJsonApi\Laravel\Http\Requests\AnonymousQuery;
 
 class PostController extends Controller
 {
+    use Actions\AttachRelationship;
+    use Actions\Destroy;
+    use Actions\DetachRelationship;
     use Actions\FetchMany;
     use Actions\FetchOne;
-    use Actions\Update;
-    use Actions\Destroy;
     use Actions\FetchRelated;
     use Actions\FetchRelationship;
+    use Actions\Update;
     use Actions\UpdateRelationship;
-    use Actions\AttachRelationship;
-    use Actions\DetachRelationship;
     use Serializable;
-
 
     /**
      * Create a new resource.
      *
-     * @param PostSchema $schema
-     * @param PostRequest $request
-     * @param AnonymousQuery $query
      * @return \Illuminate\Contracts\Support\Responsable|\Illuminate\Http\Response
      */
     public function store(PostSchema $schema, PostRequest $request, AnonymousQuery $query)

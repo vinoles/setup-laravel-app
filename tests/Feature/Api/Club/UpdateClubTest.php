@@ -12,8 +12,6 @@ class UpdateClubTest extends TestCase
 {
     /**
      * A user not logged in cannot update the club
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -29,8 +27,6 @@ class UpdateClubTest extends TestCase
 
     /**
      * Update club happy path
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -63,8 +59,6 @@ class UpdateClubTest extends TestCase
 
     /**
      * Cannot update club if the club not found.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -86,8 +80,6 @@ class UpdateClubTest extends TestCase
 
     /**
      * Cannot update club if without the required data.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

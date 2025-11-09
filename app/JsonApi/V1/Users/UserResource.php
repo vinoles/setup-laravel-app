@@ -14,8 +14,7 @@ class UserResource extends JsonApiResource
     /**
      * Get the resource's attributes.
      *
-     * @param Request|null $request
-     * @return iterable
+     * @param  Request|null  $request
      */
     public function attributes($request): iterable
     {
@@ -30,26 +29,16 @@ class UserResource extends JsonApiResource
         ];
     }
 
-    /**
-     * @return array
-     */
     public function deleteRules(): array
     {
         return [];
     }
 
-    /**
-     * @return array
-     */
     public function deleteMessages(): array
     {
         return [];
     }
 
-    /**
-     * @param User $user
-     * @return array
-     */
     public function metaForDelete(User $user): array
     {
         return [];

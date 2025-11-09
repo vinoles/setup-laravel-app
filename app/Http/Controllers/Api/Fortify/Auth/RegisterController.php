@@ -14,8 +14,6 @@ class RegisterController extends Controller
 {
     /**
      * Handle the incoming request.
-     *
-     * @param  RegisterRequest  $request
      */
     public function __invoke(RegisterRequest $request)
     {

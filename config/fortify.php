@@ -130,7 +130,7 @@ return [
     |
     */
 
-    //TODO set false and implement new views for reset password
+    // TODO set false and implement new views for reset password
     'views' => true,
 
     /*

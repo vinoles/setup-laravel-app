@@ -7,6 +7,7 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Schema(
  *     type="object",
+ *
  *     @OA\Property(
  *         property="jsonapi",
  *         type="object",
@@ -27,6 +28,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class ConfirmPasswordResponse
-{
-}
+class ConfirmPasswordResponse {}

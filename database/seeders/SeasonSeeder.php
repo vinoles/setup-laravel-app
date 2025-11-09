@@ -11,7 +11,7 @@ class SeasonSeeder extends Seeder
 {
     public function run(): void
     {
-        $statusActive  = SeasonStatus::where('code', 'active')->first();
+        $statusActive = SeasonStatus::where('code', 'active')->first();
         $statusPlanned = SeasonStatus::where('code', 'planned')->first();
 
         League::all()->each(function (League $league) use ($statusActive, $statusPlanned) {

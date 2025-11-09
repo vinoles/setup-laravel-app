@@ -8,8 +8,6 @@ class SearchClubRequest extends PostRequest
 {
     /**
      * Create a new instance of the request.
-     *
-     * @param  array  $filters
      */
     public function __construct(protected array $filters = [])
     {
@@ -18,8 +16,6 @@ class SearchClubRequest extends PostRequest
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {

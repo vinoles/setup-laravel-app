@@ -13,8 +13,6 @@ class RetrieveClubTest extends TestCase
 {
     /**
      * A user not logged in cannot retrieve the club
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -31,8 +29,6 @@ class RetrieveClubTest extends TestCase
 
     /**
      * A user logged in can retrieve the club
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -62,8 +58,6 @@ class RetrieveClubTest extends TestCase
 
     /**
      * A user cannot see a club that doesn't exist
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

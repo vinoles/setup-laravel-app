@@ -10,8 +10,6 @@ class CreatePostRequest extends PostRequest
 {
     /**
      * Create a new instance of the request.
-     *
-     * @param  Post|null  $post
      */
     public function __construct(protected ?Post $post = null)
     {

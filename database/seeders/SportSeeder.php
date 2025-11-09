@@ -21,6 +21,6 @@ class SportSeeder extends Seeder
                 'name' => $item['name'],
             ]);
         }
-        ;
+
     }
 }

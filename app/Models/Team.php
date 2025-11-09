@@ -35,6 +35,16 @@ class Team extends Model
         'club',
     ];
 
+    public static function getValidationRules(): array
+    {
+        return [
+            'name' => ['required', 'string', 'max:120'],
+            'short_name' => ['nullable', 'string', 'max:20'],
+            'city' => ['nullable', 'string', 'max:80'],
+            'logo_path' => ['nullable', 'string', 'max:255'],
+        ];
+    }
+
     public function teamSeasons(): HasMany
     {
         return $this->hasMany(TeamSeason::class);
@@ -68,15 +78,5 @@ class Team extends Model
     public function getClubNameAttribute(): ?string
     {
         return optional($this->club)->name;
-    }
-
-    public static function getValidationRules(): array
-    {
-        return [
-            'name' => ['required', 'string', 'max:120'],
-            'short_name' => ['nullable', 'string', 'max:20'],
-            'city' => ['nullable', 'string', 'max:80'],
-            'logo_path' => ['nullable', 'string', 'max:255'],
-        ];
     }
 }

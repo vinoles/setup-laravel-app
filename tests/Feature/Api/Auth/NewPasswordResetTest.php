@@ -10,8 +10,6 @@ class NewPasswordResetTest extends TestCase
 {
     /**
      * A user can requested a link for reset your password.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]

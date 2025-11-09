@@ -14,8 +14,7 @@ class CommentResource extends JsonApiResource
     /**
      * Get the resource's attributes.
      *
-     * @param Request|null $request
-     * @return iterable
+     * @param  Request|null  $request
      */
     public function attributes($request): iterable
     {
@@ -24,26 +23,16 @@ class CommentResource extends JsonApiResource
         ];
     }
 
-    /**
-     * @return array
-     */
     public function deleteRules(): array
     {
         return [];
     }
 
-    /**
-     * @return array
-     */
     public function deleteMessages(): array
     {
         return [];
     }
 
-    /**
-     * @param Comment $post
-     * @return array
-     */
     public function metaForDelete(Comment $post): array
     {
         return [];

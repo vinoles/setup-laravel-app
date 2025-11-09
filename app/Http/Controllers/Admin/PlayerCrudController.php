@@ -9,7 +9,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class PlayerCrudController
- * @package App\Http\Controllers\Admin
+ *
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class PlayerCrudController extends CrudController
@@ -29,10 +29,10 @@ class PlayerCrudController extends CrudController
     }
 
     /**
-     *
      * Define what happens when the List operation is loaded.
      *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
+     *
      * @return void
      */
     protected function setupListOperation()
@@ -55,6 +55,7 @@ class PlayerCrudController extends CrudController
      * Define what happens when the Create operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
+     *
      * @return void
      */
     protected function setupCreateOperation()
@@ -80,6 +81,7 @@ class PlayerCrudController extends CrudController
      * Define what happens when the Update operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
+     *
      * @return void
      */
     protected function setupUpdateOperation()

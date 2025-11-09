@@ -14,7 +14,7 @@ class ConfirmPasswordRequest extends FormRequest
      */
     public function authorize()
     {
-        return  Gate::authorize('confirmPassword', $this->user);
+        return Gate::authorize('confirmPassword', $this->user);
     }
 
     /**

@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             CatalogSeeder::class,
         ]);
 
-
         $this->call([
             FederationSeeder::class,
             LeagueSeeder::class,
@@ -27,7 +26,6 @@ class DatabaseSeeder extends Seeder
             PlayerSeeder::class,
             RefereeSeeder::class,
         ]);
-
 
         $this->call([
             UserSeeder::class,

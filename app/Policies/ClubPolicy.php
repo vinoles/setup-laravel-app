@@ -23,7 +23,6 @@ class ClubPolicy
         return true;
     }
 
-
     /**
      * Determine whether the user can view the post's comments.
      */
@@ -33,8 +32,8 @@ class ClubPolicy
     }
 
     /**
-    * Determine whether the user can create models.
-    */
+     * Determine whether the user can create models.
+     */
     public function create(User $user): bool
     {
         return true;
@@ -71,6 +70,4 @@ class ClubPolicy
     {
         return true;
     }
-
-
 }

@@ -27,6 +27,19 @@ class Player extends Model
         'weight_kg',
     ];
 
+    public static function getValidationRules(): array
+    {
+        return [
+            'first_name' => ['required', 'max:80'],
+            'last_name' => ['required', 'max:80'],
+            'birthdate' => ['nullable', 'date'],
+            'nationality' => ['nullable', 'max:80'],
+            'position' => ['nullable', 'max:40'],
+            'height_cm' => ['nullable', 'integer'],
+            'weight_kg' => ['nullable', 'integer'],
+        ];
+    }
+
     public function playerTeams(): HasMany
     {
         return $this->hasMany(PlayerTeam::class);
@@ -45,18 +58,5 @@ class Player extends Model
     public function getFullNameAttribute(): string
     {
         return "{$this->first_name} {$this->last_name}";
-    }
-
-    public static function getValidationRules(): array
-    {
-        return [
-            'first_name' => ['required', 'max:80'],
-            'last_name' => ['required', 'max:80'],
-            'birthdate' => ['nullable', 'date'],
-            'nationality' => ['nullable', 'max:80'],
-            'position' => ['nullable', 'max:40'],
-            'height_cm' => ['nullable', 'integer'],
-            'weight_kg' => ['nullable', 'integer'],
-        ];
     }
 }

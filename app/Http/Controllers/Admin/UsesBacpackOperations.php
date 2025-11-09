@@ -10,9 +10,9 @@ use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 
 trait UsesBacpackOperations
 {
-    use ListOperation;
     use CreateOperation;
-    use UpdateOperation;
     use DeleteOperation;
+    use ListOperation;
     use ShowOperation;
+    use UpdateOperation;
 }

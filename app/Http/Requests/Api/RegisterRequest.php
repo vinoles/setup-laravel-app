@@ -51,7 +51,7 @@ class RegisterRequest extends FormRequest
                 'date',
                 "before_or_equal:{$allowedBirthdate}",
             ],
-            //TODO refactor roles
+            // TODO refactor roles
             // 'role' => ['required', 'string', Rule::enum(UserRole::class)],
             'password' => $this->passwordRules(),
         ];

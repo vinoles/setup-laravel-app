@@ -19,9 +19,9 @@ class RefereeRoleSeeder extends Seeder
 
         foreach ($roles as $role) {
             RefereeRole::firstOrCreate([
-               'uuid' => Str::uuid(),
-               'code' => $role['code'],
-               'name' => $role['name'],
+                'uuid' => Str::uuid(),
+                'code' => $role['code'],
+                'name' => $role['name'],
             ]);
         }
     }

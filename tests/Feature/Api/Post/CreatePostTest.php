@@ -18,8 +18,6 @@ class CreatePostTest extends TestCase
 {
     /**
      * A post not logged in cannot create the post
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -35,8 +33,6 @@ class CreatePostTest extends TestCase
 
     /**
      * Create post  assert job pushed
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -77,8 +73,6 @@ class CreatePostTest extends TestCase
 
     /**
      * Create post persists in DB and dispatches CreatedPost event
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
@@ -140,8 +134,6 @@ class CreatePostTest extends TestCase
 
     /**
      * Cannot create post if without the required data.
-     *
-     * @return void
      */
     #[Test]
     #[Group('api')]
