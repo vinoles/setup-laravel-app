@@ -42,6 +42,10 @@ return [
         'foundation_year'  => 'Année de fondation',
         'website'          => 'Site web',
         'contact_email'    => 'Email de contact',
+        'nationality'      => 'Nationalité',
+        'position'         => 'Position',
+        'height_cm'        => 'Taille (cm)',
+        'weight_kg'        => 'Poids (kg)',
     ],
     'users'   => [
         'users' => 'Utilisateurs',
