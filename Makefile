@@ -105,5 +105,8 @@ horizon:
 socket:
 	$(sail) artisan reverb:start --debug
 
-cs-fixer:
-	$(sail) php ./vendor/bin/php-cs-fixer fix --config=php-cs-fixer.php
+duster-lint:
+	$(sail) php ./vendor/bin/duster lint
+
+duster-fix:
+	$(sail) php ./vendor/bin/duster fix

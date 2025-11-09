@@ -3,7 +3,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.3",
@@ -30,7 +33,6 @@
         "barryvdh/laravel-debugbar": "^3.15",
         "brianium/paratest": "^7.7",
         "fakerphp/faker": "^1.23",
-        "friendsofphp/php-cs-fixer": "^3.89",
         "laravel-json-api/testing": "*",
         "laravel/pail": "^1.1",
         "laravel/pint": "^1.13",
