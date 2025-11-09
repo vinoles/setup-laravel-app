@@ -36,12 +36,17 @@ class ClubCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        CRUD::addColumn([
+            'name' => 'name',
+            'type' => 'string',
+            'label' => __('admin.globals.name'),
+        ]);
 
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+            'name' => 'address',
+            'type' => 'string',
+            'label' => __('admin.globals.address'),
+        ]);
     }
 
     /**
@@ -53,12 +58,7 @@ class ClubCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(ClubRequest::class);
-        //CRUD::setFromDb(); // set fields from db columns.
 
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
         CRUD::addField([
             'name' => 'name',
             'type' => 'text',

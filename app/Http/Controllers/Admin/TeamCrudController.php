@@ -38,9 +38,18 @@ class TeamCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('short_name');
-        CRUD::column('city');
+        CRUD::addColumn([
+            'name' => 'name',
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'short_name',
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'city',
+        ]);
+
         CRUD::addColumn([
             'name' => 'club_id',
             'label' => 'Club',

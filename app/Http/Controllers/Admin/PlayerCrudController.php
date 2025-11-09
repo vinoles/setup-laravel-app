@@ -36,13 +36,35 @@ class PlayerCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('uuid');
-        CRUD::column('full_name')->label('Name');
-        CRUD::column('nationality');
-        CRUD::column('position');
-        CRUD::column('birthdate')->type('date');
-        CRUD::column('height_cm');
-        CRUD::column('weight_kg');
+        CRUD::addColumn([
+            'name' => 'uuid',
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'full_name',
+            'label' => 'Name',
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'nationality',
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'position',
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'birthdate',
+            'type' => 'date',
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'height_cm',
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'weight_kg',
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -59,12 +81,7 @@ class PlayerCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(PlayerRequest::class);
-        // CRUD::setFromDb(); // set fields from db columns.
 
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
         CRUD::field('first_name')->label(__('admin.globals.first_name'));
         CRUD::field('last_name')->label(__('admin.globals.last_name'));
         CRUD::field('birthdate')->label(__('admin.globals.birthdate'));

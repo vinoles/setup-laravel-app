@@ -36,12 +36,42 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        CRUD::addColumn([
+            'name' => 'full_name',
+            'label' => __('admin.globals.full_name'),
+        ]);
 
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+            'name' => 'email',
+            'label' => __('admin.globals.email'),
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'phone',
+            'label' => __('admin.globals.phone'),
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'city',
+            'label' => __('admin.globals.city'),
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'country',
+            'label' => __('admin.globals.country'),
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'birthdate',
+            'type' => 'date',
+            'label' => __('admin.globals.birthdate'),
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'created_at',
+            'type' => 'datetime',
+            'label' => __('admin.globals.created_at'),
+        ]);
     }
 
     /**
@@ -53,12 +83,66 @@ class UserCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(UserRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
 
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
+        CRUD::addField([
+            'name' => 'first_name',
+            'type' => 'text',
+            'label' => __('admin.globals.first_name'),
+        ]);
+
+        CRUD::addField([
+            'name' => 'last_name',
+            'type' => 'text',
+            'label' => __('admin.globals.last_name'),
+        ]);
+
+        CRUD::addField([
+            'name' => 'email',
+            'type' => 'email',
+            'label' => __('admin.globals.email'),
+        ]);
+
+        CRUD::addField([
+            'name' => 'phone',
+            'type' => 'text',
+            'label' => __('admin.globals.phone'),
+        ]);
+
+        CRUD::addField([
+            'name' => 'address',
+            'type' => 'text',
+            'label' => __('admin.globals.address'),
+        ]);
+
+        CRUD::addField([
+            'name' => 'city',
+            'type' => 'text',
+            'label' => __('admin.globals.city'),
+        ]);
+
+        CRUD::addField([
+            'name' => 'country',
+            'type' => 'text',
+            'label' => __('admin.globals.country'),
+        ]);
+
+        CRUD::addField([
+            'name' => 'postal_code',
+            'type' => 'text',
+            'label' => __('admin.globals.postal_code'),
+        ]);
+
+        CRUD::addField([
+            'name' => 'birthdate',
+            'type' => 'date',
+            'label' => __('admin.globals.birthdate'),
+        ]);
+
+        CRUD::addField([
+            'name' => 'password',
+            'type' => 'password',
+            'label' => __('admin.globals.password'),
+        ]);
     }
 
     /**

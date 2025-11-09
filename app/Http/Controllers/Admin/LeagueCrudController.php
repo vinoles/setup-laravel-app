@@ -32,8 +32,15 @@ class LeagueCrudController extends CrudController
      */
     protected function setupListOperation(): void
     {
-        CRUD::column('name')->label(__('admin.globals.name'));
-        CRUD::column('country')->label(__('admin.globals.country'));
+        CRUD::addColumn([
+            'name' => 'name',
+            'label' => __('admin.globals.name'),
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'country',
+            'label' => __('admin.globals.country'),
+        ]);
 
         CRUD::addColumn([
             'name' => 'federation_id',

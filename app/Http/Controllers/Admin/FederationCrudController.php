@@ -30,11 +30,30 @@ class FederationCrudController extends CrudController
      */
     protected function setupListOperation(): void
     {
-        CRUD::column('name')->label(__('admin.globals.name'));
-        CRUD::column('acronym')->label(__('admin.globals.acronym'));
-        CRUD::column('type')->label(__('admin.globals.type'));
-        CRUD::column('country')->label(__('admin.globals.country'));
-        CRUD::column('foundation_year')->label(__('admin.globals.foundation_year'));
+        CRUD::addColumn([
+            'name' => 'name',
+            'label' => __('admin.globals.name'),
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'acronym',
+            'label' => __('admin.globals.acronym'),
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'type',
+            'label' => __('admin.globals.type'),
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'country',
+            'label' => __('admin.globals.country'),
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'foundation_year',
+            'label' => __('admin.globals.foundation_year'),
+        ]);
     }
 
     /**
