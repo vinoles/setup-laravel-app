@@ -25,7 +25,7 @@ class FederationResource extends JsonApiResource
             'country'         => $this->country,
             'foundation_year' => $this->foundation_year,
             'website'         => $this->website,
-            'contact_email'   => $this->contact_email,
+            'email'           => $this->email,
             'created_at'      => $this->created_at,
             'updated_at'      => $this->updated_at,
         ];

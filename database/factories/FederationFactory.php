@@ -20,7 +20,7 @@ class FederationFactory extends Factory
             'country'         => $this->faker->country(),
             'foundation_year' => $this->faker->numberBetween(1900, 2020),
             'website'         => $this->faker->url(),
-            'contact_email'   => $this->faker->companyEmail(),
+            'email'   => $this->faker->companyEmail(),
         ];
     }
 }

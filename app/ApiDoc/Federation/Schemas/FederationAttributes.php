@@ -40,7 +40,7 @@ use OpenApi\Annotations as OA;
  *         example="https://www.fiba.basketball"
  *     ),
  *     @OA\Property(
- *         property="contact_email",
+ *         property="email",
  *         type="string",
  *         example="info@fiba.basketball"
  *     ),

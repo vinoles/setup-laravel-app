@@ -38,7 +38,7 @@ class FederationSchema extends Schema
             Str::make('country'),
             Number::make('foundation_year'),
             Str::make('website'),
-            Str::make('contact_email'),
+            Str::make('email'),
 
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),

@@ -105,9 +105,9 @@ class FederationCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name'  => 'contact_email',
+            'name'  => 'email',
             'type'  => 'email',
-            'label' => __('admin.globals.contact_email'),
+            'label' => __('admin.globals.email'),
         ]);
     }
 

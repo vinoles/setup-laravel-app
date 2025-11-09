@@ -42,7 +42,6 @@ return [
         'acronym'          => 'Acrónimo',
         'foundation_year'  => 'Año de fundación',
         'website'          => 'Sitio web',
-        'contact_email'    => 'Correo de contacto',
         'nationality'      => 'Nacionalidad',
         'position'         => 'Posición',
         'height_cm'        => 'Altura (cm)',

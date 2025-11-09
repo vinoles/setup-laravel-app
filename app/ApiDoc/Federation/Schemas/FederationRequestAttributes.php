@@ -46,7 +46,7 @@ use OpenApi\Annotations as OA;
  *         description="Optional official website URL (max 255 characters)"
  *     ),
  *     @OA\Property(
- *         property="contact_email",
+ *         property="email",
  *         type="string",
  *         example="info@fiba.basketball",
  *         description="Optional contact email (max 120 characters)"

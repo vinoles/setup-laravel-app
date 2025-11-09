@@ -21,7 +21,7 @@ class Federation extends Model
         'country',
         'foundation_year',
         'website',
-        'contact_email',
+        'email',
     ];
 
     public static function getValidationRules(): array
@@ -33,7 +33,7 @@ class Federation extends Model
             'country'         => ['nullable', 'string', 'max:80'],
             'foundation_year' => ['nullable', 'integer', 'min:1800', 'max:' . now()->year],
             'website'         => ['nullable', 'string', 'max:255', 'url'],
-            'contact_email'   => ['nullable', 'string', 'email', 'max:120'],
+            'email'   => ['nullable', 'string', 'email', 'max:120'],
         ];
     }
 
