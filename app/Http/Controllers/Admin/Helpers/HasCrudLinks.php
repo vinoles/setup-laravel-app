@@ -12,6 +12,7 @@ trait HasCrudLinks
             'entity'      => $entity,
             'model'       => $model,
             'attribute'   => $attribute,
+            'label'       => __("admin.globals.{$entity}"),
             'wrapper'     => [
                 'element' => 'a',
                 'href'    => fn ($crud, $column, $entry, $related_key) => backpack_url(strtolower($resource) . '/' . $related_key . '/show'),
