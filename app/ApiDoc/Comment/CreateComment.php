@@ -47,6 +47,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class CreateComment extends ApiDoc
-{
-}
+class CreateComment extends ApiDoc {}

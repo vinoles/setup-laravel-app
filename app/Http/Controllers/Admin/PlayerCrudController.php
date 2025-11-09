@@ -43,7 +43,7 @@ class PlayerCrudController extends CrudController
         ]);
 
         CRUD::addColumn([
-            'name' => 'full_name',
+            'name'  => 'full_name',
             'label' => 'Name',
         ]);
 

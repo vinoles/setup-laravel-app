@@ -63,6 +63,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class UpdateTeam extends ApiDoc
-{
-}
+class UpdateTeam extends ApiDoc {}

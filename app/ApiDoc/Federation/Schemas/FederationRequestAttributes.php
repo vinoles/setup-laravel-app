@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="FederationRequestAttributes",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="name",
  *         type="string",
@@ -52,6 +53,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class FederationRequestAttributes
-{
-}
+class FederationRequestAttributes {}

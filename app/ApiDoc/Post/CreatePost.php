@@ -47,6 +47,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class CreatePost extends ApiDoc
-{
-}
+class CreatePost extends ApiDoc {}

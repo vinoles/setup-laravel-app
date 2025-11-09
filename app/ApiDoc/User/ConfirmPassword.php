@@ -70,6 +70,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class ConfirmPassword extends ApiDoc
-{
-}
+class ConfirmPassword extends ApiDoc {}

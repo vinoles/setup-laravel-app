@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="LeagueFederationRequestRelationship",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="federation",
  *         type="object",
@@ -30,6 +31,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class LeagueFederationRequestRelationship
-{
-}
+class LeagueFederationRequestRelationship {}

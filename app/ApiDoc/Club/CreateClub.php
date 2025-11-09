@@ -47,6 +47,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class CreateClub extends ApiDoc
-{
-}
+class CreateClub extends ApiDoc {}

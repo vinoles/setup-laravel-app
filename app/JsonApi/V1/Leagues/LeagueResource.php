@@ -14,14 +14,13 @@ class LeagueResource extends JsonApiResource
     /**
      * Get the resource's attributes.
      *
-     * @param Request|null $request
-     * @return iterable
+     * @param  Request|null  $request
      */
     public function attributes($request): iterable
     {
         return [
-            'name' => $this->name,
-            'country' => $this->country,
+            'name'       => $this->name,
+            'country'    => $this->country,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

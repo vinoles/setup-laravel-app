@@ -32,27 +32,27 @@ class FederationCrudController extends CrudController
     protected function setupListOperation(): void
     {
         CRUD::addColumn([
-            'name' => 'name',
+            'name'  => 'name',
             'label' => __('admin.globals.name'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'acronym',
+            'name'  => 'acronym',
             'label' => __('admin.globals.acronym'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'type',
+            'name'  => 'type',
             'label' => __('admin.globals.type'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'country',
+            'name'  => 'country',
             'label' => __('admin.globals.country'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'foundation_year',
+            'name'  => 'foundation_year',
             'label' => __('admin.globals.foundation_year'),
         ]);
     }
@@ -65,33 +65,33 @@ class FederationCrudController extends CrudController
         CRUD::setValidation(FederationRequest::class);
 
         CRUD::addField([
-            'name' => 'name',
-            'type' => 'text',
+            'name'  => 'name',
+            'type'  => 'text',
             'label' => __('admin.globals.name'),
         ]);
 
         CRUD::addField([
-            'name' => 'acronym',
-            'type' => 'text',
+            'name'  => 'acronym',
+            'type'  => 'text',
             'label' => __('admin.globals.acronym'),
         ]);
 
         CRUD::addField([
-            'name' => 'type',
-            'type' => 'text',
+            'name'  => 'type',
+            'type'  => 'text',
             'label' => __('admin.globals.type'),
         ]);
 
         CRUD::addField([
-            'name' => 'country',
-            'type' => 'text',
+            'name'  => 'country',
+            'type'  => 'text',
             'label' => __('admin.globals.country'),
         ]);
 
         CRUD::addField([
-            'name' => 'foundation_year',
-            'type' => 'number',
-            'label' => __('admin.globals.foundation_year'),
+            'name'       => 'foundation_year',
+            'type'       => 'number',
+            'label'      => __('admin.globals.foundation_year'),
             'attributes' => [
                 'min' => 1800,
                 'max' => now()->year,
@@ -99,14 +99,14 @@ class FederationCrudController extends CrudController
         ]);
 
         CRUD::addField([
-            'name' => 'website',
-            'type' => 'text',
+            'name'  => 'website',
+            'type'  => 'text',
             'label' => __('admin.globals.website'),
         ]);
 
         CRUD::addField([
-            'name' => 'contact_email',
-            'type' => 'email',
+            'name'  => 'contact_email',
+            'type'  => 'email',
             'label' => __('admin.globals.contact_email'),
         ]);
     }

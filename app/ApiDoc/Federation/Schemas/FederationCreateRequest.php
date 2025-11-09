@@ -9,6 +9,7 @@ use OpenApi\Annotations as OA;
  *     schema="FederationCreateRequest",
  *     type="object",
  *     required={"data"},
+ *
  *     @OA\Property(
  *         property="data",
  *         type="object",
@@ -25,6 +26,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class FederationCreateRequest
-{
-}
+class FederationCreateRequest {}

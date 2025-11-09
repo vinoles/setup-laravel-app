@@ -9,6 +9,7 @@ use OpenApi\Annotations as OA;
  *     schema="LeagueCreateRequest",
  *     type="object",
  *     required={"data"},
+ *
  *     @OA\Property(
  *         property="data",
  *         type="object",
@@ -29,6 +30,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class LeagueCreateRequest
-{
-}
+class LeagueCreateRequest {}

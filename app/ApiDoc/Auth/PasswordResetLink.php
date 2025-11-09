@@ -56,6 +56,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class PasswordResetLink extends ApiDoc
-{
-}
+class PasswordResetLink extends ApiDoc {}

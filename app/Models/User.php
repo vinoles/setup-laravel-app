@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUserRoles;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\Concerns\HasUuid;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'full_name'
+        'full_name',
     ];
 
     /**
@@ -66,6 +66,11 @@ class User extends Authenticatable
         return $this->first_name . ' ' . $this->last_name;
     }
 
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'author_id', 'id');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -78,14 +83,6 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password'          => 'hashed',
         ];
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function posts(): HasMany
-    {
-        return $this->hasMany(Post::class, 'author_id', 'id');
     }
 
     protected function fullName(): Attribute

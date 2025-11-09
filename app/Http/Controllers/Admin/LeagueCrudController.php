@@ -34,31 +34,31 @@ class LeagueCrudController extends CrudController
     protected function setupListOperation(): void
     {
         CRUD::addColumn([
-            'name' => 'name',
+            'name'  => 'name',
             'label' => __('admin.globals.name'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'country',
+            'name'  => 'country',
             'label' => __('admin.globals.country'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'federation_id',
-            'label' => __('admin.globals.federation'),
-            'type' => 'select',
-            'entity' => 'federation',
+            'name'      => 'federation_id',
+            'label'     => __('admin.globals.federation'),
+            'type'      => 'select',
+            'entity'    => 'federation',
             'attribute' => 'name',
-            'model' => Federation::class,
+            'model'     => Federation::class,
         ]);
 
         CRUD::addColumn([
-            'name' => 'sport_id',
-            'label' => __('admin.globals.sport'),
-            'type' => 'select',
-            'entity' => 'sport',
+            'name'      => 'sport_id',
+            'label'     => __('admin.globals.sport'),
+            'type'      => 'select',
+            'entity'    => 'sport',
             'attribute' => 'name',
-            'model' => Sport::class,
+            'model'     => Sport::class,
         ]);
     }
 
@@ -70,36 +70,36 @@ class LeagueCrudController extends CrudController
         CRUD::setValidation(LeagueRequest::class);
 
         CRUD::addField([
-            'name' => 'name',
-            'type' => 'text',
+            'name'  => 'name',
+            'type'  => 'text',
             'label' => __('admin.globals.name'),
         ]);
 
         CRUD::addField([
-            'name' => 'country',
-            'type' => 'text',
+            'name'  => 'country',
+            'type'  => 'text',
             'label' => __('admin.globals.country'),
         ]);
 
         CRUD::addField([
-            'name' => 'sport_id',
-            'type' => 'select',
-            'label' => __('admin.globals.sport'),
-            'entity' => 'sport',
-            'model' => Sport::class,
-            'attribute' => 'name',
-            'options' => fn ($query) => $query->orderBy('name')->get(),
+            'name'        => 'sport_id',
+            'type'        => 'select',
+            'label'       => __('admin.globals.sport'),
+            'entity'      => 'sport',
+            'model'       => Sport::class,
+            'attribute'   => 'name',
+            'options'     => fn ($query) => $query->orderBy('name')->get(),
             'allows_null' => true,
         ]);
 
         CRUD::addField([
-            'name' => 'federation_id',
-            'type' => 'select',
-            'label' => __('admin.globals.federation'),
-            'entity' => 'federation',
-            'model' => Federation::class,
+            'name'      => 'federation_id',
+            'type'      => 'select',
+            'label'     => __('admin.globals.federation'),
+            'entity'    => 'federation',
+            'model'     => Federation::class,
             'attribute' => 'name',
-            'options' => fn ($query) => $query->orderBy('name')->get(),
+            'options'   => fn ($query) => $query->orderBy('name')->get(),
         ]);
     }
 

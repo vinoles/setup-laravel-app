@@ -59,6 +59,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class UpdatePost extends ApiDoc
-{
-}
+class UpdatePost extends ApiDoc {}

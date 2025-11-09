@@ -14,21 +14,20 @@ class FederationResource extends JsonApiResource
     /**
      * Get the resource's attributes.
      *
-     * @param Request|null $request
-     * @return iterable
+     * @param  Request|null  $request
      */
     public function attributes($request): iterable
     {
         return [
-            'name' => $this->name,
-            'type' => $this->type,
-            'acronym' => $this->acronym,
-            'country' => $this->country,
+            'name'            => $this->name,
+            'type'            => $this->type,
+            'acronym'         => $this->acronym,
+            'country'         => $this->country,
             'foundation_year' => $this->foundation_year,
-            'website' => $this->website,
-            'contact_email' => $this->contact_email,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'website'         => $this->website,
+            'contact_email'   => $this->contact_email,
+            'created_at'      => $this->created_at,
+            'updated_at'      => $this->updated_at,
         ];
     }
 }

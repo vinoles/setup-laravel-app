@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="FederationApiResource",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="type",
  *         type="string",
@@ -33,6 +34,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class FederationApiResource
-{
-}
+class FederationApiResource {}

@@ -46,6 +46,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class Register extends ApiDoc
-{
-}
+class Register extends ApiDoc {}

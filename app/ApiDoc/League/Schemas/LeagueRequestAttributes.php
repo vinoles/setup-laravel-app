@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="LeagueRequestAttributes",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="name",
  *         type="string",
@@ -28,6 +29,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class LeagueRequestAttributes
-{
-}
+class LeagueRequestAttributes {}

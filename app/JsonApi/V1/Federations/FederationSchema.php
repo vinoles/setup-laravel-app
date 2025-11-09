@@ -24,8 +24,6 @@ class FederationSchema extends Schema
 
     /**
      * Get the resource fields.
-     *
-     * @return array
      */
     public function fields(): array
     {
@@ -49,8 +47,6 @@ class FederationSchema extends Schema
 
     /**
      * Get the resource filters.
-     *
-     * @return array
      */
     public function filters(): array
     {
@@ -61,8 +57,6 @@ class FederationSchema extends Schema
 
     /**
      * Get the resource paginator.
-     *
-     * @return Paginator|null
      */
     public function pagination(): ?Paginator
     {
@@ -71,8 +65,6 @@ class FederationSchema extends Schema
 
     /**
      * Determine if the resource is authorizable.
-     *
-     * @return bool
      */
     public function authorizable(): bool
     {

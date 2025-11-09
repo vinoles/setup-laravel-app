@@ -47,6 +47,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class CreateUser extends ApiDoc
-{
-}
+class CreateUser extends ApiDoc {}

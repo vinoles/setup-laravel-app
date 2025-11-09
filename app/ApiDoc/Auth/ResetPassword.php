@@ -77,6 +77,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class ResetPassword extends ApiDoc
-{
-}
+class ResetPassword extends ApiDoc {}

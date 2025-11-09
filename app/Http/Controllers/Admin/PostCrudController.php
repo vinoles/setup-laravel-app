@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Admin\Helpers\HasCrudLinks;
 use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Requests\Admin\PostRequest;
 use App\Models\Post;
@@ -41,40 +40,40 @@ class PostCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::addColumn([
-            'name' => 'title',
-            'type' => 'text',
+            'name'  => 'title',
+            'type'  => 'text',
             'label' => __('admin.globals.title'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'slug',
-            'type' => 'text',
+            'name'  => 'slug',
+            'type'  => 'text',
             'label' => __('admin.globals.slug'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'content',
-            'type' => 'textarea',
+            'name'  => 'content',
+            'type'  => 'textarea',
             'label' => __('admin.globals.content'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'published_at',
-            'type' => 'datetime',
+            'name'  => 'published_at',
+            'type'  => 'datetime',
             'label' => __('admin.globals.published_at'),
         ]);
 
         CRUD::addColumn(self::linkColumn('author', User::class, 'full_name', 'users', ['first_name', 'last_name']));
 
         CRUD::addColumn([
-            'name' => 'created_at',
-            'type' => 'datetime',
+            'name'  => 'created_at',
+            'type'  => 'datetime',
             'label' => __('admin.globals.created_at'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'updated_at',
-            'type' => 'datetime',
+            'name'  => 'updated_at',
+            'type'  => 'datetime',
             'label' => __('admin.globals.updated_at'),
         ]);
     }
@@ -91,14 +90,14 @@ class PostCrudController extends CrudController
         CRUD::setValidation(PostRequest::class);
 
         CRUD::addField([
-            'name' => 'title',
-            'type' => 'text',
+            'name'  => 'title',
+            'type'  => 'text',
             'label' => __('admin.globals.title'),
         ]);
 
         CRUD::addField([
-            'name' => 'content',
-            'type' => 'textarea',
+            'name'  => 'content',
+            'type'  => 'textarea',
             'label' => __('admin.globals.content'),
         ]);
     }

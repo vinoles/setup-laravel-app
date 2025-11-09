@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="FederationsApiResponse",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="meta",
  *         ref="#/components/schemas/PaginationMeta"
@@ -38,10 +39,9 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *         property="data",
  *         type="array",
+ *
  *         @OA\Items(ref="#/components/schemas/FederationApiResource")
  *     )
  * )
  */
-class FederationsApiResponse
-{
-}
+class FederationsApiResponse {}

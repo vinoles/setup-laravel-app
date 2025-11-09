@@ -39,14 +39,14 @@ class ClubCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::addColumn([
-            'name' => 'name',
-            'type' => 'text',
+            'name'  => 'name',
+            'type'  => 'text',
             'label' => __('admin.globals.name'),
         ]);
 
         CRUD::addColumn([
-            'name' => 'address',
-            'type' => 'text',
+            'name'  => 'address',
+            'type'  => 'text',
             'label' => __('admin.globals.address'),
         ]);
     }

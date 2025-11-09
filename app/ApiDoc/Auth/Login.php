@@ -63,6 +63,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class Login extends ApiDoc
-{
-}
+class Login extends ApiDoc {}

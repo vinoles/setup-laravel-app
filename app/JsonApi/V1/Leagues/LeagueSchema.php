@@ -23,8 +23,6 @@ class LeagueSchema extends Schema
 
     /**
      * Get the resource fields.
-     *
-     * @return array
      */
     public function fields(): array
     {
@@ -37,7 +35,7 @@ class LeagueSchema extends Schema
             Str::make('name'),
             Str::make('country'),
             BelongsTo::make('sport')
-            ->type('sports'),
+                ->type('sports'),
 
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
@@ -46,8 +44,6 @@ class LeagueSchema extends Schema
 
     /**
      * Get the resource filters.
-     *
-     * @return array
      */
     public function filters(): array
     {
@@ -58,8 +54,6 @@ class LeagueSchema extends Schema
 
     /**
      * Get the resource paginator.
-     *
-     * @return Paginator|null
      */
     public function pagination(): ?Paginator
     {
@@ -68,8 +62,6 @@ class LeagueSchema extends Schema
 
     /**
      * Determine if the resource is authorizable.
-     *
-     * @return bool
      */
     public function authorizable(): bool
     {
