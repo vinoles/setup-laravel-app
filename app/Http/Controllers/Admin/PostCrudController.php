@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Helpers\HasCrudLinks;
 use App\Http\Requests\Admin\PostRequest;
 use App\Models\Post;
 use App\Models\User;
@@ -16,6 +17,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class PostCrudController extends CrudController
 {
     use UsesBackpackOperations;
+    use HasCrudLinks;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -61,22 +63,7 @@ class PostCrudController extends CrudController
             'label' => __('admin.globals.published_at'),
         ]);
 
-        // TODO: Consider refactoring in the future
-        CRUD::addColumn([
-            'name' => 'author_id',
-            'type' => 'select',
-            'model' => User::class,
-            'attribute' => 'full_name',
-            'entity' => 'author',
-            'searchLogic' => function ($query, $column, $searchTerm) {
-                $query->orWhereHas('author', function ($q) use ($searchTerm) {
-                    $q->whereRaw('(LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ?)', [
-                        '%' . strtolower($searchTerm) . '%',
-                        '%' . strtolower($searchTerm) . '%',
-                    ]);
-                });
-            },
-        ]);
+        CRUD::addColumn(self::linkColumn('author', User::class, 'full_name', 'users', ['first_name', 'last_name']));
 
         CRUD::addColumn([
             'name' => 'created_at',
