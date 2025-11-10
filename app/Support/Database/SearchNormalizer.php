@@ -7,40 +7,17 @@ use Illuminate\Support\Str;
 
 class SearchNormalizer
 {
-    /**
-     * Map of accented characters to their ASCII equivalents.
-     * Only lowercase characters are included since LOWER() is applied at the end.
-     */
-    private const REPLACEMENTS = [
-        'á' => 'a', 'à' => 'a', 'ä' => 'a', 'â' => 'a', 'ã' => 'a', 'å' => 'a',
-        'é' => 'e', 'è' => 'e', 'ë' => 'e', 'ê' => 'e',
-        'í' => 'i', 'ì' => 'i', 'ï' => 'i', 'î' => 'i',
-        'ó' => 'o', 'ò' => 'o', 'ö' => 'o', 'ô' => 'o', 'õ' => 'o',
-        'ú' => 'u', 'ù' => 'u', 'ü' => 'u', 'û' => 'u',
-        'ñ' => 'n', 'ç' => 'c',
-    ];
-
     public static function column(string $column): string
     {
-        $grammar = DB::connection()->getQueryGrammar();
-        $expression = $grammar->wrap($column);
-        $expression = "CONCAT('', {$expression})";
-        $driver = DB::connection()->getDriverName();
+        $connection = DB::connection();
+        $grammar = $connection->getQueryGrammar();
+        $wrapped = $grammar->wrap($column);
 
-        if ($driver === config('database.connections.sqlite.driver')) {
-            return "LOWER({$expression})";
-        }
-
-        foreach (self::REPLACEMENTS as $from => $to) {
-            $expression = sprintf(
-                "REPLACE(%s, '%s', '%s')",
-                $expression,
-                str_replace("'", "''", $from),
-                str_replace("'", "''", $to)
-            );
-        }
-
-        return "LOWER({$expression})";
+        return match ($connection->getDriverName()) {
+            'pgsql' => "LOWER(TRANSLATE(CAST({$wrapped} AS TEXT), 'áàäâãåéèëêíìïîóòöôõúùüûñç', 'aaaaaaeeeeiiiiooooouuuunc'))",
+            'mysql', 'mariadb' => "LOWER(CONVERT({$wrapped} USING utf8mb4) COLLATE utf8mb4_unicode_ci)",
+            default => "LOWER(CAST({$wrapped} AS TEXT))",
+        };
     }
 
     public static function value(?string $value): string
