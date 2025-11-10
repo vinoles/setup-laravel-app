@@ -29,7 +29,7 @@ use OpenApi\Annotations as OA;
  *       response="201",
  *       description="CreateClub Successful",
  *
- *         @OA\JsonContent(ref="#/components/schemas/ClubApiResponse"),
+ *         @OA\JsonContent(ref="#/components/schemas/CreateClubApiResponse"),
  *     ),
  *
  *     @OA\Response(
