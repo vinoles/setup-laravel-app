@@ -7,57 +7,17 @@ use Illuminate\Support\Str;
 
 class SearchNormalizer
 {
+    /**
+     * Map of accented characters to their ASCII equivalents.
+     * Only lowercase characters are included since LOWER() is applied at the end.
+     */
     private const REPLACEMENTS = [
-        'á' => 'a',
-        'à' => 'a',
-        'ä' => 'a',
-        'â' => 'a',
-        'ã' => 'a',
-        'å' => 'a',
-        'Á' => 'a',
-        'À' => 'a',
-        'Ä' => 'a',
-        'Â' => 'a',
-        'Ã' => 'a',
-        'Å' => 'a',
-        'é' => 'e',
-        'è' => 'e',
-        'ë' => 'e',
-        'ê' => 'e',
-        'É' => 'e',
-        'È' => 'e',
-        'Ë' => 'e',
-        'Ê' => 'e',
-        'í' => 'i',
-        'ì' => 'i',
-        'ï' => 'i',
-        'î' => 'i',
-        'Í' => 'i',
-        'Ì' => 'i',
-        'Ï' => 'i',
-        'Î' => 'i',
-        'ó' => 'o',
-        'ò' => 'o',
-        'ö' => 'o',
-        'ô' => 'o',
-        'õ' => 'o',
-        'Ó' => 'o',
-        'Ò' => 'o',
-        'Ö' => 'o',
-        'Ô' => 'o',
-        'Õ' => 'o',
-        'ú' => 'u',
-        'ù' => 'u',
-        'ü' => 'u',
-        'û' => 'u',
-        'Ú' => 'u',
-        'Ù' => 'u',
-        'Ü' => 'u',
-        'Û' => 'u',
-        'ñ' => 'n',
-        'Ñ' => 'n',
-        'ç' => 'c',
-        'Ç' => 'c',
+        'á' => 'a', 'à' => 'a', 'ä' => 'a', 'â' => 'a', 'ã' => 'a', 'å' => 'a',
+        'é' => 'e', 'è' => 'e', 'ë' => 'e', 'ê' => 'e',
+        'í' => 'i', 'ì' => 'i', 'ï' => 'i', 'î' => 'i',
+        'ó' => 'o', 'ò' => 'o', 'ö' => 'o', 'ô' => 'o', 'õ' => 'o',
+        'ú' => 'u', 'ù' => 'u', 'ü' => 'u', 'û' => 'u',
+        'ñ' => 'n', 'ç' => 'c',
     ];
 
     public static function column(string $column): string
@@ -67,7 +27,7 @@ class SearchNormalizer
         $expression = "CONCAT('', {$expression})";
         $driver = DB::connection()->getDriverName();
 
-        if ($driver === 'sqlite') {
+        if ($driver === config('database.connections.sqlite.driver')) {
             return "LOWER({$expression})";
         }
 
