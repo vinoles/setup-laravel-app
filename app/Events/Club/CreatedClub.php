@@ -55,4 +55,3 @@ class CreatedClub implements ShouldBroadcast
         ];
     }
 }
-

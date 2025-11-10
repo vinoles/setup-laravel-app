@@ -25,4 +25,3 @@ class ClubInformationValidator
         InformationValidatedClub::dispatch($event->club);
     }
 }
-

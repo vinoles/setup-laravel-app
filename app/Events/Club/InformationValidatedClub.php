@@ -55,4 +55,3 @@ class InformationValidatedClub implements ShouldBroadcast
         ];
     }
 }
-

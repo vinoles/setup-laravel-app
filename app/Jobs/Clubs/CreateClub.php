@@ -38,4 +38,3 @@ class CreateClub implements ShouldQueue
         CreatedClub::dispatch($club);
     }
 }
-
