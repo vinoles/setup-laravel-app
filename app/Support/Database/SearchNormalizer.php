@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class SearchNormalizer
 {
-    private const array REPLACEMENTS = [
+    private const REPLACEMENTS = [
         'á' => 'a',
         'à' => 'a',
         'ä' => 'a',

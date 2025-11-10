@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Helpers;
 
 use App\Support\Database\SearchNormalizer;
+use Closure;
 
 trait HasCrudLinks
 {
@@ -24,7 +25,7 @@ trait HasCrudLinks
         ];
     }
 
-    protected function relationSearchLogic(string $relation, array $columns): \Closure
+    protected function relationSearchLogic(string $relation, array $columns): Closure
     {
         return function ($query, $column, $searchTerm) use ($relation, $columns) {
             $normalized = SearchNormalizer::value($searchTerm);
