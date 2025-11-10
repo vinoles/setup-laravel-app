@@ -52,6 +52,20 @@ Route::middleware('auth:sanctum')->group(static function () {
 
             $server->resource('players', JsonApiController::class);
 
+            $server->resource('federations', JsonApiController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasMany('leagues')
+                        ->readOnly()
+                        ->except('show');
+                });
+
+            $server->resource('leagues', JsonApiController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasOne('federation')
+                        ->readOnly()
+                        ->except('show');
+                });
+
             $server->resource('teams', JsonApiController::class)
                 ->relationships(function (Relationships $relations) {
                     $relations->hasOne('club')

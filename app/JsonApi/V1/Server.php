@@ -4,6 +4,8 @@ namespace App\JsonApi\V1;
 
 use App\JsonApi\V1\Clubs\ClubSchema;
 use App\JsonApi\V1\Comments\CommentSchema;
+use App\JsonApi\V1\Federations\FederationSchema;
+use App\JsonApi\V1\Leagues\LeagueSchema;
 use App\JsonApi\V1\Players\PlayerSchema;
 use App\JsonApi\V1\Posts\PostSchema;
 use App\JsonApi\V1\Tags\TagSchema;
@@ -38,6 +40,8 @@ class Server extends BaseServer
             CommentSchema::class,
             TagSchema::class,
             PlayerSchema::class,
+            FederationSchema::class,
+            LeagueSchema::class,
             ClubSchema::class,
             TeamSchema::class,
         ];

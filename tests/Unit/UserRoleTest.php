@@ -4,8 +4,8 @@ namespace Tests\Unit;
 
 use App\Constants\Permission;
 use App\Constants\UserRole;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Permission\Models\Permission as SpatiePermission;
 use Tests\Feature\TestCase;
 
@@ -13,18 +13,10 @@ class UserRoleTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-    }
-
     /**
      * Test that a talent user has the correct role and permissions
-     *
-     * @test
      */
+    #[Test]
     public function talent_user_has_correct_role_and_permissions(): void
     {
         // Assign talent role
@@ -58,9 +50,8 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that a scout user has the correct role and permissions
-     *
-     * @test
      */
+    #[Test]
     public function scout_user_has_correct_role_and_permissions(): void
     {
         // Assign scout role
@@ -95,9 +86,8 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that a club user has the correct role and permissions
-     *
-     * @test
      */
+    #[Test]
     public function club_user_has_correct_role_and_permissions(): void
     {
         // Assign club role
@@ -135,9 +125,8 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that an admin user has the correct role and permissions
-     *
-     * @test
      */
+    #[Test]
     public function admin_user_has_correct_role_and_permissions(): void
     {
         // Assign admin role
@@ -175,9 +164,8 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that a super admin user has the correct role and permissions
-     *
-     * @test
      */
+    #[Test]
     public function super_admin_user_has_correct_role_and_permissions(): void
     {
         // Assign super admin role
@@ -202,9 +190,8 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that a user can only have one role (business rule)
-     *
-     * @test
      */
+    #[Test]
     public function user_can_only_have_one_role(): void
     {
         // Assign first role
@@ -223,9 +210,8 @@ class UserRoleTest extends TestCase
 
     /**
      * Test role assignment and removal
-     *
-     * @test
      */
+    #[Test]
     public function role_assignment_and_removal(): void
     {
         // Initially no roles
@@ -245,9 +231,8 @@ class UserRoleTest extends TestCase
 
     /**
      * Test that users without roles have no permissions
-     *
-     * @test
      */
+    #[Test]
     public function user_without_role_has_no_permissions(): void
     {
         // Assert no roles

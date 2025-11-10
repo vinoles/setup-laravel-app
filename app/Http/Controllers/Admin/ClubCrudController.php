@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Requests\Admin\ClubRequest;
 use App\Models\Club;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class ClubCrudController
  *
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
+ * @property-read CrudPanel $crud
  */
 class ClubCrudController extends CrudController
 {
-    use UsesBacpackOperations;
+    use UsesBackpackOperations;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -37,12 +39,19 @@ class ClubCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        CRUD::addColumn([
+            'name'        => 'name',
+            'type'        => 'text',
+            'label'       => __('admin.globals.name'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'name', $searchTerm),
+        ]);
 
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+            'name'        => 'address',
+            'type'        => 'text',
+            'label'       => __('admin.globals.address'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'address', $searchTerm),
+        ]);
     }
 
     /**
@@ -55,12 +64,7 @@ class ClubCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(ClubRequest::class);
-        // CRUD::setFromDb(); // set fields from db columns.
 
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
         CRUD::addField([
             'name'  => 'name',
             'type'  => 'text',

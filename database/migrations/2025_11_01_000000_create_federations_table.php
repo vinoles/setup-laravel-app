@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('country', 80)->nullable();
             $table->smallInteger('foundation_year')->nullable();
             $table->string('website', 255)->nullable();
-            $table->string('contact_email', 120)->nullable();
+            $table->string('email', 120)->nullable();
             $table->timestampsTz();
         });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Requests\Admin\TeamRequest;
 use App\Models\Club;
 use App\Models\Team;
@@ -16,7 +17,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class TeamCrudController extends CrudController
 {
-    use UsesBacpackOperations;
+    use UsesBackpackOperations;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -39,17 +40,30 @@ class TeamCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('short_name');
-        CRUD::column('city');
         CRUD::addColumn([
-            'name'      => 'club_id',
-            'label'     => 'Club',
-            'type'      => 'select',
-            'entity'    => 'club',
-            'attribute' => 'name',
-            'model'     => "App\Models\Club",
+            'name'        => 'name',
+            'type'        => 'text',
+            'label'       => __('admin.globals.name'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'name', $searchTerm),
         ]);
+
+        CRUD::addColumn([
+            'name'        => 'short_name',
+            'type'        => 'text',
+            'label'       => __('admin.globals.short_name'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'short_name', $searchTerm),
+        ]);
+
+        CRUD::addColumn([
+            'name'        => 'city',
+            'type'        => 'text',
+            'label'       => __('admin.globals.city'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'city', $searchTerm),
+        ]);
+
+        CRUD::addColumn(
+            $this->linkColumn('club', Club::class, 'name', 'clubs', ['name'])
+        );
     }
 
     /**

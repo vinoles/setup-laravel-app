@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Requests\Admin\PostRequest;
 use App\Models\Post;
+use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class PostCrudController
  *
- * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
+ * @property-read CrudPanel $crud
  */
 class PostCrudController extends CrudController
 {
-    use UsesBacpackOperations;
+    use UsesBackpackOperations;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -37,55 +40,48 @@ class PostCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        // CRUD::setFromDb(); // set columns from db columns.
+        CRUD::addColumn([
+            'name'        => 'title',
+            'type'        => 'text',
+            'label'       => __('admin.globals.title'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'title', $searchTerm),
+        ]);
 
-        CRUD::column('id')
-            ->type('text')
-            ->label(__('#'));
+        CRUD::addColumn([
+            'name'        => 'slug',
+            'type'        => 'text',
+            'label'       => __('admin.globals.slug'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'slug', $searchTerm),
+        ]);
 
-        CRUD::column('title')
-            ->type('text')
-            ->label(__('admin.globals.title'));
+        CRUD::addColumn([
+            'name'        => 'content',
+            'type'        => 'textarea',
+            'label'       => __('admin.globals.content'),
+            'searchLogic' => fn ($query, $column, $searchTerm) => $this->applyTextSearch($query, 'content', $searchTerm),
+        ]);
 
-        CRUD::column('slug')
-            ->type('text')
-            ->label(__('admin.globals.slug'));
+        CRUD::addColumn([
+            'name'  => 'published_at',
+            'type'  => 'datetime',
+            'label' => __('admin.globals.published_at'),
+        ]);
 
-        CRUD::column('content')
-            ->type('textarea')
-            ->label(__('admin.globals.content'));
+        CRUD::addColumn(
+            $this->linkColumn('author', User::class, 'full_name', 'users', ['first_name', 'last_name'])
+        );
 
-        CRUD::column('published_at')
-            ->type('datetime')
-            ->label(__('admin.globals.published_at'));
+        CRUD::addColumn([
+            'name'  => 'created_at',
+            'type'  => 'datetime',
+            'label' => __('admin.globals.created_at'),
+        ]);
 
-        // TODO: Consider refactoring in the future
-        CRUD::column('author_id')
-            ->type('select')
-            ->model('App\Models\User')
-            ->attribute('full_name')
-            ->entity('author')
-            ->searchLogic(function ($query, $column, $searchTerm) {
-                $query->orWhereHas('author', function ($q) use ($searchTerm) {
-                    $q->whereRaw('(LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ?)', [
-                        '%' . strtolower($searchTerm) . '%',
-                        '%' . strtolower($searchTerm) . '%',
-                    ]);
-                });
-            });
-
-        CRUD::column('created_at')
-            ->type('datetime')
-            ->label(__('admin.globals.created_at'));
-
-        CRUD::column('updated_at')
-            ->type('datetime')
-            ->label(__('admin.globals.updated_at'));
-
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+            'name'  => 'updated_at',
+            'type'  => 'datetime',
+            'label' => __('admin.globals.updated_at'),
+        ]);
     }
 
     /**
@@ -98,24 +94,18 @@ class PostCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(PostRequest::class);
-        // CRUD::setFromDb(); // set fields from db columns.
 
-        CRUD::field([
+        CRUD::addField([
             'name'  => 'title',
             'type'  => 'text',
             'label' => __('admin.globals.title'),
         ]);
 
-        CRUD::field([
+        CRUD::addField([
             'name'  => 'content',
             'type'  => 'textarea',
             'label' => __('admin.globals.content'),
         ]);
-
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
     }
 
     /**

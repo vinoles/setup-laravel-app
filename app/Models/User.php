@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUserRoles;
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
 use App\Models\Concerns\HasUuid;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,6 +44,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $appends = [
+        'full_name',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -55,17 +58,17 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function posts(): HasMany
-    {
-        return $this->hasMany(Post::class, 'author_id', 'id');
-    }
-
     /**
      * Return the full name of the user
      */
     public function getFullNameAttribute(): string
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'author_id', 'id');
     }
 
     /**
@@ -80,5 +83,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password'          => 'hashed',
         ];
+    }
+
+    protected function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => trim($this->first_name . ' ' . $this->last_name),
+        );
     }
 }
