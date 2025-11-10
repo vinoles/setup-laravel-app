@@ -2,21 +2,56 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Helpers\ApiResponseHelper;
 use App\Http\Controllers\Controller;
-use LaravelJsonApi\Laravel\Http\Controllers\Actions;
+use App\Jobs\Clubs\CreateClub;
+use App\JsonApi\V1\Clubs\ClubRequest;
+use App\JsonApi\V1\Clubs\ClubSchema;
+use Illuminate\Http\Response;
+use Illuminate\Support\Str;
+use LaravelJsonApi\Core\Document\Concerns\Serializable;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\AttachRelationship;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\Destroy;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\DetachRelationship;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchMany;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchOne;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchRelated;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchRelationship;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\Update;
+use LaravelJsonApi\Laravel\Http\Controllers\Actions\UpdateRelationship;
+use LaravelJsonApi\Laravel\Http\Requests\AnonymousQuery;
 
 class ClubController extends Controller
 {
+    use AttachRelationship;
+    use Destroy;
+    use DetachRelationship;
+    use FetchMany;
+    use FetchOne;
+    use FetchRelated;
+    use FetchRelationship;
+    use Serializable;
+    use Update;
+    use UpdateRelationship;
 
-    use Actions\FetchMany;
-    use Actions\FetchOne;
-    use Actions\Store;
-    use Actions\Update;
-    use Actions\Destroy;
-    use Actions\FetchRelated;
-    use Actions\FetchRelationship;
-    use Actions\UpdateRelationship;
-    use Actions\AttachRelationship;
-    use Actions\DetachRelationship;
+    /**
+     * Create a new resource.
+     *
+     * @return \Illuminate\Contracts\Support\Responsable|\Illuminate\Http\Response
+     */
+    public function store(ClubSchema $schema, ClubRequest $request, AnonymousQuery $query)
+    {
+        $attributes = $request->validated();
 
+        $uuid = Str::uuid()->toString();
+
+        $attributes['uuid'] = $uuid;
+
+        CreateClub::dispatch($attributes);
+
+        return ApiResponseHelper::jsonApiResponse([
+            'id'       => $uuid,
+            'creating' => true,
+        ], Response::HTTP_CREATED);
+    }
 }

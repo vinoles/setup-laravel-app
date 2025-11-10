@@ -10,3 +10,8 @@ Broadcast::channel('post.{uuid}', function ($user, $uuid) {
     // TODO LOGIC FOR AUTHORIZE EVENT
     return true;
 });
+
+Broadcast::channel('club.{uuid}', function ($user, $uuid) {
+    // TODO LOGIC FOR AUTHORIZE EVENT
+    return true;
+});
