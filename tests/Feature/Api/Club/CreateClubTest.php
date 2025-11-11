@@ -2,8 +2,14 @@
 
 namespace Tests\Feature\Api\Club;
 
+use App\Events\Club\ClubCreated;
+use App\Events\Club\ClubInformationValidated;
+use App\Jobs\Clubs\CreateClub;
+use App\Listeners\Club\ClubInformationValidator;
 use App\Models\Club;
 use App\Models\User;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Club\CreateClubRequest;
@@ -26,6 +32,46 @@ class CreateClubTest extends TestCase
             ->assertUnauthorized();
     }
 
+    //     /**
+    //  * Create post  assert job pushed
+    //  */
+    // #[Test]
+    // #[Group('api')]
+    // #[Group('api_post')]
+    // public function create_post_assert_job_pushed(): void
+    // {
+    //     Queue::fake([
+    //         CreatePost::class,
+    //     ]);
+
+    //     $post = Post::factory()->make();
+
+    //     $author = User::factory()->create();
+
+    //     $relationships = [
+    //         'author' => [
+    //             'data' => [
+    //                 'type' => 'users',
+    //                 'id'   => $author->uuid,
+    //             ],
+    //         ],
+    //     ];
+
+    //     $request = CreatePostRequest::make($post, $relationships);
+
+    //     $response = $this->signIn($author)
+    //         ->sendRequestApiPostWithData($request);
+
+    //     $response->assertSuccessful();
+
+    //     Queue::assertPushed(
+    //         CreatePost::class,
+    //         function ($job) {
+    //             return $job;
+    //         }
+    //     );
+    // }
+
     /**
      * Create club happy path
      */
@@ -34,6 +80,10 @@ class CreateClubTest extends TestCase
     #[Group('api_club')]
     public function create_club_happy_path(): void
     {
+        Event::fake([
+            ClubCreated::class,
+        ]);
+
         $club = Club::factory()->make();
 
         $request = CreateClubRequest::make($club);
@@ -45,10 +95,22 @@ class CreateClubTest extends TestCase
 
         $response->assertSuccessful();
 
+        $club = Club::first();
+
+        Event::assertDispatched(ClubCreated::class, function ($event) use ($club) {
+            return $event->club->uuid === $club->uuid;
+        });
+
+        Event::assertListening(
+            ClubCreated::class,
+            ClubInformationValidator::class
+        );
+
         $data = $response->json('data');
 
-        $this->assertSame($club->name, $data['attributes']['name']);
-        $this->assertSame($club->address, $data['attributes']['address']);
+        $this->assertSame($club->uuid, $data['id']);
+
+        $this->assertTrue($data['creating']);
 
         $this->assertDatabaseHas('clubs', [
             'name'    => $club->name,
