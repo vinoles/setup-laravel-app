@@ -11,8 +11,6 @@ class ClubRequest extends ResourceRequest
      */
     public function rules(): array
     {
-        $club = $this->model();
-
         return [
             'name'    => ['bail', 'required', 'string', 'min:5', 'max:50'],
             'address' => ['bail', 'required', 'string', 'min:5', 'max:150'],
