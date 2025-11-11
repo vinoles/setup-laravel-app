@@ -18,14 +18,14 @@ use LaravelJsonApi\Laravel\Http\Controllers\Actions\UpdateRelationship;
 class ClubController extends Controller
 {
     use AttachRelationship;
+    use Destroy;
     use DetachRelationship;
     use FetchMany;
     use FetchOne;
     use FetchRelated;
     use FetchRelationship;
     use Serializable;
-    use UpdateRelationship;
-    use Update;
     use Store;
-    use Destroy;
+    use Update;
+    use UpdateRelationship;
 }
