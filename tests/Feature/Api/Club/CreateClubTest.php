@@ -3,7 +3,6 @@
 namespace Tests\Feature\Api\Club;
 
 use App\Events\Club\ClubCreated;
-use App\Events\Club\ClubInformationValidated;
 use App\Jobs\Clubs\CreateClub;
 use App\Listeners\Club\ClubInformationValidator;
 use App\Models\Club;
@@ -32,45 +31,36 @@ class CreateClubTest extends TestCase
             ->assertUnauthorized();
     }
 
-    //     /**
-    //  * Create post  assert job pushed
-    //  */
-    // #[Test]
-    // #[Group('api')]
-    // #[Group('api_post')]
-    // public function create_post_assert_job_pushed(): void
-    // {
-    //     Queue::fake([
-    //         CreatePost::class,
-    //     ]);
+    /**
+     * Create club  assert job pushed
+     */
+    #[Test]
+    #[Group('api')]
+    #[Group('api_club')]
+    public function create_club_assert_job_pushed(): void
+    {
+        Queue::fake([
+            CreateClub::class,
+        ]);
 
-    //     $post = Post::factory()->make();
+        $club = Club::factory()->make();
 
-    //     $author = User::factory()->create();
+        $request = CreateClubRequest::make($club);
 
-    //     $relationships = [
-    //         'author' => [
-    //             'data' => [
-    //                 'type' => 'users',
-    //                 'id'   => $author->uuid,
-    //             ],
-    //         ],
-    //     ];
+        $authUser = User::factory()->create();
 
-    //     $request = CreatePostRequest::make($post, $relationships);
+        $response = $this->signIn($authUser)
+            ->sendRequestApiPostWithData($request);
 
-    //     $response = $this->signIn($author)
-    //         ->sendRequestApiPostWithData($request);
+        $response->assertSuccessful();
 
-    //     $response->assertSuccessful();
-
-    //     Queue::assertPushed(
-    //         CreatePost::class,
-    //         function ($job) {
-    //             return $job;
-    //         }
-    //     );
-    // }
+        Queue::assertPushed(
+            CreateClub::class,
+            function ($job) {
+                return $job;
+            }
+        );
+    }
 
     /**
      * Create club happy path
