@@ -16,7 +16,7 @@ class DeleteClub implements ShouldQueue
     use ResolvesJsonApiServer;
 
     /**
-     * Update a new job instance.
+     * Create a new event instance.
      */
     public function __construct(protected Club $club)
     {

@@ -16,7 +16,7 @@ class ClubUpdated implements ShouldBroadcast
     use SerializesModels;
 
     /**
-     * Update a new event instance.
+     *  Create a new event instance.
      */
     public function __construct(public Club $club)
     {
