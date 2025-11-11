@@ -5,10 +5,8 @@ namespace App\Jobs\Clubs;
 use App\Events\Club\ClubCreated;
 use App\JsonApi\V1\Clubs\ClubSchema;
 use App\JsonApi\V1\Helpers\ResolvesJsonApiServer;
-use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use Throwable;
 
 class CreateClub implements ShouldQueue
 {
@@ -18,7 +16,7 @@ class CreateClub implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(protected array $attributes)
+    public function __construct(public array $attributes)
     {
         //
     }

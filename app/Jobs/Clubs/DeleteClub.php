@@ -5,10 +5,8 @@ namespace App\Jobs\Clubs;
 use App\Events\Club\ClubDeleted;
 use App\JsonApi\V1\Helpers\ResolvesJsonApiServer;
 use App\Models\Club;
-use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use Throwable;
 
 class DeleteClub implements ShouldQueue
 {

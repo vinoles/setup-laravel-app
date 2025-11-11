@@ -6,10 +6,8 @@ use App\Events\Club\ClubUpdated;
 use App\JsonApi\V1\Clubs\ClubSchema;
 use App\JsonApi\V1\Helpers\ResolvesJsonApiServer;
 use App\Models\Club;
-use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use Throwable;
 
 class UpdateClub implements ShouldQueue
 {
@@ -19,7 +17,7 @@ class UpdateClub implements ShouldQueue
     /**
      * Create a new event instance.
      */
-    public function __construct(protected Club $club, protected array $attributes)
+    public function __construct(public Club $club, public array $attributes)
     {
         //
     }
