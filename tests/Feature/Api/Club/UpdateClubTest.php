@@ -47,8 +47,11 @@ class UpdateClubTest extends TestCase
 
         $data = $response->json('data');
 
-        $this->assertSame($clubData->name, $data['attributes']['name']);
-        $this->assertSame($clubData->address, $data['attributes']['address']);
+        // $this->assertSame($clubData->name, $data['attributes']['name']);
+        // $this->assertSame($clubData->address, $data['attributes']['address']);
+
+        $this->assertTrue($data['updating']);
+
 
         $this->assertDatabaseHas('clubs', [
             'id'      => $club->id,

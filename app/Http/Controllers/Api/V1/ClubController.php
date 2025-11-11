@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\Clubs\CreateClub;
 use App\JsonApi\V1\Clubs\ClubRequest;
 use App\JsonApi\V1\Clubs\ClubSchema;
+use App\Models\Club;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use LaravelJsonApi\Core\Document\Concerns\Serializable;
@@ -31,7 +32,7 @@ class ClubController extends Controller
     use FetchRelated;
     use FetchRelationship;
     use Serializable;
-    use Update;
+    // use Update;
     use UpdateRelationship;
 
     /**
@@ -52,6 +53,31 @@ class ClubController extends Controller
         return ApiResponseHelper::jsonApiResponse([
             'id'       => $uuid,
             'creating' => true,
+        ], Response::HTTP_CREATED);
+    }
+
+    /**
+     * Update an existing resource.
+     *
+     * @return \Illuminate\Contracts\Support\Responsable|\Illuminate\Http\Response
+     */
+    public function update(
+        ClubSchema $schema,
+        ClubRequest $request,
+        AnonymousQuery $query,
+        Club $club
+    ) {
+        $model = $schema
+            ->repository()
+            ->update($club)
+            ->withRequest($query)
+            ->store($request->validated());
+
+        // do something custom...
+
+        return ApiResponseHelper::jsonApiResponse([
+            'id'       => $club->uuid,
+            'updating' => true,
         ], Response::HTTP_CREATED);
     }
 }
