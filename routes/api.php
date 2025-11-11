@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\Fortify\Auth\NewPasswordResetController;
 use App\Http\Controllers\Api\Fortify\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Api\Fortify\Auth\RegisterController;
 use App\Http\Controllers\Api\Fortify\User\ConfirmPasswordController;
-use App\Http\Controllers\Api\V1\ClubController;
+use App\Http\Controllers\Api\V1\Club\ClubController;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
@@ -79,7 +79,6 @@ Route::middleware('auth:sanctum')->group(static function () {
                     $relations->hasMany('teams')
                         ->readOnly()
                         ->except('show');
-
                 });
 
             $server->resource('users', UserController::class)
