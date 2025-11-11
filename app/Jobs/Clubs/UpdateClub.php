@@ -29,19 +29,15 @@ class UpdateClub implements ShouldQueue
      */
     public function handle(): void
     {
-        try {
-            $server = $this->resolveServer();
+        $server = $this->resolveServer();
 
-            $schema = new ClubSchema($server);
+        $schema = new ClubSchema($server);
 
-            $schema
-                ->repository()
-                ->update($this->club)
-                ->store($this->attributes);
+        $schema
+            ->repository()
+            ->update($this->club)
+            ->store($this->attributes);
 
-            ClubUpdated::dispatch($this->club);
-        } catch (Throwable $th) {
-            throw new Exception($th->getMessage());
-        }
+        ClubUpdated::dispatch($this->club);
     }
 }

@@ -28,15 +28,11 @@ class DeleteClub implements ShouldQueue
      */
     public function handle(): void
     {
-        try {
-            // TODO: something custom logic...
-            $clubId = $this->club->uuid;
+        // TODO: something custom logic...
+        $clubId = $this->club->uuid;
 
-            $this->club->delete();
+        $this->club->delete();
 
-            ClubDeleted::dispatch($clubId);
-        } catch (Throwable $th) {
-            throw new Exception($th->getMessage());
-        }
+        ClubDeleted::dispatch($clubId);
     }
 }

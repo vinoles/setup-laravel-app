@@ -28,19 +28,15 @@ class CreateClub implements ShouldQueue
      */
     public function handle(): void
     {
-        try {
-            $server = $this->resolveServer();
+        $server = $this->resolveServer();
 
-            $schema = new ClubSchema($server);
+        $schema = new ClubSchema($server);
 
-            $club = $schema
-                ->repository()
-                ->create()
-                ->store($this->attributes);
+        $club = $schema
+            ->repository()
+            ->create()
+            ->store($this->attributes);
 
-            ClubCreated::dispatch($club);
-        } catch (Throwable $th) {
-            throw new Exception($th->getMessage());
-        }
+        ClubCreated::dispatch($club);
     }
 }
