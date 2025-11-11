@@ -2,8 +2,8 @@
 
 namespace App\Listeners\Club;
 
-use App\Events\Club\CreatedClub;
-use App\Events\Club\InformationValidatedClub;
+use App\Events\Club\ClubCreated;
+use App\Events\Club\ClubInformationValidated;
 
 class ClubInformationValidator
 {
@@ -18,10 +18,10 @@ class ClubInformationValidator
     /**
      * Handle the event.
      */
-    public function handle(CreatedClub $event): void
+    public function handle(ClubCreated $event): void
     {
         // TODO LOGIC VALIDATION INFORMATION CLUB
 
-        InformationValidatedClub::dispatch($event->club);
+        ClubInformationValidated::dispatch($event->club);
     }
 }

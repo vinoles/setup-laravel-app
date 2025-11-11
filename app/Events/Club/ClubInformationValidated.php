@@ -9,7 +9,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class InformationValidatedClub implements ShouldBroadcast
+class ClubInformationValidated implements ShouldBroadcast
 {
     use Dispatchable;
     use InteractsWithSockets;

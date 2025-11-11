@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Clubs;
 
-use App\Events\Club\CreatedClub;
+use App\Events\Club\ClubCreated;
 use App\JsonApi\V1\Clubs\ClubSchema;
 use App\JsonApi\V1\Helpers\ResolvesJsonApiServer;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,6 +35,6 @@ class CreateClub implements ShouldQueue
             ->create()
             ->store($this->attributes);
 
-        CreatedClub::dispatch($club);
+        ClubCreated::dispatch($club);
     }
 }
