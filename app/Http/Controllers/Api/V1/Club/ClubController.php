@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1\Club;
 
-use App\Http\Controllers\Api\V1\Club\Helpers\Destroy;
-use App\Http\Controllers\Api\V1\Club\Helpers\Store;
-use App\Http\Controllers\Api\V1\Club\Helpers\Update;
+use App\Http\Controllers\Api\V1\Club\Actions\Destroy;
+use App\Http\Controllers\Api\V1\Club\Actions\Store;
+use App\Http\Controllers\Api\V1\Club\Actions\Update;
 use App\Http\Controllers\Controller;
 use LaravelJsonApi\Core\Document\Concerns\Serializable;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions\AttachRelationship;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\Club\Helpers;
+namespace App\Http\Controllers\Api\V1\Club\Actions;
 
 use App\Helpers\ApiResponseHelper;
 use App\Jobs\Clubs\CreateClub;

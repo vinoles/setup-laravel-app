@@ -1,27 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\Club\Helpers;
+namespace App\Http\Controllers\Api\V1\Club\Actions;
 
 use App\Helpers\ApiResponseHelper;
-use App\Jobs\Clubs\DeleteClub;
+use App\Jobs\Clubs\UpdateClub;
+use App\JsonApi\V1\Clubs\ClubRequest;
 use App\Models\Club;
 use Illuminate\Http\Response;
 
-trait Destroy
+trait Update
 {
     /**
-     * Destroy an existing resource.
+     * Update an existing resource.
      *
      * @return \Illuminate\Contracts\Support\Responsable|\Illuminate\Http\Response
      */
-    public function destroy(Club $club)
+    public function update(ClubRequest $request, Club $club)
     {
-        DeleteClub::dispatch($club);
+        $attributes = $request->validated();
+
+        UpdateClub::dispatch($club, $attributes);
 
         return ApiResponseHelper::jsonApiResponse(
             [
                 'id'       => $club->uuid,
-                'deleting' => true,
+                'updating' => true,
             ],
             Response::HTTP_OK
         );
