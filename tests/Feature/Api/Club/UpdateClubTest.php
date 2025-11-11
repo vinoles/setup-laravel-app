@@ -56,8 +56,9 @@ class UpdateClubTest extends TestCase
 
         Queue::assertPushed(
             UpdateClub::class,
-            function ($job) {
-                return $job;
+            function ($job) use ($club, $clubData) {
+                return $job->club->is($club) &&
+                    $job->attributes['name'] === $clubData->name;
             }
         );
     }

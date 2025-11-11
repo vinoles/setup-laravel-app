@@ -56,8 +56,8 @@ class CreateClubTest extends TestCase
 
         Queue::assertPushed(
             CreateClub::class,
-            function ($job) {
-                return $job;
+            function ($job) use ($club) {
+                return $job->attributes['name'] === $club->name && $job->attributes['address'] === $club->address;
             }
         );
     }
