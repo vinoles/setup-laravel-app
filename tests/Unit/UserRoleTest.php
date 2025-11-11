@@ -6,7 +6,6 @@ use App\Constants\Permission;
 use App\Constants\UserRole;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
-use Spatie\Permission\Models\Permission as SpatiePermission;
 use Tests\Feature\TestCase;
 
 class UserRoleTest extends TestCase
@@ -178,12 +177,13 @@ class UserRoleTest extends TestCase
         $this->assertFalse($this->user->hasRole(UserRole::CLUB->value));
         $this->assertFalse($this->user->hasRole(UserRole::ADMIN->value));
 
-        // Assert super admin has all permissions
-        $allPermissions = SpatiePermission::all();
-        foreach ($allPermissions as $permission) {
+        // Assert super admin has all permissions defined in the Permission enum
+        // Using the enum ensures we test against the source of truth, not the database
+        $allPermissions = Permission::getAllPermissions();
+        foreach ($allPermissions as $permissionName) {
             $this->assertTrue(
-                $this->user->can($permission->name),
-                "Super admin should have permission: {$permission->name}"
+                $this->user->can($permissionName),
+                "Super admin should have permission: {$permissionName}"
             );
         }
     }
