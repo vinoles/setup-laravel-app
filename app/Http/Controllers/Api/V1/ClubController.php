@@ -19,7 +19,6 @@ use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchMany;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchOne;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchRelated;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions\FetchRelationship;
-use LaravelJsonApi\Laravel\Http\Controllers\Actions\Update;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions\UpdateRelationship;
 use LaravelJsonApi\Laravel\Http\Requests\AnonymousQuery;
 
@@ -33,7 +32,6 @@ class ClubController extends Controller
     use FetchRelated;
     use FetchRelationship;
     use Serializable;
-    // use Update;
     use UpdateRelationship;
 
     /**
@@ -70,7 +68,7 @@ class ClubController extends Controller
     ) {
         $attributes = $request->validated();
 
-        UpdateClub::dispatch($club, $attributes, $schema);
+        UpdateClub::dispatch($club, $attributes);
 
         return ApiResponseHelper::jsonApiResponse([
             'id'       => $club->uuid,
