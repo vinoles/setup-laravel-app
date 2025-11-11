@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Helpers\ApiResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Jobs\Clubs\CreateClub;
+use App\Jobs\Clubs\UpdateClub;
 use App\JsonApi\V1\Clubs\ClubRequest;
 use App\JsonApi\V1\Clubs\ClubSchema;
 use App\Models\Club;
@@ -67,13 +68,9 @@ class ClubController extends Controller
         AnonymousQuery $query,
         Club $club
     ) {
-        $model = $schema
-            ->repository()
-            ->update($club)
-            ->withRequest($query)
-            ->store($request->validated());
+        $attributes = $request->validated();
 
-        // do something custom...
+        UpdateClub::dispatch($club, $attributes, $schema);
 
         return ApiResponseHelper::jsonApiResponse([
             'id'       => $club->uuid,

@@ -2,7 +2,12 @@
 
 namespace Tests\Feature\Api\Club;
 
+use App\Events\Club\ClubUpdated;
+use App\Jobs\Clubs\UpdateClub;
+use App\Listeners\Club\ClubInformationValidator;
 use App\Models\Club;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Club\UpdateClubRequest;
@@ -26,13 +31,17 @@ class UpdateClubTest extends TestCase
     }
 
     /**
-     * Update club happy path
+     * Update club  assert job pushed
      */
     #[Test]
     #[Group('api')]
     #[Group('api_club')]
-    public function update_club_happy_path(): void
+    public function update_club_assert_job_pushed(): void
     {
+        Queue::fake([
+            UpdateClub::class,
+        ]);
+
         $club = Club::factory()->create();
 
         $clubData = Club::factory()->make();
@@ -45,13 +54,52 @@ class UpdateClubTest extends TestCase
 
         $response->assertSuccessful();
 
+        Queue::assertPushed(
+            UpdateClub::class,
+            function ($job) {
+                return $job;
+            }
+        );
+    }
+
+    /**
+     * Update club happy path
+     */
+    #[Test]
+    #[Group('api')]
+    #[Group('api_club')]
+    public function update_club_happy_path(): void
+    {
+        Event::fake([
+            ClubUpdated::class,
+        ]);
+
+        $club = Club::factory()->create();
+
+        $clubData = Club::factory()->make();
+
+        $request = UpdateClubRequest::make($club)
+            ->fillPayload($clubData);
+
+        $response = $this->signIn($this->user)
+            ->sendRequestApiPatchWithData($request);
+
+        $response->assertSuccessful();
+
+        Event::assertDispatched(ClubUpdated::class, function ($event) use ($club) {
+            return $event->club->uuid == $club->uuid;
+        });
+
+        Event::assertListening(
+            ClubUpdated::class,
+            ClubInformationValidator::class
+        );
+
         $data = $response->json('data');
 
-        // $this->assertSame($clubData->name, $data['attributes']['name']);
-        // $this->assertSame($clubData->address, $data['attributes']['address']);
+        $this->assertEquals($club->uuid, $data['id']);
 
         $this->assertTrue($data['updating']);
-
 
         $this->assertDatabaseHas('clubs', [
             'id'      => $club->id,
