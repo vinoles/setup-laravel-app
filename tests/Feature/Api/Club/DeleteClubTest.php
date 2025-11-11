@@ -2,7 +2,11 @@
 
 namespace Tests\Feature\Api\Club;
 
+use App\Events\Club\ClubDeleted;
+use App\Jobs\Clubs\DeleteClub;
 use App\Models\Club;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Club\DeleteClubRequest;
@@ -33,6 +37,14 @@ class DeleteClubTest extends TestCase
     #[Group('api_club')]
     public function delete_club_happy_path(): void
     {
+        Queue::fake([
+            DeleteClub::class,
+        ]);
+
+        Event::fake([
+            ClubDeleted::class,
+        ]);
+
         $club = Club::factory()->create();
 
         $request = DeleteClubRequest::make($club);
@@ -40,15 +52,23 @@ class DeleteClubTest extends TestCase
         $response = $this->signIn($this->user)
             ->sendRequestApiDelete($request);
 
-        $response->assertSuccessful();
+        $response->assertOk();
 
-        $response->assertNoContent();
+        $data = $response->json('data');
 
-        $this->assertDatabaseMissing('clubs', [
-            'uuid'    => $club->uuid,
-            'name'    => $club->name,
-            'address' => $club->address,
-        ]);
+        $this->assertEquals($club->uuid, $data['id']);
+
+        $this->assertTrue($data['deleting']);
+
+        Queue::assertPushed(DeleteClub::class, function ($job) {
+            $job->handle();
+
+            return true;
+        });
+
+        $this->assertNull(Club::find($club->id));
+
+        Event::assertDispatched(ClubDeleted::class);
     }
 
     /**
@@ -66,9 +86,7 @@ class DeleteClubTest extends TestCase
         $response = $this->signIn($this->user)
             ->sendRequestApiDelete($request);
 
-        $response->assertSuccessful();
-
-        $response->assertNoContent();
+        $response->assertOk();
 
         $response = $this->signIn($this->user)
             ->sendRequestApiDelete($request);

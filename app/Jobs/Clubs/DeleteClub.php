@@ -2,8 +2,7 @@
 
 namespace App\Jobs\Clubs;
 
-use App\Events\Club\ClubUpdated;
-use App\JsonApi\V1\Clubs\ClubSchema;
+use App\Events\Club\ClubDeleted;
 use App\JsonApi\V1\Helpers\ResolvesJsonApiServer;
 use App\Models\Club;
 use Exception;
@@ -11,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Throwable;
 
-class UpdateClub implements ShouldQueue
+class DeleteClub implements ShouldQueue
 {
     use Queueable;
     use ResolvesJsonApiServer;
@@ -19,7 +18,7 @@ class UpdateClub implements ShouldQueue
     /**
      * Update a new job instance.
      */
-    public function __construct(protected Club $club, protected array $attributes)
+    public function __construct(protected Club $club)
     {
         //
     }
@@ -30,16 +29,12 @@ class UpdateClub implements ShouldQueue
     public function handle(): void
     {
         try {
-            $server = $this->resolveServer();
+            // TODO: something custom logic...
+            $clubId = $this->club->uuid;
 
-            $schema = new ClubSchema($server);
+            $this->club->delete();
 
-            $schema
-                ->repository()
-                ->update($this->club)
-                ->store($this->attributes);
-
-            ClubUpdated::dispatch($this->club);
+            ClubDeleted::dispatch($clubId);
         } catch (Throwable $th) {
             throw new Exception($th->getMessage());
         }

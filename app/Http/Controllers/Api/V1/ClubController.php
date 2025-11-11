@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Helpers\ApiResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Jobs\Clubs\CreateClub;
+use App\Jobs\Clubs\DeleteClub;
 use App\Jobs\Clubs\UpdateClub;
 use App\JsonApi\V1\Clubs\ClubRequest;
 use App\JsonApi\V1\Clubs\ClubSchema;
@@ -39,8 +40,11 @@ class ClubController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Responsable|\Illuminate\Http\Response
      */
-    public function store(ClubSchema $schema, ClubRequest $request, AnonymousQuery $query)
-    {
+    public function store(
+        ClubSchema $schema,
+        ClubRequest $request,
+        AnonymousQuery $query
+    ) {
         $attributes = $request->validated();
 
         $uuid = Str::uuid()->toString();
@@ -49,10 +53,13 @@ class ClubController extends Controller
 
         CreateClub::dispatch($attributes);
 
-        return ApiResponseHelper::jsonApiResponse([
-            'id'       => $uuid,
-            'creating' => true,
-        ], Response::HTTP_CREATED);
+        return ApiResponseHelper::jsonApiResponse(
+            [
+                'id'       => $uuid,
+                'creating' => true,
+            ],
+            Response::HTTP_CREATED
+        );
     }
 
     /**
@@ -66,13 +73,39 @@ class ClubController extends Controller
         AnonymousQuery $query,
         Club $club
     ) {
+
         $attributes = $request->validated();
 
         UpdateClub::dispatch($club, $attributes);
 
-        return ApiResponseHelper::jsonApiResponse([
-            'id'       => $club->uuid,
-            'updating' => true,
-        ], Response::HTTP_OK);
+        return ApiResponseHelper::jsonApiResponse(
+            [
+                'id'       => $club->uuid,
+                'updating' => true,
+            ],
+            Response::HTTP_OK
+        );
+    }
+
+    /**
+     * Destroy an existing resource.
+     *
+     * @return \Illuminate\Contracts\Support\Responsable|\Illuminate\Http\Response
+     */
+    public function destroy(
+        ClubRequest $request,
+        Club $club
+    ) {
+        $request->validated();
+
+        DeleteClub::dispatch($club);
+
+        return ApiResponseHelper::jsonApiResponse(
+            [
+                'id'       => $club->uuid,
+                'deleting' => true,
+            ],
+            Response::HTTP_OK
+        );
     }
 }
