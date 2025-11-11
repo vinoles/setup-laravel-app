@@ -6,7 +6,7 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
- *     schema="CreateClubResponse",
+ *     schema="UpdateClubResponse",
  *     type="object",
  *
  *     @OA\Property(
@@ -15,10 +15,10 @@ use OpenApi\Annotations as OA;
  *         example="6bb7c993-88ad-402c-9352-c7eb65d9b8e9"
  *     ),
  *     @OA\Property(
- *         property="creating",
+ *         property="updating",
  *         type="boolean",
  *         example=true
  *     ),
  * )
  */
-class CreateClubResponse {}
+class UpdateClubResponse {}

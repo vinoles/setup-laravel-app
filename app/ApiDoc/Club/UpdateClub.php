@@ -41,7 +41,7 @@ use OpenApi\Annotations as OA;
  *       response="200",
  *       description="Update Club Successfully",
  *
- *       @OA\JsonContent(ref="#/components/schemas/ClubApiResponse"),
+ *       @OA\JsonContent(ref="#/components/schemas/UpdateClubApiResponse"),
  *     ),
  *
  *     @OA\Response(

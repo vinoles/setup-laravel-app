@@ -73,6 +73,6 @@ class ClubController extends Controller
         return ApiResponseHelper::jsonApiResponse([
             'id'       => $club->uuid,
             'updating' => true,
-        ], Response::HTTP_CREATED);
+        ], Response::HTTP_OK);
     }
 }
