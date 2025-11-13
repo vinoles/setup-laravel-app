@@ -11,9 +11,11 @@ use OpenApi\Annotations as OA;
  *     allOf={
  *         @OA\Schema(ref="#/components/schemas/VersionMeta"),
  *         @OA\Schema(
+ *
  *             @OA\Property(
  *                 property="errors",
  *                 type="array",
+ *
  *                 @OA\Items(
  *                     ref="#/components/schemas/InternalServerErrorDetails",
  *                 ),
@@ -22,7 +24,4 @@ use OpenApi\Annotations as OA;
  *     }
  * )
  */
-
-class InternalServerError
-{
-}
+class InternalServerError {}

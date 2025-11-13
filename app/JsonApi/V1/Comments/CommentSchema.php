@@ -12,21 +12,15 @@ use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
 
-
 class CommentSchema extends Schema
 {
-
     /**
      * The model the schema corresponds to.
-     *
-     * @var string
      */
     public static string $model = Comment::class;
 
     /**
      * Get the resource fields.
-     *
-     * @return array
      */
     public function fields(): array
     {
@@ -42,8 +36,6 @@ class CommentSchema extends Schema
 
     /**
      * Get the resource filters.
-     *
-     * @return array
      */
     public function filters(): array
     {
@@ -54,8 +46,6 @@ class CommentSchema extends Schema
 
     /**
      * Get the resource paginator.
-     *
-     * @return Paginator|null
      */
     public function pagination(): ?Paginator
     {
@@ -64,8 +54,6 @@ class CommentSchema extends Schema
 
     /**
      * Determine if the resource is authorizable.
-     *
-     * @return bool
      */
     public function authorizable(): bool
     {

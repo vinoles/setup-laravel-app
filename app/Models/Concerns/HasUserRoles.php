@@ -8,8 +8,6 @@ trait HasUserRoles
 {
     /**
      * Check if the user has admin role.
-     *
-     * @return bool
      */
     public function isAdmin(): bool
     {
@@ -18,8 +16,6 @@ trait HasUserRoles
 
     /**
      * Check if the user has super admin role.
-     *
-     * @return bool
      */
     public function isSuperAdmin(): bool
     {
@@ -28,8 +24,6 @@ trait HasUserRoles
 
     /**
      * Check if the user has talent role.
-     *
-     * @return bool
      */
     public function isTalent(): bool
     {
@@ -38,8 +32,6 @@ trait HasUserRoles
 
     /**
      * Check if the user has scout role.
-     *
-     * @return bool
      */
     public function isScout(): bool
     {
@@ -48,8 +40,6 @@ trait HasUserRoles
 
     /**
      * Check if the user has club role.
-     *
-     * @return bool
      */
     public function isClub(): bool
     {
@@ -58,8 +48,6 @@ trait HasUserRoles
 
     /**
      * Check if the user has any admin role (admin or super admin).
-     *
-     * @return bool
      */
     public function isAnyAdmin(): bool
     {
@@ -69,8 +57,7 @@ trait HasUserRoles
     /**
      * Check if the user has any of the specified roles.
      *
-     * @param array|string $roles
-     * @return bool
+     * @param  array|string  $roles
      */
     public function hasAnyOfRoles($roles): bool
     {
@@ -79,8 +66,6 @@ trait HasUserRoles
 
     /**
      * Get the user's primary role.
-     *
-     * @return string|null
      */
     public function getPrimaryRole(): ?string
     {

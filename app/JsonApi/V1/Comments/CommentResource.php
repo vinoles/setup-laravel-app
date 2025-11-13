@@ -7,44 +7,32 @@ use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Resources\JsonApiResource;
 
 /**
- * @property Comment $resource
+ * @property Comment
  */
 class CommentResource extends JsonApiResource
 {
     /**
      * Get the resource's attributes.
      *
-     * @param Request|null $request
-     * @return iterable
+     * @param  Request|null  $request
      */
     public function attributes($request): iterable
     {
         return [
-            'id' => $this->uuid,
             'content' => $this->content,
         ];
     }
 
-    /**
-     * @return array
-     */
     public function deleteRules(): array
     {
         return [];
     }
 
-    /**
-     * @return array
-     */
     public function deleteMessages(): array
     {
         return [];
     }
 
-    /**
-     * @param Comment $post
-     * @return array
-     */
     public function metaForDelete(Comment $post): array
     {
         return [];

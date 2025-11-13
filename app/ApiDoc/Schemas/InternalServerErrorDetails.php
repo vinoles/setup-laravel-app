@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="InternalServerErrorDetails",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="detail",
  *         type="string",
@@ -34,7 +35,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-
-class InternalServerErrorDetails
-{
-}
+class InternalServerErrorDetails {}

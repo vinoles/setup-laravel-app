@@ -9,6 +9,7 @@ use OpenApi\Annotations as OA;
  *     schema="CommentUpdateRequest",
  *     type="object",
  *     required={"content", "slug", "title"},
+ *
  *     @OA\Property(
  *         property="data",
  *         type="object",
@@ -30,6 +31,4 @@ use OpenApi\Annotations as OA;
  *   ),
  * )
  */
-class CommentUpdateRequest
-{
-}
+class CommentUpdateRequest {}

@@ -14,8 +14,6 @@ class RegisterController extends Controller
 {
     /**
      * Handle the incoming request.
-     *
-     * @param  RegisterRequest  $request
      */
     public function __invoke(RegisterRequest $request)
     {
@@ -26,8 +24,8 @@ class RegisterController extends Controller
         $user = User::create(
             array_merge(
                 [
-                    'uuid' => Str::uuid(),
-                    'birthdate' => Carbon::parse($birthdate)->format('Y-m-d')
+                    'uuid'      => Str::uuid(),
+                    'birthdate' => Carbon::parse($birthdate)->format('Y-m-d'),
                 ],
                 $attributes
             )

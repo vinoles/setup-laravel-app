@@ -15,3 +15,8 @@ Broadcast::channel('post.{uuid}', function ($user, $uuid) {
 
     return $user->is($post->author) || $user->isAnyAdmin();
 });
+
+Broadcast::channel('club.{uuid}', function ($user, $uuid) {
+    // TODO LOGIC FOR AUTHORIZE EVENT
+    return true;
+});

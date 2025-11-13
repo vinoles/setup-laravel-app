@@ -7,6 +7,7 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Schema(
  *     type="object",
+ *
  *     @OA\Property(
  *         property="meta",
  *         type="object",
@@ -63,6 +64,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class LoginAndRegisterResponse
-{
-}
+class LoginAndRegisterResponse {}

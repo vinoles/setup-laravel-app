@@ -2,26 +2,26 @@
 
 namespace App\JsonApi\V1;
 
+use App\JsonApi\V1\Clubs\ClubSchema;
 use App\JsonApi\V1\Comments\CommentSchema;
+use App\JsonApi\V1\Federations\FederationSchema;
+use App\JsonApi\V1\Leagues\LeagueSchema;
+use App\JsonApi\V1\Players\PlayerSchema;
 use App\JsonApi\V1\Posts\PostSchema;
 use App\JsonApi\V1\Tags\TagSchema;
+use App\JsonApi\V1\Teams\TeamSchema;
 use App\JsonApi\V1\Users\UserSchema;
 use LaravelJsonApi\Core\Server\Server as BaseServer;
 
 class Server extends BaseServer
 {
-
     /**
      * The base URI namespace for this server.
-     *
-     * @var string
      */
     protected string $baseUri = '/api/v1';
 
     /**
      * Bootstrap the server when it is handling an HTTP request.
-     *
-     * @return void
      */
     public function serving(): void
     {
@@ -30,8 +30,6 @@ class Server extends BaseServer
 
     /**
      * Get the server's list of schemas.
-     *
-     * @return array
      */
     protected function allSchemas(): array
     {
@@ -41,6 +39,11 @@ class Server extends BaseServer
             PostSchema::class,
             CommentSchema::class,
             TagSchema::class,
+            PlayerSchema::class,
+            FederationSchema::class,
+            LeagueSchema::class,
+            ClubSchema::class,
+            TeamSchema::class,
         ];
     }
 }

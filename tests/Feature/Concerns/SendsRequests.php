@@ -11,8 +11,6 @@ trait SendsRequests
 {
     /**
      * Detect the request class name from the test case.
-     *
-     * @return string
      */
     protected function detectRequestClass(): string
     {
@@ -25,7 +23,6 @@ trait SendsRequests
      * Create a new request instance.
      *
      * @param  mixed  $args
-     * @return Request
      */
     protected function newRequest(...$args): Request
     {
@@ -42,13 +39,12 @@ trait SendsRequests
      * Send a request to the server.
      *
      * @param  mixed  $args
-     * @return TestResponse
      */
     protected function sendRequest(...$args): TestResponse
     {
         $request = Arr::get($args, 0);
 
-        if (!$request instanceof Request) {
+        if (! $request instanceof Request) {
             $request = $this->newRequest(...$args);
         }
 
@@ -63,7 +59,6 @@ trait SendsRequests
      * Send a request get list to the server.
      *
      * @param  mixed  $args
-     * @return TestResponse
      */
     protected function sendRequestApiGetList(...$args): TestResponse
     {
@@ -80,7 +75,6 @@ trait SendsRequests
      * Send a request get show to the server.
      *
      * @param  mixed  $args
-     * @return TestResponse
      */
     protected function sendRequestApiGetShow(...$args): TestResponse
     {
@@ -94,7 +88,6 @@ trait SendsRequests
      * Send a post request to the server json api.
      *
      * @param  mixed  $args
-     * @return TestResponse
      */
     protected function sendRequestApiPostWithPayload(...$args): TestResponse
     {
@@ -111,7 +104,6 @@ trait SendsRequests
      * Send a post request to the server json api.
      *
      * @param  mixed  $args
-     * @return TestResponse
      */
     protected function sendRequestApiPostWithPayloadAndToken(...$args): TestResponse
     {
@@ -130,7 +122,6 @@ trait SendsRequests
      * Send a post request to the server json api.
      *
      * @param  mixed  $args
-     * @return TestResponse
      */
     protected function sendRequestApiPostWithData(...$args): TestResponse
     {
@@ -153,7 +144,6 @@ trait SendsRequests
      * Send a patch request to the server json api.
      *
      * @param  mixed  $args
-     * @return TestResponse
      */
     protected function sendRequestApiPatchWithData(...$args): TestResponse
     {
@@ -173,7 +163,6 @@ trait SendsRequests
      * Send a patch request to the server json api.
      *
      * @param  mixed  $args
-     * @return TestResponse
      */
     protected function sendRequestApiDelete(...$args): TestResponse
     {

@@ -1,0 +1,25 @@
+name: Duster Lint
+
+on:
+  pull_request:
+    branches: ["develop", "main"]
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+jobs:
+  duster:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+      - name: "Duster Lint"
+        uses: tighten/duster-action@v3
+        with:
+          args: lint
+

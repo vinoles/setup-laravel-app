@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $password = env('TEST_PASSWORD', 'password');
+        $password = config('password_test');
 
         // Create random users with different roles
         User::factory(5)->create()->each(function ($user) {

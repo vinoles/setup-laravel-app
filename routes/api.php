@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\Fortify\User\ConfirmPasswordController;
 use App\Http\Controllers\Api\Fortify\Auth\LoginController;
 use App\Http\Controllers\Api\Fortify\Auth\LogoutController;
 use App\Http\Controllers\Api\Fortify\Auth\NewPasswordResetController;
 use App\Http\Controllers\Api\Fortify\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Api\Fortify\Auth\RegisterController;
+use App\Http\Controllers\Api\Fortify\User\ConfirmPasswordController;
+use App\Http\Controllers\Api\V1\Club\ClubController;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
@@ -14,18 +15,12 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use LaravelJsonApi\Laravel\Routing\Relationships;
 use LaravelJsonApi\Laravel\Routing\ResourceRegistrar;
 
-
 // Example testing without login
 // JsonApiRoute::server('v1')
 //     ->prefix('v1')
 //     ->name('v1.api.')
 //     ->resources(function (ResourceRegistrar $server) {
-
-//         $server->resource('comments', JsonApiController::class)
-//             ->relationships(function (Relationships $relations) {
-//                 $relations->hasOne('post');
-//                 $relations->hasOne('user');
-//             });
+//         $server->resource('players', JsonApiController::class);
 //     });
 
 Route::middleware('auth:sanctum')->group(static function () {
@@ -56,6 +51,35 @@ Route::middleware('auth:sanctum')->group(static function () {
                         ->except('show');
                 });
 
+            $server->resource('players', JsonApiController::class);
+
+            $server->resource('federations', JsonApiController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasMany('leagues')
+                        ->readOnly()
+                        ->except('show');
+                });
+
+            $server->resource('leagues', JsonApiController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasOne('federation')
+                        ->readOnly()
+                        ->except('show');
+                });
+
+            $server->resource('teams', JsonApiController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasOne('club')
+                        ->readOnly()
+                        ->except('show');
+                });
+
+            $server->resource('clubs', ClubController::class)
+                ->relationships(function (Relationships $relations) {
+                    $relations->hasMany('teams')
+                        ->readOnly()
+                        ->except('show');
+                });
 
             $server->resource('users', UserController::class)
                 ->relationships(function (Relationships $relations) {

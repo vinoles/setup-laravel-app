@@ -17,18 +17,18 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         $author = User::create([
-            'first_name' => 'Artie',
-            'last_name' => 'Shaw',
-            'email' => 'artie.shaw@jsonapi-tutorial.test',
-            'password' => bcrypt('password'),
+            'first_name'        => 'Artie',
+            'last_name'         => 'Shaw',
+            'email'             => 'artie.shaw@jsonapi-tutorial.test',
+            'password'          => bcrypt('password'),
             'email_verified_at' => now(),
         ]);
 
         $commenter = User::create([
-            'first_name' => 'Benny',
-            'last_name' => 'Goodman',
-            'email' => 'benny.goodman@jsonapi-tutorial.test',
-            'password' => bcrypt('password'),
+            'first_name'        => 'Benny',
+            'last_name'         => 'Goodman',
+            'email'             => 'benny.goodman@jsonapi-tutorial.test',
+            'password'          => bcrypt('password'),
             'email_verified_at' => now(),
         ]);
 
@@ -36,11 +36,11 @@ class PostSeeder extends Seeder
         $tag2 = Tag::create(['name' => 'JSON:API']);
 
         $post = new Post([
-            'uuid' => Str::uuid(),
-            'title' => 'Welcome to Laravel JSON:API',
+            'uuid'         => Str::uuid(),
+            'title'        => 'Welcome to Laravel JSON:API',
             'published_at' => now(),
-            'content' => 'In our first blog post, you will learn all about Laravel JSON:API...',
-            'slug' => 'welcome-to-laravel-jsonapi'
+            'content'      => 'In our first blog post, you will learn all about Laravel JSON:API...',
+            'slug'         => 'welcome-to-laravel-jsonapi',
         ]);
 
         $post->author()
@@ -60,5 +60,9 @@ class PostSeeder extends Seeder
         $comment->user()
             ->associate($commenter)
             ->save();
+
+        Post::factory()->count(20)->create([
+            'author_id' => User::factory()->create(),
+        ]);
     }
 }
