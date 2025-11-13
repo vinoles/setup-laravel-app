@@ -15,7 +15,6 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use LaravelJsonApi\Laravel\Routing\Relationships;
 use LaravelJsonApi\Laravel\Routing\ResourceRegistrar;
 
-
 Route::middleware('auth:sanctum')->group(static function () {
     JsonApiRoute::server('v1')
         ->prefix('v1')
