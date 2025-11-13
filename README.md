@@ -3,7 +3,8 @@
 A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.io/) works with [Laravel](https://laravel.com/) and [Backpack for laravel](https://backpackforlaravel.com/docs).
 
 
-🔗 [Demo API](https://setup-laravel-app-production.up.railway.app/api/v1/documentation)
+🔗 [Demo API](https://setup-laravel-app.local/api/v1/documentation)
+🔗 [Demo Admin Panel](https://setup-laravel-app.local/admin)
 
 ---
 
@@ -73,27 +74,8 @@ docker run --rm \
 # Setup environment variables
 cp .env.example .env
 
-# Build containers
+# Build containers all container and start app
 make setup
-
-# Start all containers
-make up
-
-# Run migrations and seed database
-make migrate
-make seed
-
-# Alternatively, run migrations and seed in one command
-make db_fresh
-
-# Migrate test database
-make db_fresh_test
-
-# Stop all containers
-make stop
-
-# Run frontend in development mode
-make front-dev
 ```
 
 ## Web Access
@@ -105,8 +87,35 @@ https://setup-laravel-app.local/admin
 
 User: admin@setup-laravel-app.com
 Password: password
+
 ```
+# Additional Commands
+Refer to the `Makefile` for more available commands.
+
+### Start containers for second
+make up
+
+### Run migrations and seed database
+make migrate
+make seed
+
+### Alternatively, run migrations and seed in one command
+make db_fresh
+
+### Migrate test database
+make db_fresh_test
+
+### Stop all containers
+make stop
+
+### Run frontend in development mode
+make front-dev
+
+### Generate api doc
+make l5g
+
 ****
+
 
 <img  width="auto"  height="auto" alt="Admin dashboard example" src="./admin_panel_list.png">
 
@@ -119,7 +128,7 @@ https://setup-laravel-app.local/api/v1/documentation
 
 ****
 
-## Command Installation & Artisan Commands
+# Command Installation & Artisan Commands
 
 ```bash
 # Example: Install a package
@@ -154,9 +163,6 @@ sail composer require api-platform/laravel
 # Generate an API token
 sail artisan app:token-api-generator admin@setup-laravel-app.com password
 ```
-
-## Additional Commands
-Refer to the `Makefile` for more available commands.
 
 ## 📌 Roadmap
 

@@ -16,7 +16,7 @@ return [
 
     // the layout used for authenticated users in the application
     // this layout is used to display errors to logged users
-    'layout' => 'top_left',
+    'layout'  => 'top_left',
 
     // -------
     // CLASSES
@@ -25,11 +25,11 @@ return [
     // These can help make the admin panel look similar to your project's design.
     'classes' => [
 
-        'header' => 'app-header bg-light border-0 navbar',
+        'header'  => 'app-header bg-light border-0 navbar',
         // For background colors use: bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white
         // For links to be visible on different background colors use: "navbar-dark", "navbar-light", "navbar-color"
 
-        'body' => 'app aside-menu-fixed sidebar-lg-show',
+        'body'    => 'app aside-menu-fixed sidebar-lg-show',
         // Try sidebar-hidden, sidebar-fixed, sidebar-compact, sidebar-lg-show
 
         'sidebar' => 'sidebar sidebar-pills bg-light',
@@ -37,10 +37,10 @@ return [
         // Try "sidebar-light" or "sidebar-dark" for dark/light links
         // You can also add a background class like bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan
 
-        'footer' => 'app-footer d-print-none',
+        'footer'  => 'app-footer d-print-none',
         // hide it with d-none
         // change background color with bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white
 
-    ]
+    ],
 
 ];

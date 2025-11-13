@@ -23,3 +23,5 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+/storage/
+storage/api-docs/

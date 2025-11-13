@@ -4,33 +4,19 @@ namespace Tests\Unit;
 
 use App\Constants\Permission;
 use App\Constants\UserRole;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission as SpatiePermission;
-use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\TestCase;
 
 class UserRoleTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $user;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-
-        // Create roles
-        $this->createRoles();
-
-    }
-
     /**
      * Test that a talent user has the correct role and permissions
      */
-    public function test_talent_user_has_correct_role_and_permissions(): void
+    #[Test]
+    public function talent_user_has_correct_role_and_permissions(): void
     {
         // Assign talent role
         $this->user->assignRole(UserRole::TALENT->value);
@@ -64,7 +50,8 @@ class UserRoleTest extends TestCase
     /**
      * Test that a scout user has the correct role and permissions
      */
-    public function test_scout_user_has_correct_role_and_permissions(): void
+    #[Test]
+    public function scout_user_has_correct_role_and_permissions(): void
     {
         // Assign scout role
         $this->user->assignRole(UserRole::SCOUT->value);
@@ -99,7 +86,8 @@ class UserRoleTest extends TestCase
     /**
      * Test that a club user has the correct role and permissions
      */
-    public function test_club_user_has_correct_role_and_permissions(): void
+    #[Test]
+    public function club_user_has_correct_role_and_permissions(): void
     {
         // Assign club role
         $this->user->assignRole(UserRole::CLUB->value);
@@ -137,7 +125,8 @@ class UserRoleTest extends TestCase
     /**
      * Test that an admin user has the correct role and permissions
      */
-    public function test_admin_user_has_correct_role_and_permissions(): void
+    #[Test]
+    public function admin_user_has_correct_role_and_permissions(): void
     {
         // Assign admin role
         $this->user->assignRole(UserRole::ADMIN->value);
@@ -175,7 +164,8 @@ class UserRoleTest extends TestCase
     /**
      * Test that a super admin user has the correct role and permissions
      */
-    public function test_super_admin_user_has_correct_role_and_permissions(): void
+    #[Test]
+    public function super_admin_user_has_correct_role_and_permissions(): void
     {
         // Assign super admin role
         $this->user->assignRole(UserRole::SUPER_ADMIN->value);
@@ -187,18 +177,22 @@ class UserRoleTest extends TestCase
         $this->assertFalse($this->user->hasRole(UserRole::CLUB->value));
         $this->assertFalse($this->user->hasRole(UserRole::ADMIN->value));
 
-        // Assert super admin has all permissions
-        $allPermissions = SpatiePermission::all();
-        foreach ($allPermissions as $permission) {
-            $this->assertTrue($this->user->can($permission->name),
-                "Super admin should have permission: {$permission->name}");
+        // Assert super admin has all permissions defined in the Permission enum
+        // Using the enum ensures we test against the source of truth, not the database
+        $allPermissions = Permission::getAllPermissions();
+        foreach ($allPermissions as $permissionName) {
+            $this->assertTrue(
+                $this->user->can($permissionName),
+                "Super admin should have permission: {$permissionName}"
+            );
         }
     }
 
     /**
      * Test that a user can only have one role (business rule)
      */
-    public function test_user_can_only_have_one_role(): void
+    #[Test]
+    public function user_can_only_have_one_role(): void
     {
         // Assign first role
         $this->user->assignRole(UserRole::TALENT->value);
@@ -217,7 +211,8 @@ class UserRoleTest extends TestCase
     /**
      * Test role assignment and removal
      */
-    public function test_role_assignment_and_removal(): void
+    #[Test]
+    public function role_assignment_and_removal(): void
     {
         // Initially no roles
         $this->assertFalse($this->user->hasRole(UserRole::TALENT->value));
@@ -237,7 +232,8 @@ class UserRoleTest extends TestCase
     /**
      * Test that users without roles have no permissions
      */
-    public function test_user_without_role_has_no_permissions(): void
+    #[Test]
+    public function user_without_role_has_no_permissions(): void
     {
         // Assert no roles
         $this->assertEquals(0, $this->user->roles()->count());
@@ -246,30 +242,5 @@ class UserRoleTest extends TestCase
         $this->assertFalse($this->user->can(Permission::VIEW_OWN_PROFILE->value));
         $this->assertFalse($this->user->can(Permission::CREATE_POSTS->value));
         $this->assertFalse($this->user->can(Permission::VIEW_ADMIN_PANEL->value));
-    }
-
-    /**
-     * Create roles and permissions for testing
-     */
-    private function createRoles(): void
-    {
-        // Create all permissions using the enum
-        $allPermissions = Permission::getAllPermissions();
-        foreach ($allPermissions as $permission) {
-            SpatiePermission::create(['name' => $permission]);
-        }
-
-        // Get permissions grouped by role from the enum
-        $permissionsByRole = Permission::getPermissionsByRole();
-
-        // Create roles and assign permissions
-        foreach ($permissionsByRole as $roleName => $permissions) {
-            $role = Role::create(['name' => $roleName]);
-            $role->givePermissionTo($permissions);
-        }
-
-        // Create super_admin role with all permissions
-        $userRole = Role::create(['name' => UserRole::SUPER_ADMIN->value]);
-        $userRole->givePermissionTo(SpatiePermission::all());
     }
 }

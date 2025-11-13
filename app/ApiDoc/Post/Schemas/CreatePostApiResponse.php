@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="CreatePostApiResponse",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="jsonapi",
  *         type="object",
@@ -24,6 +25,4 @@ use OpenApi\Annotations as OA;
  *     )
  * )
  */
-class CreatePostApiResponse
-{
-}
+class CreatePostApiResponse {}

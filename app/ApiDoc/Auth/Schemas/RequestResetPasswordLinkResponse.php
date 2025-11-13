@@ -7,6 +7,7 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Schema(
  *     type="object",
+ *
  *     @OA\Property(
  *             property="message",
  *             type="string",
@@ -14,6 +15,4 @@ use OpenApi\Annotations as OA;
  *         ),
  * )
  */
-class RequestResetPasswordLinkResponse
-{
-}
+class RequestResetPasswordLinkResponse {}

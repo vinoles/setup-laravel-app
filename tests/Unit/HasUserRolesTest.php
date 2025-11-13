@@ -3,32 +3,19 @@
 namespace Tests\Unit;
 
 use App\Constants\UserRole;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission as SpatiePermission;
-use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\Feature\TestCase;
 
 class HasUserRolesTest extends TestCase
 {
     use RefreshDatabase;
 
-    private User $user;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-
-        // Create roles and permissions
-        $this->createRoles();
-    }
-
     /**
      * Test isAdmin() function
      */
-    public function test_is_admin_function(): void
+    #[Test]
+    public function is_admin_function(): void
     {
         // Test user without admin role
         $this->assertFalse($this->user->isAdmin());
@@ -46,7 +33,8 @@ class HasUserRolesTest extends TestCase
     /**
      * Test isSuperAdmin() function
      */
-    public function test_is_super_admin_function(): void
+    #[Test]
+    public function is_super_admin_function(): void
     {
         // Test user without super admin role
         $this->assertFalse($this->user->isSuperAdmin());
@@ -64,7 +52,8 @@ class HasUserRolesTest extends TestCase
     /**
      * Test isTalent() function
      */
-    public function test_is_talent_function(): void
+    #[Test]
+    public function is_talent_function(): void
     {
         // Test user without talent role
         $this->assertFalse($this->user->isTalent());
@@ -82,7 +71,8 @@ class HasUserRolesTest extends TestCase
     /**
      * Test isScout() function
      */
-    public function test_is_scout_function(): void
+    #[Test]
+    public function is_scout_function(): void
     {
         // Test user without scout role
         $this->assertFalse($this->user->isScout());
@@ -100,7 +90,8 @@ class HasUserRolesTest extends TestCase
     /**
      * Test isClub() function
      */
-    public function test_is_club_function(): void
+    #[Test]
+    public function is_club_function(): void
     {
         // Test user without club role
         $this->assertFalse($this->user->isClub());
@@ -118,7 +109,8 @@ class HasUserRolesTest extends TestCase
     /**
      * Test isAnyAdmin() function
      */
-    public function test_is_any_admin_function(): void
+    #[Test]
+    public function is_any_admin_function(): void
     {
         // Test user without any admin role
         $this->assertFalse($this->user->isAnyAdmin());
@@ -141,7 +133,8 @@ class HasUserRolesTest extends TestCase
     /**
      * Test hasAnyOfRoles() function
      */
-    public function test_has_any_of_roles_function(): void
+    #[Test]
+    public function has_any_of_roles_function(): void
     {
         // Test user without any roles
         $this->assertFalse($this->user->hasAnyOfRoles([UserRole::TALENT->value, UserRole::SCOUT->value]));
@@ -169,7 +162,8 @@ class HasUserRolesTest extends TestCase
     /**
      * Test getPrimaryRole() function
      */
-    public function test_get_primary_role_function(): void
+    #[Test]
+    public function get_primary_role_function(): void
     {
         // Test user without roles
         $this->assertNull($this->user->getPrimaryRole());
@@ -195,7 +189,8 @@ class HasUserRolesTest extends TestCase
     /**
      * Test multiple roles scenario
      */
-    public function test_multiple_roles_scenario(): void
+    #[Test]
+    public function multiple_roles_scenario(): void
     {
         // Assign multiple roles
         $this->user->assignRole(UserRole::TALENT->value);
@@ -222,7 +217,8 @@ class HasUserRolesTest extends TestCase
     /**
      * Test edge cases
      */
-    public function test_edge_cases(): void
+    #[Test]
+    public function edge_cases(): void
     {
         // Test hasAnyOfRoles with empty array
         $this->assertFalse($this->user->hasAnyOfRoles([]));
@@ -239,7 +235,8 @@ class HasUserRolesTest extends TestCase
     /**
      * Test role verification after role changes
      */
-    public function test_role_verification_after_changes(): void
+    #[Test]
+    public function role_verification_after_changes(): void
     {
         // Start with talent role
         $this->user->assignRole(UserRole::TALENT->value);
@@ -259,30 +256,5 @@ class HasUserRolesTest extends TestCase
         $this->assertTrue($this->user->isSuperAdmin());
         $this->assertTrue($this->user->isAnyAdmin());
         $this->assertEquals(UserRole::SUPER_ADMIN->value, $this->user->getPrimaryRole());
-    }
-
-    /**
-     * Create roles and permissions for testing
-     */
-    private function createRoles(): void
-    {
-        // Create all permissions using the enum
-        $allPermissions = \App\Constants\Permission::getAllPermissions();
-        foreach ($allPermissions as $permission) {
-            SpatiePermission::create(['name' => $permission]);
-        }
-
-        // Get permissions grouped by role from the enum
-        $permissionsByRole = \App\Constants\Permission::getPermissionsByRole();
-
-        // Create roles and assign permissions
-        foreach ($permissionsByRole as $roleName => $permissions) {
-            $role = Role::create(['name' => $roleName]);
-            $role->givePermissionTo($permissions);
-        }
-
-        // Create super_admin role with all permissions
-        $userRole = Role::create(['name' => UserRole::SUPER_ADMIN->value]);
-        $userRole->givePermissionTo(SpatiePermission::all());
     }
 }

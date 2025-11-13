@@ -5,8 +5,8 @@ namespace Database\Seeders;
 use App\Constants\Permission;
 use App\Constants\UserRole;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission as SpatiePermission;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
 class RoleSeeder extends Seeder

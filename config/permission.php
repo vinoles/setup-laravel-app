@@ -1,8 +1,13 @@
 <?php
 
+use Carbon\CarbonInterval;
+use Spatie\Permission\DefaultTeamResolver;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 return [
 
-    'models' => [
+    'models'                           => [
 
         /*
          * When using the "HasPermissions" trait from this package, we need to know which
@@ -13,7 +18,7 @@ return [
          * `Spatie\Permission\Contracts\Permission` contract.
          */
 
-        'permission' => Spatie\Permission\Models\Permission::class,
+        'permission' => Permission::class,
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -24,11 +29,11 @@ return [
          * `Spatie\Permission\Contracts\Role` contract.
          */
 
-        'role' => Spatie\Permission\Models\Role::class,
+        'role'       => Role::class,
 
     ],
 
-    'table_names' => [
+    'table_names'                      => [
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -36,7 +41,7 @@ return [
          * default value but you may easily change it to any table you like.
          */
 
-        'roles' => 'roles',
+        'roles'                 => 'roles',
 
         /*
          * When using the "HasPermissions" trait from this package, we need to know which
@@ -44,7 +49,7 @@ return [
          * default value but you may easily change it to any table you like.
          */
 
-        'permissions' => 'permissions',
+        'permissions'           => 'permissions',
 
         /*
          * When using the "HasPermissions" trait from this package, we need to know which
@@ -60,7 +65,7 @@ return [
          * basic default value but you may easily change it to any table you like.
          */
 
-        'model_has_roles' => 'model_has_roles',
+        'model_has_roles'       => 'model_has_roles',
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -68,14 +73,14 @@ return [
          * basic default value but you may easily change it to any table you like.
          */
 
-        'role_has_permissions' => 'role_has_permissions',
+        'role_has_permissions'  => 'role_has_permissions',
     ],
 
-    'column_names' => [
+    'column_names'                     => [
         /*
          * Change this if you want to name the related pivots other than defaults
          */
-        'role_pivot_key' => null, // default 'role_id',
+        'role_pivot_key'       => null, // default 'role_id',
         'permission_pivot_key' => null, // default 'permission_id',
 
         /*
@@ -86,14 +91,14 @@ return [
          * that case, name this `model_uuid`.
          */
 
-        'model_morph_key' => 'model_id',
+        'model_morph_key'      => 'model_id',
 
         /*
          * Change this if you want to use the teams feature and your related model's
          * foreign key is other than `team_id`.
          */
 
-        'team_foreign_key' => 'team_id',
+        'team_foreign_key'     => 'team_id',
     ],
 
     /*
@@ -108,7 +113,7 @@ return [
      * this will refresh permissions on every TickTerminated, TaskTerminated and RequestTerminated
      * NOTE: This should not be needed in most cases, but an Octane/Vapor combination benefited from it.
      */
-    'register_octane_reset_listener' => false,
+    'register_octane_reset_listener'   => false,
 
     /*
      * Events will fire when a role or permission is assigned/unassigned:
@@ -119,7 +124,7 @@ return [
      *
      * To enable, set to true, and then create listeners to watch these events.
      */
-    'events_enabled' => false,
+    'events_enabled'                   => false,
 
     /*
      * Teams Feature.
@@ -131,19 +136,19 @@ return [
      * (view the latest version of this package's migration file)
      */
 
-    'teams' => false,
+    'teams'                            => false,
 
     /*
      * The class to use to resolve the permissions team id
      */
-    'team_resolver' => \Spatie\Permission\DefaultTeamResolver::class,
+    'team_resolver'                    => DefaultTeamResolver::class,
 
     /*
      * Passport Client Credentials Grant
      * When set to true the package will use Passports Client to check permissions
      */
 
-    'use_passport_client_credentials' => false,
+    'use_passport_client_credentials'  => false,
 
     /*
      * When set to true, the required permission names are added to exception messages.
@@ -151,7 +156,7 @@ return [
      * setting is false here for optimum safety.
      */
 
-    'display_permission_in_exception' => false,
+    'display_permission_in_exception'  => false,
 
     /*
      * When set to true, the required role names are added to exception messages.
@@ -159,14 +164,14 @@ return [
      * setting is false here for optimum safety.
      */
 
-    'display_role_in_exception' => false,
+    'display_role_in_exception'        => false,
 
     /*
      * By default wildcard permission lookups are disabled.
      * See documentation to understand supported syntax.
      */
 
-    'enable_wildcard_permission' => false,
+    'enable_wildcard_permission'       => false,
 
     /*
      * The class to use for interpreting wildcard permissions.
@@ -176,20 +181,21 @@ return [
 
     /* Cache-specific settings */
 
-    'cache' => [
+    'cache'                            => [
 
         /*
          * By default all permissions are cached for 24 hours to speed up performance.
          * When permissions or roles are updated the cache is flushed automatically.
          */
 
-        'expiration_time' => \DateInterval::createFromDateString('24 hours'),
+        // 'expiration_time' => \DateInterval::createFromDateString('24 hours'),
 
+        'expiration_time' => CarbonInterval::createFromDateString('24 hours'),
         /*
          * The cache key used to store all permissions.
          */
 
-        'key' => 'spatie.permission.cache',
+        'key'             => 'spatie.permission.cache',
 
         /*
          * You may optionally indicate a specific cache driver to use for permission and
@@ -197,6 +203,6 @@ return [
          * file. Using 'default' here means to use the `default` set in cache.php.
          */
 
-        'store' => 'default',
+        'store'           => 'default',
     ],
 ];

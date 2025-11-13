@@ -12,21 +12,17 @@ class UpdateUserRequest extends PatchRequest
     /**
      * Create a new instance of the request.
      *
-     * @param  User|null  $user
      * @param  array  $relationship
      */
-    public function __construct(protected User|null $user = null, public array $relationships = [])
+    public function __construct(protected ?User $user = null, public array $relationships = [])
     {
         if ($user === null) {
             $this->user = $user = User::factory()->create();
         }
     }
 
-
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {
@@ -35,9 +31,6 @@ class UpdateUserRequest extends PatchRequest
 
     /**
      * Fill the payload of the request based on the given user.
-     *
-     * @param  User  $user
-     * @return static
      */
     public function fillPayload(User $user): static
     {
@@ -54,24 +47,18 @@ class UpdateUserRequest extends PatchRequest
             static fn ($value) => $value !== null
         );
 
-        $password = Str::random(mt_rand(8, 31)).'!';
+        $password = Str::random(mt_rand(8, 31)) . '!';
 
         $this->set('password', $password)
             ->set('password_confirmation', $password);
 
-
         $this->set('birthdate', $this->payload['birthdate']->format('Y-m-d'));
-
 
         return $this;
     }
 
     /**
      * Fill the payload of the request based on the given user and remote attribute parameter.
-     *
-     * @param  User  $user
-     * @param  array  $attributes
-     * @return static
      */
     public function fillPayloadAndRemoveAttribute(User $user, array $attributes): static
     {
@@ -91,7 +78,7 @@ class UpdateUserRequest extends PatchRequest
             static fn ($value) => $value !== null
         );
 
-        $password = Str::random(mt_rand(8, 31)).'!';
+        $password = Str::random(mt_rand(8, 31)) . '!';
 
         $this->set('password', $password)
             ->set('password_confirmation', $password);
@@ -100,20 +87,16 @@ class UpdateUserRequest extends PatchRequest
     }
 
     /**
-    * Retrieve type resource.
-    *
-    * @return string
-    */
+     * Retrieve type resource.
+     */
     public function type(): string
     {
         return 'users';
     }
 
     /**
-    * Retrieve uuid model
-    *
-    * @return string
-    */
+     * Retrieve uuid model
+     */
     public function modelUuid(): string
     {
         return $this->user->uuid;

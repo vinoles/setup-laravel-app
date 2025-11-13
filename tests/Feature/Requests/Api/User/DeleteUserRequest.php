@@ -9,10 +9,8 @@ class DeleteUserRequest extends PatchRequest
 {
     /**
      * Create a new instance of the request.
-     *
-     * @param  User|null  $user
      */
-    public function __construct(protected User|null $user = null)
+    public function __construct(protected ?User $user = null)
     {
         if ($user === null) {
             $this->user = $user = User::factory()->create();
@@ -21,8 +19,6 @@ class DeleteUserRequest extends PatchRequest
 
     /**
      * Retrieve the endpoint of the request.
-     *
-     * @return string
      */
     public function endpoint(): string
     {
@@ -30,20 +26,16 @@ class DeleteUserRequest extends PatchRequest
     }
 
     /**
-    * Retrieve type resource.
-    *
-    * @return string
-    */
+     * Retrieve type resource.
+     */
     public function type(): string
     {
         return 'users';
     }
 
     /**
-    * Retrieve uuid model
-    *
-    * @return string
-    */
+     * Retrieve uuid model
+     */
     public function modelUuid(): string
     {
         return $this->user->uuid;

@@ -2,7 +2,7 @@
 sail := ./vendor/bin/sail
 
 # Initial Config
-setup: up install migrate seed front-install db_fresh_test test slink
+setup: up install migrate seed front-install test slink l5g
 
 # Build containers
 up:
@@ -45,10 +45,6 @@ seed:
 # Refresh database and migrations
 db_fresh:
 	$(sail) artisan migrate:fresh --seed --force
-
-# Refresh test database and migrations
-db_fresh_test:
-	$(sail) artisan migrate:fresh --force --database=pgsql_testing
 
 # Rollback migrations
 rollback:
@@ -108,3 +104,9 @@ horizon:
 
 socket:
 	$(sail) artisan reverb:start --debug
+
+duster-lint:
+	$(sail) php ./vendor/bin/duster lint
+
+duster-fix:
+	$(sail) php ./vendor/bin/duster fix

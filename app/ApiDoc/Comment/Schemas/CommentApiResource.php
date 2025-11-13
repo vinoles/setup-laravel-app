@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="CommentApiResource",
  *     type="object",
+ *
  *     @OA\Property(
  *          property="type",
  *          type="string",
@@ -38,6 +39,4 @@ use OpenApi\Annotations as OA;
  *      )
  * )
  */
-class CommentApiResource
-{
-}
+class CommentApiResource {}

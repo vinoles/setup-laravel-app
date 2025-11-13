@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="VersionMeta",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="jsonapi",
  *         type="object",
@@ -19,7 +20,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-
-class VersionMeta
-{
-}
+class VersionMeta {}

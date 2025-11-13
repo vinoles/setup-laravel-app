@@ -18,25 +18,18 @@ use LaravelJsonApi\Eloquent\Schema;
 
 class PostSchema extends Schema
 {
-
     /**
      * The model the schema corresponds to.
-     *
-     * @var string
      */
     public static string $model = Post::class;
 
     /**
      * The maximum include path depth.
-     *
-     * @var int
      */
     protected int $maxDepth = 3;
 
     /**
      * Get the resource fields.
-     *
-     * @return array
      */
     public function fields(): array
     {
@@ -73,8 +66,6 @@ class PostSchema extends Schema
 
     /**
      * Get the resource filters.
-     *
-     * @return array
      */
     public function filters(): array
     {
@@ -85,21 +76,14 @@ class PostSchema extends Schema
 
     /**
      * Build an index query for this resource.
-     *
-     * @param Request|null $request
-     * @param Builder $query
-     * @return Builder
      */
     public function indexQuery(?Request $request, Builder $query): Builder
     {
         return $query->whereNotNull('published_at');
     }
 
-
     /**
      * Get the resource paginator.
-     *
-     * @return Paginator|null
      */
     public function pagination(): ?Paginator
     {
@@ -108,8 +92,6 @@ class PostSchema extends Schema
 
     /**
      * Determine if the resource is authorizable.
-     *
-     * @return bool
      */
     public function authorizable(): bool
     {

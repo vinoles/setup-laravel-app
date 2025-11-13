@@ -2,21 +2,20 @@
 
 namespace Tests\Feature\Api\Auth;
 
-
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Auth\RegisterRequest;
 use Tests\Feature\TestCase;
 
 class RegisterTest extends TestCase
 {
-
     /**
      * Sign up happy path
-     *
-     * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function sign_up_happy_path(): void
     {
         $user = User::factory()->make();
@@ -28,22 +27,22 @@ class RegisterTest extends TestCase
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('users', [
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'address' => $user->address,
-            'city' => $user->city,
-            'country' => $user->country,
+            'first_name'  => $user->first_name,
+            'last_name'   => $user->last_name,
+            'address'     => $user->address,
+            'city'        => $user->city,
+            'country'     => $user->country,
             'postal_code' => $user->postal_code,
-            'phone' => $user->phone,
+            'phone'       => $user->phone,
         ]);
     }
 
     /**
      * Sign up and create user profile
-     *
-     * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function sign_up_and_create_user_profile(): void
     {
         $user = User::factory()->make();
@@ -55,13 +54,13 @@ class RegisterTest extends TestCase
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('users', [
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'address' => $user->address,
-            'city' => $user->city,
-            'country' => $user->country,
+            'first_name'  => $user->first_name,
+            'last_name'   => $user->last_name,
+            'address'     => $user->address,
+            'city'        => $user->city,
+            'country'     => $user->country,
             'postal_code' => $user->postal_code,
-            'phone' => $user->phone,
+            'phone'       => $user->phone,
         ]);
     }
 }
