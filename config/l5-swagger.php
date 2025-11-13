@@ -7,7 +7,7 @@ return [
     'documentations' => [
         'default' => [
             'api'    => [
-                'title' => 'Weetals API',
+                'title' => 'App API',
             ],
 
             'routes' => [
