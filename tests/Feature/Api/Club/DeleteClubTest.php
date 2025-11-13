@@ -79,14 +79,9 @@ class DeleteClubTest extends TestCase
     #[Group('api_club')]
     public function cannot_delete_club_if_the_club_not_found(): void
     {
-        $club = Club::factory()->create();
+        $club = Club::factory()->make();
 
         $request = DeleteClubRequest::make($club);
-
-        $response = $this->signIn($this->user)
-            ->sendRequestApiDelete($request);
-
-        $response->assertOk();
 
         $response = $this->signIn($this->user)
             ->sendRequestApiDelete($request);

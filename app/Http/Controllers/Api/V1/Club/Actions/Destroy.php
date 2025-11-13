@@ -16,11 +16,13 @@ trait Destroy
      */
     public function destroy(Club $club)
     {
+        $uuId = $club->uuid;
+
         DeleteClub::dispatch($club);
 
         return ApiResponseHelper::jsonApiResponse(
             [
-                'id'       => $club->uuid,
+                'id'       => $uuId,
                 'deleting' => true,
             ],
             Response::HTTP_OK
