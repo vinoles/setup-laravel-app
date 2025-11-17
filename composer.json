@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "backpack/crud": "^6.8",
         "backpack/language-switcher": "^2.0",
         "backpack/theme-coreuiv2": "^1.2",
