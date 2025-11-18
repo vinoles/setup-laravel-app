@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\Club\ClubCrudController;
-use App\Http\Controllers\Admin\PostCrudController;
-use App\Http\Controllers\Admin\UserCrudController;
+use App\Http\Controllers\Admin\Post\PostCrudController;
+use App\Http\Controllers\Admin\User\UserCrudController;
 use Illuminate\Support\Facades\Route;
 
 // --------------------------
