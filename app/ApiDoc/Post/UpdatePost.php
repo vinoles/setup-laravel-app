@@ -39,9 +39,16 @@ use OpenApi\Annotations as OA;
  *
  *     @OA\Response(
  *       response="200",
- *       description="CreatePost Successful",
+ *       description="Update Post Successfully",
  *
- *         @OA\JsonContent(ref="#/components/schemas/PostApiResponse"),
+ *       @OA\JsonContent(ref="#/components/schemas/UpdatePostApiResponse"),
+ *     ),
+ *
+ *     @OA\Response(
+ *         response="404",
+ *         description="Not found error",
+ *
+ *         @OA\JsonContent(ref="#/components/schemas/NotFoundError"),
  *     ),
  *
  *     @OA\Response(

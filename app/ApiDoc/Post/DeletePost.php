@@ -27,8 +27,10 @@ use OpenApi\Annotations as OA;
  *     ),
  *
  *     @OA\Response(
- *       response="204",
+ *       response="200",
  *       description="Delete Post Successfully",
+ *
+ *       @OA\JsonContent(ref="#/components/schemas/DeletePostApiResponse"),
  *     ),
  *     @OA\Response(
  *         response="404",
