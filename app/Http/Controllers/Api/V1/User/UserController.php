@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1\User;
 
 use App\Http\Controllers\Controller;
+use LaravelJsonApi\Core\Document\Concerns\Serializable;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions\AttachRelationship;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions\Destroy;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions\DetachRelationship;
@@ -23,7 +24,9 @@ class UserController extends Controller
     use FetchOne;
     use FetchRelated;
     use FetchRelationship;
+    use Serializable;
     use Store;
     use Update;
     use UpdateRelationship;
 }
+
