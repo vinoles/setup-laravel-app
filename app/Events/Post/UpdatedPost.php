@@ -55,4 +55,3 @@ class UpdatedPost implements ShouldBroadcast
         ];
     }
 }
-

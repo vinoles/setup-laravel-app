@@ -47,4 +47,3 @@ class RetrievePostsRequest extends GetRequest
         return $this->filters;
     }
 }
-

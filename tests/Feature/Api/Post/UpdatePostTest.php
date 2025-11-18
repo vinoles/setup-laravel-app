@@ -186,4 +186,3 @@ class UpdatePostTest extends TestCase
         $response->assertForbidden();
     }
 }
-

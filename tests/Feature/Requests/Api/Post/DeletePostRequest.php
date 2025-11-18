@@ -41,4 +41,3 @@ class DeletePostRequest extends DeleteRequest
         return $this->post->uuid;
     }
 }
-

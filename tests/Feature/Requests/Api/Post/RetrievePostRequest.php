@@ -25,4 +25,3 @@ class RetrievePostRequest extends GetRequest
         return route('v1.api.posts.show', ['post' => $this->post]);
     }
 }
-

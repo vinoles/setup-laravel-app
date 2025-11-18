@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Club;
 
-use App\Models\Club;
-use Backpack\CRUD\app\Http\Controllers\CrudController;
-use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
-use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use App\Http\Controllers\Admin\Club\Actions\Index;
 use App\Http\Controllers\Admin\Club\Actions\Show;
 use App\Http\Controllers\Admin\Club\Actions\Store;
 use App\Http\Controllers\Admin\Club\Actions\Update;
 use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
+use App\Models\Club;
+use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class ClubCrudController

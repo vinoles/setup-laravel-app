@@ -66,4 +66,3 @@ class UpdatePostRequest extends PatchRequest
         return $this->post->uuid;
     }
 }
-

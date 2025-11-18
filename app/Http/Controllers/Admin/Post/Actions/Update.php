@@ -18,4 +18,3 @@ trait Update
         $this->fields();
     }
 }
-

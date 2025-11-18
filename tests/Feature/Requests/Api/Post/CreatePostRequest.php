@@ -53,7 +53,7 @@ class CreatePostRequest extends PostRequest
                     'created_at',
                     'id',
                     'published_at',
-                    'author_id'
+                    'author_id',
                 ]
             ),
             static fn ($value) => $value !== null

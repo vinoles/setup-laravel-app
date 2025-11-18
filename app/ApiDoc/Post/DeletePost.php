@@ -32,6 +32,7 @@ use OpenApi\Annotations as OA;
  *
  *       @OA\JsonContent(ref="#/components/schemas/DeletePostApiResponse"),
  *     ),
+ *
  *     @OA\Response(
  *         response="404",
  *         description="Not found error",

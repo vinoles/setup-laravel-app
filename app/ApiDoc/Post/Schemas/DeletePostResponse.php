@@ -22,4 +22,3 @@ use OpenApi\Annotations as OA;
  * )
  */
 class DeletePostResponse {}
-

@@ -88,4 +88,3 @@ class RetrievePostsTest extends TestCase
         $this->assertIsArray($links);
     }
 }
-

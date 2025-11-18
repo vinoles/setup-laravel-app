@@ -39,4 +39,3 @@ class UpdatePost implements ShouldQueue
         UpdatedPost::dispatch($this->post);
     }
 }
-

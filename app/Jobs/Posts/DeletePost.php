@@ -34,4 +34,3 @@ class DeletePost implements ShouldQueue
         DeletedPost::dispatch($postId);
     }
 }
-

@@ -54,4 +54,3 @@ class DeletedPost implements ShouldBroadcast
         ];
     }
 }
-

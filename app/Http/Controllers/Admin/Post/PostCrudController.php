@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Post;
 
-use App\Models\Post;
-use Backpack\CRUD\app\Http\Controllers\CrudController;
-use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
-use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
 use App\Http\Controllers\Admin\Post\Actions\Index;
 use App\Http\Controllers\Admin\Post\Actions\Show;
 use App\Http\Controllers\Admin\Post\Actions\Store;
 use App\Http\Controllers\Admin\Post\Actions\Update;
-use App\Http\Controllers\Admin\Helpers\UsesBackpackOperations;
+use App\Models\Post;
+use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel;
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class PostCrudController
@@ -37,4 +37,3 @@ class PostCrudController extends CrudController
         CRUD::setEntityNameStrings('post', 'posts');
     }
 }
-

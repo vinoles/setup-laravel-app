@@ -138,4 +138,3 @@ class DeletePostTest extends TestCase
         $this->assertNotNull(Post::find($post->id));
     }
 }
-

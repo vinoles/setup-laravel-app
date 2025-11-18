@@ -18,4 +18,3 @@ trait Store
         $this->fields();
     }
 }
-

@@ -138,4 +138,3 @@ class RetrievePostTest extends TestCase
         $response->assertStatus($data[0]['status']);
     }
 }
-
