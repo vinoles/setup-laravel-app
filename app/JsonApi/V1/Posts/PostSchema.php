@@ -15,6 +15,7 @@ use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
+use LaravelJsonApi\Laravel\Http\Requests\ResourceRequest;
 
 class PostSchema extends Schema
 {
@@ -83,6 +84,18 @@ class PostSchema extends Schema
     }
 
     /**
+     * Build a query for finding a specific resource.
+     * Allow finding published posts so authorization can be checked.
+     * This is used when finding a single resource by ID (show, update, destroy).
+     */
+    public function queryOne(?Request $request, Builder $query): Builder
+    {
+        // For finding individual posts, allow published posts
+        // Authorization will be checked by the policy
+        return $query->whereNotNull('published_at');
+    }
+
+    /**
      * Get the resource paginator.
      */
     public function pagination(): ?Paginator
@@ -96,5 +109,20 @@ class PostSchema extends Schema
     public function authorizable(): bool
     {
         return true;
+    }
+
+    public function delete($post, ResourceRequest $request): bool
+    {
+        return $request->user()->can('delete', $post);
+    }
+
+    public function create(ResourceRequest $request): bool
+    {
+        return $request->user()->can('create');
+    }
+
+    public function update($post, ResourceRequest $request): bool
+    {
+        return $request->user()->can('update', $post);
     }
 }
