@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\Club\ClubCrudController;
+use App\Http\Controllers\Admin\PostCrudController;
+use App\Http\Controllers\Admin\UserCrudController;
 use Illuminate\Support\Facades\Route;
 
 // --------------------------
@@ -15,11 +18,10 @@ Route::group([
         (array) config('backpack.base.web_middleware', 'web'),
         (array) config('backpack.base.middleware_key', 'admin')
     ),
-    'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
-    Route::crud('users', 'UserCrudController');
-    Route::crud('clubs', 'ClubCrudController');
-    Route::crud('posts', 'PostCrudController');
+    Route::crud('users', UserCrudController::class);
+    Route::crud('clubs', ClubCrudController::class);
+    Route::crud('posts', PostCrudController::class);
 }); // this should be the absolute last line of this file
 
 /**
