@@ -4,22 +4,17 @@ namespace Tests\Feature\Requests\Api\Post;
 
 use App\Models\Post;
 use Illuminate\Support\Arr;
-use Tests\Feature\Concerns\UsesRelationships;
-use Tests\Feature\Requests\PostRequest;
+use Tests\Feature\Requests\PatchRequest;
 
-class CreatePostRequest extends PostRequest
+class UpdatePostRequest extends PatchRequest
 {
-    use UsesRelationships;
-
     /**
      * Create a new instance of the request.
-     *
-     * @param  array  $relationship
      */
-    public function __construct(protected ?Post $post = null, public array $relationships = [])
+    public function __construct(protected ?Post $post = null)
     {
-        if ($this->post !== null) {
-            $this->fillPayload();
+        if ($post === null) {
+            $this->post = $post = Post::factory()->create();
         }
     }
 
@@ -28,7 +23,31 @@ class CreatePostRequest extends PostRequest
      */
     public function endpoint(): string
     {
-        return route('v1.api.posts.store');
+        return route('v1.api.posts.update', ['post' => $this->post]);
+    }
+
+    /**
+     * Fill the payload of the request based on the given post.
+     */
+    public function fillPayload(Post $post): static
+    {
+        $this->payload = array_filter(
+            Arr::except(
+                $post->getAttributes(),
+                [
+                    'uuid',
+                    'updated_at',
+                    'created_at',
+                    'id',
+                    'published_at',
+                    'slug',
+                    'author_id',
+                ]
+            ),
+            static fn ($value) => $value !== null
+        );
+
+        return $this;
     }
 
     /**
@@ -40,25 +59,11 @@ class CreatePostRequest extends PostRequest
     }
 
     /**
-     * Fill the payload of the request based on the given post.
+     * Retrieve uuid model
      */
-    protected function fillPayload(): static
+    public function modelUuid(): string
     {
-        $this->payload = array_filter(
-            Arr::except(
-                $this->post->getAttributes(),
-                [
-                    'uuid',
-                    'updated_at',
-                    'created_at',
-                    'id',
-                    'published_at',
-                    'author_id'
-                ]
-            ),
-            static fn ($value) => $value !== null
-        );
-
-        return $this;
+        return $this->post->uuid;
     }
 }
+
