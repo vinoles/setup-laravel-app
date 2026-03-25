@@ -19,6 +19,8 @@ class UserResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
+            'id'         => $this->id,
+            'email'      => $this->email,
             'first_name' => $this->first_name,
             'last_name'  => $this->last_name,
             'phone'      => $this->phone,
