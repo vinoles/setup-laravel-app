@@ -3,14 +3,12 @@
 namespace App\Providers;
 
 use App\Models\User;
-use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use L5Swagger\L5SwaggerServiceProvider;
 use Laravel\Sanctum\PersonalAccessToken;
 use Laravel\Sanctum\Sanctum;
-
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,22 +26,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (config('app.env') === 'production') {
-            URL::forceScheme('https');
+        $appUrl = config('app.url');
+
+        if ($appUrl) {
+            URL::forceRootUrl($appUrl);
+            $scheme = parse_url($appUrl, PHP_URL_SCHEME) ?: 'http';
+            URL::forceScheme($scheme);
         }
 
-        //
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
-
-        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-            $switch
-                ->locales(config('app.locales'))
-                ->labels([
-                    'es' => __('admin.locales.es'),
-                    'en' => __('admin.locales.en'),
-                    'fr' => __('admin.locales.fr'),
-                ]);
-        });
 
         Gate::define('viewPulse', function (User $user) {
             return $user->isAnyAdmin();

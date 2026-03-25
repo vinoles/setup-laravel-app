@@ -11,7 +11,9 @@ use Illuminate\Queue\SerializesModels;
 
 class CreatedPost implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * Create a new event instance.
@@ -49,7 +51,7 @@ class CreatedPost implements ShouldBroadcast
     public function broadcastWith(): array
     {
         return [
-            'post' => $this->post
+            'post' => $this->post,
         ];
     }
 }

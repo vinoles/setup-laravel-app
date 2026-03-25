@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="PostCommentRelationships",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="user",
  *         type="object",
@@ -26,7 +27,7 @@ use OpenApi\Annotations as OA;
  *              ),
  *          ),
  *     ),
-  *     @OA\Property(
+ *     @OA\Property(
  *         property="post",
  *         type="object",
  *         @OA\Property(
@@ -46,6 +47,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class PostCommentRelationships
-{
-}
+class PostCommentRelationships {}

@@ -2,15 +2,10 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-use App\Models\Concerns\HasUuid;
 use App\Models\Concerns\HasUserRoles;
-use App\Observers\UserObserver;
-use Filament\Models\Contracts\FilamentUser;
-use Filament\Models\Contracts\HasName;
-use Filament\Panel;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use App\Models\Concerns\HasUuid;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,16 +13,17 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-#[ObservedBy([UserObserver::class])]
-class User extends Authenticatable  implements FilamentUser, HasName
+class User extends Authenticatable
 {
+    use CrudTrait;
+
+    use HasApiTokens;
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory,
-        Notifiable,
-        HasApiTokens,
-        HasUuid,
-        HasRoles,
-        HasUserRoles;
+    use HasFactory;
+    use HasRoles;
+    use HasUserRoles;
+    use HasUuid;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -48,6 +44,10 @@ class User extends Authenticatable  implements FilamentUser, HasName
         'password',
     ];
 
+    protected $appends = [
+        'full_name',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -59,6 +59,19 @@ class User extends Authenticatable  implements FilamentUser, HasName
     ];
 
     /**
+     * Return the full name of the user
+     */
+    public function getFullNameAttribute(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'author_id', 'id');
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -66,47 +79,16 @@ class User extends Authenticatable  implements FilamentUser, HasName
     protected function casts(): array
     {
         return [
-            'birthdate' => 'date:Y-m-d',
+            'birthdate'         => 'date:Y-m-d',
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
     }
 
-    /**
-     * @return HasMany
-     */
-    public function posts(): HasMany
+    protected function fullName(): Attribute
     {
-        return $this->hasMany(Post::class, 'author_id', 'id');
-    }
-
-    /**
-     * Return filament name for admin panel
-     *
-     * @return string
-     */
-    public function getFilamentName(): string
-    {
-        return "{$this->first_name} {$this->last_name}";
-    }
-
-    /**
-     * Verify if user can access to panel admin
-     *
-     * @return bool
-     */
-    public function canAccessPanel(Panel $panel): bool
-    {
-        return $this->isAnyAdmin() && $this->hasVerifiedEmail();
-    }
-
-    /**
-     * Return the full name of the user
-     *
-     * @return string
-     */
-
-    public function getFullNameAttribute(): string {
-        return $this->first_name . ' ' . $this->last_name;
+        return Attribute::make(
+            get: fn () => trim($this->first_name . ' ' . $this->last_name),
+        );
     }
 }

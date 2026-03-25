@@ -4,15 +4,11 @@ namespace App\JsonApi\V1\Posts;
 
 use Illuminate\Validation\Rule;
 use LaravelJsonApi\Laravel\Http\Requests\ResourceRequest;
-use LaravelJsonApi\Validation\Rule as JsonApiRule;
 
 class PostRequest extends ResourceRequest
 {
-
     /**
      * Get the validation rules for the resource.
-     *
-     * @return array
      */
     public function rules(): array
     {
@@ -26,9 +22,9 @@ class PostRequest extends ResourceRequest
 
         return [
             'content' => ['required', 'string'],
-            'title' => ['required', 'string'],
-            'uuid' => ['nullable', 'string'],
-            'author' => ['required'],
+            'title'   => ['required', 'string'],
+            'uuid'    => ['nullable', 'string'],
+            'author'  => ['required'],
         ];
     }
 }

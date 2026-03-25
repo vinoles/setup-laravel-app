@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,9 +13,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            RoleSeeder::class,  // Must run first to create roles and permissions
+            RoleSeeder::class,
             UserSeeder::class,
             PostSeeder::class,
+            ClubSeeder::class,
         ]);
     }
 }

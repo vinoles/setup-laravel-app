@@ -1,10 +1,10 @@
 # 🏅  Setup laravel app
 
-A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.io/) works with [Laravel](https://laravel.com/) and [FIlamentPhp](https://filamentphp.com/docs).
+A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.io/) works with [Laravel](https://laravel.com/) and [Backpack for laravel](https://backpackforlaravel.com/docs).
 
 
-🔗 [Demo API](https://setup-laravel-app-production.up.railway.app/api/v1/documentation)
-🔗 [Demo Admin Panel](https://setup-laravel-app-production.up.railway.app/admin)
+🔗 [Demo API](https://setup-laravel-app.local/api/v1/documentation)
+🔗 [Demo Admin Panel](https://setup-laravel-app.local/admin)
 
 ---
 
@@ -27,7 +27,7 @@ A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.i
   - Role & permission management with [Spatie Permissions](https://spatie.be/docs/laravel-permission).
 
 - **Admin & Management**
-  - [Filament](https://filamentphp.com/) admin panel with custom UI library.
+  - [Backpack for laravel](https://backpackforlaravel.com/) admin panel with custom UI library.
   - [L5 Swagger](https://github.com/DarkaOnLine/L5-Swagger) for API documentation.
 
 - **Scalable Infrastructure**
@@ -46,7 +46,7 @@ A demo application to illustrate how [Laravel JSON:API](https://laraveljsonapi.i
 
 - Docker
 - Docker Compose
-- [Filament PHP](https://filamentphp.com/docs)
+- [Backpackforlaravel](https://backpackforlaravel.com/docs)
 - [Laravel JSON:API](https://laraveljsonapi.io/5.x/)
 - [Laravel](https://laravel.com/)
 - [Demo api](https://setup-laravel-app-production.up.railway.app/api/v1/documentation)
@@ -68,53 +68,67 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
     -w /var/www/html \
-    laravelsail/php83-composer:latest \
+    laravelsail/php84-composer:latest \
     composer install --ignore-platform-reqs
 
 # Setup environment variables
 cp .env.example .env
 
-# Build containers
+# Build containers all container and start app
 make setup
-
-# Start all containers
-make up
-
-# Run migrations and seed database
-make migrate
-make seed
-
-# Alternatively, run migrations and seed in one command
-make db_fresh
-
-# Migrate test database
-make db_fresh_test
-
-# Stop all containers
-make stop
-
-# Run frontend in development mode
-make front-dev
 ```
 
 ## Web Access
 
-### API
-```bash
-http://laravel-app.local:8082/api/v1/documentation
-```
-<img width="800" alt="API example documentation" src="./api_doc_example.png">
+### [Admin Panel](https://setup-laravel-app.local/admin)
 
-### Admin Panel
 ```bash
-http://setup-laravel-app.local:8082/admin/login
+https://setup-laravel-app.local/admin
 
 User: admin@setup-laravel-app.com
 Password: password
-```
-<img width="800" alt="Admin dashboard example" src="./admin_dashboard-example.png">
 
-## Command Installation & Artisan Commands
+```
+# Additional Commands
+Refer to the `Makefile` for more available commands.
+
+### Start containers for second
+make up
+
+### Run migrations and seed database
+make migrate
+make seed
+
+### Alternatively, run migrations and seed in one command
+make db_fresh
+
+### Migrate test database
+make db_fresh_test
+
+### Stop all containers
+make stop
+
+### Run frontend in development mode
+make front-dev
+
+### Generate api doc
+make l5g
+
+****
+
+
+<img  width="auto"  height="auto" alt="Admin dashboard example" src="./admin_panel_list.png">
+
+### [Api documentation](https://setup-laravel-app.local/api/v1/documentation)
+
+```bash
+https://setup-laravel-app.local/api/v1/documentation
+```
+<img width="auto"  height="auto" alt="API example documentation" src="./api_doc_example.png">
+
+****
+
+# Command Installation & Artisan Commands
 
 ```bash
 # Example: Install a package
@@ -150,14 +164,11 @@ sail composer require api-platform/laravel
 sail artisan app:token-api-generator admin@setup-laravel-app.com password
 ```
 
-## Additional Commands
-Refer to the `Makefile` for more available commands.
-
 ## 📌 Roadmap
 
 - ✅ Core API with JSON:API (Gateway layer)
 - ✅ Authentication & Role Management (Fortify, Sanctum, Spatie Permissions)
-- ✅ Admin Panel with Filament
+- ✅ Admin Panel with Backpack for laravel
 - ✅ Event-driven system (Jobs, Observers, Listeners)
 - ✅ API Documentation with Swagger
 - 🚧 Real-time chat & notifications (Laravel Reverb)

@@ -4,19 +4,19 @@ namespace Tests\Feature\Api\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Carbon;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\Auth\RegisterRequest;
 use Tests\Feature\TestCase;
 
 class RegisterWithMinimumAgeTest extends TestCase
 {
-
     /**
      * Can register if the age is greater than or equal to 14
-     *
-     * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function can_register_if_the_age_is_greater_than_or_equal_to_14(): void
     {
         $birthdate = now()->subYears(random_int(14, 20));
@@ -34,10 +34,10 @@ class RegisterWithMinimumAgeTest extends TestCase
 
     /**
      * Cannot register if the age is less than or equal to 14
-     *
-     * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_auth')]
     public function cannot_register_if_the_age_is_less_than_or_equal_to_14(): void
     {
         $birthdate = now()->subYears(random_int(1, 13));
@@ -63,7 +63,7 @@ class RegisterWithMinimumAgeTest extends TestCase
                 'validation.before_or_equal',
                 [
                     'attribute' => 'birthdate',
-                    'date' => $allowedBirthdate,
+                    'date'      => $allowedBirthdate,
                 ]
             ),
         ]);

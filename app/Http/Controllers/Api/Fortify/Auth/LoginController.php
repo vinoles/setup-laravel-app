@@ -13,9 +13,6 @@ class LoginController extends Controller
 {
     /**
      * Handle the incoming request.
-     *
-     * @param  SignInRequest  $request
-     * @return DataResponse
      */
     public function __invoke(SignInRequest $request): DataResponse
     {
@@ -25,7 +22,7 @@ class LoginController extends Controller
 
         $user = User::where('email', $email)->first();
 
-        if (!$user || !Hash::check($password, $user->password)) {
+        if (! $user || ! Hash::check($password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => [trans('auth.failed')],
             ]);

@@ -10,9 +10,9 @@ class ApiResponseHelper
     {
         return response()->json([
             'jsonapi' => [
-                'version' => '1.0'
+                'version' => '1.0',
             ],
-            'data' => $data,
+            'data'    => $data,
         ], $status);
     }
 }

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'guard' => 'web',
+    'guard'               => 'web',
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'passwords' => 'users',
+    'passwords'           => 'users',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,9 +45,9 @@ return [
     |
     */
 
-    'username' => 'email',
+    'username'            => 'email',
 
-    'email' => 'email',
+    'email'               => 'email',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'home' => '/home',
+    'home'                => '/home',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,9 +86,9 @@ return [
     |
     */
 
-    'prefix' => '',
+    'prefix'              => '',
 
-    'domain' => null,
+    'domain'              => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -101,7 +101,7 @@ return [
     |
     */
 
-    'middleware' => ['web'],
+    'middleware'          => ['web'],
 
     /*
     |--------------------------------------------------------------------------
@@ -114,8 +114,8 @@ return [
     |
     */
 
-    'limiters' => [
-        'login' => 'login',
+    'limiters'            => [
+        'login'      => 'login',
         'two-factor' => 'two-factor',
     ],
 
@@ -130,8 +130,8 @@ return [
     |
     */
 
-    //TODO set false and implement new views for reset password
-    'views' => true,
+    // TODO set false and implement new views for reset password
+    'views'               => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -144,14 +144,14 @@ return [
     |
     */
 
-    'features' => [
+    'features'            => [
         Features::registration(),
         Features::resetPasswords(),
         // Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([
-            'confirm' => true,
+            'confirm'         => true,
             'confirmPassword' => true,
             // 'window' => 0,
         ]),

@@ -26,7 +26,7 @@ return [
     | unique name for each server, and the value being the fully-qualified
     | class name of the server class.
     */
-    'servers' => [
+    'servers'   => [
         'v1' => \App\JsonApi\V1\Server::class,
     ],
 ];

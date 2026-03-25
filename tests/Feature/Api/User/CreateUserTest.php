@@ -3,18 +3,19 @@
 namespace Tests\Feature\Api\User;
 
 use App\Models\User;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\User\CreateUserRequest;
 use Tests\Feature\TestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 class CreateUserTest extends TestCase
 {
     /**
-    * A user not logged in cannot create the user
-    *
-    * @return void
-    */
+     * A user not logged in cannot create the user
+     */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_create_user_if_not_logged_in(): void
     {
         $request = CreateUserRequest::make();
@@ -26,10 +27,10 @@ class CreateUserTest extends TestCase
 
     /**
      * Create user happy path
-     *
-     * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function create_user_happy_path(): void
     {
         $user = User::factory()->make();
@@ -44,22 +45,22 @@ class CreateUserTest extends TestCase
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('users', [
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'address' => $user->address,
-            'city' => $user->city,
-            'country' => $user->country,
+            'first_name'  => $user->first_name,
+            'last_name'   => $user->last_name,
+            'address'     => $user->address,
+            'city'        => $user->city,
+            'country'     => $user->country,
             'postal_code' => $user->postal_code,
-            'phone' => $user->phone,
+            'phone'       => $user->phone,
         ]);
     }
 
     /**
      * Cannot create user if without the required data.
-     *
-     * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_create_user_if_without_the_required_data(): void
     {
         $user = User::factory()->create();

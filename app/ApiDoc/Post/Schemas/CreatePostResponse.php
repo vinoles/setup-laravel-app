@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
  * @OA\Schema(
  *     schema="CreatePostResponse",
  *     type="object",
+ *
  *     @OA\Property(
  *         property="id",
  *         type="string",
@@ -20,6 +21,4 @@ use OpenApi\Annotations as OA;
  *     ),
  * )
  */
-class CreatePostResponse
-{
-}
+class CreatePostResponse {}

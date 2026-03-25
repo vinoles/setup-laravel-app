@@ -8,8 +8,6 @@ trait AvailableAsDropdownOptions
 {
     /**
      * Retrieve the options for a select field.
-     *
-     * @return Collection
      */
     public static function asDropdownOptions(): Collection
     {
@@ -39,14 +37,11 @@ trait AvailableAsDropdownOptions
 
     /**
      * Retrieve the options for a select field.
-     *
-     * @return array
      */
     public static function asValues(): array
     {
         return collect(static::cases())->map(
-            static fn ($option) =>
-            $option->value,
+            static fn ($option) => $option->value,
         )->toArray();
     }
 }

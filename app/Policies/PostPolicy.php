@@ -76,6 +76,14 @@ class PostPolicy
     }
 
     /**
+     * Determine whether the user can destroy the model.
+     */
+    public function destroy(User $user, Post $post): bool
+    {
+        return $this->isOwnerOrAdmin($user, $post);
+    }
+
+    /**
      * Determine whether the user can restore the model.
      */
     public function restore(User $user, Post $post): bool
@@ -90,7 +98,6 @@ class PostPolicy
     {
         return $this->isOwnerOrAdmin($user, $post);
     }
-
 
     /**
      * Determine whether the user can update the model's tags relationship.

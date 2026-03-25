@@ -4,19 +4,19 @@ namespace Tests\Feature\Api\User;
 
 use App\Models\User;
 use Illuminate\Http\Response;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Feature\Requests\Api\User\ConfirmPasswordRequest;
 use Tests\Feature\TestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 class ConfirmPasswordTest extends TestCase
 {
-
     /**
      * A user can confirm password with the correct password.
-     *
-     * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function can_confirm_password_with_the_correct_password(): void
     {
         $user = User::factory()->withPassword()->create();
@@ -29,16 +29,16 @@ class ConfirmPasswordTest extends TestCase
 
         $data = $response->json('meta');
 
-        $this->assertTrue($data["status"]);
+        $this->assertTrue($data['status']);
 
     }
 
     /**
      * A user cannot confirm password with the incorrect password.
-     *
-     * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_confirm_password_with_the_incorrect_password(): void
     {
         $user = User::factory()->withPassword()->create();
@@ -51,16 +51,16 @@ class ConfirmPasswordTest extends TestCase
 
         $data = $response->json('meta');
 
-        $this->assertFalse($data["status"]);
+        $this->assertFalse($data['status']);
 
     }
 
     /**
      * A user cannot confirm password another user
-     *
-     * @return void
      */
     #[Test]
+    #[Group('api')]
+    #[Group('api_user')]
     public function cannot_confirm_password_another_user(): void
     {
         $user = User::factory()->withPassword()->create();

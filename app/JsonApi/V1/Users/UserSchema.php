@@ -4,11 +4,11 @@ namespace App\JsonApi\V1\Users;
 
 use App\Models\User;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
+use LaravelJsonApi\Eloquent\Fields\ArrayList;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
 use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
 use LaravelJsonApi\Eloquent\Fields\Str;
-use LaravelJsonApi\Eloquent\Fields\ArrayList;
 use LaravelJsonApi\Eloquent\Filters\Where;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
@@ -18,31 +18,31 @@ class UserSchema extends Schema
 {
     /**
      * The model the schema corresponds to.
-     *
-     * @var string
      */
     public static string $model = User::class;
 
     /**
      * The maximum include path depth.
-     *
-     * @var int
      */
     protected int $maxDepth = 3;
 
     /**
      * The resource type as it appears in URIs.
-     *
-     * @var string|null
      */
     protected ?string $uriType = 'users';
 
     protected $defaultSort = ['-createdAt'];
 
     /**
+     * Get the JSON:API resource type.
+     */
+    public static function type(): string
+    {
+        return 'users';
+    }
+
+    /**
      * Get the resource fields.
-     *
-     * @return array
      */
     public function fields(): array
     {
@@ -73,8 +73,6 @@ class UserSchema extends Schema
 
     /**
      * Get the resource filters.
-     *
-     * @return array
      */
     public function filters(): array
     {
@@ -86,8 +84,6 @@ class UserSchema extends Schema
 
     /**
      * Get the resource paginator.
-     *
-     * @return Paginator|null
      */
     public function pagination(): ?Paginator
     {
@@ -95,19 +91,7 @@ class UserSchema extends Schema
     }
 
     /**
-     * Get the JSON:API resource type.
-     *
-     * @return string
-     */
-    public static function type(): string
-    {
-        return 'users';
-    }
-
-    /**
      * Determine if the resource is authorizable.
-     *
-     * @return bool
      */
     public function authorizable(): bool
     {

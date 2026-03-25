@@ -6,20 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid()->unique();
             $table->string('name');
             $table->timestamps();
         });
 
         Schema::create('post_tag', function (Blueprint $table) {
-            // $table->string('uuid');
             $table->foreignId('post_id')
                 ->constrained()
                 ->cascadeOnDelete()
@@ -34,9 +30,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('post_tag');
