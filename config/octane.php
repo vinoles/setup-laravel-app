@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'server' => env('OCTANE_SERVER', 'roadrunner'),
+    'server'             => env('OCTANE_SERVER', 'roadrunner'),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'https' => env('OCTANE_HTTPS', false),
+    'https'              => env('OCTANE_HTTPS', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,41 +64,41 @@ return [
     |
     */
 
-    'listeners' => [
-        WorkerStarting::class => [
+    'listeners'          => [
+        WorkerStarting::class      => [
             EnsureUploadedFilesAreValid::class,
             EnsureUploadedFilesCanBeMoved::class,
         ],
 
-        RequestReceived::class => [
+        RequestReceived::class     => [
             ...Octane::prepareApplicationForNextOperation(),
             ...Octane::prepareApplicationForNextRequest(),
             //
         ],
 
-        RequestHandled::class => [
+        RequestHandled::class      => [
             //
         ],
 
-        RequestTerminated::class => [
+        RequestTerminated::class   => [
             // FlushUploadedFiles::class,
         ],
 
-        TaskReceived::class => [
+        TaskReceived::class        => [
             ...Octane::prepareApplicationForNextOperation(),
             //
         ],
 
-        TaskTerminated::class => [
+        TaskTerminated::class      => [
             //
         ],
 
-        TickReceived::class => [
+        TickReceived::class        => [
             ...Octane::prepareApplicationForNextOperation(),
             //
         ],
 
-        TickTerminated::class => [
+        TickTerminated::class      => [
             //
         ],
 
@@ -114,7 +114,7 @@ return [
             StopWorkerIfNecessary::class,
         ],
 
-        WorkerStopping::class => [
+        WorkerStopping::class      => [
             CloseMonologHandlers::class,
         ],
     ],
@@ -130,11 +130,11 @@ return [
     |
     */
 
-    'warm' => [
+    'warm'               => [
         ...Octane::defaultServicesToWarm(),
     ],
 
-    'flush' => [
+    'flush'              => [
         //
     ],
 
@@ -149,9 +149,9 @@ return [
     |
     */
 
-    'tables' => [
+    'tables'             => [
         'example:1000' => [
-            'name' => 'string:1000',
+            'name'  => 'string:1000',
             'votes' => 'int',
         ],
     ],
@@ -167,8 +167,8 @@ return [
     |
     */
 
-    'cache' => [
-        'rows' => 1000,
+    'cache'              => [
+        'rows'  => 1000,
         'bytes' => 10000,
     ],
 
@@ -183,7 +183,7 @@ return [
     |
     */
 
-    'watch' => [
+    'watch'              => [
         'app',
         'bootstrap',
         'config/**/*.php',
@@ -206,7 +206,7 @@ return [
     |
     */
 
-    'garbage' => 50,
+    'garbage'            => 50,
 
     /*
     |--------------------------------------------------------------------------
