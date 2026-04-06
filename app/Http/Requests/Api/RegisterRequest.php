@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Actions\Fortify\PasswordValidationRules;
-use App\Constants\UserRole;
+use App\Fortify\Actions\PasswordValidationRules;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class RegisterRequest extends FormRequest
 {
