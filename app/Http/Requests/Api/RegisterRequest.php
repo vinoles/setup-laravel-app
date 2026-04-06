@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Http\Controllers\Api\Fortify\Actions\PasswordValidationRules;
+use App\Fortify\Actions\PasswordValidationRules;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest

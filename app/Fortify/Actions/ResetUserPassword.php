@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Fortify\Actions;
+namespace App\Fortify\Actions;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;

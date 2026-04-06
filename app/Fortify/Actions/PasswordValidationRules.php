@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Fortify\Actions;
+namespace App\Fortify\Actions;
 
 use Illuminate\Validation\Rules\Password;
 

@@ -2,7 +2,7 @@
 
 namespace App\JsonApi\V1\Users;
 
-use App\Http\Controllers\Api\Fortify\Actions\PasswordValidationRules;
+use App\Fortify\Actions\PasswordValidationRules;
 use LaravelJsonApi\Laravel\Http\Requests\ResourceRequest;
 
 class UserRequest extends ResourceRequest
